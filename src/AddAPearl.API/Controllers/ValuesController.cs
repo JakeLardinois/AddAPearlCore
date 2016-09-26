@@ -1,19 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
+using System.Reflection;
+using AddAPearl.Entities;
 using Microsoft.AspNetCore.Mvc;
+using AddAPearl.Services;
 
 namespace AddAPearl.API.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        private static AddAPearlService _addAPearlService;
+
+        public ValuesController()
+        {
+            _addAPearlService = new AddAPearlService();
+        }
+
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IList<Company> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _addAPearlService.GetCompanies();
         }
 
         // GET api/values/5

@@ -13,9 +13,9 @@ namespace AddAPearl.API.Controllers
     {
         private static AddAPearlService _addAPearlService;
 
-        public ValuesController()
+        public ValuesController(AddAPearlContext addAPearlContext)
         {
-            _addAPearlService = new AddAPearlService();
+            _addAPearlService = new AddAPearlService(addAPearlContext);
         }
 
         // GET api/values

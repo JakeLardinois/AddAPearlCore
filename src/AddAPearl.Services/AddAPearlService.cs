@@ -11,9 +11,9 @@ namespace AddAPearl.Services
         private readonly AddAPearlContext _addAPearl;
 
 
-        public AddAPearlService()
+        public AddAPearlService(AddAPearlContext addAPearlContext)
         {
-            _addAPearl = new AddAPearlContext();
+            _addAPearl = addAPearlContext;
         }
 
         public IList<Company> GetCompanies()

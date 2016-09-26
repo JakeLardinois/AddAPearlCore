@@ -8,11 +8,7 @@ namespace AddAPearl.Entities
 {
     public class AddAPearlContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("data source=JLARDINOIS\\SQL2014;initial catalog=AddAPearl;persist security info=True;user id=sa;password=wh0r353;MultipleActiveResultSets=True;App=EntityFramework");
-        }
-
+        public AddAPearlContext(DbContextOptions<AddAPearlContext> options) : base(options) { }
 
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<Company> Companies { get; set; }

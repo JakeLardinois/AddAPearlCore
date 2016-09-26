@@ -10,12 +10,12 @@ namespace AddAPearl.Entities
     [Table("Company")]
     public partial class Company
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Key]
         public int CompanyId { get; set; }
 
         [StringLength(50)]
         public string CompanyName { get; set; }
 
-        public int AddressId { get; set; }
+        public int? AddressId { get; set; }
     }
 }

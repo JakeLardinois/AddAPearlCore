@@ -10,6 +10,7 @@ namespace AddAPearl.Entities
     [Table("Customer")]
     public partial class Customer
     {
+        [Key]
         public int CustomerId { get; set; }
 
         [StringLength(4000)]

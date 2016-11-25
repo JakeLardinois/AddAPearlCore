@@ -14,5 +14,28 @@
   "bugs": {
     "url": "https://github.com/JakeLardinois/AddAPearlCore/issues"
   },
-  "homepage": "https://github.com/JakeLardinois/AddAPearlCore#readme"
+  "homepage": "https://github.com/JakeLardinois/AddAPearlCore#readme",
+  "dependencies": {
+    "@angular/common": "~2.2.0",
+    "@angular/compiler": "~2.2.0",
+    "@angular/core": "~2.2.0",
+    "@angular/forms": "~2.2.0",
+    "@angular/http": "~2.2.0",
+    "@angular/platform-browser": "~2.2.0",
+    "@angular/platform-browser-dynamic": "~2.2.0",
+    "@angular/router": "~3.2.0",
+    "core-js": "^2.4.1",
+    "material2": "^2.0.0-alpha.6-2",
+    "reflect-metadata": "^0.1.8",
+    "rxjs": "5.0.0-beta.12",
+    "systemjs": "0.19.40",
+    "zone.js": "^0.6.26"
+  },
+  "devDependencies": {
+    "concurrently": "^3.1.0",
+    "lite-server": "^2.2.0",
+    "tslint": "^3.15.1",
+    "typescript": "^2.0.10",
+    "typings": "^2.0.0"
+  }
 }

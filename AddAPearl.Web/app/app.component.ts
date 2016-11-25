@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
     selector: 'pearl-app',
     template: `
     <div><h1>{{pageTitle}}</h1>
+    <button md-button>My Angular Material Button!!</button>
     </div>
     `
 })

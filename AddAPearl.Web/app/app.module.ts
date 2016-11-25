@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
 
 import { AppComponent }  from './app.component';
+import { CompanyListComponent }  from './companies/company-list.component';
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { AppComponent }  from './app.component';
     MaterialModule.forRoot()
   ],
   declarations: [
-    AppComponent
+    AppComponent,
+    CompanyListComponent
   ],
   bootstrap: [ AppComponent ]
 })

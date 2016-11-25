@@ -3,7 +3,14 @@
   "version": "1.0.0",
   "description": "A website for tracking add-a-pearl necklaces",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "lint": "tslint ./app/**/*.ts -t verbose",
+    "lite": "lite-server",
+    "typings": "typings",
+    "postinstall": "typings install"
   },
   "repository": {
     "type": "git",

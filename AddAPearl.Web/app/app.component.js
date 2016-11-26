@@ -16,7 +16,7 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'pearl-app',
-            template: "\n    <div><h1>{{pageTitle}}</h1>\n    <button md-button>My Angular Material Button!!</button>\n    </div>\n    "
+            template: "\n    <div><h1>{{pageTitle}}</h1>\n    <pearl-companies></pearl-companies>\n    </div>\n    "
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

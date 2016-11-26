@@ -13,6 +13,7 @@ var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var material_1 = require('@angular/material');
 var app_component_1 = require('./app.component');
+var company_list_component_1 = require('./companies/company-list.component');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -24,7 +25,8 @@ var AppModule = (function () {
                 material_1.MaterialModule.forRoot()
             ],
             declarations: [
-                app_component_1.AppComponent
+                app_component_1.AppComponent,
+                company_list_component_1.CompanyListComponent
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

@@ -12,7 +12,9 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var material_1 = require('@angular/material');
+var http_1 = require('@angular/http');
 var app_component_1 = require('./app.component');
+var company_service_1 = require('./companies/company.service');
 var company_list_component_1 = require('./companies/company-list.component');
 var AppModule = (function () {
     function AppModule() {
@@ -22,11 +24,16 @@ var AppModule = (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
-                material_1.MaterialModule.forRoot()
+                material_1.MaterialModule.forRoot(),
+                http_1.HttpModule,
+                http_1.JsonpModule
             ],
             declarations: [
                 app_component_1.AppComponent,
                 company_list_component_1.CompanyListComponent
+            ],
+            providers: [
+                company_service_1.CompanyService
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

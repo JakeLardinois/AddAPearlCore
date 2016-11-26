@@ -18,7 +18,7 @@ require('rxjs/add/operator/map');
 var CompanyService = (function () {
     function CompanyService(http) {
         this.http = http;
-        this._companiesUrl = 'http://localhost:19750/api/values'; // URL to web API
+        this._companiesUrl = 'http://localhost:19750/api/companies'; // URL to web API
     }
     CompanyService.prototype.getCompanies = function () {
         return this.http.get(this._companiesUrl)

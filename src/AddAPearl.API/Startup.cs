@@ -43,6 +43,7 @@ namespace AddAPearl.API
 
             services.AddDbContext<AddAPearlContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             // Add framework services.
             services.AddMvc();
         }

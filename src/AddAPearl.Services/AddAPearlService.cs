@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AddAPearl.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace AddAPearl.Services
 {
@@ -16,9 +17,15 @@ namespace AddAPearl.Services
             _addAPearl = addAPearlContext;
         }
 
-        public IList<Company> GetCompanies()
+        public IEnumerable<Company> GetCompanies()
         {
-            return _addAPearl.Companies.ToList();
+            return _addAPearl.Companies;
+        }
+
+        public Company GetCompanyById(int id)
+        {
+            return _addAPearl.Companies
+                .FirstOrDefault(c => c.CompanyId == id);
         }
     }
 }

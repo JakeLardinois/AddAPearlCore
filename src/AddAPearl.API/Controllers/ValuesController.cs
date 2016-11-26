@@ -20,7 +20,7 @@ namespace AddAPearl.API.Controllers
 
         // GET api/values
         [HttpGet]
-        public IList<Company> Get()
+        public IEnumerable<Company> Get()
         {
             return _addAPearlService.GetCompanies();
         }

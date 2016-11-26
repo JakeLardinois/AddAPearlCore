@@ -11,7 +11,7 @@ import { ICompany } from './company';
 
 @Injectable()
 export class CompanyService {
-  private _companiesUrl = 'http://localhost:19750/api/values';  // URL to web API
+  private _companiesUrl = 'http://localhost:19750/api/companies';  // URL to web API
   constructor (private http: Http) {}
   getCompanies (): Observable<ICompany[]> {
     return this.http.get(this._companiesUrl)

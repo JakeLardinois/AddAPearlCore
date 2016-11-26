@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { ICompany } from './company';
+import { CompanyService } from './company.service';
 
 @Component({
     selector: 'pearl-companies',
@@ -6,20 +9,19 @@ import { Component } from '@angular/core';
 })
 export class CompanyListComponent {
     pageTitle: string = 'Company List';
-    companies: any[] = [
-        {
-            "companyId": 1,
-            "companyName": "Jake Lardinois LLC"
-        },
-        {
-            "companyId": 2,
-            "companyName": "Draeb Jewelers"
-        },
-        {
-            "companyId": 3,
-            "companyName": "Connor Jewelers"
-        }
-    ];
+    errorMessage: string;
+    
+    companies: ICompany[];
+
+    constructor(private _companyService: CompanyService) {
+
+    }
+
+    ngOnInit(): void {
+        this._companyService.getCompanies()
+                .subscribe(companies => this.companies = companies,
+                           error => this.errorMessage = <any>error);
+    }
 
     clicked(message:string): void {
         alert(message);

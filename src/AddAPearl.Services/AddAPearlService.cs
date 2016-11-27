@@ -19,7 +19,7 @@ namespace AddAPearl.Services
 
         public IEnumerable<Company> GetCompanies()
         {
-            return _addAPearl.Companies;
+            return _addAPearl.Companies.Include(a => a.Address);
         }
 
         public Company GetCompanyById(int id)

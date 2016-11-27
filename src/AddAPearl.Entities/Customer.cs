@@ -27,5 +27,7 @@ namespace AddAPearl.Entities
         public int AddressId { get; set; }
 
         public int CompanyId { get; set; }
+
+        public Address Address { get; set; }
     }
 }

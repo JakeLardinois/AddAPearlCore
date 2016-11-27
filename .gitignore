@@ -307,5 +307,5 @@ jspm_packages
 typings
 
 ## Angular 2 ignore .js and .map files ##
-app/**/*.js
-app/**/*.map
+AddAPearl.Web/app/**/*.js
+AddAPearl.Web/app/**/*.map

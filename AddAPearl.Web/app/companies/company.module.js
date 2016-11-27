@@ -12,39 +12,32 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var material_1 = require('@angular/material');
-var http_1 = require('@angular/http');
 var router_1 = require('@angular/router');
-var app_component_1 = require('./app.component');
-var welcome_component_1 = require('./home/welcome.component');
-/* Feature Modules */
-var company_module_1 = require('./companies/company.module');
-var AppModule = (function () {
-    function AppModule() {
+var company_service_1 = require('./company.service');
+var company_list_component_1 = require('./company-list.component');
+var CompanyModule = (function () {
+    function CompanyModule() {
     }
-    AppModule = __decorate([
+    CompanyModule = __decorate([
         core_1.NgModule({
             imports: [
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
                 material_1.MaterialModule.forRoot(),
-                http_1.HttpModule,
-                http_1.JsonpModule,
-                router_1.RouterModule.forRoot([
-                    { path: 'welcome', component: welcome_component_1.WelcomeComponent },
-                    { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-                    { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
-                ]),
-                company_module_1.CompanyModule
+                router_1.RouterModule.forChild([
+                    { path: 'companies', component: company_list_component_1.CompanyListComponent }
+                ])
             ],
             declarations: [
-                app_component_1.AppComponent,
-                welcome_component_1.WelcomeComponent
+                company_list_component_1.CompanyListComponent
             ],
-            bootstrap: [app_component_1.AppComponent]
+            providers: [
+                company_service_1.CompanyService
+            ]
         }), 
         __metadata('design:paramtypes', [])
-    ], AppModule);
-    return AppModule;
+    ], CompanyModule);
+    return CompanyModule;
 }());
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+exports.CompanyModule = CompanyModule;
+//# sourceMappingURL=company.module.js.map

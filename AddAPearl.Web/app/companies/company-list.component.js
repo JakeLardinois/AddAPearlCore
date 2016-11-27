@@ -20,8 +20,8 @@ var CompanyListComponent = (function () {
         this._companyService.getCompanies()
             .subscribe(function (companies) { return _this.companies = companies; }, function (error) { return _this.errorMessage = error; });
     };
-    CompanyListComponent.prototype.clicked = function (message) {
-        alert(message);
+    CompanyListComponent.prototype.clicked = function (address) {
+        alert(address.addressLine1);
     };
     CompanyListComponent = __decorate([
         core_1.Component({

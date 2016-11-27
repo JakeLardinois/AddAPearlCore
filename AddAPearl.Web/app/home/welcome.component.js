@@ -9,18 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
-        this.pageTitle = "Welcome to Add-A-Pearl!";
+var WelcomeComponent = (function () {
+    function WelcomeComponent() {
+        this.pageTitle = 'Welcome';
     }
-    AppComponent = __decorate([
+    WelcomeComponent = __decorate([
         core_1.Component({
-            selector: 'pearl-app',
-            template: "\n    <h1>{{pageTitle}}</h1>\n    <button md-icon-button [md-menu-trigger-for]=\"menu\">\n        <md-icon>more_vert</md-icon>\n    </button>\n    <md-menu #menu=\"mdMenu\">\n        <a md-menu-item [routerLink]=\"['/welcome']\">Home</a>\n        <a md-menu-item [routerLink]=\"['/companies']\">Company List</a>\n    </md-menu>\n    <div class='container'>\n        <router-outlet></router-outlet>\n    </div>\n    "
+            templateUrl: 'app/home/welcome.component.html'
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], WelcomeComponent);
+    return WelcomeComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.WelcomeComponent = WelcomeComponent;
+//# sourceMappingURL=welcome.component.js.map

@@ -7,6 +7,7 @@ import { RouterModule} from '@angular/router';
 
 import { CompanyService } from './company.service';
 import { CompanyListComponent }  from './company-list.component';
+import { AddressDialog }  from './company-list.component';
 
 
 @NgModule({
@@ -19,7 +20,11 @@ import { CompanyListComponent }  from './company-list.component';
     ])
   ],
   declarations: [
-    CompanyListComponent
+    CompanyListComponent,
+    AddressDialog
+  ],
+  entryComponents: [
+    AddressDialog
   ],
   providers: [
     CompanyService

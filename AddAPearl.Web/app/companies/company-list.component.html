@@ -1,4 +1,4 @@
 <h1>{{pageTitle}}</h1>
 <md-card *ngFor='let company of companies'>
-    <button md-button (click)="clicked(company.companyId)">{{ company.companyName }}</button>
+    <button md-button (click)="clicked(company.address)">{{ company.companyName }}</button>
 </md-card>

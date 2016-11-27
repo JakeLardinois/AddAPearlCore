@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ICompany } from './company';
+import { IAddress } from './address';
 import { CompanyService } from './company.service';
 
 @Component({
@@ -23,7 +24,7 @@ export class CompanyListComponent {
                            error => this.errorMessage = <any>error);
     }
 
-    clicked(message:string): void {
-        alert(message);
+    clicked(address:IAddress): void {
+        alert(address.addressLine1);
     }
 }

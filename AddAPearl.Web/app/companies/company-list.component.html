@@ -1,4 +1,6 @@
 <h1>{{pageTitle}}</h1>
-<md-card *ngFor='let company of companies'>
+<md-input placeholder="filter" align="end" [(ngModel)]='listFilter'>
+</md-input>
+<md-card *ngFor='let company of companies | companyFilter:listFilter'>
     <button md-button (click)="clicked(company.address)">{{ company.companyName }}</button>
 </md-card>

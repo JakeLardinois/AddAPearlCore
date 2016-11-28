@@ -7,6 +7,7 @@ import { RouterModule} from '@angular/router';
 
 import { CompanyService } from './company.service';
 import { CompanyListComponent }  from './company-list.component';
+import { CompanyFilterPipe } from './company-filter.pipe';
 import { AddressDialog }  from './company-list.component';
 
 
@@ -21,7 +22,8 @@ import { AddressDialog }  from './company-list.component';
   ],
   declarations: [
     CompanyListComponent,
-    AddressDialog
+    AddressDialog,
+    CompanyFilterPipe
   ],
   entryComponents: [
     AddressDialog

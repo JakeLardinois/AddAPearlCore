@@ -14,6 +14,7 @@ export class CompanyListComponent {
     pageTitle: string = 'Company List';
     errorMessage: string;
     dialogRef: MdDialogRef<AddressDialog>;
+    listFilter: string = null;
     
     companies: ICompany[];
 

@@ -7,7 +7,8 @@ import { CompanyService } from './company.service';
 
 @Component({
     selector: 'pearl-companies',
-    templateUrl: 'app/companies/company-list.component.html'
+    templateUrl: 'app/companies/company-list.component.html',
+    styleUrls: ['app/companies/company-list.component.css']
 })
 export class CompanyListComponent {
     pageTitle: string = 'Company List';

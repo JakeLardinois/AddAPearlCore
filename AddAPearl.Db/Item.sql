@@ -1,13 +1,14 @@
-﻿CREATE TABLE [dbo].[Item](
-	[ItemId] [int] IDENTITY(1,1) NOT NULL,
-	[Price] [decimal](18, 0) NULL,
-	[PurchasePrice] [decimal](18, 0) NOT NULL,
-	[PurchaseDate] [datetime] NULL,
-	[Description] [nvarchar](max) NULL,
-	[OwnerId] [int] NOT NULL,
-	[CustomerId] [int] NOT NULL,
- CONSTRAINT [PK_StoreItem] PRIMARY KEY CLUSTERED 
-(
-	[ItemId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+﻿CREATE TABLE [dbo].[Item] (
+    [ItemId]        INT             IDENTITY (1, 1) NOT NULL,
+    [ProductId]     INT             NOT NULL,
+    [ItemName]      NVARCHAR (4000) NULL,
+    [Price]         DECIMAL (18)    NULL,
+    [PurchasePrice] DECIMAL (18)    NOT NULL,
+    [PurchaseDate]  DATETIME        NULL,
+    [Description]   NVARCHAR (MAX)  NULL,
+    [OwnerId]       INT             NOT NULL,
+    [CustomerId]    INT             NOT NULL,
+    CONSTRAINT [PK_StoreItem] PRIMARY KEY CLUSTERED ([ItemId] ASC)
+);
+
+

@@ -8,7 +8,10 @@
     [PurchaseDate]  DATETIME        NULL,
     [Description]   NVARCHAR (MAX)  NULL,
     [OwnerId]       INT             NOT NULL,
-    [CustomerId]    INT             NOT NULL
+    [CustomerId]    INT             NOT NULL,
+    [Rating]        DECIMAL (18)    NULL
 );
+
+
 
 

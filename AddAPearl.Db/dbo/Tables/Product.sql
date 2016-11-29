@@ -7,6 +7,9 @@
     [PurchasePrice] DECIMAL (18)    NOT NULL,
     [PurchaseDate]  DATETIME        NULL,
     [Description]   NVARCHAR (MAX)  NULL,
+    [Rating]        DECIMAL (18)    NULL,
     CONSTRAINT [PK_Product] PRIMARY KEY CLUSTERED ([ProductId] ASC)
 );
+
+
 

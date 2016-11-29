@@ -8,7 +8,10 @@
     [Description]   NVARCHAR (MAX)  NULL,
     [OwnerId]       INT             NOT NULL,
     [CustomerId]    INT             NOT NULL,
+    [Rating]        DECIMAL (18)    NULL,
     CONSTRAINT [PK_StoreItem] PRIMARY KEY CLUSTERED ([ItemId] ASC)
 );
+
+
 
 

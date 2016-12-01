@@ -5,10 +5,11 @@ import { MaterialModule } from '@angular/material';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { RouterModule} from '@angular/router';
 
-import { CompanyService } from './company.service';
+import { CompanyService } from '../shared/services/company.service';
 import { CompanyListComponent }  from './company-list.component';
 import { CompanyFilterPipe } from './company-filter.pipe';
 import { AddressDialog }  from './company-list.component';
+import { StarComponent } from '../shared/star.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { AddressDialog }  from './company-list.component';
   declarations: [
     CompanyListComponent,
     AddressDialog,
-    CompanyFilterPipe
+    CompanyFilterPipe,
+    StarComponent
   ],
   entryComponents: [
     AddressDialog

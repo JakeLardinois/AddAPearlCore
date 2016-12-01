@@ -1,6 +1,6 @@
 import { PipeTransform, Pipe } from '@angular/core';
 
-import { ICompany } from './company';
+import { ICompany } from '../shared/models/company';
 
 @Pipe({
     name: 'companyFilter'

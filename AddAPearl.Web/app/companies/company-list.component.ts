@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {MdDialog, MdDialogRef} from '@angular/material';
 
-import { ICompany } from './company';
-import { IAddress } from './address';
-import { CompanyService } from './company.service';
+import { ICompany } from '../shared/models/company';
+import { IAddress } from '../shared/models/address';
+import { CompanyService } from '../shared/services/company.service';
 
 @Component({
     selector: 'pearl-companies',
@@ -44,7 +44,7 @@ export class CompanyListComponent {
 }
 
 @Component({
-  selector: 'pizza-dialog',
+  selector: 'address-dialog',
   template: `
   {{address.addressLine1}}
   <br>

@@ -3,4 +3,5 @@
 </md-input>
 <md-card *ngFor='let company of companies | companyFilter:listFilter'>
     <button md-button (click)="clicked(company.address)">{{ company.companyName }}</button>
+    <ai-star [rating]='company.companyId' (ratingClicked)='onRatingClicked($event)'></ai-star>
 </md-card>

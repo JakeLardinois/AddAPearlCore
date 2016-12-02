@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {MdDialog, MdDialogRef} from '@angular/material';
+import { Component, OnInit} from '@angular/core';
+import {MdDialog, MdDialogRef, MdSnackBar, MdSnackBarConfig} from '@angular/material';
 
 import { ICompany } from '../shared/models/company';
 import { IAddress } from '../shared/models/address';
@@ -19,7 +19,7 @@ export class CompanyListComponent {
     
     companies: ICompany[];
 
-    constructor(private _companyService: CompanyService, public dialog: MdDialog) {
+    constructor(private _companyService: CompanyService, public dialog: MdDialog, public snackBar: MdSnackBar) {
 
     }
 
@@ -40,6 +40,13 @@ export class CompanyListComponent {
             console.log('result: ' + result);
             this.dialogRef = null;
         });
+    }
+
+    onRatingClicked(message: string): void {
+        let config = new MdSnackBarConfig();
+        //config.duration = 1;
+        this.snackBar.open(message, 'Dismiss', config);
+        this.pageTitle = 'Product List: ' + message;
     }
 }
 

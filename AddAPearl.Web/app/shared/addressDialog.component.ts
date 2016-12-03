@@ -7,7 +7,8 @@ import { IAddress } from '../shared/models/address';
 @Component({
   selector: 'address-dialog',
   moduleId: module.id,
-  templateUrl: 'addressDialog.component.html'
+  templateUrl: 'addressDialog.component.html',
+  styleUrls: ['addressDialog.component.scss']
 })
 export class AddressDialog {
     addressName: string;
@@ -15,6 +16,6 @@ export class AddressDialog {
   constructor(public dialogRef: MdDialogRef<AddressDialog>) { }
 
   updateAddress(): void {
-      
+      alert('fired!!')
   }
 }

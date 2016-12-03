@@ -3,7 +3,9 @@ import {MdDialog, MdDialogRef, MdSnackBar, MdSnackBarConfig} from '@angular/mate
 
 import { ICompany } from '../shared/models/company';
 import { IAddress } from '../shared/models/address';
+import { AddressDialog } from '../shared/addressDialog.component';
 import { CompanyService } from '../shared/services/company.service';
+
 
 @Component({
     selector: 'pearl-companies',
@@ -48,22 +50,4 @@ export class CompanyListComponent {
         this.snackBar.open(message, 'Dismiss', config);
         this.pageTitle = 'Product List: ' + message;
     }
-}
-
-@Component({
-  selector: 'address-dialog',
-  template: `
-  {{address.addressLine1}}
-  <br>
-  {{address.city + ', ' + address.state + ' ' + address.zipCode}}
-  <br>
-  Do you like my address Dialog?
-  <br>
-  <button type="button" (click)="dialogRef.close('yes')">Yes</button>
-  <button type="button" (click)="dialogRef.close('no')">No</button>
-  `
-})
-export class AddressDialog {
-    address: IAddress;
-  constructor(public dialogRef: MdDialogRef<AddressDialog>) { }
 }

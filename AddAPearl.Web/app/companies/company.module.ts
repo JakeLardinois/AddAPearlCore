@@ -8,7 +8,7 @@ import { RouterModule} from '@angular/router';
 import { CompanyService } from '../shared/services/company.service';
 import { CompanyListComponent }  from './company-list.component';
 import { CompanyFilterPipe } from './company-filter.pipe';
-import { AddressDialog }  from './company-list.component';
+import { AddressDialog }  from '../shared/addressDialog.component';
 import { StarComponent } from '../shared/star.component';
 
 

@@ -1,0 +1,7 @@
+{{address.addressLine1}}
+<br> {{address.city + ', ' + address.state + ' ' + address.zipCode}}
+<br> Do you like my address Dialog?
+<br>
+<button type="button" (click)="dialogRef.close('yes')">Yes</button>
+<button type="button" (click)="dialogRef.close('no')">No</button>
+  

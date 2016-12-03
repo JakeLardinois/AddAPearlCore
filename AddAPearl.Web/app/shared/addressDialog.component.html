@@ -1,7 +1,32 @@
-{{address.addressLine1}}
-<br> {{address.city + ', ' + address.state + ' ' + address.zipCode}}
-<br> Do you like my address Dialog?
-<br>
-<button type="button" (click)="dialogRef.close('yes')">Yes</button>
-<button type="button" (click)="dialogRef.close('no')">No</button>
-  
+<md-card>
+    <md-toolbar color="primary">{{addressName}}</md-toolbar>
+    <md-card-content>
+        <form>
+            <p>
+                <md-textarea placeholder="Address" value="{{address.addressLine1}}"></md-textarea>
+                <md-textarea placeholder="Address 2" value="{{address.addressLine2}}"></md-textarea>
+                <md-textarea placeholder="Address 3" value="{{address.addressLine3}}"></md-textarea>
+            </p>
+            <table style="width: 100%" cellspacing="0">
+                <tr>
+                    <td>
+                        <md-input placeholder="City" value="{{address.city}}"></md-input>
+                    </td>
+                    <td>
+                        <md-input placeholder="State" maxLength="2" value="{{address.state}}"></md-input>
+                    </td>
+                    <td>
+                        <md-input #postalCode maxLength="5" placeholder="Postal Code" value="{{address.zipCode}}">
+                            <md-hint align="end">{{postalCode.characterCount}} / 5</md-hint>
+                        </md-input>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </md-card-content>
+    <md-card-actions align="end">
+        <button md-mini-fab>
+            <md-icon class="md-24">check</md-icon>
+        </button>
+    </md-card-actions>
+</md-card>

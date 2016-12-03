@@ -10,6 +10,11 @@ import { IAddress } from '../shared/models/address';
   templateUrl: 'addressDialog.component.html'
 })
 export class AddressDialog {
+    addressName: string;
     address: IAddress;
   constructor(public dialogRef: MdDialogRef<AddressDialog>) { }
+
+  updateAddress(): void {
+      
+  }
 }

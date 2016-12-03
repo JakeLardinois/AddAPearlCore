@@ -31,11 +31,12 @@ export class CompanyListComponent {
                            error => this.errorMessage = <any>error);
     }
 
-    clicked(address:IAddress): void {
+    clicked(companyName:string, address:IAddress): void {
         //alert(address.addressLine1);
         this.dialogRef = this.dialog.open(AddressDialog, {
             disableClose: false
         });
+        this.dialogRef.componentInstance.addressName = companyName;
         this.dialogRef.componentInstance.address = address;
 
         this.dialogRef.afterClosed().subscribe(result => {

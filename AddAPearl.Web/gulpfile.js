@@ -1,13 +1,11 @@
 var gulp = require('gulp');
 var config = require('./gulp.config')();
 var path = require('path');
-//var gulpPlumber = require('gulp-plumber')
 var $ = require('gulp-load-plugins')({ lazy: true });
 
 
 gulp.task('sass', function() {
 	return gulp.src(config.client.sass)
-		//.pipe(gulpPlumber())
         .pipe($.plumber())
 		.pipe($.sass())
 		.pipe($.rename(function(file) {
@@ -15,3 +13,10 @@ gulp.task('sass', function() {
 		}))
 		.pipe(gulp.dest('./app'));
 });
+
+gulp.task('watch', function() {
+	// Add watch rules
+    gulp.watch(config.client.sass, ['sass']);
+});
+
+module.exports = gulp;

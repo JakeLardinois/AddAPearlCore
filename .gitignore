@@ -310,3 +310,6 @@ typings
 ## Angular 2 ignore .js and .map files ##
 AddAPearl.Web/app/**/*.js
 AddAPearl.Web/app/**/*.map
+
+#Ignore css files since they are compiled from scss
+AddAPearl.Web/app/**/*.css

@@ -308,11 +308,11 @@ jspm_packages
 typings
 
 ## Angular 2 ignore .js and .map files ##
-AddAPearl.Web/app/**/*.js
-AddAPearl.Web/app/**/*.map
+AddAPearl.Web/src/app/**/*.js
+AddAPearl.Web/src/**/*.map
 
 #Ignore css files since they are compiled from scss
-AddAPearl.Web/app/**/*.css
+AddAPearl.Web/src/**/*.css
 
 #ignore built Angular Application
 AddAPearl.Web/build

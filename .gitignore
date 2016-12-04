@@ -313,3 +313,6 @@ AddAPearl.Web/app/**/*.map
 
 #Ignore css files since they are compiled from scss
 AddAPearl.Web/app/**/*.css
+
+#ignore built Angular Application
+AddAPearl.Web/build

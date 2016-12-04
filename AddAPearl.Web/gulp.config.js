@@ -4,8 +4,18 @@ module.exports = function () {
 
     var config = {
         client: {
+            all: 'src/**/*',
             sass: [
-                'app/**/*.scss'
+                'src/**/*.scss'
+            ],
+            css: [
+                'app/**/*.css'
+            ],
+            ts: [
+                'src/**/*.ts'
+            ],
+            html: [
+                'src/**/*.html'
             ]
         }
     }

@@ -8,7 +8,7 @@ import { IAddress } from '../shared/models/address';
   selector: 'address-dialog',
   moduleId: module.id,
   templateUrl: 'addressDialog.component.html',
-  styleUrls: ['addressDialog.component.scss']
+  styleUrls: ['addressDialog.component.css']
 })
 export class AddressDialog {
     addressName: string;

@@ -3,7 +3,7 @@ const del = require("del");
 const config = require('./gulp.config')();
 const path = require('path');
 const $ = require('gulp-load-plugins')({ lazy: true });
-
+var tsProject = $.typescript.createProject("tsconfig.json");
 
 
 /* Remove build directory.*/
@@ -27,15 +27,16 @@ gulp.task('tslint', () => {
             formatter: 'verbose'
         }))
         .pipe($.tslint.report({
-            emitError: false
+            emitError: false,
+            summarizeFailureOutput: true
         }));
 });
 
-gulp.task("compile", ['tslint'], () => {
-    var tsProject = $.typescript.createProject("tsconfig.json");
+gulp.task("compile", () => {
+    
     let tsResult = gulp.src(config.client.ts)
         .pipe($.sourcemaps.init())
-        .pipe($.typescript(tsProject($.typescript.reporter.fullReporter(true))));
+        .pipe(tsProject($.typescript.reporter.longReporter()));
     return tsResult.js
         .pipe($.sourcemaps.write(".", {sourceRoot: '/src'}))
         .pipe(gulp.dest("build"));

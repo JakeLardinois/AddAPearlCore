@@ -1,3 +1,7 @@
+/** Type declaration for ambient System. */
+declare var System: any;
+
+
 /**
  * System configuration for Angular 2
  */

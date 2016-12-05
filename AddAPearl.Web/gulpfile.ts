@@ -29,10 +29,10 @@ gulp.task('tslint', () => {
         .pipe($.tslint.report());
 });
 
-gulp.task("compile", ["tslint"], () => {
+gulp.task("compile", ['tslint'], () => {
     let tsResult = gulp.src(config.client.ts)
         .pipe($.sourcemaps.init())
-        .pipe($.typescript(tsProject));
+        .pipe($.typescript(tsProject($.typescript.reporter.fullReporter(true))));
     return tsResult.js
         .pipe($.sourcemaps.write(".", {sourceRoot: '/src'}))
         .pipe(gulp.dest("build"));

@@ -19,7 +19,7 @@ export class CompanyService {
             .do(data => console.log('All: ' +  JSON.stringify(data)))
                 .catch(this.handleError);
   }
-  
+
   private handleError (error: Response | any) {
     // In a real world app, we might use a remote logging infrastructure
     let errMsg: string;

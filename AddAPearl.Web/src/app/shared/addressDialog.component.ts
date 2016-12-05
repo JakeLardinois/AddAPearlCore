@@ -16,6 +16,6 @@ export class AddressDialog {
   constructor(public dialogRef: MdDialogRef<AddressDialog>) { }
 
   updateAddress(): void {
-      alert('fired!!')
+      alert('fired!!');
   }
 }

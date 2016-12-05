@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component} from '@angular/core';
 import {MdDialog, MdDialogRef, MdSnackBar, MdSnackBarConfig} from '@angular/material';
 
 import { ICompany } from '../shared/models/company';
@@ -18,7 +18,7 @@ export class CompanyListComponent {
     errorMessage: string;
     dialogRef: MdDialogRef<AddressDialog>;
     listFilter: string = null;
-    
+
     companies: ICompany[];
 
     constructor(private _companyService: CompanyService, public dialog: MdDialog, public snackBar: MdSnackBar) {
@@ -31,8 +31,8 @@ export class CompanyListComponent {
                            error => this.errorMessage = <any>error);
     }
 
-    clicked(companyName:string, address:IAddress): void {
-        //alert(address.addressLine1);
+    clicked(companyName: string, address: IAddress): void {
+        alert(address.addressLine1);
         this.dialogRef = this.dialog.open(AddressDialog, {
             disableClose: false
         });
@@ -47,7 +47,7 @@ export class CompanyListComponent {
 
     onRatingClicked(message: string): void {
         let config = new MdSnackBarConfig();
-        //config.duration = 1;
+        // config.duration = 1;
         this.snackBar.open(message, 'Dismiss', config);
         this.pageTitle = 'Product List: ' + message;
     }

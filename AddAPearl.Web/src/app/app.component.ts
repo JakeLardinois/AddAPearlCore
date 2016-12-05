@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {MdDialog, MdDialogRef, MdSnackBar} from '@angular/material';
 
 @Component({
     selector: 'pearl-app',
@@ -18,5 +17,5 @@ import {MdDialog, MdDialogRef, MdSnackBar} from '@angular/material';
     `
 })
 export class AppComponent {
-    pageTitle: string = `Welcome to Add-A-Pearl!`;    
+    pageTitle: string = `Welcome to Add-A-Pearl!`;
 }

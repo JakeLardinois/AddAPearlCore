@@ -33,7 +33,7 @@ gulp.task('tslint', () => {
 
 gulp.task('compile', () => {
     
-    let tsResult = gulp.src(config.client.ts)
+    let tsResult = tsProject.src()
         .pipe($.sourcemaps.init())
         .pipe(tsProject($.typescript.reporter.longReporter()));
     return tsResult.js

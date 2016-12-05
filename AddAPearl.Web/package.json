@@ -7,7 +7,7 @@
     "start": "concurrent --kill-others \"gulp watch\" \"lite-server\"",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
-    "lint": "tslint ./app/**/*.ts -t verbose",
+    "lint": "tslint ./src/**/*.ts -t verbose",
     "lite": "lite-server",
     "typings": "typings",
     "postinstall": "typings install"

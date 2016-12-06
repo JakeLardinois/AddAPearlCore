@@ -10,7 +10,9 @@
     /*
      * Any rules specified here will override those from the base config we are extending.
      */
-    "curly": true
+    "curly": true,
+    "quotemark": [true, "single", "avoid-escape"],
+    "max-line-length": [true, 200]
   },
   "jsRules": {
     /*

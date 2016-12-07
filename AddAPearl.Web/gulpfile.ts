@@ -7,12 +7,11 @@ var tsProject = $.typescript.createProject('tsconfig.json');
 
 /* Remove build directory.*/
 gulp.task('clean', (cb:any) => {
-    Log('Cleaning the build directory...');
     return del(['build'], cb);
 });
 
+/*Compile the SCSS files into the build directory*/
 gulp.task('sass', () => {
-    Log('Compiling the SCSS files into the build directory...');
 	return gulp.src(config.client.sass)
         .pipe($.plumber())
 		.pipe($.sass())
@@ -22,8 +21,8 @@ gulp.task('sass', () => {
 		.pipe(gulp.dest('./build'));
 });
 
+/*Lint the typescript files*/
 gulp.task('tslint', () => {
-    Log('Linting the typescript files...');
     return gulp.src(config.client.ts)
         .pipe($.tslint({
             formatter: 'verbose'
@@ -34,8 +33,8 @@ gulp.task('tslint', () => {
         }));
 });
 
+/*Compile all typescript files into the build directory*/
 gulp.task('compile', ['tslint'], () => {
-    Log('Compiling all typescript files into the build directory...');
     let tsResult = tsProject.src()
         .pipe($.sourcemaps.init())
         .pipe(tsProject($.typescript.reporter.longReporter()));
@@ -44,22 +43,20 @@ gulp.task('compile', ['tslint'], () => {
         .pipe(gulp.dest('build'));
 });
 
+/*Copy all source files into the build/src directory*/
 gulp.task('source', () => {
-    Log('Copying all source files into the build/src directory...');
     return gulp.src(config.client.all)
         .pipe(gulp.dest('build/src'))
 });
 
 /*Copy all resources that are not TypeScript or SCSS files into build directory.*/
 gulp.task('resources', () => {
-    Log('Copying all compiled files into the build directory...');
     return gulp.src([config.client.all, '!**/*.ts', '!**/*.scss'])
         .pipe(gulp.dest('build'));
 });
 
 /*Copy all required libraries into build/lib directory.*/
 gulp.task('libs', () => {
-    Log('Copying all required libraries into build/lib directory...');
     return gulp.src([
             'core-js/client/shim.min.js',
             'systemjs/dist/system-polyfills.js',
@@ -75,7 +72,6 @@ gulp.task('libs', () => {
 
 /*Add watch rules*/
 gulp.task('watch', () => {
-	Log('Adding watch rules...');
     gulp.watch(config.client.ts, ['compile', 'source'])
         .on('change', changeEvent);
     gulp.watch([config.client.html, config.client.css], ['resources'])

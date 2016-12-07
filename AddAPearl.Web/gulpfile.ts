@@ -5,6 +5,11 @@ const path = require('path');
 const $ = require('gulp-load-plugins')({ lazy: true });
 var tsProject = $.typescript.createProject('tsconfig.json');
 
+
+// When the user enters "gulp" on the command line, the default task will automatically be called.
+gulp.task('help', $.taskListing);
+gulp.task('default', ['help']);
+
 /* Remove build directory.*/
 gulp.task('clean', (cb:any) => {
     return del(['build'], cb);

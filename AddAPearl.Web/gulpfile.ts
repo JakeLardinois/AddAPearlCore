@@ -41,6 +41,11 @@ gulp.task('compile', ['tslint'], () => {
         .pipe(gulp.dest('build'));
 });
 
+gulp.task('source', () => {
+    return gulp.src(config.client.all)
+    .pipe(gulp.dest('build/src'))
+});
+
 /*Copy all resources that are not TypeScript files into build directory.*/
 gulp.task('resources', () => {
     return gulp.src([config.client.all, '!**/*.ts', '!**/*.scss'])
@@ -64,7 +69,7 @@ gulp.task('libs', () => {
 
 gulp.task('watch', function() {
 	// Add watch rules
-    gulp.watch(config.client.ts, ['compile'])
+    gulp.watch(config.client.ts, ['compile', 'source'])
         .on('change', changeEvent);
     gulp.watch([config.client.html, config.client.css], ['resources'])
         .on('change', changeEvent);
@@ -72,10 +77,13 @@ gulp.task('watch', function() {
         .on('change', changeEvent);
 });
 
-gulp.task('build', ['compile', 'sass', 'resources', 'libs'], () => {
-    Log('Building the project ...');
+gulp.task('build-prod', ['compile', 'sass', 'resources', 'libs'], () => {
+    Log('Building the production project ...');
 });
 
+gulp.task('build-dev', ['compile', 'sass', 'source', 'resources', 'libs'], () => {
+    Log('Building the development project ...');
+});
 
 function changeEvent(event:any) {
     var srcPattern = new RegExp('/.*(?=/' + config.source + ')/');

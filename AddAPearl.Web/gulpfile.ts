@@ -10,7 +10,7 @@ gulp.task('clean', (cb:any) => {
     return del(['build'], cb);
 });
 
-gulp.task('sass', function() {
+gulp.task('sass', () => {
 	return gulp.src(config.client.sass)
         .pipe($.plumber())
 		.pipe($.sass())
@@ -67,7 +67,7 @@ gulp.task('libs', () => {
         .pipe(gulp.dest('build/lib'));
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', () => {
 	// Add watch rules
     gulp.watch(config.client.ts, ['compile', 'source'])
         .on('change', changeEvent);

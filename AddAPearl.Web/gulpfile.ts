@@ -49,6 +49,18 @@ gulp.task('source', () => {
         .pipe(gulp.dest('build/src'))
 });
 
+/*Copy all source typescript files into the build/src directory*/
+gulp.task('source-typescript', () => {
+    return gulp.src(config.client.ts)
+        .pipe(gulp.dest('build/src'))
+});
+
+/*Copy all source SCSS files into the build/src directory*/
+gulp.task('source-sass', () => {
+    return gulp.src(config.client.sass)
+        .pipe(gulp.dest('build/src'))
+});
+
 /*Copy all resources that are not TypeScript or SCSS files into build directory.*/
 gulp.task('resources', () => {
     return gulp.src([config.client.all, '!**/*.ts', '!**/*.scss'])
@@ -72,11 +84,11 @@ gulp.task('libs', () => {
 
 /*Add watch rules*/
 gulp.task('watch', () => {
-    gulp.watch(config.client.ts, ['compile', 'source'])
+    gulp.watch(config.client.ts, ['compile', 'source-typescript'])
         .on('change', changeEvent);
     gulp.watch([config.client.html, config.client.css], ['resources'])
         .on('change', changeEvent);
-    gulp.watch(config.client.sass, ['sass'])
+    gulp.watch(config.client.sass, ['sass', 'source-sass'])
         .on('change', changeEvent);
 });
 

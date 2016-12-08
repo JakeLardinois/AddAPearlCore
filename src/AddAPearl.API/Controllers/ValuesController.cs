@@ -2,9 +2,9 @@
 using System.Net;
 using System.Net.Http;
 using System.Reflection;
-using AddAPearl.Entities;
 using Microsoft.AspNetCore.Mvc;
 using AddAPearl.Services;
+using AddAPearl.Services.Models;
 
 namespace AddAPearl.API.Controllers
 {
@@ -13,7 +13,7 @@ namespace AddAPearl.API.Controllers
     {
         private static AddAPearlService _addAPearlService;
 
-        public ValuesController(AddAPearlContext addAPearlContext)
+        public ValuesController(AddAPearl.Entities.AddAPearlContext addAPearlContext)
         {
             _addAPearlService = new AddAPearlService(addAPearlContext);
         }

@@ -3,6 +3,7 @@
 
   "dependencies": {
     "AddAPearl.Entities": "1.0.0-*",
+    "AutoMapper": "5.2.0",
     "Microsoft.NETCore.App": {
       "type": "platform",
       "version": "1.0.1"

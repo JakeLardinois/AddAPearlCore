@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AddAPearl.Entities;
 using AddAPearl.Services;
+using AddAPearl.Services.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AddAPearl.API.Controllers
@@ -13,7 +13,7 @@ namespace AddAPearl.API.Controllers
     {
         private static AddAPearlService _addAPearlService;
 
-        public CompaniesController(AddAPearlContext addAPearlContext)
+        public CompaniesController(Entities.AddAPearlContext addAPearlContext)
         {
             _addAPearlService = new AddAPearlService(addAPearlContext);
         }

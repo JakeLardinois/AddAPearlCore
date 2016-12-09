@@ -4,11 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using AddAPearl.Core;
 using AddAPearl.DataAccess;
+using AddAPearl.Domain;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
-using Address = AddAPearl.Domain.Address;
-using Company = AddAPearl.Domain.Company;
 
 namespace AddAPearl.Services
 {
@@ -23,23 +22,23 @@ namespace AddAPearl.Services
 
             Mapper.Initialize(cfg =>
             {
-                cfg.CreateMap<DataAccess.Company, Company>()
+                cfg.CreateMap<DataAccess.Company, Domain.Company>()
                     .ForMember(c => c.Address, 
-                    opt => opt.MapFrom(a => Mapper.Map<DataAccess.Address, Address>(a.Address)));
-                cfg.CreateMap<DataAccess.Address, Address>();
+                    opt => opt.MapFrom(a => Mapper.Map<DataAccess.Address, Domain.Address>(a.Address)));
+                cfg.CreateMap<DataAccess.Address, Domain.Address>();
             });
         }
 
         public IEnumerable<ICompany> GetCompanies()
         {
             return _addAPearl.Companies.Include(a => a.Address)
-                .ProjectTo<Company>();
+                .ProjectTo<Domain.Company>();
         }
 
         public ICompany GetCompanyById(int id)
         {
             return _addAPearl.Companies
-                .ProjectTo<Company>()
+                .ProjectTo<Domain.Company>()
                 .FirstOrDefault(c => c.CompanyId == id);
 
         }

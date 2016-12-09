@@ -1,6 +1,8 @@
-﻿namespace AddAPearl.Domain
+﻿using AddAPearl.Core;
+
+namespace AddAPearl.Domain
 {
-    public class Company
+    public class Company : ICompany
     {
         public int CompanyId { get; set; }
         
@@ -8,6 +10,6 @@
 
         public int? AddressId { get; set; }
 
-        public Address Address { get; set; }
+        public IAddress Address { get; set; }
     }
 }

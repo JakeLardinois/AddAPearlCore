@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AddAPearl.Services;
-using AddAPearl.Services.Models;
+using AddAPearl.Core;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AddAPearl.API.Controllers
@@ -11,16 +10,16 @@ namespace AddAPearl.API.Controllers
     [Route("api/[controller]/[action]")]
     public class CompaniesController: Controller
     {
-        private static AddAPearlService _addAPearlService;
+        private static IAddAPearlService _addAPearlService;
 
-        public CompaniesController(Entities.AddAPearlContext addAPearlContext)
+        public CompaniesController(IAddAPearlService addAPearlService)
         {
-            _addAPearlService = new AddAPearlService(addAPearlContext);
+            _addAPearlService = addAPearlService;
         }
 
         [HttpGet]
         [ActionName("")]
-        public IEnumerable<Company> All()
+        public IEnumerable<ICompany> All()
         {
             return _addAPearlService.GetCompanies();
         }

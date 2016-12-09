@@ -2,41 +2,44 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AddAPearl.Services.Models;
+using AddAPearl.Core;
+using AddAPearl.DataAccess;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using Address = AddAPearl.Domain.Address;
+using Company = AddAPearl.Domain.Company;
 
 namespace AddAPearl.Services
 {
-    public class AddAPearlService
+    public class AddAPearlService: IAddAPearlService
     {
-        private readonly Entities.AddAPearlContext _addAPearl;
+        private readonly AddAPearlContext _addAPearl;
 
 
-        public AddAPearlService(Entities.AddAPearlContext addAPearlContext)
+        public AddAPearlService(AddAPearlContext addAPearlContext)
         {
             _addAPearl = addAPearlContext;
 
             Mapper.Initialize(cfg =>
             {
-                cfg.CreateMap<Entities.Company, Company>()
+                cfg.CreateMap<DataAccess.Company, Company>()
                     .ForMember(c => c.Address, 
-                    opt => opt.MapFrom(a => Mapper.Map<Entities.Address, Address>(a.Address)));
-                cfg.CreateMap<Entities.Address, Address>();
+                    opt => opt.MapFrom(a => Mapper.Map<DataAccess.Address, Address>(a.Address)));
+                cfg.CreateMap<DataAccess.Address, Address>();
             });
         }
 
-        public IEnumerable<Company> GetCompanies()
+        public IEnumerable<ICompany> GetCompanies()
         {
             return _addAPearl.Companies.Include(a => a.Address)
-                .ProjectTo<Models.Company>();
+                .ProjectTo<Company>();
         }
 
-        public Company GetCompanyById(int id)
+        public ICompany GetCompanyById(int id)
         {
             return _addAPearl.Companies
-                .ProjectTo<Models.Company>()
+                .ProjectTo<Company>()
                 .FirstOrDefault(c => c.CompanyId == id);
 
         }

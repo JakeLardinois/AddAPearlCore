@@ -2,7 +2,9 @@
   "version": "1.0.0-*",
 
   "dependencies": {
-    "AddAPearl.Entities": "1.0.0-*",
+    "AddAPearl.Core": "1.0.0-*",
+    "AddAPearl.DataAccess": "1.0.0-*",
+    "AddAPearl.Domain": "1.0.0-*",
     "AutoMapper": "5.2.0",
     "Microsoft.NETCore.App": {
       "type": "platform",

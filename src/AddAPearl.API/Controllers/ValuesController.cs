@@ -2,25 +2,24 @@
 using System.Net;
 using System.Net.Http;
 using System.Reflection;
+using AddAPearl.Core;
 using Microsoft.AspNetCore.Mvc;
-using AddAPearl.Services;
-using AddAPearl.Services.Models;
 
 namespace AddAPearl.API.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
-        private static AddAPearlService _addAPearlService;
+        private static IAddAPearlService _addAPearlService;
 
-        public ValuesController(AddAPearl.Entities.AddAPearlContext addAPearlContext)
+        public ValuesController(IAddAPearlService addAPearlService)
         {
-            _addAPearlService = new AddAPearlService(addAPearlContext);
+            _addAPearlService = addAPearlService;
         }
 
         // GET api/values
         [HttpGet]
-        public IEnumerable<Company> Get()
+        public IEnumerable<ICompany> Get()
         {
             return _addAPearlService.GetCompanies();
         }

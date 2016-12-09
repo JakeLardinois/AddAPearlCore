@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AddAPearl.Entities;
+using AddAPearl.Core;
+using AddAPearl.DataAccess;
+using AddAPearl.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
@@ -40,6 +42,8 @@ namespace AddAPearl.API
             {
                 options.AddPolicy("AllowAll", corsBuilder.Build());
             });
+
+            services.AddTransient<IAddAPearlService, AddAPearlService>();
 
             services.AddDbContext<AddAPearlContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

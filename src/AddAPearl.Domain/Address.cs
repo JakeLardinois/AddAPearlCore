@@ -1,6 +1,8 @@
-﻿namespace AddAPearl.Domain
+﻿using AddAPearl.Core;
+
+namespace AddAPearl.Domain
 {
-    public class Address
+    public class Address: IAddress
     {
         public int AddressId { get; set; }
         

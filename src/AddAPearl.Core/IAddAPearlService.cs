@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AddAPearl.Core
 {
-    interface IAddAPearlService
+    public interface IAddAPearlService
     {
         IEnumerable<ICompany> GetCompanies();
 

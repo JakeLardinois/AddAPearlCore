@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AddAPearl.Core
 {
-    interface IAddress
+    public interface IAddress
     {
         int AddressId { get; set; }
 

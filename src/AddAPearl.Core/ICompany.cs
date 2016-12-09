@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AddAPearl.Core
 {
-    interface ICompany
+    public interface ICompany
     {
         int CompanyId { get; set; }
 

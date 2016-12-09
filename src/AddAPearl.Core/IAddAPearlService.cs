@@ -7,5 +7,8 @@ namespace AddAPearl.Core
 {
     interface IAddAPearlService
     {
+        IEnumerable<ICompany> GetCompanies();
+
+        ICompany GetCompanyById(int id);
     }
 }

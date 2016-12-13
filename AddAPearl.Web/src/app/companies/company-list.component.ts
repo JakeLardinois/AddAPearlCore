@@ -47,7 +47,7 @@ export class CompanyListComponent {
 
     onRatingClicked(message: string): void {
         let config = new MdSnackBarConfig();
-        // config.duration = 1;
+        config.duration = 1;
         this.snackBar.open(message, 'Dismiss', config);
         this.pageTitle = 'Product List: ' + message;
     }

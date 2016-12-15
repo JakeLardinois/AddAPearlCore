@@ -79,6 +79,7 @@ gulp.task('libs', () => {
             'systemjs/dist/system-polyfills.js',
             'systemjs/dist/system.src.js',
             'reflect-metadata/Reflect.js',
+            'hammerjs/hammer.min.js',
             'rxjs/**/*.js',
             'zone.js/dist/**',
             '@angular/**/bundles/**',

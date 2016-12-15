@@ -9,6 +9,9 @@
     "experimentalDecorators": true,
     "removeComments": false,
     "noImplicitAny": true,
+    "types": [
+      "hammerjs"
+    ],
     "suppressImplicitAnyIndexErrors": true
   },
   "exclude": [

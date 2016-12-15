@@ -3,7 +3,7 @@ import {MdDialog, MdDialogRef, MdSnackBar, MdSnackBarConfig} from '@angular/mate
 
 import { ICompany } from '../shared/models/company';
 import { IAddress } from '../shared/models/address';
-import { AddressDialog } from '../shared/addressDialog.component';
+import { AddressDialog } from '../shared/index';
 import { CompanyService } from '../shared/services/company.service';
 
 

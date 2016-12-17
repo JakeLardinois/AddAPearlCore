@@ -20,6 +20,7 @@ declare var System: any;
       'app': 'app',
 
       // other libraries
+      'hammerjs': 'npm:hammerjs',
       'rxjs': 'npm:rxjs',
     },
     // packages tells the System loader how to load when no filename and/or no extension
@@ -27,6 +28,9 @@ declare var System: any;
       app: {
         defaultExtension: 'js',
         main: './main.js',
+      },
+      hammerjs: {
+        defaultExtension: 'js',
       },
       rxjs: {
         defaultExtension: 'js',

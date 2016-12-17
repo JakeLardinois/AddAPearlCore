@@ -3,19 +3,19 @@ import {MdDialogRef} from '@angular/material';
 
 import { IAddress } from '../models/address';
 
-
 @Component({
-  selector: 'address-dialog',
   moduleId: module.id,
+  selector: 'address-dialog',
+  styleUrls: ['addressDialog.component.css'],
   templateUrl: 'addressDialog.component.html',
-  styleUrls: ['addressDialog.component.css']
 })
+
 export class AddressDialog {
-    addressName: string;
-    address: IAddress;
+  public addressName: string;
+  public address: IAddress;
   constructor(public dialogRef: MdDialogRef<AddressDialog>) { }
 
-  updateAddress(): void {
+  public updateAddress(): void {
       alert('fired!!');
   }
 }

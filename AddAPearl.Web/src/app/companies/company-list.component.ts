@@ -1,54 +1,53 @@
 import { Component} from '@angular/core';
 import {MdDialog, MdDialogRef, MdSnackBar, MdSnackBarConfig} from '@angular/material';
 
-import { ICompany } from '../shared/models/company';
-import { IAddress } from '../shared/models/address';
 import { AddressDialog } from '../shared/index';
+import { IAddress } from '../shared/models/address';
+import { ICompany } from '../shared/models/company';
 import { CompanyService } from '../shared/services/company.service';
 
-
 @Component({
-    selector: 'pearl-companies',
     moduleId: module.id,
+    selector: 'pearl-companies',
+    styleUrls: ['company-list.component.css'],
     templateUrl: 'company-list.component.html',
-    styleUrls: ['company-list.component.css']
 })
+
 export class CompanyListComponent {
-    pageTitle: string = 'Company List';
-    errorMessage: string;
-    dialogRef: MdDialogRef<AddressDialog>;
-    listFilter: string = null;
+    public pageTitle: string = 'Company List';
+    public errorMessage: string;
+    public dialogRef: MdDialogRef<AddressDialog>;
+    public listFilter: string = null;
+    public companies: ICompany[];
 
-    companies: ICompany[];
-
-    constructor(private _companyService: CompanyService, public dialog: MdDialog, public snackBar: MdSnackBar) {
+    public constructor(private companyService: CompanyService, public dialog: MdDialog, public snackBar: MdSnackBar) {
 
     }
 
-    ngOnInit(): void {
-        this._companyService.getCompanies()
-                .subscribe(companies => this.companies = companies,
-                           error => this.errorMessage = <any>error);
-    }
-
-    clicked(companyName: string, address: IAddress): void {
+    public clicked(companyName: string, address: IAddress): void {
         alert(address.addressLine1);
         this.dialogRef = this.dialog.open(AddressDialog, {
-            disableClose: false
+            disableClose: false,
         });
         this.dialogRef.componentInstance.addressName = companyName;
         this.dialogRef.componentInstance.address = address;
 
-        this.dialogRef.afterClosed().subscribe(result => {
+        this.dialogRef.afterClosed().subscribe((result) => {
             console.log('result: ' + result);
             this.dialogRef = null;
         });
     }
 
-    onRatingClicked(message: string): void {
+    public onRatingClicked(message: string): void {
         let config = new MdSnackBarConfig();
         config.duration = 1;
         this.snackBar.open(message, 'Dismiss', config);
         this.pageTitle = 'Product List: ' + message;
+    }
+
+    protected ngOnInit(): void {
+        this.companyService.getCompanies()
+                .subscribe((companies) => this.companies = companies,
+                           (error) => this.errorMessage = <any> error);
     }
 }

@@ -7,12 +7,12 @@ import  { Component, EventEmitter, Input,
     styleUrls: ['star.component.css'],
     templateUrl: 'star.component.html',
 })
+
 export class StarComponent implements OnChanges {
     @Input() public rating: number;
     public starWidth: number;
     public starFontSize: number = 20;
-    @Output() public ratingClicked: EventEmitter<string> =
-        new EventEmitter<string>();
+    @Output() public ratingClicked: EventEmitter<string> = new EventEmitter<string>();
 
     public ngOnChanges(): void {
         // A 20px starFontSize evenly divisible for a 5 star max is going to be 100, then a 2px border on each side of the star gives 20

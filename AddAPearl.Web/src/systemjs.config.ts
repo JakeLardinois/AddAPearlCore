@@ -8,7 +8,6 @@ declare var System: any;
   System.config({
     // map tells the System loader where to look for things
     map: {
-      // angular bundles
       '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
       '@angular/compiler': 'npm:@angular/compiler/bundles/compiler.umd.js',
       '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
@@ -18,6 +17,7 @@ declare var System: any;
       '@angular/platform-browser': 'npm:@angular/platform-browser/bundles/platform-browser.umd.js',
       '@angular/platform-browser-dynamic': 'npm:@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js',
       '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
+      'app': 'app',
 
       // other libraries
       'rxjs': 'npm:rxjs',

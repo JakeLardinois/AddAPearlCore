@@ -14,8 +14,8 @@ import { Component } from '@angular/core';
     <div class='container'>
         <router-outlet></router-outlet>
     </div>
-    `
+    `,
 })
 export class AppComponent {
-    pageTitle: string = `Welcome to Add-A-Pearl!`;
+    public pageTitle: string = `Welcome to Add-A-Pearl!`;
 }

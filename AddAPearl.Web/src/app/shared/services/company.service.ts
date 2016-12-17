@@ -1,22 +1,21 @@
 import { Injectable }     from '@angular/core';
 import { Http, Response } from '@angular/http';
 // Add the RxJS Observable operators.
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
 
 import { ICompany } from '../models/company';
 
-
 @Injectable()
 export class CompanyService {
-  private _companiesUrl = 'http://localhost:19750/api/companies';  // URL to web API
+  private companiesUrl = 'http://localhost:19750/api/companies';  // URL to web API
   constructor (private http: Http) {}
-  getCompanies (): Observable<ICompany[]> {
-    return this.http.get(this._companiesUrl)
+  public getCompanies (): Observable<ICompany[]> {
+    return this.http.get(this.companiesUrl)
             .map((response: Response) => <ICompany[]> response.json())
-            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            .do((data) => console.log('All: ' +  JSON.stringify(data)))
                 .catch(this.handleError);
   }
 

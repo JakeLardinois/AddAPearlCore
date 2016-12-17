@@ -30,7 +30,8 @@ declare var System: any;
         main: './main.js',
       },
       hammerjs: {
-        main: './hammer.min.js',
+        defaultExtension: 'js',
+        main: './hammer.min',
       },
       rxjs: {
         defaultExtension: 'js',

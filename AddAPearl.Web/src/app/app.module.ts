@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { MaterialModule } from '@angular/material';
 import { HttpModule, JsonpModule } from '@angular/http';
+import { MaterialModule } from '@angular/material';
+import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule} from '@angular/router';
 
 import { AppComponent }  from './app.component';
@@ -12,23 +12,23 @@ import { WelcomeComponent } from './home/welcome.component';
 import { CompanyModule } from './companies/company.module';
 
 @NgModule({
+  bootstrap: [ AppComponent ],
+  declarations: [
+    AppComponent,
+    WelcomeComponent,
+  ],
   imports: [
     BrowserModule,
+    CompanyModule,
     FormsModule,
-    MaterialModule.forRoot(),
     HttpModule,
     JsonpModule,
+    MaterialModule.forRoot(),
     RouterModule.forRoot([
       { path: 'welcome', component: WelcomeComponent },
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-      { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
+      { path: '**', redirectTo: 'welcome', pathMatch: 'full' },
     ]),
-    CompanyModule
   ],
-  declarations: [
-    AppComponent,
-    WelcomeComponent
-  ],
-  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

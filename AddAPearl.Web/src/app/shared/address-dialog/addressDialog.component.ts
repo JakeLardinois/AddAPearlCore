@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {MdDialogRef} from '@angular/material';
+import {MdDialogRef, MdSnackBar, MdSnackBarConfig} from '@angular/material';
 
 import { IAddress } from '../models/address';
 
@@ -13,9 +13,12 @@ import { IAddress } from '../models/address';
 export class AddressDialog {
   public addressName: string;
   public address: IAddress;
-  constructor(public dialogRef: MdDialogRef<AddressDialog>) { }
+  constructor(public dialogRef: MdDialogRef<AddressDialog>, public snackBar: MdSnackBar) { }
 
   public updateAddress(): void {
-      alert('fired!!');
+      let config = new MdSnackBarConfig();
+        config.duration = 5000;
+        this.snackBar.open('Address Updated: ' + this.address.addressLine1, 'Ok', config);
+        this.dialogRef.close('updated');
   }
 }

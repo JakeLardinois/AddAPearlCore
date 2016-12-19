@@ -25,7 +25,6 @@ export class CompanyListComponent {
     }
 
     public clicked(companyName: string, address: IAddress): void {
-        alert(address.addressLine1);
         this.dialogRef = this.dialog.open(AddressDialog, {
             disableClose: false,
         });
@@ -40,7 +39,7 @@ export class CompanyListComponent {
 
     public onRatingClicked(message: string): void {
         let config = new MdSnackBarConfig();
-        config.duration = 1;
+        config.duration = 5000;
         this.snackBar.open(message, 'Dismiss', config);
         this.pageTitle = 'Product List: ' + message;
     }

@@ -13,10 +13,11 @@ export class AddressService {
   private addressesUrl = 'http://localhost:19750/api/addresses';  // URL to web API
   constructor (private http: Http) {}
   public updateAddress (address: IAddress): Observable<IAddress> {
-      let bodyString = JSON.stringify(address); // Stringify payload
+      let payload = {Address: address};
+      let bodyString = JSON.stringify(payload); // Stringify payload
       let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
       let options = new RequestOptions({ headers: headers }); // Create a request option
-      return this.http.patch(`${this.addressesUrl}/${address.addressId}`, bodyString, options )
+      return this.http.patch(`${this.addressesUrl}/address/${address.addressId}`, bodyString, options )
             .map((response: Response) => <IAddress> response.json())
             .do((data) => console.log('All: ' +  JSON.stringify(data)))
                 .catch(this.handleError);

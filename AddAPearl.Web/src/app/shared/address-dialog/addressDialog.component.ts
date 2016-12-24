@@ -22,5 +22,6 @@ export class AddressDialog {
       this.addressService.updateAddress(this.address)
                 .subscribe((address) => this.address = address,
                            (error) => this.errorMessage = <any> error);
+      this.dialogRef.close('updated');
   }
 }

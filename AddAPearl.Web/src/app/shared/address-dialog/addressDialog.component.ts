@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {MdDialogRef} from '@angular/material';
 
-import { IAddress } from '../index';
+import { AddressService, IAddress } from '../index';
 
 @Component({
   moduleId: module.id,
@@ -13,9 +13,14 @@ import { IAddress } from '../index';
 export class AddressDialog {
   public addressName: string;
   public address: IAddress;
-  constructor(public dialogRef: MdDialogRef<AddressDialog>) { }
+  public addressService: AddressService;
+  public errorMessage: string;
+
+  public constructor(public dialogRef: MdDialogRef<AddressDialog>) { }
 
   public updateAddress(): void {
-      alert('fired!!');
+      this.addressService.updateAddress(this.address)
+                .subscribe((address) => this.address = address,
+                           (error) => this.errorMessage = <any> error);
   }
 }

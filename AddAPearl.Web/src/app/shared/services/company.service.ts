@@ -6,7 +6,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 
-import { ICompany } from '../models/company';
+import { ICompany } from '../index';
 
 @Injectable()
 export class CompanyService {

@@ -22,7 +22,6 @@ export class CompanyListComponent {
     }
 
     public clicked(companyName: string, address: IAddress): void {
-        alert(address.addressLine1);
         this.dialogRef = this.dialog.open(AddressDialog, {
             disableClose: false,
         });

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {MdDialogRef} from '@angular/material';
 
-import { IAddress } from '../models/address';
+import { IAddress } from '../index';
 
 @Component({
   moduleId: module.id,

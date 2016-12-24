@@ -1,10 +1,7 @@
 import { Component} from '@angular/core';
 import {MdDialog, MdDialogRef, MdSnackBar, MdSnackBarConfig} from '@angular/material';
 
-import { AddressDialog } from '../shared/index';
-import { IAddress } from '../shared/models/address';
-import { ICompany } from '../shared/models/company';
-import { CompanyService } from '../shared/services/company.service';
+import { AddressDialog, CompanyService, IAddress, ICompany } from '../shared/index';
 
 @Component({
     moduleId: module.id,

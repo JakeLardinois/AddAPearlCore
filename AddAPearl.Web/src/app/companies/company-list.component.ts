@@ -1,10 +1,7 @@
 import { Component} from '@angular/core';
 import {MdDialog, MdDialogRef, MdSnackBar, MdSnackBarConfig} from '@angular/material';
 
-import { AddressDialog } from '../shared/index';
-import { IAddress } from '../shared/models/address';
-import { ICompany } from '../shared/models/company';
-import { CompanyService } from '../shared/services/company.service';
+import { AddressDialog, AddressService, CompanyService, IAddress, ICompany } from '../shared/index';
 
 @Component({
     moduleId: module.id,
@@ -20,7 +17,7 @@ export class CompanyListComponent {
     public listFilter: string = null;
     public companies: ICompany[];
 
-    public constructor(private companyService: CompanyService, public dialog: MdDialog, public snackBar: MdSnackBar) {
+    public constructor(private addressService: AddressService, private companyService: CompanyService, public dialog: MdDialog, public snackBar: MdSnackBar) {
 
     }
 
@@ -28,6 +25,7 @@ export class CompanyListComponent {
         this.dialogRef = this.dialog.open(AddressDialog, {
             disableClose: false,
         });
+        this.dialogRef.componentInstance.addressService = this.addressService;
         this.dialogRef.componentInstance.addressName = companyName;
         this.dialogRef.componentInstance.address = address;
 

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AddAPearl.Services
 {
-    public class AddAPearlService: IAddAPearlService
+    public class AddAPearlService : IAddAPearlService
     {
         private readonly AddAPearlContext _addAPearl;
 
@@ -23,8 +23,8 @@ namespace AddAPearl.Services
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<DataAccess.Company, Domain.Company>()
-                    .ForMember(c => c.Address, 
-                    opt => opt.MapFrom(a => Mapper.Map<DataAccess.Address, Domain.Address>(a.Address)));
+                    .ForMember(c => c.Address,
+                        opt => opt.MapFrom(a => Mapper.Map<DataAccess.Address, Domain.Address>(a.Address)));
                 cfg.CreateMap<DataAccess.Address, Domain.Address>();
             });
         }
@@ -41,6 +41,18 @@ namespace AddAPearl.Services
                 .ProjectTo<Domain.Company>()
                 .FirstOrDefault(c => c.CompanyId == id);
 
+        }
+
+        public IEnumerable<IAddress> GetAddresses()
+        {
+            return _addAPearl.Addresses
+                .ProjectTo<Domain.Address>();
+        }
+
+        public IAddress GetAddressById(int id)
+        {
+            return Mapper.Map<Domain.Address>(_addAPearl.Addresses
+                .FirstOrDefault(a => a.AddressId == id));
         }
     }
 }

@@ -10,5 +10,9 @@ namespace AddAPearl.Core
         IEnumerable<ICompany> GetCompanies();
 
         ICompany GetCompanyById(int id);
+
+        IEnumerable<IAddress> GetAddresses();
+
+        IAddress GetAddressById(int id);
     }
 }

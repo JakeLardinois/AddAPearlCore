@@ -4,8 +4,7 @@ import { MaterialModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule} from '@angular/router';
 
-import { AddressDialog, StarComponent }  from '../shared/index';
-import { CompanyService } from '../shared/services/company.service';
+import { AddressDialog, AddressService, CompanyService, StarComponent }  from '../shared/index';
 import { CompanyFilterPipe } from './company-filter.pipe';
 import { CompanyListComponent }  from './company-list.component';
 
@@ -28,6 +27,7 @@ import { CompanyListComponent }  from './company-list.component';
     ]),
   ],
   providers: [
+    AddressService,
     CompanyService,
   ],
 })

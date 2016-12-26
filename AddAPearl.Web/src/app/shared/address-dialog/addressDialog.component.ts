@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import {MdDialogRef, MdSnackBar, MdSnackBarConfig} from '@angular/material';
 
-import { AddressService, IAddress } from '../index';
+import { AddressService } from '../services/address.service';
+import { IAddress } from '../index';
+
 
 @Component({
   moduleId: module.id,
@@ -13,10 +15,9 @@ import { AddressService, IAddress } from '../index';
 export class AddressDialog {
   public addressName: string;
   public address: IAddress;
-  public addressService: AddressService;
   public errorMessage: string;
 
-  public constructor(public dialogRef: MdDialogRef<AddressDialog>, public snackBar: MdSnackBar) {
+  public constructor(public dialogRef: MdDialogRef<AddressDialog>, public snackBar: MdSnackBar, public addressService: AddressService) {
 
   }
 

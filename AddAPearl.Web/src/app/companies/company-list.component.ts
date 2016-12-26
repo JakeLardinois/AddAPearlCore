@@ -25,7 +25,6 @@ export class CompanyListComponent {
         this.dialogRef = this.dialog.open(AddressDialog, {
             disableClose: false,
         });
-        this.dialogRef.componentInstance.addressService = this.addressService;
         this.dialogRef.componentInstance.addressName = companyName;
         this.dialogRef.componentInstance.address = address;
 

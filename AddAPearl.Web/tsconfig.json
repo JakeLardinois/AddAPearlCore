@@ -9,6 +9,10 @@
     "experimentalDecorators": true,
     "removeComments": false,
     "noImplicitAny": true,
+    "typeRoots": [
+      "../node_modules/@types",
+      "./typings/globals"
+      ],
     "suppressImplicitAnyIndexErrors": true
   },
   "exclude": [

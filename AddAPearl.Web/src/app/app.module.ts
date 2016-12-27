@@ -5,7 +5,7 @@ import { MaterialModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule} from '@angular/router';
 import 'hammerjs';
-import 'jsonpatch';
+
 
 import { AppComponent }  from './app.component';
 import { WelcomeComponent } from './home/welcome.component';

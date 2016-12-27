@@ -54,7 +54,7 @@ namespace AddAPearl.Services
         public IAddress GetAddressById(int id)
         {
             return Mapper.Map<Domain.Address>(_addAPearl.Addresses
-                .AsNoTracking()
+                .AsNoTracking() //required since this method gets called when updating the entity
                 .FirstOrDefault(a => a.AddressId == id));
         }
 

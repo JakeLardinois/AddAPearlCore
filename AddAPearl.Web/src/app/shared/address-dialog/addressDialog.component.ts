@@ -16,17 +16,15 @@ import jsonpatch = require('fastJsonPatch/json-patch-duplex.min');
 export class AddressDialog {
   public addressName: string;
   public address: IAddress;
-  public newAddress: IAddress;
   public errorMessage: string;
+  public observer: any;
 
   public constructor(public dialogRef: MdDialogRef<AddressDialog>, public snackBar: MdSnackBar, public addressService: AddressService) {
-
+    
   }
 
   public updateAddress(): void {
-    let observer = jsonpatch.observe( this.address );
-    this.address.addressLine1 = 'New Address';
-    let patches = jsonpatch.generate(observer);
+    let patches = jsonpatch.generate(this.observer);
 
     this.addressService.patchAddress(this.address, patches)
       .subscribe((address) => this.address = address,
@@ -35,5 +33,9 @@ export class AddressDialog {
     config.duration = 5000;
     this.snackBar.open('Address Updated: ' + this.address.addressLine1, 'Ok', config);
     this.dialogRef.close('updated');
+  }
+
+  protected ngOnInit(): void {
+    this.observer = jsonpatch.observe( this.address );
   }
 }

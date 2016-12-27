@@ -3,20 +3,20 @@
     <md-card-content>
         <form>
             <p>
-                <md-textarea placeholder="Address" value="{{address.addressLine1}}"></md-textarea>
-                <md-textarea placeholder="Address 2" value="{{address.addressLine2}}"></md-textarea>
-                <md-textarea placeholder="Address 3" value="{{address.addressLine3}}"></md-textarea>
+                <md-textarea placeholder="Address Line 1" [(ngModel)]="address.addressLine1" name="addressLine1" ></md-textarea>
+                <md-textarea placeholder="Address 2" [(ngModel)]="address.addressLine2" name="addressLine2" ></md-textarea>
+                <md-textarea placeholder="Address 3" [(ngModel)]="address.addressLine3" name="addressLine3" ></md-textarea>
             </p>
             <table style="width: 100%" cellspacing="0">
                 <tr>
                     <td>
-                        <md-input placeholder="City" value="{{address.city}}"></md-input>
+                        <md-input placeholder="City" [(ngModel)]="address.city" name="city" ></md-input>
                     </td>
                     <td>
-                        <md-input placeholder="State" maxLength="2" value="{{address.state}}"></md-input>
+                        <md-input placeholder="State" maxLength="2" [(ngModel)]="address.state" name="state" ></md-input>
                     </td>
                     <td>
-                        <md-input #postalCode maxLength="5" placeholder="Postal Code" value="{{address.zipCode}}">
+                        <md-input #postalCode maxLength="5" placeholder="Postal Code" [(ngModel)]="address.zipCode" name="zipCode" >
                             <md-hint align="end">{{postalCode.characterCount}} / 5</md-hint>
                         </md-input>
                     </td>

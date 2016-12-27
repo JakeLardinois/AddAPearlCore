@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AddAPearl.Core;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -14,16 +15,19 @@ namespace AddAPearl.API.Controllers
     public class AddressesController : Controller
     {
         private static IAddAPearlService _addAPearlService;
+        private readonly ILogger _logger;
 
-        public AddressesController(IAddAPearlService addAPearlService)
+        public AddressesController(IAddAPearlService addAPearlService, ILogger<AddressesController> logger)
         {
             _addAPearlService = addAPearlService;
+            _logger = logger;
         }
 
         [HttpGet]
         [ActionName("")]
         public IEnumerable<IAddress> All()
         {
+            
             return _addAPearlService.GetAddresses();
         }
 

@@ -9,17 +9,19 @@ using AddAPearl.Domain;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace AddAPearl.Services
 {
     public class AddAPearlService : IAddAPearlService
     {
         private readonly AddAPearlContext _addAPearl;
+        private readonly ILogger _logger;
 
-
-        public AddAPearlService(AddAPearlContext addAPearlContext)
+        public AddAPearlService(AddAPearlContext addAPearlContext, ILogger<AddAPearlService> logger)
         {
             _addAPearl = addAPearlContext;
+            _logger = logger;
 
             Mapper.Initialize(cfg =>
             {
@@ -33,6 +35,7 @@ namespace AddAPearl.Services
 
         public IEnumerable<ICompany> GetCompanies()
         {
+            _logger.LogInformation("Executing: IEnumerable<ICompany> GetCompanies()");
             return _addAPearl.Companies.Include(a => a.Address)
                 .ProjectTo<Domain.Company>();
         }

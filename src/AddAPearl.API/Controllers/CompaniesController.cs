@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AddAPearl.Core;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace AddAPearl.API.Controllers
 {
@@ -11,16 +12,19 @@ namespace AddAPearl.API.Controllers
     public class CompaniesController: Controller
     {
         private static IAddAPearlService _addAPearlService;
+        private readonly ILogger _logger;
 
-        public CompaniesController(IAddAPearlService addAPearlService)
+        public CompaniesController(IAddAPearlService addAPearlService, ILogger<CompaniesController> logger)
         {
             _addAPearlService = addAPearlService;
+            _logger = logger;
         }
 
         [HttpGet]
         [ActionName("")]
         public IEnumerable<ICompany> All()
         {
+            _logger.LogInformation("Returning all the companies");
             return _addAPearlService.GetCompanies();
         }
 

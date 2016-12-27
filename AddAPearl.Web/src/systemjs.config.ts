@@ -20,9 +20,9 @@ declare var System: any;
       'app': 'app',
 
       // other libraries
+      'fastJsonPatch': 'npm:fast-json-patch/dist',
       'hammerjs': 'npm:hammerjs',
       'rxjs': 'npm:rxjs',
-      'fastJsonPatch': 'npm:fast-json-patch/dist',
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -30,14 +30,14 @@ declare var System: any;
         defaultExtension: 'js',
         main: './main.js',
       },
+      fastJsonPatch: {
+        defaultExtension: 'js',
+      },
       hammerjs: {
         defaultExtension: 'js',
         main: './hammer.min',
       },
       rxjs: {
-        defaultExtension: 'js',
-      },
-      fastJsonPatch: {
         defaultExtension: 'js',
       },
     },

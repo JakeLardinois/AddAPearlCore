@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import {MdDialogRef, MdSnackBar, MdSnackBarConfig} from '@angular/material';
 
-import { AddressService } from '../services/address.service';
 import { IAddress } from '../index';
-//var jsonpatch = require('fastJsonPatch/json-patch-duplex.min')
+import { AddressService } from '../services/address.service';
+
 import jsonpatch = require('fastJsonPatch/json-patch-duplex.min');
 
 @Component({

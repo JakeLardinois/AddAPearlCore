@@ -17,10 +17,20 @@ export class AddressService {
       let bodyString = JSON.stringify(payload); // Stringify payload
       let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
       let options = new RequestOptions({ headers: headers }); // Create a request option
-      return this.http.patch(`${this.addressesUrl}/address/${address.addressId}`, bodyString, options )
+      return this.http.put(`${this.addressesUrl}/address/${address.addressId}`, bodyString, options )
             .map((response: Response) => <IAddress> response.json())
             .do((data) => console.log('All: ' +  JSON.stringify(data)))
                 .catch(this.handleError);
+  }
+
+  public patchAddress (address: IAddress, patchcommands: any): Observable<IAddress> {
+      let bodyString = JSON.stringify(patchcommands); // Stringify payload
+      let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+      let options = new RequestOptions({ headers: headers }); // Create a request option
+      return this.http.patch(`${this.addressesUrl}/address/${address.addressId}`, bodyString, options )
+            .map((response: Response) => <IAddress> response.json())
+            .do((data) => console.log('All: ' +  JSON.stringify(data)))
+            .catch(this.handleError);
   }
 
   private handleError (error: Response | any) {

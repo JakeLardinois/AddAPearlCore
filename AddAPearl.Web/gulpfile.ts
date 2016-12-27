@@ -82,6 +82,7 @@ gulp.task('libs', () => {
             'hammerjs/hammer.min.js',
             'rxjs/**/*.js',
             'zone.js/dist/**',
+            'fast-json-patch/dist/**',
             '@angular/**/bundles/**',
             '@angular/material/**/*'
         ], {cwd: 'node_modules/**'}) /* Glob required here. */

@@ -14,5 +14,7 @@ namespace AddAPearl.Core
         IEnumerable<IAddress> GetAddresses();
 
         IAddress GetAddressById(int id);
+
+        IAddress UpdateAddress(IAddress address);
     }
 }

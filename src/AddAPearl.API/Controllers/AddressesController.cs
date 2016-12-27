@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AddAPearl.Core;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -36,10 +37,20 @@ namespace AddAPearl.API.Controllers
 
         [HttpPatch("{id}")]
         [ActionName("Address")]
-        public IActionResult Id(int id, [FromBody] dynamic jsonData)
+        public IActionResult Id(int id, [FromBody] JsonPatchDocument<IAddress> patch)
         {
-            var address = _addAPearlService.GetAddressById(id);
-            return new ObjectResult(address);
+            try
+            {
+                var address = _addAPearlService.GetAddressById(id);
+                patch.ApplyTo(address, ModelState);
+                address = _addAPearlService.UpdateAddress(address);
+                return new ObjectResult(address);
+            }
+            catch (Exception objEx)
+            {
+                throw objEx;
+            }
+            
 
             //try
             //{

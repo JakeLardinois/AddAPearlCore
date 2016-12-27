@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using AddAPearl.Core;
 using AddAPearl.DataAccess;
@@ -25,7 +26,8 @@ namespace AddAPearl.Services
                 cfg.CreateMap<DataAccess.Company, Domain.Company>()
                     .ForMember(c => c.Address,
                         opt => opt.MapFrom(a => Mapper.Map<DataAccess.Address, Domain.Address>(a.Address)));
-                cfg.CreateMap<DataAccess.Address, Domain.Address>();
+                cfg.CreateMap<DataAccess.Address, Domain.Address>()
+                    .ReverseMap();
             });
         }
 
@@ -52,7 +54,19 @@ namespace AddAPearl.Services
         public IAddress GetAddressById(int id)
         {
             return Mapper.Map<Domain.Address>(_addAPearl.Addresses
+                .AsNoTracking()
                 .FirstOrDefault(a => a.AddressId == id));
+        }
+
+        public IAddress UpdateAddress(IAddress address)
+        {
+            var theAddress = Mapper.Map<DataAccess.Address>(address);
+            //_addAPearl.Entry(theAddress).State = EntityState.Modified; //alternative syntax
+            _addAPearl.Addresses.Attach(theAddress).State = EntityState.Modified;
+            _addAPearl.SaveChanges();
+
+            return Mapper.Map<Domain.Address>(_addAPearl.Addresses
+                .FirstOrDefault(a => a.AddressId == address.AddressId));
         }
     }
 }

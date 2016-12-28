@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using AddAPearl.Core;
 using AddAPearl.DataAccess;
-using AddAPearl.Domain;
+using AddAPearl.Services.Helpers;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
@@ -25,14 +25,7 @@ namespace AddAPearl.Services
 
             Mapper.Initialize(cfg =>
             {
-                cfg.CreateMap<DataAccess.Company, Domain.Company>()
-                    .ForMember(c => c.Address,
-                        opt => opt.MapFrom(a => Mapper.Map<DataAccess.Address, Domain.Address>(a.Address)))
-                    .ReverseMap();
-                cfg.CreateMap<DataAccess.Address, Domain.Address>()
-                    .ReverseMap();
-                cfg.CreateMap<DataAccess.Address, IAddress>()
-                    .ReverseMap();
+                cfg.AddProfile(new AutoMapperProfile());
             });
         }
 

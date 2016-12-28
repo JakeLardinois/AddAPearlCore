@@ -42,15 +42,18 @@ namespace AddAPearl.API.Controllers
 
         [HttpPost]
         [ActionName("Company")]
-        public IActionResult AddCompany([FromBody] dynamic jsonData)
+        public IActionResult AddCompany([FromBody] Company company)
         {
             try
             {
-                var strCompany = jsonData.Company.ToString();
-                var company = JsonConvert.DeserializeObject<Company>(strCompany);
-                company = _addAPearlService.AddCompany(company);
+                if (!ModelState.IsValid)
+                {
+                    _logger.LogWarning("A ModelState validation Error Occurred...", ModelState);
+                    return new BadRequestObjectResult(ModelState);
+                }
+                var newCompany = _addAPearlService.AddCompany(company);
 
-                return new ObjectResult(company);
+                return new ObjectResult(newCompany);
             }
             catch (Exception objEx)
             {

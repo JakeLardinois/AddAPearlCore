@@ -62,8 +62,7 @@ namespace AddAPearl.API
                 .AddConsole(Configuration.GetSection("Logging"));
 
             /*Adds a logger that logs to Visual Studio's Output window when IIS Express is used by using the System.Diagnostics.Debug Class.
-             * Note that you have to specify a default level in the AddDebug method otherwise the default level of 'Information' is used.
-             */
+             * Note that you have to specify a default level in the AddDebug method otherwise the default level of 'Information' is used. */
             loggerFactory
                 .WithFilter(new FilterLoggerSettings
                 {
@@ -71,10 +70,7 @@ namespace AddAPearl.API
                     { "System", LogLevel.Debug },
                     { "AddAPearl", LogLevel.Debug }
                 })
-                .AddDebug(
-                    (category, logLevel) =>
-                        (category.Contains("AddAPearl") ||
-                         category.Contains("Microsoft") && logLevel >= LogLevel.Trace));
+                .AddDebug(LogLevel.Trace);
 
             app.UseMvc();
         }

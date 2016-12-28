@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AddAPearl.Core;
+using AddAPearl.Domain;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -46,7 +47,26 @@ namespace AddAPearl.API.Controllers
             try
             {
                 var address = _addAPearlService.GetAddressById(id);
-                patch.ApplyTo(address, ModelState);
+                if (address == null)
+                {
+                    _logger.LogWarning($"Address with Id {id} was not found...");
+                    return NotFound($"Address with Id {id} was not found...");
+                }
+
+                patch.ApplyTo(address, ModelState); //Populates ModelState with any patch errors (ie replacing a property that does not exist)
+                if (!ModelState.IsValid)
+                {
+                    _logger.LogWarning("A Patching Operation Errored Against the ModelState...", ModelState);
+                    return new BadRequestObjectResult(ModelState);
+                }
+
+                TryValidateModel(address); //Populates ModelState with any validation errors for the Address Model 
+                if (!ModelState.IsValid)
+                {
+                    _logger.LogWarning("A ModelState validation Error Occurred...", ModelState);
+                    return new BadRequestObjectResult(ModelState);
+                }
+
                 address = _addAPearlService.UpdateAddress(address);
                 return new ObjectResult(address);
             }

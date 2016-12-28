@@ -1,4 +1,5 @@
-﻿using AddAPearl.Core;
+﻿using System.ComponentModel.DataAnnotations;
+using AddAPearl.Core;
 
 namespace AddAPearl.Domain
 {
@@ -13,7 +14,9 @@ namespace AddAPearl.Domain
         public string AddressLine3 { get; set; }
         
         public string City { get; set; }
-        
+
+        [Required]
+        [StringLength(30, MinimumLength = 3)]
         public string State { get; set; }
         
         public string ZipCode { get; set; }

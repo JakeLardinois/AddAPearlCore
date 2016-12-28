@@ -27,8 +27,11 @@ namespace AddAPearl.Services
             {
                 cfg.CreateMap<DataAccess.Company, Domain.Company>()
                     .ForMember(c => c.Address,
-                        opt => opt.MapFrom(a => Mapper.Map<DataAccess.Address, Domain.Address>(a.Address)));
+                        opt => opt.MapFrom(a => Mapper.Map<DataAccess.Address, Domain.Address>(a.Address)))
+                    .ReverseMap();
                 cfg.CreateMap<DataAccess.Address, Domain.Address>()
+                    .ReverseMap();
+                cfg.CreateMap<DataAccess.Address, IAddress>()
                     .ReverseMap();
             });
         }
@@ -38,6 +41,15 @@ namespace AddAPearl.Services
             _logger.LogInformation("Executing: IEnumerable<ICompany> GetCompanies()");
             return _addAPearl.Companies.Include(a => a.Address)
                 .ProjectTo<Domain.Company>();
+        }
+
+        public ICompany AddCompany(ICompany company)
+        {
+            _logger.LogInformation("Adding a Company");
+            var companyToAdd = Mapper.Map<DataAccess.Company>(company);
+            _addAPearl.Companies.Add(companyToAdd);
+            _addAPearl.SaveChanges();
+            return Mapper.Map<Domain.Company>(companyToAdd);
         }
 
         public ICompany GetCompanyById(int id)

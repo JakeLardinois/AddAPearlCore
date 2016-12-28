@@ -54,22 +54,6 @@ namespace AddAPearl.API.Controllers
             {
                 throw objEx;
             }
-            
-
-            //try
-            //{
-            //    //JObject jObject = JObject.Parse(jsonData.ToString());
-            //    var strAddress = jsonData.Address.ToString();
-            //    var selectedFranchise = JsonConvert.DeserializeObject<IAddress>(strAddress);
-
-            //    var address = _addAPearlService.GetAddressById(id);
-            //    return new ObjectResult(address);
-            //}
-            //catch (Exception objEx)
-            //{
-                
-            //    throw objEx;
-            //}
         }
     }
 }

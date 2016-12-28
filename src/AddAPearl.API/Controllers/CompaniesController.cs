@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AddAPearl.Core;
+using AddAPearl.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace AddAPearl.API.Controllers
 {
@@ -36,6 +38,25 @@ namespace AddAPearl.API.Controllers
                 return NotFound();
 
             return new ObjectResult(item);
+        }
+
+        [HttpPost]
+        [ActionName("Company")]
+        public IActionResult AddCompany([FromBody] dynamic jsonData)
+        {
+            try
+            {
+                var strCompany = jsonData.Company.ToString();
+                var company = JsonConvert.DeserializeObject<Company>(strCompany);
+                company = _addAPearlService.AddCompany(company);
+
+                return new ObjectResult(company);
+            }
+            catch (Exception objEx)
+            {
+
+                throw objEx;
+            }
         }
     }
 }

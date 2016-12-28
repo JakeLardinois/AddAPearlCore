@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Reflection;
 using AddAPearl.Core;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace AddAPearl.API.Controllers
 {
@@ -11,16 +12,19 @@ namespace AddAPearl.API.Controllers
     public class ValuesController : Controller
     {
         private static IAddAPearlService _addAPearlService;
+        private readonly ILogger _logger;
 
-        public ValuesController(IAddAPearlService addAPearlService)
+        public ValuesController(IAddAPearlService addAPearlService, ILogger<ValuesController> logger)
         {
             _addAPearlService = addAPearlService;
+            _logger = logger;
         }
 
         // GET api/values
         [HttpGet]
         public IEnumerable<ICompany> Get()
         {
+            _logger.LogDebug("I'm Firing Dammit!!");
             return _addAPearlService.GetCompanies();
         }
 

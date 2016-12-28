@@ -41,7 +41,7 @@ namespace AddAPearl.API.Controllers
 
         [HttpPatch("{id}")]
         [ActionName("Address")]
-        public IActionResult Id(int id, [FromBody] JsonPatchDocument<IAddress> patch)
+        public IActionResult UpdateAddress(int id, [FromBody] JsonPatchDocument<IAddress> patch)
         {
             try
             {
@@ -52,7 +52,8 @@ namespace AddAPearl.API.Controllers
             }
             catch (Exception objEx)
             {
-                throw objEx;
+                _logger.LogError("An UpdateAddress Error Occurred...", objEx);
+                return BadRequest(objEx);
             }
         }
     }

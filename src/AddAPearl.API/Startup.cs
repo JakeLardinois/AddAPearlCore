@@ -57,8 +57,24 @@ namespace AddAPearl.API
         {
             app.UseCors("AllowAll");
 
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
+            //Adds a logger that will log to console when .netCore is running from command line. The configuration is pulled from appsettings.json
+            loggerFactory
+                .AddConsole(Configuration.GetSection("Logging"));
+
+            /*Adds a logger that logs to Visual Studio's Output window when IIS Express is used by using the System.Diagnostics.Debug Class.
+             * Note that you have to specify a default level in the AddDebug method otherwise the default level of 'Information' is used.
+             */
+            loggerFactory
+                .WithFilter(new FilterLoggerSettings
+                {
+                    { "Microsoft", LogLevel.Debug },
+                    { "System", LogLevel.Debug },
+                    { "AddAPearl", LogLevel.Debug }
+                })
+                .AddDebug(
+                    (category, logLevel) =>
+                        (category.Contains("AddAPearl") ||
+                         category.Contains("Microsoft") && logLevel >= LogLevel.Trace));
 
             app.UseMvc();
         }

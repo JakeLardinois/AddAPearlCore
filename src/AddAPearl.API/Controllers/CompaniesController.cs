@@ -54,8 +54,8 @@ namespace AddAPearl.API.Controllers
             }
             catch (Exception objEx)
             {
-
-                throw objEx;
+                _logger.LogError("An AddCompany Error Occurred...", objEx);
+                return BadRequest(objEx);
             }
         }
     }

@@ -49,8 +49,19 @@ namespace AddAPearl.Services
         {
             return _addAPearl.Companies
                 .ProjectTo<Domain.Company>()
+                .AsNoTracking() //required since this method gets called when updating the entity
                 .FirstOrDefault(c => c.CompanyId == id);
 
+        }
+
+        public ICompany UpdateCompany(ICompany company)
+        {
+            var theCompany = Mapper.Map<DataAccess.Address>(company);
+            _addAPearl.Addresses.Attach(theCompany).State = EntityState.Modified;
+            _addAPearl.SaveChanges();
+
+            return Mapper.Map<Domain.Company>(_addAPearl.Companies
+                .FirstOrDefault(a => a.CompanyId == company.CompanyId));
         }
 
         public IEnumerable<IAddress> GetAddresses()

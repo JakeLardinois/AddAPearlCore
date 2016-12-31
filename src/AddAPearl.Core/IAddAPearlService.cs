@@ -13,6 +13,8 @@ namespace AddAPearl.Core
 
         ICompany GetCompanyById(int id);
 
+        ICompany UpdateCompany(ICompany company);
+
         IEnumerable<IAddress> GetAddresses();
 
         IAddress GetAddressById(int id);

@@ -36,15 +36,6 @@ namespace AddAPearl.Services
                 .ProjectTo<Domain.Company>();
         }
 
-        public ICompany AddCompany(ICompany company)
-        {
-            _logger.LogInformation("Adding a Company");
-            var companyToAdd = Mapper.Map<DataAccess.Company>(company);
-            _addAPearl.Companies.Add(companyToAdd);
-            _addAPearl.SaveChanges();
-            return Mapper.Map<Domain.Company>(companyToAdd);
-        }
-
         public ICompany GetCompanyById(int id)
         {
             return _addAPearl.Companies
@@ -52,6 +43,15 @@ namespace AddAPearl.Services
                 .AsNoTracking() //required since this method gets called when updating the entity
                 .FirstOrDefault(c => c.CompanyId == id);
 
+        }
+
+        public ICompany AddCompany(ICompany company)
+        {
+            _logger.LogInformation("Adding a Company");
+            var companyToAdd = Mapper.Map<DataAccess.Company>(company);
+            _addAPearl.Companies.Add(companyToAdd);
+            _addAPearl.SaveChanges();
+            return Mapper.Map<Domain.Company>(companyToAdd);
         }
 
         public ICompany UpdateCompany(ICompany company)

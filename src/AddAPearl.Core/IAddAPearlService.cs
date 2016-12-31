@@ -9,9 +9,9 @@ namespace AddAPearl.Core
     {
         IEnumerable<ICompany> GetCompanies();
 
-        ICompany AddCompany(ICompany company);
-
         ICompany GetCompanyById(int id);
+
+        ICompany AddCompany(ICompany company);
 
         ICompany UpdateCompany(ICompany company);
 

@@ -64,6 +64,7 @@ namespace AddAPearl.Services
                 .FirstOrDefault(a => a.CompanyId == company.CompanyId));
         }
 
+
         public IEnumerable<IAddress> GetAddresses()
         {
             return _addAPearl.Addresses
@@ -75,6 +76,15 @@ namespace AddAPearl.Services
             return Mapper.Map<Domain.Address>(_addAPearl.Addresses
                 .AsNoTracking() //required since this method gets called when updating the entity
                 .FirstOrDefault(a => a.AddressId == id));
+        }
+
+        public IAddress AddAddress(IAddress address)
+        {
+            _logger.LogInformation("Adding a Address");
+            var addressToAdd = Mapper.Map<DataAccess.Address>(address);
+            _addAPearl.Addresses.Add(addressToAdd);
+            _addAPearl.SaveChanges();
+            return Mapper.Map<Domain.Address>(addressToAdd);
         }
 
         public IAddress UpdateAddress(IAddress address)

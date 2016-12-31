@@ -40,6 +40,28 @@ namespace AddAPearl.API.Controllers
             return new ObjectResult(address);
         }
 
+        [HttpPost]
+        [ActionName("Address")]
+        public IActionResult Add([FromBody] Address address)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    _logger.LogWarning("A ModelState validation Error Occurred...", ModelState);
+                    return new BadRequestObjectResult(ModelState);
+                }
+                var newAddress = _addAPearlService.AddAddress(address);
+
+                return new ObjectResult(newAddress);
+            }
+            catch (Exception objEx)
+            {
+                _logger.LogError("An Add Address Error Occurred...", objEx);
+                return BadRequest(objEx);
+            }
+        }
+
         [HttpPatch("{id}")]
         [ActionName("Address")]
         public IActionResult Update(int id, [FromBody] JsonPatchDocument<IAddress> patch)

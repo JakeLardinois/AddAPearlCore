@@ -25,10 +25,11 @@ namespace AddAPearl.API.Controllers
 
         [HttpGet]
         [ActionName("")]
-        public IEnumerable<ICompany> GetAll()
+        public IActionResult GetAll()
         {
             _logger.LogInformation("Returning all the companies");
-            return _addAPearlService.GetCompanies();
+            var companies = _addAPearlService.GetCompanies();
+            return new ObjectResult(companies);
         }
 
         [HttpGet("{id}")]
@@ -38,7 +39,7 @@ namespace AddAPearl.API.Controllers
             if (item == null)
                 return NotFound();
 
-            return new ObjectResult(item);
+            return Ok(item);
         }
 
         [HttpPost]
@@ -54,7 +55,7 @@ namespace AddAPearl.API.Controllers
                 }
                 var newCompany = _addAPearlService.AddCompany(company);
 
-                return new ObjectResult(newCompany);
+                return Ok(newCompany);
             }
             catch (Exception objEx)
             {
@@ -91,7 +92,7 @@ namespace AddAPearl.API.Controllers
                 }
 
                 company = _addAPearlService.UpdateCompany(company);
-                return new ObjectResult(company);
+                return Ok(company);
             }
             catch (Exception objEx)
             {

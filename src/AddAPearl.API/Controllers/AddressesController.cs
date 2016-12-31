@@ -26,10 +26,11 @@ namespace AddAPearl.API.Controllers
 
         [HttpGet]
         [ActionName("")]
-        public IEnumerable<IAddress> GetAll()
+        public IActionResult GetAll()
         {
-            
-            return _addAPearlService.GetAddresses();
+            _logger.LogInformation("Returning all the addresses");
+            var addresses = _addAPearlService.GetAddresses();
+            return new ObjectResult(addresses);
         }
 
         [HttpGet("{id}")]
@@ -37,7 +38,7 @@ namespace AddAPearl.API.Controllers
         public IActionResult GetById(int id)
         {
             var address = _addAPearlService.GetAddressById(id);
-            return new ObjectResult(address);
+            return Ok(address);
         }
 
         [HttpPost]
@@ -53,7 +54,7 @@ namespace AddAPearl.API.Controllers
                 }
                 var newAddress = _addAPearlService.AddAddress(address);
 
-                return new ObjectResult(newAddress);
+                return Ok(newAddress);
             }
             catch (Exception objEx)
             {
@@ -90,7 +91,7 @@ namespace AddAPearl.API.Controllers
                 }
 
                 address = _addAPearlService.UpdateAddress(address);
-                return new ObjectResult(address);
+                return Ok(address);
             }
             catch (Exception objEx)
             {

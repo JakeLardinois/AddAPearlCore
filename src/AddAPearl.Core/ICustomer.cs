@@ -17,9 +17,11 @@ namespace AddAPearl.Core
 
         DateTime BirthDay { get; set; }
 
-        int AddressId { get; set; }
+        ICompany Company { get; set; }
 
         int CompanyId { get; set; }
+
+        int AddressId { get; set; }
 
         IAddress Address { get; set; }
     }

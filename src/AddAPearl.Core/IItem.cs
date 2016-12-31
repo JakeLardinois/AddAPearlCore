@@ -9,6 +9,8 @@ namespace AddAPearl.Core
     {
         int ItemId { get; set; }
 
+        IProduct Product { get; set; }
+
         int ProductId { get; set; }
 
         string ItemName { get; set; }
@@ -22,6 +24,8 @@ namespace AddAPearl.Core
         string Description { get; set; }
 
         int OwnerId { get; set; }
+
+        ICustomer Customer { get; set; }
 
         int CustomerId { get; set; }
 

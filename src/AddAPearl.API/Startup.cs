@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using NLog.Extensions.Logging;
 
 namespace AddAPearl.API
 {
@@ -72,7 +73,11 @@ namespace AddAPearl.API
                 })
                 .AddDebug(LogLevel.Trace);
 
+            //add NLog to ASP.NET Core
+            loggerFactory.AddNLog();
+
             app.UseMvc();
+            
         }
         
     }

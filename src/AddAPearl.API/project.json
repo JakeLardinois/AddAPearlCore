@@ -18,6 +18,7 @@
     "AddAPearl.Core": "1.0.0-*",
     "AddAPearl.Services": "1.0.0-*",
     "Microsoft.AspNetCore.JsonPatch": "1.1.0",
+    "NLog.Extensions.Logging": "1.0.0-rtm-alpha5",
     "Microsoft.Extensions.Logging.Filter": "1.1.0" 
   },
 
@@ -50,6 +51,7 @@
       "wwwroot",
       "**/*.cshtml",
       "appsettings.json",
+      "nlog.config",
       "web.config"
     ]
   },

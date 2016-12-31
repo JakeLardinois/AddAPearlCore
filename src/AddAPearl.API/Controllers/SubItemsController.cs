@@ -27,7 +27,7 @@ namespace AddAPearl.API.Controllers
         public IActionResult GetAll()
         {
             _logger.LogInformation("Returning all the subitems");
-            var subitems = _addAPearlService.GetCompanies();
+            var subitems = _addAPearlService.GetSubItems();
             return new ObjectResult(subitems);
         }
     }

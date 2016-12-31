@@ -12,6 +12,8 @@ namespace AddAPearl.DataAccess
 
         public int ProductId { get; set; }
 
+        public Product Product { get; set; }
+
         [StringLength(4000)]
         public string ItemName { get; set; }
 
@@ -24,6 +26,8 @@ namespace AddAPearl.DataAccess
         public string Description { get; set; }
 
         public int OwnerId { get; set; }
+
+        public Customer Customer { get; set; }
 
         public int CustomerId { get; set; }
 

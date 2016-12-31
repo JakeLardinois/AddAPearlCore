@@ -115,5 +115,45 @@ namespace AddAPearl.Services
                 .Remove(theAddress);
             return _addAPearl.SaveChanges();
         }
+
+
+        public IEnumerable<ICustomer> GetCustomers()
+        {
+            _logger.LogInformation("Executing: IEnumerable<ICustomer> GetCustomers()");
+            return _addAPearl.Customers
+                .Include(a => a.Address)
+                .Include(a => a.Company)
+                .ProjectTo<Domain.Customer>();
+        }
+
+
+        public IEnumerable<IItem> GetItems()
+        {
+            _logger.LogInformation("Executing: IEnumerable<IItem> GetItems()");
+            return _addAPearl.Items
+                .Include(a => a.Product)
+                .Include(a => a.Customer)
+                .ProjectTo<Domain.Item>();
+        }
+
+
+        public IEnumerable<IProduct> GetProducts()
+        {
+            _logger.LogInformation("Executing: IEnumerable<IProduct> GetProducts()");
+            return _addAPearl.Products
+                .ProjectTo<Domain.Product>();
+        }
+
+
+        public IEnumerable<ISubItem> GetSubItems()
+        {
+            _logger.LogInformation("Executing: IEnumerable<ISubItem> GetSubItems()");
+            return _addAPearl.SubItems
+                .Include(a => a.Item)
+                .Include(a => a.Product)
+                .Include(a => a.Customer)
+                .ProjectTo<Domain.SubItem>();
+        }
+
     }
 }

@@ -19,5 +19,13 @@ namespace AddAPearl.Core
         IAddress AddAddress(IAddress address);
         IAddress UpdateAddress(IAddress address);
         int DeleteAddress(IAddress address);
+
+        IEnumerable<ICustomer> GetCustomers();
+
+        IEnumerable<IItem> GetItems();
+
+        IEnumerable<IProduct> GetProducts();
+
+        IEnumerable<ISubItem> GetSubItems();
     }
 }

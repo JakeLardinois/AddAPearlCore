@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[Product] (
-    [ProductId]     INT             NOT NULL,
+    [ProductId]     INT             IDENTITY (1, 1) NOT NULL,
     [ProductName]   NVARCHAR (4000) NULL,
     [ProductCode]   NVARCHAR (4000) NULL,
     [ReleaseDate]   DATETIME        NULL,
@@ -10,6 +10,8 @@
     [Rating]        DECIMAL (18)    NULL,
     CONSTRAINT [PK_Product] PRIMARY KEY CLUSTERED ([ProductId] ASC)
 );
+
+
 
 
 

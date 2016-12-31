@@ -99,5 +99,29 @@ namespace AddAPearl.API.Controllers
                 return BadRequest(objEx);
             }
         }
+
+        [HttpDelete("{id}")]
+        [ActionName("Address")]
+        public IActionResult DeleteById(int id)
+        {
+            try
+            {
+                var address = _addAPearlService.GetAddressById(id);
+                if (address == null)
+                    return NotFound();
+
+                var affectedRecords = _addAPearlService.DeleteAddress(address);
+                if (affectedRecords > 0)
+                    return Ok(address);
+                else
+                    return NoContent();
+
+            }
+            catch (Exception objEx)
+            {
+                _logger.LogError("An Address Deletion Error Occurred...", objEx);
+                return BadRequest(objEx);
+            }
+        }
     }
 }

@@ -106,5 +106,14 @@ namespace AddAPearl.Services
             return Mapper.Map<Domain.Address>(_addAPearl.Addresses
                 .FirstOrDefault(a => a.AddressId == address.AddressId));
         }
+
+        public int DeleteAddress(IAddress address)
+        {
+            var theAddress = Mapper.Map<DataAccess.Address>(address);
+            _addAPearl.Addresses.Attach(theAddress);
+            _addAPearl.Addresses
+                .Remove(theAddress);
+            return _addAPearl.SaveChanges();
+        }
     }
 }

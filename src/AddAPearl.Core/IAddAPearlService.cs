@@ -18,5 +18,6 @@ namespace AddAPearl.Core
         IAddress GetAddressById(int id);
         IAddress AddAddress(IAddress address);
         IAddress UpdateAddress(IAddress address);
+        int DeleteAddress(IAddress address);
     }
 }

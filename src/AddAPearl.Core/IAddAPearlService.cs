@@ -11,6 +11,7 @@ namespace AddAPearl.Core
         ICompany GetCompanyById(int id);
         ICompany AddCompany(ICompany company);
         ICompany UpdateCompany(ICompany company);
+        int DeleteCompany(ICompany company);
 
 
         IEnumerable<IAddress> GetAddresses();

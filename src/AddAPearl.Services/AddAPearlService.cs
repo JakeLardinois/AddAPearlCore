@@ -64,6 +64,16 @@ namespace AddAPearl.Services
                 .FirstOrDefault(a => a.CompanyId == company.CompanyId));
         }
 
+        public int DeleteCompany(ICompany company)
+        {
+            var theCompany = Mapper.Map<DataAccess.Company>(company);
+            _addAPearl.Companies.Attach(theCompany);
+            _addAPearl.Companies
+                .Remove(theCompany);
+            return _addAPearl.SaveChanges();
+        }
+
+
         public IEnumerable<IAddress> GetAddresses()
         {
             return _addAPearl.Addresses

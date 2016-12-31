@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 namespace AddAPearl.API.Controllers
 {
     [Route("api/[controller]/[action]")]
-    public class CompaniesController: Controller
+    public class CompaniesController : Controller
     {
         private static IAddAPearlService _addAPearlService;
         private readonly ILogger _logger;
@@ -96,6 +96,30 @@ namespace AddAPearl.API.Controllers
             catch (Exception objEx)
             {
                 _logger.LogError("An Company Update Error Occurred...", objEx);
+                return BadRequest(objEx);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        [ActionName("Company")]
+        public IActionResult DeleteById(int id)
+        {
+            try
+            {
+                var company = _addAPearlService.GetCompanyById(id);
+                if (company == null)
+                    return NotFound();
+
+                var affectedRecords = _addAPearlService.DeleteCompany(company);
+                if (affectedRecords > 0)
+                    return Ok(company);
+                else
+                    throw new Exception("No Records were affected...");
+
+            }
+            catch (Exception objEx)
+            {
+                _logger.LogError("An Company Deletion Error Occurred...", objEx);
                 return BadRequest(objEx);
             }
         }

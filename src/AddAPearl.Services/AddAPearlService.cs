@@ -56,14 +56,13 @@ namespace AddAPearl.Services
 
         public ICompany UpdateCompany(ICompany company)
         {
-            var theCompany = Mapper.Map<DataAccess.Address>(company);
-            _addAPearl.Addresses.Attach(theCompany).State = EntityState.Modified;
+            var theCompany = Mapper.Map<DataAccess.Company>(company);
+            _addAPearl.Companies.Attach(theCompany).State = EntityState.Modified;
             _addAPearl.SaveChanges();
 
             return Mapper.Map<Domain.Company>(_addAPearl.Companies
                 .FirstOrDefault(a => a.CompanyId == company.CompanyId));
         }
-
 
         public IEnumerable<IAddress> GetAddresses()
         {

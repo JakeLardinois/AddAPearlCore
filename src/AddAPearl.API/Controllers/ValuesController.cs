@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Reflection;
@@ -22,10 +23,21 @@ namespace AddAPearl.API.Controllers
 
         // GET api/values
         [HttpGet]
-        public IEnumerable<ICompany> Get()
+        public IActionResult Get()
         {
             _logger.LogDebug("I'm Firing Dammit!!");
-            return _addAPearlService.GetCompanies();
+            try
+            {
+                var items = _addAPearlService
+                    .GetCompanies();
+                return new ObjectResult(items);
+            }
+            catch (Exception objEx)
+            {
+                _logger.LogError("Values Exception!", objEx);
+                return new ObjectResult(objEx);
+            }
+            
         }
 
         // GET api/values/5

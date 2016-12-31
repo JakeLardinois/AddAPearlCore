@@ -43,11 +43,19 @@ namespace AddAPearl.API.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            var item = _addAPearlService.GetCompanyById(id);
-            if (item == null)
-                return NotFound();
+            try
+            {
+                var item = _addAPearlService.GetCompanyById(id);
+                if (item == null)
+                    return NotFound();
 
-            return Ok(item);
+                return Ok(item);
+            }
+            catch (Exception objEx)
+            {
+                _logger.LogError("Company Exception!", objEx);
+                return BadRequest(objEx);
+            }
         }
 
         [HttpPost]

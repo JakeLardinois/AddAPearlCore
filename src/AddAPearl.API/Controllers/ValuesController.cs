@@ -35,7 +35,7 @@ namespace AddAPearl.API.Controllers
             catch (Exception objEx)
             {
                 _logger.LogError("Values Exception!", objEx);
-                return new ObjectResult(objEx);
+                return BadRequest(objEx);
             }
             
         }

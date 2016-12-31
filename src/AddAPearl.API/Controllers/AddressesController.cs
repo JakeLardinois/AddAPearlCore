@@ -45,8 +45,16 @@ namespace AddAPearl.API.Controllers
         [ActionName("Address")]
         public IActionResult GetById(int id)
         {
-            var address = _addAPearlService.GetAddressById(id);
-            return Ok(address);
+            try
+            {
+                var address = _addAPearlService.GetAddressById(id);
+                return Ok(address);
+            }
+            catch (Exception objEx)
+            {
+                _logger.LogError("Address Exception!", objEx);
+                return BadRequest(objEx);
+            }
         }
 
         [HttpPost]

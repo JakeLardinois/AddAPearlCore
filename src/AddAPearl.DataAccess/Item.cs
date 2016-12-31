@@ -10,6 +10,11 @@ namespace AddAPearl.DataAccess
         [Key]
         public int ItemId { get; set; }
 
+        public int ProductId { get; set; }
+
+        [StringLength(4000)]
+        public string ItemName { get; set; }
+
         public decimal? Price { get; set; }
 
         public decimal PurchasePrice { get; set; }
@@ -21,5 +26,7 @@ namespace AddAPearl.DataAccess
         public int OwnerId { get; set; }
 
         public int CustomerId { get; set; }
+
+        public decimal? Rating { get; set; }
     }
 }

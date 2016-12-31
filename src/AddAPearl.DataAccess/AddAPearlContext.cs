@@ -10,6 +10,7 @@ namespace AddAPearl.DataAccess
         public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Item> Items { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<SubItem> SubItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

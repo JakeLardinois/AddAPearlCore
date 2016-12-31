@@ -115,7 +115,7 @@ namespace AddAPearl.API.Controllers
                 if (affectedRecords > 0)
                     return Ok(company);
                 else
-                    throw new Exception("No Records were affected...");
+                    return NoContent();
 
             }
             catch (Exception objEx)

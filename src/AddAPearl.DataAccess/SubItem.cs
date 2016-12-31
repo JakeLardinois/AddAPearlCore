@@ -10,7 +10,11 @@ namespace AddAPearl.DataAccess
         [Key]
         public int SubItemId { get; set; }
 
+        public Item Item { get; set; }
+
         public int ItemId { get; set; }
+
+        public Product Product { get; set; }
 
         public int ProductId { get; set; }
 
@@ -26,6 +30,8 @@ namespace AddAPearl.DataAccess
         public string Description { get; set; }
 
         public int OwnerId { get; set; }
+
+        public Customer Customer { get; set; }
 
         public int CustomerId { get; set; }
 

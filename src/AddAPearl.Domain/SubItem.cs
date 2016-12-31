@@ -10,7 +10,11 @@ namespace AddAPearl.Domain
     {
         public int SubItemId { get; set; }
 
+        public IItem Item { get; set; }
+
         public int ItemId { get; set; }
+
+        public IProduct Product { get; set; }
 
         public int ProductId { get; set; }
 
@@ -25,6 +29,8 @@ namespace AddAPearl.Domain
         public string Description { get; set; }
 
         public int OwnerId { get; set; }
+
+        public ICustomer Customer { get; set; }
 
         public int CustomerId { get; set; }
 

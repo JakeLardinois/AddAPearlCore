@@ -77,7 +77,10 @@ namespace AddAPearl.API
             loggerFactory.AddNLog();
 
             app.UseMvc();
-            
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute("default", "api/{controller=Values}/{action=Get}/{id?}");
+            //});
         }
         
     }

@@ -26,7 +26,7 @@ namespace AddAPearl.API.Controllers
 
         [HttpGet]
         [ActionName("")]
-        public IEnumerable<IAddress> All()
+        public IEnumerable<IAddress> GetAll()
         {
             
             return _addAPearlService.GetAddresses();
@@ -34,7 +34,7 @@ namespace AddAPearl.API.Controllers
 
         [HttpGet("{id}")]
         [ActionName("Address")]
-        public IActionResult Id(int id)
+        public IActionResult GetById(int id)
         {
             var address = _addAPearlService.GetAddressById(id);
             return new ObjectResult(address);
@@ -42,7 +42,7 @@ namespace AddAPearl.API.Controllers
 
         [HttpPatch("{id}")]
         [ActionName("Address")]
-        public IActionResult UpdateAddress(int id, [FromBody] JsonPatchDocument<IAddress> patch)
+        public IActionResult Update(int id, [FromBody] JsonPatchDocument<IAddress> patch)
         {
             try
             {

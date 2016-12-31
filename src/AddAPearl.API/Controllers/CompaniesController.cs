@@ -24,14 +24,14 @@ namespace AddAPearl.API.Controllers
 
         [HttpGet]
         [ActionName("")]
-        public IEnumerable<ICompany> All()
+        public IEnumerable<ICompany> GetAll()
         {
             _logger.LogInformation("Returning all the companies");
             return _addAPearlService.GetCompanies();
         }
 
         [HttpGet("{id}")]
-        public IActionResult Id(int id)
+        public IActionResult GetById(int id)
         {
             var item = _addAPearlService.GetCompanyById(id);
             if (item == null)
@@ -42,7 +42,7 @@ namespace AddAPearl.API.Controllers
 
         [HttpPost]
         [ActionName("Company")]
-        public IActionResult AddCompany([FromBody] Company company)
+        public IActionResult Add([FromBody] Company company)
         {
             try
             {

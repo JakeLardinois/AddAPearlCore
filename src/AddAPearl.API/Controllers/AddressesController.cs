@@ -28,9 +28,17 @@ namespace AddAPearl.API.Controllers
         [ActionName("")]
         public IActionResult GetAll()
         {
-            _logger.LogInformation("Returning all the addresses");
-            var addresses = _addAPearlService.GetAddresses();
-            return new ObjectResult(addresses);
+            try
+            {
+                _logger.LogInformation("Returning all the addresses");
+                var addresses = _addAPearlService.GetAddresses();
+                return Ok(addresses);
+            }
+            catch (Exception objEx)
+            {
+                _logger.LogError("Addresses Exception!", objEx);
+                return BadRequest(objEx);
+            }
         }
 
         [HttpGet("{id}")]

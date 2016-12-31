@@ -26,9 +26,17 @@ namespace AddAPearl.API.Controllers
         [ActionName("")]
         public IActionResult GetAll()
         {
-            _logger.LogInformation("Returning all the products");
-            var products = _addAPearlService.GetProducts();
-            return new ObjectResult(products);
+            try
+            {
+                _logger.LogInformation("Returning all the products");
+                var products = _addAPearlService.GetProducts();
+                return Ok(products);
+            }
+            catch (Exception objEx)
+            {
+                _logger.LogError("Products Exception!", objEx);
+                return BadRequest(objEx);
+            }
         }
     }
 }

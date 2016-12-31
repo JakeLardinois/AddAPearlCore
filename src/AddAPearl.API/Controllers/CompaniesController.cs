@@ -27,9 +27,17 @@ namespace AddAPearl.API.Controllers
         [ActionName("")]
         public IActionResult GetAll()
         {
-            _logger.LogInformation("Returning all the companies");
-            var companies = _addAPearlService.GetCompanies();
-            return new ObjectResult(companies);
+            try
+            {
+                _logger.LogInformation("Returning all the companies");
+                var companies = _addAPearlService.GetCompanies();
+                return Ok(companies);
+            }
+            catch (Exception objEx)
+            {
+                _logger.LogError("Companies Exception!", objEx);
+                return BadRequest(objEx);
+            }
         }
 
         [HttpGet("{id}")]

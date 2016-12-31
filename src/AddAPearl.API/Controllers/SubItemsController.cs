@@ -26,9 +26,17 @@ namespace AddAPearl.API.Controllers
         [ActionName("")]
         public IActionResult GetAll()
         {
-            _logger.LogInformation("Returning all the subitems");
-            var subitems = _addAPearlService.GetSubItems();
-            return new ObjectResult(subitems);
+            try
+            {
+                _logger.LogInformation("Returning all the subitems");
+                var subitems = _addAPearlService.GetSubItems();
+                return Ok(subitems);
+            }
+            catch (Exception objEx)
+            {
+                _logger.LogError("SubItems Exception!", objEx);
+                return BadRequest(objEx);
+            }
         }
     }
 }

@@ -218,6 +218,39 @@ namespace AddAPearl.Services
                 .ProjectTo<Domain.Product>();
         }
 
+        public IProduct GetProductById(int id)
+        {
+            return Mapper.Map<Domain.Product>(_addAPearl.Products
+                .AsNoTracking()
+                .FirstOrDefault(a => a.ProductId == id));
+        }
+
+        public IProduct AddProduct(IProduct product)
+        {
+            _logger.LogInformation("Adding a Product");
+            var productToAdd = Mapper.Map<DataAccess.Product>(product);
+            _addAPearl.Products.Add(productToAdd);
+            _addAPearl.SaveChanges();
+            return Mapper.Map<Domain.Product>(productToAdd);
+        }
+        public IProduct UpdateProduct(IProduct product)
+        {
+            var theProduct = Mapper.Map<DataAccess.Product>(product);
+            _addAPearl.Products.Attach(theProduct).State = EntityState.Modified;
+            _addAPearl.SaveChanges();
+
+            return Mapper.Map<Domain.Product>(_addAPearl.Products
+                .FirstOrDefault(a => a.ProductId == product.ProductId));
+        }
+        public int DeleteProduct(IProduct product)
+        {
+            var theProduct = Mapper.Map<DataAccess.Product>(product);
+            _addAPearl.Products.Attach(theProduct);
+            _addAPearl.Products
+                .Remove(theProduct);
+            return _addAPearl.SaveChanges();
+        }
+
 
         public IEnumerable<ISubItem> GetSubItems()
         {

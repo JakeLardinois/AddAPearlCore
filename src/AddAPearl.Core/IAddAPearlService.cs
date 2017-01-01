@@ -39,5 +39,9 @@ namespace AddAPearl.Core
         int DeleteProduct(IProduct product);
 
         IEnumerable<ISubItem> GetSubItems();
+        ISubItem GetSubItemById(int id);
+        ISubItem AddSubItem(ISubItem subitem);
+        ISubItem UpdateSubItem(ISubItem subitem);
+        int DeleteSubItem(ISubItem subitem);
     }
 }

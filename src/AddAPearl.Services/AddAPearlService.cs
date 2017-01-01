@@ -262,5 +262,41 @@ namespace AddAPearl.Services
                 .ProjectTo<Domain.SubItem>();
         }
 
+        public ISubItem GetSubItemById(int id)
+        {
+            return Mapper.Map<Domain.SubItem>(_addAPearl.SubItems
+                .Include(a => a.Item)
+                .Include(a => a.Product)
+                .Include(a => a.Customer)
+                .AsNoTracking()
+                .FirstOrDefault(a => a.SubItemId == id));
+        }
+
+        public ISubItem AddSubItem(ISubItem subitem)
+        {
+            _logger.LogInformation("Adding a SubItem");
+            var subitemToAdd = Mapper.Map<DataAccess.SubItem>(subitem);
+            _addAPearl.SubItems.Add(subitemToAdd);
+            _addAPearl.SaveChanges();
+            return Mapper.Map<Domain.SubItem>(subitemToAdd);
+        }
+        public ISubItem UpdateSubItem(ISubItem subitem)
+        {
+            var theSubItem = Mapper.Map<DataAccess.SubItem>(subitem);
+            _addAPearl.SubItems.Attach(theSubItem).State = EntityState.Modified;
+            _addAPearl.SaveChanges();
+
+            return Mapper.Map<Domain.SubItem>(_addAPearl.SubItems
+                .FirstOrDefault(a => a.SubItemId == subitem.SubItemId));
+        }
+        public int DeleteSubItem(ISubItem subitem)
+        {
+            var theSubItem = Mapper.Map<DataAccess.SubItem>(subitem);
+            _addAPearl.SubItems.Attach(theSubItem);
+            _addAPearl.SubItems
+                .Remove(theSubItem);
+            return _addAPearl.SaveChanges();
+        }
+
     }
 }

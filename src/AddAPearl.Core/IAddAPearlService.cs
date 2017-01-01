@@ -21,6 +21,10 @@ namespace AddAPearl.Core
         int DeleteAddress(IAddress address);
 
         IEnumerable<ICustomer> GetCustomers();
+        ICustomer GetCustomerById(int id);
+        ICustomer AddCustomer(ICustomer customer);
+        ICustomer UpdateCustomer(ICustomer customer);
+        int DeleteCustomer(ICustomer customer);
 
         IEnumerable<IItem> GetItems();
 

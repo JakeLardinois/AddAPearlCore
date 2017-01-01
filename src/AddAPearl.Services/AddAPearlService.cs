@@ -126,6 +126,43 @@ namespace AddAPearl.Services
                 .ProjectTo<Domain.Customer>();
         }
 
+        public ICustomer GetCustomerById(int id)
+        {
+            return Mapper.Map<Domain.Customer>(_addAPearl.Customers
+                .Include(a => a.Address)
+                .Include(a => a.Company)
+                .AsNoTracking()
+                .FirstOrDefault(a => a.CustomerId == id));
+        }
+
+        public ICustomer AddCustomer(ICustomer customer)
+        {
+            _logger.LogInformation("Adding a Customer");
+            var customerToAdd = Mapper.Map<DataAccess.Customer>(customer);
+            _addAPearl.Customers.Add(customerToAdd);
+            _addAPearl.SaveChanges();
+            return Mapper.Map<Domain.Customer>(customerToAdd);
+        }
+
+        public ICustomer UpdateCustomer(ICustomer customer)
+        {
+            var theCustomer = Mapper.Map<DataAccess.Customer>(customer);
+            _addAPearl.Customers.Attach(theCustomer).State = EntityState.Modified;
+            _addAPearl.SaveChanges();
+
+            return Mapper.Map<Domain.Customer>(_addAPearl.Customers
+                .FirstOrDefault(a => a.CustomerId == customer.CustomerId));
+        }
+
+        public int DeleteCustomer(ICustomer customer)
+        {
+            var theCustomer = Mapper.Map<DataAccess.Customer>(customer);
+            _addAPearl.Customers.Attach(theCustomer);
+            _addAPearl.Customers
+                .Remove(theCustomer);
+            return _addAPearl.SaveChanges();
+        }
+
 
         public IEnumerable<IItem> GetItems()
         {

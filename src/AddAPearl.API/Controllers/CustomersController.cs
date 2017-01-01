@@ -38,5 +38,107 @@ namespace AddAPearl.API.Controllers
                 return BadRequest(objEx);
             }
         }
+
+        [HttpGet("{id}")]
+        [ActionName("Customer")]
+        public IActionResult GetById(int id)
+        {
+            try
+            {
+                var item = _addAPearlService.GetCustomerById(id);
+                if (item == null)
+                    return NotFound();
+
+                return Ok(item);
+            }
+            catch (Exception objEx)
+            {
+                _logger.LogError("Customer Exception!", objEx);
+                return BadRequest(objEx);
+            }
+        }
+
+        [HttpPost]
+        [ActionName("Customer")]
+        public IActionResult Add([FromBody] Customer customer)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    _logger.LogWarning("A ModelState validation Error Occurred...", ModelState);
+                    return new BadRequestObjectResult(ModelState);
+                }
+                var newCustomer = _addAPearlService.AddCustomer(customer);
+
+                return Ok(newCustomer);
+            }
+            catch (Exception objEx)
+            {
+                _logger.LogError("An AddCustomer Error Occurred...", objEx);
+                return BadRequest(objEx);
+            }
+        }
+
+        [HttpPatch("{id}")]
+        [ActionName("Customer")]
+        public IActionResult Update(int id, [FromBody] JsonPatchDocument<ICustomer> patch)
+        {
+            try
+            {
+                var customer = _addAPearlService.GetCustomerById(id);
+                if (customer == null)
+                {
+                    _logger.LogWarning($"Customer with Id {id} was not found...");
+                    return NotFound($"Customer with Id {id} was not found...");
+                }
+
+                patch.ApplyTo(customer, ModelState); //Populates ModelState with any patch errors (ie replacing a property that does not exist)
+                if (!ModelState.IsValid)
+                {
+                    _logger.LogWarning("A Patching Operation Errored Against the ModelState...", ModelState);
+                    return new BadRequestObjectResult(ModelState);
+                }
+
+                TryValidateModel(customer); //Populates ModelState with any validation errors for the Address Model 
+                if (!ModelState.IsValid)
+                {
+                    _logger.LogWarning("A ModelState validation Error Occurred...", ModelState);
+                    return new BadRequestObjectResult(ModelState);
+                }
+
+                customer = _addAPearlService.UpdateCustomer(customer);
+                return Ok(customer);
+            }
+            catch (Exception objEx)
+            {
+                _logger.LogError("An Customer Update Error Occurred...", objEx);
+                return BadRequest(objEx);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        [ActionName("Customer")]
+        public IActionResult DeleteById(int id)
+        {
+            try
+            {
+                var customer = _addAPearlService.GetCustomerById(id);
+                if (customer == null)
+                    return NotFound();
+
+                var affectedRecords = _addAPearlService.DeleteCustomer(customer);
+                if (affectedRecords > 0)
+                    return Ok(customer);
+                else
+                    return NoContent();
+
+            }
+            catch (Exception objEx)
+            {
+                _logger.LogError("An Customer Deletion Error Occurred...", objEx);
+                return BadRequest(objEx);
+            }
+        }
     }
 }

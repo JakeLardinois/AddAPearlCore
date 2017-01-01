@@ -116,5 +116,29 @@ namespace AddAPearl.API.Controllers
                 return BadRequest(objEx);
             }
         }
+
+        [HttpDelete("{id}")]
+        [ActionName("Product")]
+        public IActionResult DeleteById(int id)
+        {
+            try
+            {
+                var product = _addAPearlService.GetProductById(id);
+                if (product == null)
+                    return NotFound();
+
+                var affectedRecords = _addAPearlService.DeleteProduct(product);
+                if (affectedRecords > 0)
+                    return Ok(product);
+                else
+                    return NoContent();
+
+            }
+            catch (Exception objEx)
+            {
+                _logger.LogError("An Product Deletion Error Occurred...", objEx);
+                return BadRequest(objEx);
+            }
+        }
     }
 }

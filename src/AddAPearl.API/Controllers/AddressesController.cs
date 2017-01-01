@@ -132,9 +132,8 @@ namespace AddAPearl.API.Controllers
                 var affectedRecords = _addAPearlService.DeleteAddress(address);
                 if (affectedRecords > 0)
                     return Ok(address);
-                else
-                    return NoContent();
 
+                return NoContent();
             }
             catch (Exception objEx)
             {

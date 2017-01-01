@@ -130,8 +130,8 @@ namespace AddAPearl.API.Controllers
                 var affectedRecords = _addAPearlService.DeleteSubItem(subitem);
                 if (affectedRecords > 0)
                     return Ok(subitem);
-                else
-                    return NoContent();
+
+                return NoContent();
 
             }
             catch (Exception objEx)

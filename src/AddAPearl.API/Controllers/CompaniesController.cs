@@ -131,9 +131,8 @@ namespace AddAPearl.API.Controllers
                 var affectedRecords = _addAPearlService.DeleteCompany(company);
                 if (affectedRecords > 0)
                     return Ok(company);
-                else
-                    return NoContent();
 
+                return NoContent();
             }
             catch (Exception objEx)
             {

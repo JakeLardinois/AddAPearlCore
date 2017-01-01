@@ -29,6 +29,7 @@ namespace AddAPearl.Services
             });
         }
 
+
         public IEnumerable<ICompany> GetCompanies()
         {
             _logger.LogInformation("Executing: IEnumerable<ICompany> GetCompanies()");
@@ -233,6 +234,7 @@ namespace AddAPearl.Services
             _addAPearl.SaveChanges();
             return Mapper.Map<Domain.Product>(productToAdd);
         }
+
         public IProduct UpdateProduct(IProduct product)
         {
             var theProduct = Mapper.Map<DataAccess.Product>(product);
@@ -242,6 +244,7 @@ namespace AddAPearl.Services
             return Mapper.Map<Domain.Product>(_addAPearl.Products
                 .FirstOrDefault(a => a.ProductId == product.ProductId));
         }
+
         public int DeleteProduct(IProduct product)
         {
             var theProduct = Mapper.Map<DataAccess.Product>(product);
@@ -280,6 +283,7 @@ namespace AddAPearl.Services
             _addAPearl.SaveChanges();
             return Mapper.Map<Domain.SubItem>(subitemToAdd);
         }
+
         public ISubItem UpdateSubItem(ISubItem subitem)
         {
             var theSubItem = Mapper.Map<DataAccess.SubItem>(subitem);
@@ -289,6 +293,7 @@ namespace AddAPearl.Services
             return Mapper.Map<Domain.SubItem>(_addAPearl.SubItems
                 .FirstOrDefault(a => a.SubItemId == subitem.SubItemId));
         }
+
         public int DeleteSubItem(ISubItem subitem)
         {
             var theSubItem = Mapper.Map<DataAccess.SubItem>(subitem);

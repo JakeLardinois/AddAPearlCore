@@ -45,11 +45,11 @@ namespace AddAPearl.API.Controllers
         {
             try
             {
-                var item = _addAPearlService.GetProductById(id);
-                if (item == null)
+                var product = _addAPearlService.GetProductById(id);
+                if (product == null)
                     return NotFound();
 
-                return Ok(item);
+                return Ok(product);
             }
             catch (Exception objEx)
             {

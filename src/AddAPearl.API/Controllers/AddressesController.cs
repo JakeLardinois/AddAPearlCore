@@ -48,6 +48,9 @@ namespace AddAPearl.API.Controllers
             try
             {
                 var address = _addAPearlService.GetAddressById(id);
+                if (address == null)
+                    return NotFound();
+
                 return Ok(address);
             }
             catch (Exception objEx)

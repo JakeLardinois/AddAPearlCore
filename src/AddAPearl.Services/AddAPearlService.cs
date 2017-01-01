@@ -29,7 +29,7 @@ namespace AddAPearl.Services
             });
         }
 
-
+        #region Companies
         public IEnumerable<ICompany> GetCompanies()
         {
             _logger.LogInformation("Executing: IEnumerable<ICompany> GetCompanies()");
@@ -73,8 +73,9 @@ namespace AddAPearl.Services
                 .Remove(theCompany);
             return _addAPearl.SaveChanges();
         }
+        #endregion
 
-
+        #region Addresses
         public IEnumerable<IAddress> GetAddresses()
         {
             return _addAPearl.Addresses
@@ -116,8 +117,9 @@ namespace AddAPearl.Services
                 .Remove(theAddress);
             return _addAPearl.SaveChanges();
         }
+        #endregion
 
-
+        #region Customers
         public IEnumerable<ICustomer> GetCustomers()
         {
             _logger.LogInformation("Executing: IEnumerable<ICustomer> GetCustomers()");
@@ -163,8 +165,9 @@ namespace AddAPearl.Services
                 .Remove(theCustomer);
             return _addAPearl.SaveChanges();
         }
+        #endregion
 
-
+        #region Items
         public IEnumerable<IItem> GetItems()
         {
             _logger.LogInformation("Executing: IEnumerable<IItem> GetItems()");
@@ -210,8 +213,9 @@ namespace AddAPearl.Services
                 .Remove(theItem);
             return _addAPearl.SaveChanges();
         }
+        #endregion
 
-
+        #region Products
         public IEnumerable<IProduct> GetProducts()
         {
             _logger.LogInformation("Executing: IEnumerable<IProduct> GetProducts()");
@@ -253,8 +257,9 @@ namespace AddAPearl.Services
                 .Remove(theProduct);
             return _addAPearl.SaveChanges();
         }
+        #endregion
 
-
+        #region SubItems
         public IEnumerable<ISubItem> GetSubItems()
         {
             _logger.LogInformation("Executing: IEnumerable<ISubItem> GetSubItems()");
@@ -302,6 +307,6 @@ namespace AddAPearl.Services
                 .Remove(theSubItem);
             return _addAPearl.SaveChanges();
         }
-
+        #endregion
     }
 }

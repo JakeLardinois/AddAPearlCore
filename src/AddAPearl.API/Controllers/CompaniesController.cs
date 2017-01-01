@@ -41,6 +41,7 @@ namespace AddAPearl.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [ActionName("Company")]
         public IActionResult GetById(int id)
         {
             try

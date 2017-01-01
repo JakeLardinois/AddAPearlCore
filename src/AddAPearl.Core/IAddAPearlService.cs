@@ -27,6 +27,10 @@ namespace AddAPearl.Core
         int DeleteCustomer(ICustomer customer);
 
         IEnumerable<IItem> GetItems();
+        IItem GetItemById(int id);
+        IItem AddItem(IItem item);
+        IItem UpdateItem(IItem item);
+        int DeleteItem(IItem item);
 
         IEnumerable<IProduct> GetProducts();
 

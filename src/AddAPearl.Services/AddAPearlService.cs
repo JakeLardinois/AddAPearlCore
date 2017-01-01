@@ -173,6 +173,43 @@ namespace AddAPearl.Services
                 .ProjectTo<Domain.Item>();
         }
 
+        public IItem GetItemById(int id)
+        {
+            return Mapper.Map<Domain.Item>(_addAPearl.Items
+                .Include(a => a.Product)
+                .Include(a => a.Customer)
+                .AsNoTracking()
+                .FirstOrDefault(a => a.ItemId == id));
+        }
+
+        public IItem AddItem(IItem item)
+        {
+            _logger.LogInformation("Adding a Item");
+            var itemToAdd = Mapper.Map<DataAccess.Item>(item);
+            _addAPearl.Items.Add(itemToAdd);
+            _addAPearl.SaveChanges();
+            return Mapper.Map<Domain.Item>(itemToAdd);
+        }
+
+        public IItem UpdateItem(IItem item)
+        {
+            var theItem = Mapper.Map<DataAccess.Item>(item);
+            _addAPearl.Items.Attach(theItem).State = EntityState.Modified;
+            _addAPearl.SaveChanges();
+
+            return Mapper.Map<Domain.Item>(_addAPearl.Items
+                .FirstOrDefault(a => a.ItemId == item.ItemId));
+        }
+
+        public int DeleteItem(IItem item)
+        {
+            var theItem = Mapper.Map<DataAccess.Item>(item);
+            _addAPearl.Items.Attach(theItem);
+            _addAPearl.Items
+                .Remove(theItem);
+            return _addAPearl.SaveChanges();
+        }
+
 
         public IEnumerable<IProduct> GetProducts()
         {

@@ -91,7 +91,7 @@ namespace AddAPearl.API.Controllers
                 if (company == null)
                 {
                     _logger.LogWarning($"Company with Id {id} was not found...");
-                    return NotFound($"Address with Id {id} was not found...");
+                    return NotFound($"Customer with Id {id} was not found...");
                 }
 
                 patch.ApplyTo(company, ModelState); //Populates ModelState with any patch errors (ie replacing a property that does not exist)

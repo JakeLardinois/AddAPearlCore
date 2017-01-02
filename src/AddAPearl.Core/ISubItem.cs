@@ -27,6 +27,8 @@ namespace AddAPearl.Core
 
         string Description { get; set; }
 
+        ICustomer Owner { get; set; }
+
         int OwnerId { get; set; }
 
         ICustomer Customer { get; set; }

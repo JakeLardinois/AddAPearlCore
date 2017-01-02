@@ -24,6 +24,8 @@ namespace AddAPearl.Domain
 
         public string Description { get; set; }
 
+        public ICustomer Owner { get; set; }
+
         public int OwnerId { get; set; }
 
         public ICustomer Customer { get; set; }

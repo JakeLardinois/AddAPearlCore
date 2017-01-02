@@ -178,6 +178,7 @@ namespace AddAPearl.Services
             _logger.LogInformation("Executing: IEnumerable<IItem> GetItems()");
             return await _addAPearl.Items
                 .Include(a => a.Product)
+                .Include(a => a.Owner)
                 .Include(a => a.Customer)
                 .ProjectTo<Domain.Item>()
                 .ToListAsync();
@@ -187,6 +188,7 @@ namespace AddAPearl.Services
         {
             return Mapper.Map<Domain.Item>(_addAPearl.Items
                 .Include(a => a.Product)
+                .Include(a => a.Owner)
                 .Include(a => a.Customer)
                 .AsNoTracking()
                 .FirstOrDefault(a => a.ItemId == id));

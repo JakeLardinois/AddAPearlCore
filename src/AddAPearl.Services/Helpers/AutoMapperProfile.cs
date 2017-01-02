@@ -45,6 +45,8 @@ namespace AddAPearl.Services.Helpers
                     opt => opt.MapFrom(a => Mapper.Map<DataAccess.Item, Domain.Item>(a.Item)))
                 .ForMember(s => s.Product,
                     opt => opt.MapFrom(a => Mapper.Map<DataAccess.Product, Domain.Product>(a.Product)))
+                .ForMember(s => s.Owner,
+                    opt => opt.MapFrom(a => Mapper.Map<DataAccess.Customer, Domain.Customer>(a.Owner)))
                 .ForMember(s => s.Customer,
                     opt => opt.MapFrom(a => Mapper.Map<DataAccess.Customer, Domain.Customer>(a.Customer)))
                 .ReverseMap();

@@ -275,6 +275,7 @@ namespace AddAPearl.Services
             return await _addAPearl.SubItems
                 .Include(a => a.Item)
                 .Include(a => a.Product)
+                .Include(a => a.Owner)
                 .Include(a => a.Customer)
                 .ProjectTo<Domain.SubItem>()
                 .ToListAsync();
@@ -285,6 +286,7 @@ namespace AddAPearl.Services
             return Mapper.Map<Domain.SubItem>(_addAPearl.SubItems
                 .Include(a => a.Item)
                 .Include(a => a.Product)
+                .Include(a => a.Owner)
                 .Include(a => a.Customer)
                 .AsNoTracking()
                 .FirstOrDefault(a => a.SubItemId == id));

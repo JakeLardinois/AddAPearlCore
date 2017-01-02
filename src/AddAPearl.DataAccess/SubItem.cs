@@ -29,6 +29,8 @@ namespace AddAPearl.DataAccess
 
         public string Description { get; set; }
 
+        public Customer Owner { get; set; }
+
         public int OwnerId { get; set; }
 
         public Customer Customer { get; set; }

@@ -31,11 +31,12 @@ namespace AddAPearl.Services
         }
 
         #region Companies
-        public IEnumerable<ICompany> GetCompanies()
+        public async Task<IEnumerable<ICompany>> GetCompanies()
         {
             _logger.LogInformation("Executing: IEnumerable<ICompany> GetCompanies()");
-            return _addAPearl.Companies.Include(a => a.Address)
-                .ProjectTo<Domain.Company>();
+            return await _addAPearl.Companies.Include(a => a.Address)
+                .ProjectTo<Domain.Company>()
+                .ToListAsync();
         }
 
         public ICompany GetCompanyById(int id)
@@ -79,6 +80,7 @@ namespace AddAPearl.Services
         #region Addresses
         public async Task<IEnumerable<IAddress>> GetAddresses()
         {
+            _logger.LogInformation("Executing: IEnumerable<IAddress> GetAddresses()");
             return await _addAPearl.Addresses
                 .ProjectTo<Domain.Address>()
                 .ToListAsync();
@@ -122,13 +124,14 @@ namespace AddAPearl.Services
         #endregion
 
         #region Customers
-        public IEnumerable<ICustomer> GetCustomers()
+        public async Task<IEnumerable<ICustomer>> GetCustomers()
         {
             _logger.LogInformation("Executing: IEnumerable<ICustomer> GetCustomers()");
-            return _addAPearl.Customers
+            return await _addAPearl.Customers
                 .Include(a => a.Address)
                 .Include(a => a.Company)
-                .ProjectTo<Domain.Customer>();
+                .ProjectTo<Domain.Customer>()
+                .ToListAsync();
         }
 
         public ICustomer GetCustomerById(int id)
@@ -170,13 +173,14 @@ namespace AddAPearl.Services
         #endregion
 
         #region Items
-        public IEnumerable<IItem> GetItems()
+        public async Task<IEnumerable<IItem>> GetItems()
         {
             _logger.LogInformation("Executing: IEnumerable<IItem> GetItems()");
-            return _addAPearl.Items
+            return await _addAPearl.Items
                 .Include(a => a.Product)
                 .Include(a => a.Customer)
-                .ProjectTo<Domain.Item>();
+                .ProjectTo<Domain.Item>()
+                .ToListAsync();
         }
 
         public IItem GetItemById(int id)
@@ -218,11 +222,12 @@ namespace AddAPearl.Services
         #endregion
 
         #region Products
-        public IEnumerable<IProduct> GetProducts()
+        public async Task<IEnumerable<IProduct>> GetProducts()
         {
             _logger.LogInformation("Executing: IEnumerable<IProduct> GetProducts()");
-            return _addAPearl.Products
-                .ProjectTo<Domain.Product>();
+            return await _addAPearl.Products
+                .ProjectTo<Domain.Product>()
+                .ToListAsync();
         }
 
         public IProduct GetProductById(int id)
@@ -262,14 +267,15 @@ namespace AddAPearl.Services
         #endregion
 
         #region SubItems
-        public IEnumerable<ISubItem> GetSubItems()
+        public async Task<IEnumerable<ISubItem>> GetSubItems()
         {
             _logger.LogInformation("Executing: IEnumerable<ISubItem> GetSubItems()");
-            return _addAPearl.SubItems
+            return await _addAPearl.SubItems
                 .Include(a => a.Item)
                 .Include(a => a.Product)
                 .Include(a => a.Customer)
-                .ProjectTo<Domain.SubItem>();
+                .ProjectTo<Domain.SubItem>()
+                .ToListAsync();
         }
 
         public ISubItem GetSubItemById(int id)

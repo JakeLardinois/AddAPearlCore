@@ -9,7 +9,7 @@ namespace AddAPearl.Core
     public interface IAddAPearlService
     {
         #region Companies
-        IEnumerable<ICompany> GetCompanies();
+        Task<IEnumerable<ICompany>> GetCompanies();
         ICompany GetCompanyById(int id);
         ICompany AddCompany(ICompany company);
         ICompany UpdateCompany(ICompany company);
@@ -25,7 +25,7 @@ namespace AddAPearl.Core
         #endregion
 
         #region Customers
-        IEnumerable<ICustomer> GetCustomers();
+        Task<IEnumerable<ICustomer>> GetCustomers();
         ICustomer GetCustomerById(int id);
         ICustomer AddCustomer(ICustomer customer);
         ICustomer UpdateCustomer(ICustomer customer);
@@ -33,7 +33,7 @@ namespace AddAPearl.Core
         #endregion
 
         #region Items
-        IEnumerable<IItem> GetItems();
+        Task<IEnumerable<IItem>> GetItems();
         IItem GetItemById(int id);
         IItem AddItem(IItem item);
         IItem UpdateItem(IItem item);
@@ -41,7 +41,7 @@ namespace AddAPearl.Core
         #endregion
 
         #region Products
-        IEnumerable<IProduct> GetProducts();
+        Task<IEnumerable<IProduct>> GetProducts();
         IProduct GetProductById(int id);
         IProduct AddProduct(IProduct product);
         IProduct UpdateProduct(IProduct product);
@@ -49,7 +49,7 @@ namespace AddAPearl.Core
         #endregion
 
         #region SubItems
-        IEnumerable<ISubItem> GetSubItems();
+        Task<IEnumerable<ISubItem>> GetSubItems();
         ISubItem GetSubItemById(int id);
         ISubItem AddSubItem(ISubItem subitem);
         ISubItem UpdateSubItem(ISubItem subitem);

@@ -24,12 +24,12 @@ namespace AddAPearl.API.Controllers
 
         [HttpGet]
         [ActionName("")]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
             try
             {
                 _logger.LogInformation("Returning all the subitems");
-                var subitems = _addAPearlService.GetSubItems();
+                var subitems = await _addAPearlService.GetSubItems();
                 return Ok(subitems);
             }
             catch (Exception objEx)

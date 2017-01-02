@@ -10,6 +10,7 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Address = AddAPearl.Domain.Address;
 
 namespace AddAPearl.Services
 {
@@ -76,10 +77,11 @@ namespace AddAPearl.Services
         #endregion
 
         #region Addresses
-        public IEnumerable<IAddress> GetAddresses()
+        public async Task<IEnumerable<IAddress>> GetAddresses()
         {
-            return _addAPearl.Addresses
-                .ProjectTo<Domain.Address>();
+            return await _addAPearl.Addresses
+                .ProjectTo<Domain.Address>()
+                .ToListAsync();
         }
 
         public IAddress GetAddressById(int id)

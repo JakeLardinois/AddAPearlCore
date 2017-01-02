@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace AddAPearl.Core
@@ -16,7 +17,7 @@ namespace AddAPearl.Core
         #endregion
 
         #region Addresses
-        IEnumerable<IAddress> GetAddresses();
+        Task<IEnumerable<IAddress>> GetAddresses();
         IAddress GetAddressById(int id);
         IAddress AddAddress(IAddress address);
         IAddress UpdateAddress(IAddress address);

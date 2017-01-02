@@ -26,12 +26,12 @@ namespace AddAPearl.API.Controllers
 
         [HttpGet]
         [ActionName("")]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
             try
             {
                 _logger.LogInformation("Returning all the addresses");
-                var addresses = _addAPearlService.GetAddresses();
+                var addresses = await _addAPearlService.GetAddresses();
                 return Ok(addresses);
             }
             catch (Exception objEx)

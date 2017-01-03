@@ -15,6 +15,7 @@ namespace AddAPearl.Services.Helpers
                     .ForMember(c => c.Address,
                         opt => opt.MapFrom(a => Mapper.Map<DataAccess.Address, Domain.Address>(a.Address)))
                     .ReverseMap();
+            CreateMap<ICompany, DataAccess.Company>();
 
             CreateMap<DataAccess.Address, Domain.Address>()
                 .ReverseMap();
@@ -26,7 +27,8 @@ namespace AddAPearl.Services.Helpers
                 .ForMember(c => c.Company,
                     opt => opt.MapFrom(a => Mapper.Map<DataAccess.Company, Domain.Company>(a.Company)))
                 .ReverseMap();
-            
+            CreateMap<ICustomer, DataAccess.Customer>();
+
             CreateMap<DataAccess.Item, Domain.Item>()
                 .ForMember(i => i.Product,
                     opt => opt.MapFrom(a => Mapper.Map<DataAccess.Product, Domain.Product>(a.Product)))
@@ -37,9 +39,11 @@ namespace AddAPearl.Services.Helpers
                 .ForMember(dest => dest.SubItems,
                     opt => opt.Ignore())
                 .ReverseMap();
+            CreateMap<IItem, DataAccess.Item>();
 
             CreateMap<DataAccess.Product, Domain.Product>()
                 .ReverseMap();
+            CreateMap<IProduct, DataAccess.Product>();
 
             CreateMap<DataAccess.SubItem, Domain.SubItem>()
                 .ForMember(s => s.Item,
@@ -51,6 +55,7 @@ namespace AddAPearl.Services.Helpers
                 .ForMember(s => s.Customer,
                     opt => opt.MapFrom(a => Mapper.Map<DataAccess.Customer, Domain.Customer>(a.Customer)))
                 .ReverseMap();
+            CreateMap<ISubItem, DataAccess.SubItem>();
         }
     }
 }

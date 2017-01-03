@@ -18,8 +18,7 @@ namespace AddAPearl.Services.Helpers
 
             CreateMap<DataAccess.Address, Domain.Address>()
                 .ReverseMap();
-            CreateMap<DataAccess.Address, IAddress>()
-                .ReverseMap();
+            CreateMap<IAddress, DataAccess.Address>();
 
             CreateMap<DataAccess.Customer, Domain.Customer>()
                 .ForMember(c => c.Address,

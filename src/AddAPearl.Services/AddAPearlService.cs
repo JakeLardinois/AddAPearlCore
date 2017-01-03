@@ -186,12 +186,20 @@ namespace AddAPearl.Services
 
         public IItem GetItemById(int id)
         {
-            return Mapper.Map<Domain.Item>(_addAPearl.Items
+            var itemDto = _addAPearl.Items
                 .Include(a => a.Product)
                 .Include(a => a.Owner)
                 .Include(a => a.Customer)
+                .Include(a => a.SubItems)
                 .AsNoTracking()
-                .FirstOrDefault(a => a.ItemId == id));
+                .FirstOrDefault(a => a.ItemId == id);
+
+            var subItems = Mapper.Map<ICollection<Domain.SubItem>>(itemDto.SubItems);
+
+            var item = Mapper.Map<Domain.Item>(itemDto);
+            item.SubItems = subItems;
+
+            return item;
         }
 
         public IItem AddItem(IItem item)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -32,6 +33,8 @@ namespace AddAPearl.DataAccess
         public Customer Customer { get; set; }
 
         public int CustomerId { get; set; }
+
+        public ICollection<SubItem> SubItems { get; set; }
 
         public decimal? Rating { get; set; }
     }

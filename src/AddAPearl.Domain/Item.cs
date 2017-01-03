@@ -32,6 +32,8 @@ namespace AddAPearl.Domain
 
         public int CustomerId { get; set; }
 
+        public ICollection<SubItem> SubItems { get; set; }
+
         public decimal? Rating { get; set; }
     }
 }

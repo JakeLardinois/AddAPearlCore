@@ -15,7 +15,10 @@ namespace AddAPearl.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            //modelBuilder.Entity<Item>()
+            //    .HasMany(e => e.SubItems)
+            //    .WithOne(e => e.Item)
+            //    .HasForeignKey(e => e.ItemId);
         }
     }
 }

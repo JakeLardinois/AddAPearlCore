@@ -10,7 +10,6 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Address = AddAPearl.Domain.Address;
 
 namespace AddAPearl.Services
 {

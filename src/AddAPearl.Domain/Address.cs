@@ -12,11 +12,13 @@ namespace AddAPearl.Domain
         public string AddressLine2 { get; set; }
         
         public string AddressLine3 { get; set; }
-        
-        public string City { get; set; }
 
         [Required]
         [StringLength(30, MinimumLength = 3)]
+        public string City { get; set; }
+
+        [Required]
+        [StringLength(30, MinimumLength = 2)]
         public string State { get; set; }
         
         public string ZipCode { get; set; }

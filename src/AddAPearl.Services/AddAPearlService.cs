@@ -41,6 +41,7 @@ namespace AddAPearl.Services
         public ICompany GetCompanyById(int id)
         {
             return _addAPearl.Companies
+                .Include(a => a.Address)
                 .ProjectTo<Domain.Company>()
                 .AsNoTracking() //required since this method gets called when updating the entity
                 .FirstOrDefault(c => c.CompanyId == id);

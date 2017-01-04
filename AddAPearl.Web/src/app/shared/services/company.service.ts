@@ -1,10 +1,10 @@
 import { Injectable }     from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Headers, Http, RequestOptions, Response } from '@angular/http';
 // Add the RxJS Observable operators.
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Rx';
 
 import { ICompany } from '../index';
 
@@ -17,6 +17,16 @@ export class CompanyService {
             .map((response: Response) => <ICompany[]> response.json())
             .do((data) => console.log('All: ' +  JSON.stringify(data)))
                 .catch(this.handleError);
+  }
+
+  public patchCompany (company: ICompany, patchcommands: any): Observable<ICompany> {
+      let bodyString = JSON.stringify(patchcommands); // Stringify payload
+      let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+      let options = new RequestOptions({ headers: headers }); // Create a request option
+      return this.http.patch(`${this.companiesUrl}/company/${company.companyId}`, bodyString, options )
+            .map((response: Response) => <ICompany> response.json())
+            .do((data) => console.log('All: ' +  JSON.stringify(data)))
+            .catch(this.handleError);
   }
 
   private handleError (error: Response | any) {

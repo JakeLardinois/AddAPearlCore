@@ -10,9 +10,15 @@
             <table style="width: 100%" cellspacing="0">
                 <tr>
                     <td>
+                        <span [class.mdl-textfield__error]="apiValidationErrors.city" *ngIf="apiValidationErrors.city">
+                            {{apiValidationErrors.city[0]}}
+                        </span>
                         <md-input placeholder="City" [(ngModel)]="address.city" name="city" ></md-input>
                     </td>
                     <td>
+                        <span [class.mdl-textfield__error]="apiValidationErrors.state" *ngIf="apiValidationErrors.state">
+                            {{apiValidationErrors.state[0]}}
+                        </span>
                         <md-input placeholder="State" maxLength="2" [(ngModel)]="address.state" name="state" ></md-input>
                     </td>
                     <td>
@@ -28,7 +34,7 @@
         <button class="actionButtons" color="primary" (click)="updateAddress()" md-tooltip="Save" md-mini-fab>
             <md-icon class="md-24">check</md-icon>
         </button>
-        <button class="actionButtons" md-tooltip="Cancel" (click)="dialogRef.close('cancelled')" md-mini-fab>
+        <button class="actionButtons" md-tooltip="Cancel" (click)="dialogRef.close(address)" md-mini-fab>
             <md-icon class="md-24">highlight_off</md-icon>
         </button>
     </md-card-actions>

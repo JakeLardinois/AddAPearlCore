@@ -18,7 +18,7 @@ export class Address implements IAddress {
         public city: string,
         public state: string,
         public zipCode: string,
-        ) { 
-            //any other stuff to do during construction...
+        ) {
+            // Any other stuff to do during construction...
         }
 }

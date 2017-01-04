@@ -21,7 +21,7 @@ export class CompanyService {
 
   public patchCompany (company: ICompany, patchcommands: any): Observable<ICompany> {
       let bodyString = JSON.stringify(patchcommands); // Stringify payload
-      let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+      let myheaders = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
       let options = new RequestOptions( (headers: any) => myheaders = headers ); // Create a request option
       return this.http.patch(`${this.companiesUrl}/company/${company.companyId}`, bodyString, options )
             .map((response: Response) => <ICompany> response.json())

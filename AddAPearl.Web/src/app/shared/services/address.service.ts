@@ -16,8 +16,8 @@ export class AddressService {
     delete address.addressId; // Need to remove null key property or else the API ModelBinder Fails
     let payload = address;
     let bodyString = JSON.stringify(payload); // Stringify payload
-    let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-    let options = new RequestOptions( (headers: any) => headers = headers ); // Create a request option
+    let myheaders = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+    let options = new RequestOptions( (headers: any) => myheaders = headers ); // Create a request option
     return this.http.post(`${this.addressesUrl}/address`, bodyString, options )
           .map((response: Response) => <IAddress> response.json())
           .toPromise()
@@ -29,8 +29,8 @@ export class AddressService {
 
   public patchAddress (address: IAddress, patchcommands: any): Observable<IAddress> {
       let bodyString = JSON.stringify(patchcommands); // Stringify payload
-      let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-      let options = new RequestOptions( (headers: any) => headers = headers ); // Create a request option
+      let myheaders = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+      let options = new RequestOptions( (headers: any) => myheaders = headers ); // Create a request option
       return this.http.patch(`${this.addressesUrl}/address/${address.addressId}`, bodyString, options )
             .map((response: Response) => <IAddress> response.json())
             .do((data) => console.log('All: ' +  JSON.stringify(data)))

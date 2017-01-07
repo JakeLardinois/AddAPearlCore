@@ -44,6 +44,22 @@ export class CompanyService {
 			.catch(this.handleError);
 	}
 
+	public deleteCompany(company: ICompany) {
+		let myheaders = new Headers({
+			'Content-Type': 'application/json',
+		}); // ... Set content type to JSON
+		let options = new RequestOptions({
+			headers: myheaders,
+		}); // Create a request option
+		return this.http.delete(`${this.companiesUrl}/company/${company.companyId}`, options)
+			.map((response: Response) => < ICompany > response.json())
+			.toPromise()
+			.catch((err: any) => {
+				console.log(err); // again, customize me please
+				return Promise.reject(err);
+			});
+	}
+
 	private handleError(error: Response | any) {
 		// In a real world app, we might use a remote logging infrastructure
 		let errMsg: string;

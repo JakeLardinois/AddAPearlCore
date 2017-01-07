@@ -34,6 +34,7 @@ export class CompanyListComponent {
 	public companies: ICompany[];
 	public observer: any;
 	public selectedCompany: ICompany;
+	private snackBarConfig = new MdSnackBarConfig();
 
 	public constructor(private addressService: AddressService, private companyService: CompanyService, public dialog: MdDialog, public snackBar: MdSnackBar) {
 
@@ -57,6 +58,14 @@ export class CompanyListComponent {
 		}
 	}
 
+	public deleteCompany(company: ICompany): void {
+		this.companyService.deleteCompany(company).then((deletedCompany) => {
+			let index = this.companies.indexOf(company);
+			this.companies.splice(index, 1);
+			this.snackBar.open('company ' + deletedCompany.companyId + ' Deleted: ', 'Ok', this.snackBarConfig);
+		})
+	}
+
 	public onRatingClicked(message: string): void {
 		let config = new MdSnackBarConfig();
 		config.duration = 5000;
@@ -65,6 +74,8 @@ export class CompanyListComponent {
 	}
 
 	protected ngOnInit(): void {
+		this.snackBarConfig.duration = 5000;
+
 		this.companyService.getCompanies()
 			.subscribe((companies) => this.companies = companies,
 				(error) => this.errorMessage = < any > error);

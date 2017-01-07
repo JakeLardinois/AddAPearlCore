@@ -3,5 +3,6 @@
 </md-input>
 <md-card *ngFor='let company of companies | companyFilter:listFilter'>
     <button md-button (click)="clicked(company)">{{ company.companyName }}</button>
+    <button md-raised-button color="warn" (click)="deleteCompany(company)">Delete</button>
     <ai-star [rating]='company.companyId' (ratingClicked)='onRatingClicked($event)'></ai-star>
 </md-card>

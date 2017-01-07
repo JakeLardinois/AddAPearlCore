@@ -17,6 +17,7 @@ import {
 import {
 	RouterModule,
 } from '@angular/router';
+import { MdlModule } from 'angular2-mdl';
 import 'hammerjs';
 
 import {
@@ -43,6 +44,7 @@ import {
 		FormsModule,
 		HttpModule,
 		JsonpModule,
+		MdlModule,
 		MaterialModule.forRoot(),
 		RouterModule.forRoot([{
 				component: WelcomeComponent,

@@ -84,6 +84,7 @@ gulp.task('libs', () => {
             'zone.js/dist/**',
             'fast-json-patch/dist/**',
             '@angular/**/bundles/**',
+            'angular2-mdl/bundle/angular2-mdl.js',
             '@angular/material/**/*'
         ], {cwd: 'node_modules/**'}) /* Glob required here. */
         .pipe(gulp.dest('build/lib'));

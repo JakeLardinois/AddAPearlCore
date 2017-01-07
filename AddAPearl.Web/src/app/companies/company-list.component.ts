@@ -1,5 +1,6 @@
 import {
 	Component,
+	ViewContainerRef,
 } from '@angular/core';
 import {
 	MdDialog,
@@ -7,6 +8,12 @@ import {
 	MdSnackBar,
 	MdSnackBarConfig,
 } from '@angular/material';
+
+import {
+	MdlDialogOutletService,
+	MdlDialogReference,
+	MdlDialogService,
+} from 'angular2-mdl';
 
 import {
 	Address,
@@ -37,11 +44,15 @@ export class CompanyListComponent {
 	private snackBarConfig = new MdSnackBarConfig();
 
 	public constructor(
+		private dialogService: MdlDialogService,
+		private dilalogOuletService: MdlDialogOutletService,
+		private viewContainerRef: ViewContainerRef,
 		private addressService: AddressService,
 		private companyService: CompanyService,
 		public dialog: MdDialog,
 		public snackBar: MdSnackBar,
 	) {
+			dilalogOuletService.setDefaultViewContainerRef(viewContainerRef);
 	}
 
 	public editCompanyAddress(company: ICompany): void {
@@ -63,11 +74,12 @@ export class CompanyListComponent {
 	}
 
 	public deleteCompany(company: ICompany): void {
-		this.companyService.deleteCompany(company).then((deletedCompany) => {
+		let result = this.dialogService.alert('This is a simple Alert');
+		/*this.companyService.deleteCompany(company).then((deletedCompany) => {
 			let index = this.companies.indexOf(company);
 			this.companies.splice(index, 1);
 			this.snackBar.open('company ' + deletedCompany.companyId + ' Deleted: ', 'Ok', this.snackBarConfig);
-		})
+		})*/
 	}
 
 	public onRatingClicked(message: string): void {

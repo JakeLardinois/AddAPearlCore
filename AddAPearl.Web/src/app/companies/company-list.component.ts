@@ -40,7 +40,7 @@ export class CompanyListComponent {
 
 	}
 
-	public clicked(company: ICompany): void {
+	public editCompanyAddress(company: ICompany): void {
 		this.selectedCompany = company;
 		if (this.selectedCompany.address === null) {
 			this.selectedCompany.address = {

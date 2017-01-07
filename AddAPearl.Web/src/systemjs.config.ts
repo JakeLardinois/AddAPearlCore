@@ -19,8 +19,6 @@ declare var System: any;
 			'@angular/router': 'npm:@angular/router/bundles/router.umd.js',
 			'angular2-mdl': 'npm:angular2-mdl',
 			'app': 'app',
-
-			// other libraries
 			'fastJsonPatch': 'npm:fast-json-patch/dist',
 			'hammerjs': 'npm:hammerjs',
 			'rxjs': 'npm:rxjs',
@@ -30,18 +28,18 @@ declare var System: any;
 			'angular2-mdl': {
 				main: 'bundle/angular2-mdl.js',
 			},
-			app: {
+			'app': {
 				defaultExtension: 'js',
 				main: './main.js',
 			},
-			fastJsonPatch: {
+			'fastJsonPatch': {
 				defaultExtension: 'js',
 			},
-			hammerjs: {
+			'hammerjs': {
 				defaultExtension: 'js',
 				main: './hammer.min',
 			},
-			rxjs: {
+			'rxjs': {
 				defaultExtension: 'js',
 			},
 		},

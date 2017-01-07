@@ -36,8 +36,12 @@ export class CompanyListComponent {
 	public selectedCompany: ICompany;
 	private snackBarConfig = new MdSnackBarConfig();
 
-	public constructor(private addressService: AddressService, private companyService: CompanyService, public dialog: MdDialog, public snackBar: MdSnackBar) {
-
+	public constructor(
+		private addressService: AddressService,
+		private companyService: CompanyService,
+		public dialog: MdDialog,
+		public snackBar: MdSnackBar,
+	) {
 	}
 
 	public editCompanyAddress(company: ICompany): void {

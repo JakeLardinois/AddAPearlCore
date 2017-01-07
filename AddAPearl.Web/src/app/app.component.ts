@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import {
+	Component,
+} from '@angular/core';
 
 @Component({
-    selector: 'pearl-app',
-    template: `
+	selector: 'pearl-app',
+	template: `
     <h1>{{pageTitle}}</h1>
     <button md-icon-button [md-menu-trigger-for]="menu">
         <md-icon>more_vert</md-icon>
@@ -17,5 +19,5 @@ import { Component } from '@angular/core';
     `,
 })
 export class AppComponent {
-    public pageTitle: string = `Welcome to Add-A-Pearl!`;
+	public pageTitle: string = `Welcome to Add-A-Pearl!`;
 }

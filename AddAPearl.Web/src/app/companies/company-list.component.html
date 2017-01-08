@@ -1,6 +1,11 @@
 <h1>{{pageTitle}}</h1>
 <md-input placeholder="filter" align="end" [(ngModel)]='listFilter'>
 </md-input>
+<p>
+  <button mdl-button  mdl-button-type="fab" mdl-colored="primary" mdl-ripple>
+    <mdl-icon>add</mdl-icon>
+  </button>
+</p>
 <md-card *ngFor='let company of companies | companyFilter:listFilter'>
     <button md-button (click)="editCompany(company)">{{ company.companyName }}</button>
     <button md-icon-button (click)="editCompanyAddress(company)" >

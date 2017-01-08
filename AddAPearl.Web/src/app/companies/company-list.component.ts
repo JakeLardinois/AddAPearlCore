@@ -69,12 +69,22 @@ export class CompanyListComponent {
 	}
 
 	public deleteCompany(company: ICompany): void {
-		let result = this.dialogService.alert('This is a simple Alert');
-		/*this.companyService.deleteCompany(company).then((deletedCompany) => {
-			let index = this.companies.indexOf(company);
-			this.companies.splice(index, 1);
-			this.snackBar.open('company ' + deletedCompany.companyId + ' Deleted: ', 'Ok', this.snackBarConfig);
-		})*/
+		let result = this.dialogService.confirm(`Are you sure you want to delete ${company.companyName}?`, 'No', 'Yes');
+		result.subscribe( () => {
+			//console.log('confirmed');
+			this.companyService.deleteCompany(company).then((deletedCompany) => {
+				let index = this.companies.indexOf(company);
+				this.companies.splice(index, 1);
+				this.snackBar.open(`Company ${company.companyName} was deleted` , 'Ok', this.snackBarConfig);
+			})
+			.catch((error) => {
+				this.snackBar.open(`Failed to delete ${company.companyName}: ${error}`, 'Ok', this.snackBarConfig);
+				console.log(error);
+			});
+		},
+		(err: any) => {
+			//console.log('declined');
+		});
 	}
 
 	public onRatingClicked(message: string): void {

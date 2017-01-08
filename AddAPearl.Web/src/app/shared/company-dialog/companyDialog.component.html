@@ -1,16 +1,21 @@
 <md-card>
     <md-toolbar color="primary">{{company.companyName}}</md-toolbar>
     <md-card-content>
-        <form>
+        <form #frmCompany="ngForm" novalidate>
             <p>
             </p>
             <table style="width: 100%" cellspacing="0">
                 <tr>
                     <td>
-                        <md-input placeholder="companyName" [(ngModel)]="company.companyName" name="companyName" ></md-input>
+                        <md-input placeholder="companyName" [(ngModel)]="company.companyName" name="companyName" #companyName="ngModel" required></md-input>
                         <p  *ngIf="apiValidationErrors.companyName">
                             {{apiValidationErrors.companyName[0]}}
                         </p>
+                        <p *ngIf="companyName.errors?.required">required error</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                     </td>
                 </tr>
             </table>

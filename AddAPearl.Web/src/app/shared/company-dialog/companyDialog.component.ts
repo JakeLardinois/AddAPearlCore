@@ -2,6 +2,14 @@ import {
 	Component,
 } from '@angular/core';
 import {
+	FormControl,
+	FormGroup,
+	Validators,
+} from '@angular/forms';
+import {
+	CustomValidators
+} from 'ng2-validation';
+import {
 	MdDialogRef,
 	MdSnackBar,
 	MdSnackBarConfig,
@@ -26,6 +34,7 @@ import jsonpatch = require('fastJsonPatch/json-patch-duplex.min');
 export class CompanyDialog {
 	public company: ICompany;
 	public errorMessage: string;
+    public form: FormGroup;
 	public observer: any;
 	public apiValidationErrors: any;
     private snackBarConfig = new MdSnackBarConfig();
@@ -78,6 +87,11 @@ export class CompanyDialog {
 
 	protected ngOnInit(): void {
         this.snackBarConfig.duration = 5000;
+
+        let frmCompanyNameValidator = new FormControl('', Validators.required);
+		this.form = new FormGroup({
+			companyNameValidator: frmCompanyNameValidator,
+		});
 
 		this.observer = jsonpatch.observe(this.company);
 	}

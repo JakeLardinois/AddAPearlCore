@@ -2,7 +2,10 @@
 <md-input placeholder="filter" align="end" [(ngModel)]='listFilter'>
 </md-input>
 <md-card *ngFor='let company of companies | companyFilter:listFilter'>
-    <button md-button (click)="editCompanyAddress(company)">{{ company.companyName }}</button>
+    <button md-button >{{ company.companyName }}</button>
+    <button md-icon-button (click)="editCompanyAddress(company)" >
+      <md-icon class="md-24">home</md-icon>
+    </button>
     <button md-raised-button color="warn" (click)="deleteCompany(company)">Delete</button>
     <ai-star [rating]='company.companyId' (ratingClicked)='onRatingClicked($event)'></ai-star>
 </md-card>

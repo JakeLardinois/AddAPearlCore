@@ -9,3 +9,14 @@ export interface ICompany {
 	addressId: number;
 	address: IAddress;
 }
+
+export class Company implements ICompany {
+	constructor(
+		public companyId: number,
+		public companyName: string,
+		public addressId: number,
+		public address: IAddress
+	) {
+		// Any other stuff to do during construction...
+	}
+}

@@ -30,6 +30,25 @@ export class CompanyService {
 			.catch(this.handleError);
 	}
 
+	public createCompany(company: ICompany) {
+		delete company.companyId; // Need to remove null key property or else the API ModelBinder Fails
+		let payload = company;
+		let bodyString = JSON.stringify(payload); // Stringify payload
+		let myheaders = new Headers({
+			'Content-Type': 'application/json',
+		}); // ... Set content type to JSON
+		let options = new RequestOptions({
+			headers: myheaders,
+		}); // Create a request option
+		return this.http.post(`${this.companiesUrl}/company`, bodyString, options)
+			.map((response: Response) => < ICompany > response.json())
+			.toPromise()
+			.catch((err: any) => {
+				console.log(err); // again, customize me please
+				return Promise.reject(err);
+			});
+	}
+
 	public patchCompany(company: ICompany, patchcommands: any): Observable < ICompany > {
 		let bodyString = JSON.stringify(patchcommands); // Stringify payload
 		let myheaders = new Headers({
@@ -71,6 +90,6 @@ export class CompanyService {
 			errMsg = error.message ? error.message : error.toString();
 		}
 		console.error(errMsg);
-		return Observable.throw(errMsg);
+		return Observable.throw(error);
 	}
 }

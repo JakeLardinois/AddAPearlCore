@@ -7,6 +7,7 @@ import {
 import {
 	MaterialModule,
 } from '@angular/material';
+import { MdlModule } from 'angular2-mdl';
 import {
 	BrowserModule,
 } from '@angular/platform-browser';
@@ -17,6 +18,7 @@ import {
 import {
 	AddressDialog,
 	AddressService,
+	CompanyDialog,
 	CompanyService,
 	StarComponent,
 } from '../shared/index';
@@ -31,16 +33,19 @@ import {
 	declarations: [
 		CompanyListComponent,
 		AddressDialog,
+		CompanyDialog,
 		CompanyFilterPipe,
 		StarComponent,
 	],
 	entryComponents: [
 		AddressDialog,
+		CompanyDialog,
 	],
 	imports: [
 		BrowserModule,
 		FormsModule,
 		MaterialModule.forRoot(),
+		MdlModule,
 		RouterModule.forChild([{
 			component: CompanyListComponent,
 			path: 'companies',

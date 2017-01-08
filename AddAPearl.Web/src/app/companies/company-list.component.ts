@@ -16,6 +16,7 @@ import {
 	Address,
 	AddressDialog,
 	AddressService,
+	CompanyDialog,
 	CompanyService,
 	IAddress,
 	ICompany,
@@ -33,7 +34,7 @@ import jsonpatch = require('fastJsonPatch/json-patch-duplex.min');
 export class CompanyListComponent {
 	public pageTitle: string = 'Company List';
 	public errorMessage: string;
-	public dialogRef: MdDialogRef < AddressDialog > ;
+	public dialogRef: MdDialogRef < any > ;
 	public listFilter: string = null;
 	public companies: ICompany[];
 	public observer: any;
@@ -66,6 +67,19 @@ export class CompanyListComponent {
 		} else {
 			this.openAddressDialog();
 		}
+	}
+
+	public editCompany(company: ICompany): void {
+		this.selectedCompany = company;
+		this.dialogRef = this.dialog.open(CompanyDialog, {
+			disableClose: false,
+		});
+		this.dialogRef.componentInstance.company = this.selectedCompany;
+
+		this.dialogRef.afterClosed().subscribe((returnedCompany) => {
+			console.log('result: ' + returnedCompany);
+			this.dialogRef = null;
+		});
 	}
 
 	public deleteCompany(company: ICompany): void {

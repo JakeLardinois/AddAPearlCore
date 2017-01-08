@@ -1,0 +1,27 @@
+<md-card>
+    <md-toolbar color="primary">{{company.companyName}}</md-toolbar>
+    <md-card-content>
+        <form>
+            <p>
+            </p>
+            <table style="width: 100%" cellspacing="0">
+                <tr>
+                    <td>
+                        <md-input placeholder="companyName" [(ngModel)]="company.companyName" name="companyName" ></md-input>
+                        <p  *ngIf="apiValidationErrors.companyName">
+                            {{apiValidationErrors.companyName[0]}}
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </md-card-content>
+    <md-card-actions align="end">
+        <button class="actionButtons" color="primary" (click)="updateCompany()" md-tooltip="Save" md-mini-fab>
+            <md-icon class="md-24">check</md-icon>
+        </button>
+        <button class="actionButtons" md-tooltip="Cancel" (click)="dialogRef.close(company)" md-mini-fab>
+            <md-icon class="md-24">highlight_off</md-icon>
+        </button>
+    </md-card-actions>
+</md-card>

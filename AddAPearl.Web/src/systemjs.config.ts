@@ -21,6 +21,7 @@ declare var System: any;
 			'app': 'app',
 			'fastJsonPatch': 'npm:fast-json-patch/dist',
 			'hammerjs': 'npm:hammerjs',
+			'ng2-validation': 'npm:ng2-validation/dist',
 			'rxjs': 'npm:rxjs',
 		},
 		// packages tells the System loader how to load when no filename and/or no extension
@@ -38,6 +39,9 @@ declare var System: any;
 			'hammerjs': {
 				defaultExtension: 'js',
 				main: './hammer.min',
+			},
+			'ng2-validation': {
+				defaultExtension: 'js',
 			},
 			'rxjs': {
 				defaultExtension: 'js',

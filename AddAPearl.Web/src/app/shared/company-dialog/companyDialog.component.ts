@@ -34,10 +34,10 @@ import jsonpatch = require('fastJsonPatch/json-patch-duplex.min');
 export class CompanyDialog {
 	public company: ICompany;
 	public errorMessage: string;
-    public form: FormGroup;
+	public form: FormGroup;
 	public observer: any;
 	public apiValidationErrors: any;
-    private snackBarConfig = new MdSnackBarConfig();
+	private snackBarConfig = new MdSnackBarConfig();
 
 	public constructor(public dialogRef: MdDialogRef < CompanyDialog > , public snackBar: MdSnackBar, public companyService: CompanyService) {
 		this.apiValidationErrors = {};
@@ -52,7 +52,7 @@ export class CompanyDialog {
 					this.dialogRef.close(this.company);
 				})
 				.catch((error) => {
-                    this.handleError(error);
+					this.handleError(error);
 					this.snackBar.open('Company Failed to be Created: ' + this.errorMessage, 'Ok', this.snackBarConfig);
 				});
 		} else {
@@ -66,29 +66,29 @@ export class CompanyDialog {
 						this.dialogRef.close(this.company);
 					},
 					(error) => {
-                        this.handleError(error);
-                        this.snackBar.open('Company Failed to be Updated: ' + this.errorMessage, 'Ok', this.snackBarConfig);
+						this.handleError(error);
+						this.snackBar.open('Company Failed to be Updated: ' + this.errorMessage, 'Ok', this.snackBarConfig);
 					});
 		}
 	}
 
-    private handleError(error: any): void {
-        let messageBody = JSON.parse(error._body);
+	private handleError(error: any): void {
+		let messageBody = JSON.parse(error._body);
 
-        if (messageBody) { // Validation errors were passed back from the API
-            this.errorMessage = error.statusText;
-            this.apiValidationErrors = messageBody;
-        } else {
-            this.errorMessage = error;
-        }
-        //console.log(`foo: ${this.apiValidationErrors.companyName[0]}`)
-        console.log(error);
-    }
+		if (messageBody) { // Validation errors were passed back from the API
+			this.errorMessage = error.statusText;
+			this.apiValidationErrors = messageBody;
+		} else {
+			this.errorMessage = error;
+		}
+		//console.log(`foo: ${this.apiValidationErrors.companyName[0]}`)
+		console.log(error);
+	}
 
 	protected ngOnInit(): void {
-        this.snackBarConfig.duration = 5000;
+		this.snackBarConfig.duration = 5000;
 
-        let frmCompanyNameValidator = new FormControl('', Validators.required);
+		let frmCompanyNameValidator = new FormControl('', Validators.required);
 		this.form = new FormGroup({
 			companyNameValidator: frmCompanyNameValidator,
 		});

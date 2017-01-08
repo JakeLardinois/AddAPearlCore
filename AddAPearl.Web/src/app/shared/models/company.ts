@@ -15,7 +15,7 @@ export class Company implements ICompany {
 		public companyId: number,
 		public companyName: string,
 		public addressId: number,
-		public address: IAddress
+		public address: IAddress,
 	) {
 		// Any other stuff to do during construction...
 	}

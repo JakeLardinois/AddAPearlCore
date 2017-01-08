@@ -12,12 +12,12 @@ export interface ICustomer {
 export class Customer implements ICustomer {
 	constructor(
 		public customerId: number,
-        public firstName: string,
-        public LastName: string,
-        public phoneNumber: string,
-        public email: string,
-        public addressId: number,
-        public companyId: number,
+		public firstName: string,
+		public LastName: string,
+		public phoneNumber: string,
+		public email: string,
+		public addressId: number,
+		public companyId: number,
 	) {
 		// Any other stuff to do during construction...
 	}

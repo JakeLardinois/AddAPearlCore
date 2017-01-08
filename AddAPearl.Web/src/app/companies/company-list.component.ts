@@ -1,5 +1,6 @@
 import {
 	Component,
+	ViewContainerRef,
 } from '@angular/core';
 import {
 	MdDialog,
@@ -9,6 +10,8 @@ import {
 } from '@angular/material';
 
 import {
+	MdlDialogOutletService,
+	MdlDialogReference,
 	MdlDialogService,
 } from 'angular2-mdl';
 
@@ -42,11 +45,14 @@ export class CompanyListComponent {
 
 	public constructor(
 		private dialogService: MdlDialogService,
+		private dilalogOuletService: MdlDialogOutletService,
+		private viewContainerRef: ViewContainerRef,
 		private addressService: AddressService,
 		private companyService: CompanyService,
 		public dialog: MdDialog,
 		public snackBar: MdSnackBar,
 	) {
+			dilalogOuletService.setDefaultViewContainerRef(viewContainerRef);
 	}
 
 	public editCompanyAddress(company: ICompany): void {

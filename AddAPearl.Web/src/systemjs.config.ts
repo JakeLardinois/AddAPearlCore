@@ -42,6 +42,7 @@ declare var System: any;
 			},
 			'ng2-validation': {
 				defaultExtension: 'js',
+				main: './index',
 			},
 			'rxjs': {
 				defaultExtension: 'js',

@@ -52,7 +52,7 @@ export class AddressDialog {
 					} else {
 						this.errorMessage = error;
 					}
-					this.snackBar.open('Address Failed to be Created: ' + this.errorMessage, 'Ok', this.snackBarConfig);
+					this.snackBar.open(`Address Failed to be Created: ${this.errorMessage}`, 'Ok', this.snackBarConfig);
 					console.log(error);
 				});
 		} else {
@@ -62,12 +62,12 @@ export class AddressDialog {
 				.subscribe(
 					(address) => {
 						this.address = address;
-						this.snackBar.open('Address Updated: ' + this.address.addressLine1, 'Ok', this.snackBarConfig);
+						this.snackBar.open(`Address Updated`, 'Ok', this.snackBarConfig);
 						this.dialogRef.close(this.address);
 					},
 					(error) => {
 						this.errorMessage = < any > error;
-						this.snackBar.open('Address Failed to be Updated: ' + this.errorMessage, 'Ok', this.snackBarConfig);
+						this.snackBar.open(`Address Failed to be Updated: ${this.errorMessage}`, 'Ok', this.snackBarConfig);
 						console.log(error);
 					});
 		}

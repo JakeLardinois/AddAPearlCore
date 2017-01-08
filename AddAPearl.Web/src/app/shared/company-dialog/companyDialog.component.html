@@ -16,6 +16,8 @@
                 </tr>
                 <tr>
                     <td>
+                        <input type="text" [(ngModel)]="company.companyEmailAddress" name="companyEmailAddress" #companyEmailAddress="ngModel" email/>
+                        <p *ngIf="companyEmailAddress.errors?.email">email error message</p>
                     </td>
                 </tr>
             </table>

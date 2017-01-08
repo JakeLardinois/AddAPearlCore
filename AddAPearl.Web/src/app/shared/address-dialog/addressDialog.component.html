@@ -10,16 +10,16 @@
             <table style="width: 100%" cellspacing="0">
                 <tr>
                     <td>
-                        <span [class.mdl-textfield__error]="apiValidationErrors.city" *ngIf="apiValidationErrors.city">
-                            {{apiValidationErrors.city[0]}}
-                        </span>
                         <md-input placeholder="City" [(ngModel)]="address.city" name="city" ></md-input>
+                        <p *ngIf="apiValidationErrors.city">
+                            {{apiValidationErrors.city[0]}}
+                        </p>
                     </td>
                     <td>
-                        <span [class.mdl-textfield__error]="apiValidationErrors.state" *ngIf="apiValidationErrors.state">
-                            {{apiValidationErrors.state[0]}}
-                        </span>
                         <md-input placeholder="State" maxLength="2" [(ngModel)]="address.state" name="state" ></md-input>
+                        <p *ngIf="apiValidationErrors.state">
+                            {{apiValidationErrors.state[0]}}
+                        </p>
                     </td>
                     <td>
                         <md-input #postalCode maxLength="5" placeholder="Postal Code" [(ngModel)]="address.zipCode" name="zipCode" >

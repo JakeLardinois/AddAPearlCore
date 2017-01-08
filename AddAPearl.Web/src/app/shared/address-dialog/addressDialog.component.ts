@@ -29,20 +29,18 @@ export class AddressDialog {
 	public errorMessage: string;
 	public observer: any;
 	public apiValidationErrors: any;
+	private snackBarConfig = new MdSnackBarConfig();
 
 	public constructor(public dialogRef: MdDialogRef < AddressDialog > , public snackBar: MdSnackBar, public addressService: AddressService) {
 		this.apiValidationErrors = {};
 	}
 
 	public updateAddress(): void {
-		let config = new MdSnackBarConfig();
-		config.duration = 5000;
-
 		if (this.address.addressId == null) { // checks if null or undefined
 			this.addressService.createAddress(this.address)
 				.then((address) => {
 					this.address = address;
-					this.snackBar.open('Address ' + this.address.addressId + ' Created: ', 'Ok', config);
+					this.snackBar.open(`Address ${this.address.addressId} Created: `, 'Ok', this.snackBarConfig);
 					this.dialogRef.close(this.address);
 				})
 				.catch((error) => {
@@ -54,7 +52,7 @@ export class AddressDialog {
 					} else {
 						this.errorMessage = error;
 					}
-					this.snackBar.open('Address Failed to be Created: ' + this.errorMessage, 'Ok', config);
+					this.snackBar.open('Address Failed to be Created: ' + this.errorMessage, 'Ok', this.snackBarConfig);
 					console.log(error);
 				});
 		} else {
@@ -64,18 +62,20 @@ export class AddressDialog {
 				.subscribe(
 					(address) => {
 						this.address = address;
-						this.snackBar.open('Address Updated: ' + this.address.addressLine1, 'Ok', config);
+						this.snackBar.open('Address Updated: ' + this.address.addressLine1, 'Ok', this.snackBarConfig);
 						this.dialogRef.close(this.address);
 					},
 					(error) => {
 						this.errorMessage = < any > error;
-						this.snackBar.open('Address Failed to be Updated: ' + this.errorMessage, 'Ok', config);
+						this.snackBar.open('Address Failed to be Updated: ' + this.errorMessage, 'Ok', this.snackBarConfig);
 						console.log(error);
 					});
 		}
 	}
 
 	protected ngOnInit(): void {
+		this.snackBarConfig.duration = 5000;
+
 		this.observer = jsonpatch.observe(this.address);
 	}
 }

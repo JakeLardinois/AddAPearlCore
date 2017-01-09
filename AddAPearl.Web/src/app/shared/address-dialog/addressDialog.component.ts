@@ -44,16 +44,8 @@ export class AddressDialog {
 					this.dialogRef.close(this.address);
 				})
 				.catch((error) => {
-					let messageBody = JSON.parse(error._body);
-
-					if (messageBody) { // if validation errors were passed back from the API
-						this.errorMessage = error.statusText;
-						this.apiValidationErrors = messageBody;
-					} else {
-						this.errorMessage = error;
-					}
+					this.handleError(error);
 					this.snackBar.open(`Address Failed to be Created: ${this.errorMessage}`, 'Ok', this.snackBarConfig);
-					console.log(error);
 				});
 		} else {
 			let patches = jsonpatch.generate(this.observer);
@@ -66,9 +58,8 @@ export class AddressDialog {
 						this.dialogRef.close(this.address);
 					},
 					(error) => {
-						this.errorMessage = < any > error;
+						this.handleError(error);
 						this.snackBar.open(`Address Failed to be Updated: ${this.errorMessage}`, 'Ok', this.snackBarConfig);
-						console.log(error);
 					});
 		}
 	}
@@ -77,5 +68,17 @@ export class AddressDialog {
 		this.snackBarConfig.duration = 5000;
 
 		this.observer = jsonpatch.observe(this.address);
+	}
+
+	private handleError(error: any): void {
+		let messageBody = JSON.parse(error._body);
+
+		if (messageBody) { // Validation errors were passed back from the API
+			this.errorMessage = error.statusText;
+			this.apiValidationErrors = messageBody;
+		} else {
+			this.errorMessage = error;
+		}
+		console.log(error);
 	}
 }

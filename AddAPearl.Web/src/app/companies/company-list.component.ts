@@ -51,6 +51,27 @@ export class CompanyListComponent {
 		//constructor code...
 	}
 
+	public addCompany(): void {
+		this.dialogRef = this.dialog.open(CompanyDialog, {
+			disableClose: false,
+		});
+
+		this.selectedCompany = {
+			companyId: null,
+			companyName: null,
+			companyEmailAddress: null,
+			addressId: null,
+			address: null,
+		};
+		this.dialogRef.componentInstance.company = this.selectedCompany;
+
+		this.dialogRef.afterClosed().subscribe((returnedCompany) => {
+			console.log('result: ' + returnedCompany);
+			this.companies.push(returnedCompany);
+			this.dialogRef = null;
+		});
+	}
+
 	public editCompanyAddress(company: ICompany): void {
 		this.selectedCompany = company;
 		if (this.selectedCompany.address === null) {

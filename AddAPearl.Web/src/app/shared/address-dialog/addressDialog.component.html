@@ -1,7 +1,7 @@
 <md-card>
     <md-toolbar color="primary">{{addressName}}</md-toolbar>
     <md-card-content>
-        <form>
+        <form #frmAddress="ngForm" novalidate>
             <p>
                 <md-textarea placeholder="Address Line 1" [(ngModel)]="address.addressLine1" name="addressLine1" ></md-textarea>
                 <md-textarea placeholder="Address 2" [(ngModel)]="address.addressLine2" name="addressLine2" ></md-textarea>
@@ -10,14 +10,16 @@
             <table style="width: 100%" cellspacing="0">
                 <tr>
                     <td>
-                        <md-input placeholder="City" [(ngModel)]="address.city" name="city" ></md-input>
-                        <p *ngIf="apiValidationErrors.city">
+                        <md-input placeholder="City" [(ngModel)]="address.city" name="city" #city="ngModel" required>
+                            <md-hint *ngIf="city.errors?.required" [ngStyle]="{'color': 'red'}" align="start">required error</md-hint>
+                        </md-input>
+                        <p *ngIf="apiValidationErrors.city" [ngStyle]="{'color': 'red'}">
                             {{apiValidationErrors.city[0]}}
                         </p>
                     </td>
                     <td>
                         <md-input placeholder="State" maxLength="2" [(ngModel)]="address.state" name="state" ></md-input>
-                        <p *ngIf="apiValidationErrors.state">
+                        <p *ngIf="apiValidationErrors.state" [ngStyle]="{'color': 'red'}">
                             {{apiValidationErrors.state[0]}}
                         </p>
                     </td>
@@ -31,7 +33,7 @@
         </form>
     </md-card-content>
     <md-card-actions align="end">
-        <button class="actionButtons" color="primary" (click)="updateAddress()" md-tooltip="Save" md-mini-fab>
+        <button class="actionButtons" color="primary" (click)="updateAddress()" md-tooltip="Save" [disabled]="!frmAddress.valid" md-mini-fab>
             <md-icon class="md-24">check</md-icon>
         </button>
         <button class="actionButtons" md-tooltip="Cancel" (click)="dialogRef.close(address)" md-mini-fab>

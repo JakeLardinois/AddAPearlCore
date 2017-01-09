@@ -34,7 +34,7 @@ import jsonpatch = require('fastJsonPatch/json-patch-duplex.min');
 export class CompanyDialog {
 	public company: ICompany;
 	public errorMessage: string;
-	public form: FormGroup;
+	public companyForm: FormGroup;
 	public observer: any;
 	public apiValidationErrors: any;
 	private snackBarConfig = new MdSnackBarConfig();
@@ -87,10 +87,10 @@ export class CompanyDialog {
 
 	protected ngOnInit(): void {
 		this.snackBarConfig.duration = 5000;
-
-		let frmCompanyNameValidator = new FormControl('', Validators.required);
-		this.form = new FormGroup({
-			companyNameValidator: frmCompanyNameValidator,
+		
+		this.companyForm = new FormGroup({
+			companyNameValidator: new FormControl('', Validators.required),
+			companyEmailValidator: new FormControl('', CustomValidators.email),
 		});
 
 		this.observer = jsonpatch.observe(this.company);

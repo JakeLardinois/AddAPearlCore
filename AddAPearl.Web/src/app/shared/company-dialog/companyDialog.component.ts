@@ -7,13 +7,13 @@ import {
 	Validators,
 } from '@angular/forms';
 import {
-	CustomValidators
-} from 'ng2-validation';
-import {
 	MdDialogRef,
 	MdSnackBar,
 	MdSnackBarConfig,
 } from '@angular/material';
+import {
+	CustomValidators,
+} from 'ng2-validation';
 
 import {
 	ICompany,
@@ -72,6 +72,17 @@ export class CompanyDialog {
 		}
 	}
 
+	protected ngOnInit(): void {
+		this.snackBarConfig.duration = 5000;
+
+		this.companyForm = new FormGroup({
+			companyEmailValidator: new FormControl('', CustomValidators.email),
+			companyNameValidator: new FormControl('', Validators.required),
+		});
+
+		this.observer = jsonpatch.observe(this.company);
+	}
+
 	private handleError(error: any): void {
 		let messageBody = JSON.parse(error._body);
 
@@ -81,18 +92,6 @@ export class CompanyDialog {
 		} else {
 			this.errorMessage = error;
 		}
-		//console.log(`foo: ${this.apiValidationErrors.companyName[0]}`)
 		console.log(error);
-	}
-
-	protected ngOnInit(): void {
-		this.snackBarConfig.duration = 5000;
-		
-		this.companyForm = new FormGroup({
-			companyNameValidator: new FormControl('', Validators.required),
-			companyEmailValidator: new FormControl('', CustomValidators.email),
-		});
-
-		this.observer = jsonpatch.observe(this.company);
 	}
 }

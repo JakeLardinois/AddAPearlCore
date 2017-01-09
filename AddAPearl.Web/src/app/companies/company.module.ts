@@ -9,18 +9,17 @@ import {
 	MaterialModule,
 } from '@angular/material';
 import {
-	MdlModule
-} from 'angular2-mdl';
-import {
 	BrowserModule,
 } from '@angular/platform-browser';
 import {
 	RouterModule,
 } from '@angular/router';
-
 import {
-	CustomFormsModule
-} from 'ng2-validation'
+	MdlModule,
+} from 'angular2-mdl';
+import {
+	CustomFormsModule,
+} from 'ng2-validation';
 
 import {
 	AddressDialog,

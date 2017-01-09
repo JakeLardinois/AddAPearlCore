@@ -48,7 +48,7 @@ export class CompanyListComponent {
 		public dialog: MdDialog,
 		public snackBar: MdSnackBar,
 	) {
-		//constructor code...
+		// constructor code...
 	}
 
 	public addCompany(): void {
@@ -57,11 +57,11 @@ export class CompanyListComponent {
 		});
 
 		this.selectedCompany = {
+			address: null,
+			addressId: null,
+			companyEmailAddress: null,
 			companyId: null,
 			companyName: null,
-			companyEmailAddress: null,
-			addressId: null,
-			address: null,
 		};
 		this.dialogRef.componentInstance.company = this.selectedCompany;
 
@@ -106,7 +106,7 @@ export class CompanyListComponent {
 	public deleteCompany(company: ICompany): void {
 		let result = this.dialogService.confirm(`Are you sure you want to delete ${company.companyName}?`, 'No', 'Yes');
 		result.subscribe( () => {
-			//console.log('confirmed');
+			// console.log('confirmed');
 			this.companyService.deleteCompany(company).then((deletedCompany) => {
 				let index = this.companies.indexOf(company);
 				this.companies.splice(index, 1);
@@ -118,7 +118,7 @@ export class CompanyListComponent {
 			});
 		},
 		(err: any) => {
-			//console.log('declined');
+			// console.log('declined');
 		});
 	}
 

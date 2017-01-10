@@ -4,6 +4,7 @@
     "node": "registry:dt/node#6.0.0+20160831021119"
   },
   "dependencies": {
-    "fast-json-patch": "registry:npm/fast-json-patch#1.1.1+20161024124005"
+    "fast-json-patch": "registry:npm/fast-json-patch#1.1.1+20161024124005",
+    "lodash": "registry:npm/lodash#4.0.0+20161015015725"
   }
 }

@@ -22,7 +22,7 @@ import {
 	CompanyService,
 } from '../services/company.service';
 
-import jsonpatch = require('fastJsonPatch/json-patch-duplex.min');
+import * as jsonpatch from 'fast-json-patch';
 
 @Component({
 	moduleId: module.id,

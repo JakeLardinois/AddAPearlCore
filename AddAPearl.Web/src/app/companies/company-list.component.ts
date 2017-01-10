@@ -22,8 +22,8 @@ import {
 	ICompany,
 } from '../shared/index';
 
-import * as _ from 'lodash'; 
-import jsonpatch = require('fastJsonPatch/json-patch-duplex.min');
+import * as jsonpatch from 'fast-json-patch';
+import * as _ from 'lodash';
 
 @Component({
 	moduleId: module.id,

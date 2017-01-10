@@ -19,7 +19,7 @@ declare var System: any;
 			'@angular/router': 'npm:@angular/router/bundles/router.umd.js',
 			'angular2-mdl': 'npm:angular2-mdl',
 			'app': 'app',
-			'fastJsonPatch': 'npm:fast-json-patch/dist',
+			'fast-json-patch': 'npm:fast-json-patch/dist',
 			'hammerjs': 'npm:hammerjs',
 			'lodash': 'npm:lodash',
 			'ng2-validation': 'npm:ng2-validation/dist',
@@ -34,8 +34,9 @@ declare var System: any;
 				defaultExtension: 'js',
 				main: './main.js',
 			},
-			'fastJsonPatch': {
+			'fast-json-patch': {
 				defaultExtension: 'js',
+				main: './json-patch-duplex.min',
 			},
 			'hammerjs': {
 				defaultExtension: 'js',

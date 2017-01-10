@@ -21,6 +21,7 @@ declare var System: any;
 			'app': 'app',
 			'fastJsonPatch': 'npm:fast-json-patch/dist',
 			'hammerjs': 'npm:hammerjs',
+			'lodash': 'npm:lodash',
 			'ng2-validation': 'npm:ng2-validation/dist',
 			'rxjs': 'npm:rxjs',
 		},
@@ -39,6 +40,10 @@ declare var System: any;
 			'hammerjs': {
 				defaultExtension: 'js',
 				main: './hammer.min',
+			},
+			'lodash': {
+				defaultExtension: 'js',
+				main: './lodash',
 			},
 			'ng2-validation': {
 				defaultExtension: 'js',

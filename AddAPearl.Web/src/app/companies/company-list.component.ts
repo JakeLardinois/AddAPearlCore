@@ -22,6 +22,7 @@ import {
 	ICompany,
 } from '../shared/index';
 
+import * as _ from 'lodash'; 
 import jsonpatch = require('fastJsonPatch/json-patch-duplex.min');
 
 @Component({
@@ -131,6 +132,7 @@ export class CompanyListComponent {
 
 	protected ngOnInit(): void {
 		this.snackBarConfig.duration = 5000;
+		console.log('lodash version:' +  _.VERSION);
 
 		this.companyService.getCompanies()
 			.subscribe((companies) => this.companies = companies,

@@ -7,6 +7,9 @@ import {
 	RequestOptions,
 	Response,
 } from '@angular/http';
+import {
+	Logger,
+} from 'angular2-logger/core';
 // Add the RxJS Observable operators.
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
@@ -22,11 +25,16 @@ import {
 @Injectable()
 export class CompanyService {
 	private companiesUrl = 'http://localhost:19750/api/companies'; // URL to web API
-	constructor(private http: Http) {}
+	constructor(
+		private http: Http,
+		private logger: Logger,
+	) {
+		// constructor code...
+	}
 	public getCompanies(): Observable < ICompany[] > {
 		return this.http.get(this.companiesUrl)
 			.map((response: Response) => < ICompany[] > response.json())
-			.do((data) => console.log('All: ' + JSON.stringify(data)))
+			.do((data) => this.logger.debug('Returned getCompanies: ' + JSON.stringify(data)))
 			.catch(this.handleError);
 	}
 
@@ -44,7 +52,7 @@ export class CompanyService {
 			.map((response: Response) => < ICompany > response.json())
 			.toPromise()
 			.catch((err: any) => {
-				console.log(err); // again, customize me please
+				this.logger.error('Company Service createCompany Error: ' + err);
 				return Promise.reject(err);
 			});
 	}
@@ -59,7 +67,7 @@ export class CompanyService {
 		}); // Create a request option
 		return this.http.patch(`${this.companiesUrl}/company/${company.companyId}`, bodyString, options)
 			.map((response: Response) => < ICompany > response.json())
-			.do((data) => console.log('All: ' + JSON.stringify(data)))
+			.do((data) => this.logger.debug('Returned patchCompany: ' + JSON.stringify(data)))
 			.catch(this.handleError);
 	}
 
@@ -74,7 +82,7 @@ export class CompanyService {
 			.map((response: Response) => < ICompany > response.json())
 			.toPromise()
 			.catch((err: any) => {
-				console.log(err); // again, customize me please
+				this.logger.error('Company Service deleteCompany Error: ' + err);
 				return Promise.reject(err);
 			});
 	}
@@ -89,7 +97,7 @@ export class CompanyService {
 		} else {
 			errMsg = error.message ? error.message : error.toString();
 		}
-		console.error(errMsg);
+		this.logger.error('Company Service Error: ' + errMsg);
 		return Observable.throw(error);
 	}
 }

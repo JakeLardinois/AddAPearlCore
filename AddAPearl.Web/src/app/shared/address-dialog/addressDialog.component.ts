@@ -6,6 +6,9 @@ import {
 	MdSnackBar,
 	MdSnackBarConfig,
 } from '@angular/material';
+import {
+	Logger,
+} from 'angular2-logger/core';
 
 import {
 	IAddress,
@@ -26,12 +29,16 @@ import * as jsonpatch from 'fast-json-patch';
 export class AddressDialog {
 	public addressName: string;
 	public address: IAddress;
-	public errorMessage: string;
 	public observer: any;
 	public apiValidationErrors: any;
 	private snackBarConfig = new MdSnackBarConfig();
 
-	public constructor(public dialogRef: MdDialogRef < AddressDialog > , public snackBar: MdSnackBar, public addressService: AddressService) {
+	public constructor(
+		public dialogRef: MdDialogRef < AddressDialog >,
+		public snackBar: MdSnackBar,
+		public addressService: AddressService,
+		private logger: Logger,
+	) {
 		this.apiValidationErrors = {};
 	}
 
@@ -44,8 +51,8 @@ export class AddressDialog {
 					this.dialogRef.close(this.address);
 				})
 				.catch((error) => {
+					this.snackBar.open('Address Failed to be Created.', 'Ok', this.snackBarConfig);
 					this.handleError(error);
-					this.snackBar.open(`Address Failed to be Created: ${this.errorMessage}`, 'Ok', this.snackBarConfig);
 				});
 		} else {
 			let patches = jsonpatch.generate(this.observer);
@@ -54,12 +61,12 @@ export class AddressDialog {
 				.subscribe(
 					(address) => {
 						this.address = address;
-						this.snackBar.open(`Address Updated`, 'Ok', this.snackBarConfig);
+						this.snackBar.open(`Address ${this.address.addressId} Updated`, 'Ok', this.snackBarConfig);
 						this.dialogRef.close(this.address);
 					},
 					(error) => {
+						this.snackBar.open('Address Failed to be Updated.', 'Ok', this.snackBarConfig);
 						this.handleError(error);
-						this.snackBar.open(`Address Failed to be Updated: ${this.errorMessage}`, 'Ok', this.snackBarConfig);
 					});
 		}
 	}
@@ -74,11 +81,10 @@ export class AddressDialog {
 		let messageBody = JSON.parse(error._body);
 
 		if (messageBody) { // Validation errors were passed back from the API
-			this.errorMessage = error.statusText;
+			this.logger.error('API Validation Errors. Status: ' + error.statusText);
 			this.apiValidationErrors = messageBody;
 		} else {
-			this.errorMessage = error;
+			this.logger.error(error);
 		}
-		console.log(error);
 	}
 }

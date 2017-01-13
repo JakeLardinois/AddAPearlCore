@@ -88,6 +88,7 @@ gulp.task('libs', () => {
             '@angular/material/**/*',
             'ng2-validation/dist/**/*.js',
             'lodash/**/*.js',
+            'angular2-logger/**/*.js',
         ], {cwd: 'node_modules/**'}) /* Glob required here. */
         .pipe(gulp.dest('build/lib'));
 });

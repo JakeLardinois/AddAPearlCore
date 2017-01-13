@@ -17,7 +17,12 @@ import {
 import {
 	RouterModule,
 } from '@angular/router';
-import { MdlModule } from 'angular2-mdl';
+import {
+	Logger,
+} from 'angular2-logger/core';
+import {
+	MdlModule,
+} from 'angular2-mdl';
 import 'hammerjs';
 
 import {
@@ -61,6 +66,9 @@ import {
 				redirectTo: 'welcome',
 			},
 		]),
+	],
+	providers: [
+		Logger,
 	],
 })
 export class AppModule {}

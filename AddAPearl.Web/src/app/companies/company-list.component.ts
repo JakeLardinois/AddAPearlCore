@@ -9,6 +9,10 @@ import {
 } from '@angular/material';
 
 import {
+	Logger,
+} from 'angular2-logger/core';
+
+import {
 	MdlDialogService,
 } from 'angular2-mdl';
 
@@ -48,8 +52,10 @@ export class CompanyListComponent {
 		private companyService: CompanyService,
 		public dialog: MdDialog,
 		public snackBar: MdSnackBar,
+		private logger: Logger,
 	) {
 		// constructor code...
+		this.logger.error('This is a priority level 1 error message...');
 	}
 
 	public addCompany(): void {

@@ -55,7 +55,6 @@ export class CompanyListComponent {
 		private logger: Logger,
 	) {
 		// constructor code...
-		this.logger.error('This is a priority level 1 error message...');
 	}
 
 	public addCompany(): void {
@@ -73,7 +72,7 @@ export class CompanyListComponent {
 		this.dialogRef.componentInstance.company = this.selectedCompany;
 
 		this.dialogRef.afterClosed().subscribe((returnedCompany) => {
-			console.log('result: ' + returnedCompany);
+			this.logger.debug('result: ' + returnedCompany);
 			this.companies.push(returnedCompany);
 			this.dialogRef = null;
 		});
@@ -105,7 +104,7 @@ export class CompanyListComponent {
 		this.dialogRef.componentInstance.company = this.selectedCompany;
 
 		this.dialogRef.afterClosed().subscribe((returnedCompany) => {
-			console.log('result: ' + returnedCompany);
+			this.logger.debug('result: ' + returnedCompany);
 			this.dialogRef = null;
 		});
 	}
@@ -113,7 +112,7 @@ export class CompanyListComponent {
 	public deleteCompany(company: ICompany): void {
 		let result = this.dialogService.confirm(`Are you sure you want to delete ${company.companyName}?`, 'No', 'Yes');
 		result.subscribe( () => {
-			// console.log('confirmed');
+			this.logger.debug('confirmed');
 			this.companyService.deleteCompany(company).then((deletedCompany) => {
 				let index = this.companies.indexOf(company);
 				this.companies.splice(index, 1);
@@ -121,11 +120,11 @@ export class CompanyListComponent {
 			})
 			.catch((error) => {
 				this.snackBar.open(`Failed to delete ${company.companyName}: ${error}`, 'Ok', this.snackBarConfig);
-				console.log(error);
+				this.logger.error(error);
 			});
 		},
 		(err: any) => {
-			// console.log('declined');
+			this.logger.debug('declined: ' + err);
 		});
 	}
 
@@ -137,12 +136,12 @@ export class CompanyListComponent {
 	}
 
 	protected ngOnInit(): void {
+		this.logger.debug('lodash version:' +  _.VERSION);
 		this.snackBarConfig.duration = 5000;
-		console.log('lodash version:' +  _.VERSION);
 
 		this.companyService.getCompanies()
 			.subscribe((companies) => this.companies = companies,
-				(error) => this.errorMessage = < any > error);
+				(error) => this.logger.error(error));
 	}
 
 	private openAddressDialog(): void {
@@ -160,8 +159,8 @@ export class CompanyListComponent {
 			this.selectedCompany.address.addressId = returnedAddress.addressId; // since the Id isn't bound to the DOM, it stays null for newly created addresses
 			this.companyService.patchCompany(this.selectedCompany, patches)
 				.subscribe((company) => this.selectedCompany = company,
-					(error) => this.errorMessage = < any > error);
-			console.log('result: ' + returnedAddress);
+					(error) => this.logger.error(error));
+			this.logger.debug('result: ' + returnedAddress);
 			this.dialogRef = null;
 		});
 	}

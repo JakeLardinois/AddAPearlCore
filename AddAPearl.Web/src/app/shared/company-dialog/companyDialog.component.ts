@@ -12,6 +12,9 @@ import {
 	MdSnackBarConfig,
 } from '@angular/material';
 import {
+	Logger,
+} from 'angular2-logger/core';
+import {
 	CustomValidators,
 } from 'ng2-validation';
 
@@ -33,13 +36,17 @@ import * as jsonpatch from 'fast-json-patch';
 
 export class CompanyDialog {
 	public company: ICompany;
-	public errorMessage: string;
 	public companyForm: FormGroup;
 	public observer: any;
 	public apiValidationErrors: any;
 	private snackBarConfig = new MdSnackBarConfig();
 
-	public constructor(public dialogRef: MdDialogRef < CompanyDialog > , public snackBar: MdSnackBar, public companyService: CompanyService) {
+	public constructor(
+		public dialogRef: MdDialogRef < CompanyDialog >,
+		public snackBar: MdSnackBar,
+		public companyService: CompanyService,
+		private logger: Logger,
+	) {
 		this.apiValidationErrors = {};
 	}
 
@@ -52,8 +59,8 @@ export class CompanyDialog {
 					this.dialogRef.close(this.company);
 				})
 				.catch((error) => {
+					this.snackBar.open('Company Failed to be Created.' , 'Ok', this.snackBarConfig);
 					this.handleError(error);
-					this.snackBar.open('Company Failed to be Created: ' + this.errorMessage, 'Ok', this.snackBarConfig);
 				});
 		} else {
 			let patches = jsonpatch.generate(this.observer);
@@ -66,8 +73,8 @@ export class CompanyDialog {
 						this.dialogRef.close(this.company);
 					},
 					(error) => {
+						this.snackBar.open('Company Failed to be Updated.', 'Ok', this.snackBarConfig);
 						this.handleError(error);
-						this.snackBar.open('Company Failed to be Updated: ' + this.errorMessage, 'Ok', this.snackBarConfig);
 					});
 		}
 	}
@@ -87,11 +94,10 @@ export class CompanyDialog {
 		let messageBody = JSON.parse(error._body);
 
 		if (messageBody) { // Validation errors were passed back from the API
-			this.errorMessage = error.statusText;
+			this.logger.error('API Validation Errors. Status: ' + error.statusText);
 			this.apiValidationErrors = messageBody;
 		} else {
-			this.errorMessage = error;
+			this.logger.error(error);
 		}
-		console.log(error);
 	}
 }

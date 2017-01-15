@@ -38,7 +38,6 @@ import * as _ from 'lodash';
 
 export class CompanyListComponent {
 	public pageTitle: string = 'Company List';
-	public errorMessage: string;
 	public dialogRef: MdDialogRef < any > ;
 	public listFilter: string = null;
 	public companies: ICompany[];

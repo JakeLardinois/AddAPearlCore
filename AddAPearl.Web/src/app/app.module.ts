@@ -36,6 +36,9 @@ import {
 import {
 	CompanyModule,
 } from './companies/company.module';
+import {
+	CustomerModule,
+} from './customers/customer.module';
 
 @NgModule({
 	bootstrap: [AppComponent],
@@ -46,6 +49,7 @@ import {
 	imports: [
 		BrowserModule,
 		CompanyModule,
+		CustomerModule,
 		FormsModule,
 		HttpModule,
 		JsonpModule,

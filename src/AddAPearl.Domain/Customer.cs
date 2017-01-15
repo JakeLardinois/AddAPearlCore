@@ -18,6 +18,8 @@ namespace AddAPearl.Domain
 
         public DateTime BirthDay { get; set; }
 
+        public string Email { get; set; }
+
         public int CompanyId { get; set; }
 
         public ICompany Company { get; set; }

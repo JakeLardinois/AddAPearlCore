@@ -1,6 +1,6 @@
 import {
 	IAddress,
-} from './address';
+} from './index';
 
 /* Defines the company entity */
 export interface ICompany {

@@ -5,7 +5,7 @@ import {
 
 import {
 	ICompany,
-} from '../shared/models/company';
+} from '../shared/index';
 
 @Pipe({
 	name: 'companyFilter',

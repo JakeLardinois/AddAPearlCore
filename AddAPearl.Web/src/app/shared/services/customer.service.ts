@@ -31,7 +31,7 @@ export class CustomerService {
 	) {
 		// constructor code...
 	}
-	public getcustomers(): Observable < ICustomer[] > {
+	public getCustomers(): Observable < ICustomer[] > {
 		return this.http.get(this.customersUrl)
 			.map((response: Response) => < ICustomer[] > response.json())
 			.do((data) => this.logger.debug('Returned getCustomers: ' + JSON.stringify(data)))

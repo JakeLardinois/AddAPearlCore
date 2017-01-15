@@ -32,6 +32,10 @@ import {
 	WelcomeComponent,
 } from './home/welcome.component';
 
+import {
+	AddressDialog,
+} from './shared/index';
+
 /* Feature Modules */
 import {
 	CompanyModule,
@@ -43,8 +47,12 @@ import {
 @NgModule({
 	bootstrap: [AppComponent],
 	declarations: [
+		AddressDialog,
 		AppComponent,
 		WelcomeComponent,
+	],
+	entryComponents: [
+		AddressDialog,
 	],
 	imports: [
 		BrowserModule,

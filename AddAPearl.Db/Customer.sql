@@ -1,13 +1,15 @@
-﻿CREATE TABLE [dbo].[Customer](
-	[CustomerId] [int] IDENTITY(1,1) NOT NULL,
-	[FirstName] [nvarchar](4000) NULL,
-	[LastName] [nvarchar](4000) NULL,
-	[PhoneNumber] [nvarchar](4000) NULL,
-	[BirthDay] [datetime] NOT NULL,
-	[AddressId] [int] NOT NULL,
-	[CompanyId] [int] NOT NULL,
- CONSTRAINT [PK_Customer] PRIMARY KEY CLUSTERED 
-(
-	[CustomerId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
+﻿CREATE TABLE [dbo].[Customer] (
+    [CustomerId]  INT             IDENTITY (1, 1) NOT NULL,
+    [FirstName]   NVARCHAR (4000) NULL,
+    [LastName]    NVARCHAR (4000) NULL,
+    [PhoneNumber] NVARCHAR (4000) NULL,
+    [BirthDay]    DATETIME        NOT NULL,
+    [Email]       NVARCHAR (50)   NULL,
+    [AddressId]   INT             NOT NULL,
+    [CompanyId]   INT             NOT NULL,
+    CONSTRAINT [PK_Customer] PRIMARY KEY CLUSTERED ([CustomerId] ASC),
+    CONSTRAINT [FK_Customer_Address] FOREIGN KEY ([AddressId]) REFERENCES [dbo].[Address] ([AddressId]),
+    CONSTRAINT [FK_Customer_Company] FOREIGN KEY ([CompanyId]) REFERENCES [dbo].[Company] ([CompanyId])
+);
+
+

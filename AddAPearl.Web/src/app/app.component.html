@@ -1,11 +1,17 @@
 <h1>{{pageTitle}}</h1>
-<button md-icon-button [md-menu-trigger-for]="menu">
-        <md-icon>more_vert</md-icon>
-    </button>
-<md-menu #menu="mdMenu">
-	<a md-menu-item [routerLink]="['/welcome']">Home</a>
+
+<button md-button [routerLink]="['/welcome']">Home</button>
+
+<button md-button [md-menu-trigger-for]="companiesmenu">Companies</button>
+<md-menu #companiesmenu="mdMenu">
 	<a md-menu-item [routerLink]="['/companies']">Company List</a>
 </md-menu>
+
+<button md-button [md-menu-trigger-for]="customersmenu">Customers</button>
+<md-menu #customersmenu="mdMenu">
+	<a md-menu-item [routerLink]="['/customers']">Customer List</a>
+</md-menu>
+
 <div class='container'>
 	<router-outlet></router-outlet>
 </div>

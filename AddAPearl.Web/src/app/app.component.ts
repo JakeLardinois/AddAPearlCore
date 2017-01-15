@@ -3,9 +3,9 @@ import {
 } from '@angular/core';
 
 @Component({
-    moduleId: module.id,
+	moduleId: module.id,
 	selector: 'pearl-app',
-    styleUrls: ['app.component.css'],
+	styleUrls: ['app.component.css'],
 	templateUrl: 'app.component.html',
 })
 export class AppComponent {

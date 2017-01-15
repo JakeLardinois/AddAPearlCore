@@ -23,7 +23,7 @@ import {
 
 import {
 	AddressService,
-    CustomerService,
+	CustomerService,
 } from '../shared/index';
 import {
 	CustomerFilterPipe,
@@ -37,8 +37,7 @@ import {
 		CustomerListComponent,
 		CustomerFilterPipe,
 	],
-	entryComponents: [
-	],
+	entryComponents: [],
 	imports: [
 		BrowserModule,
 		CustomFormsModule,

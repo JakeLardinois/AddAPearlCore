@@ -20,13 +20,15 @@ import {
 })
 
 export class CustomerListComponent {
-    public pageTitle: string = 'Customer List';
+	public pageTitle: string = 'Customer List';
 
-    public constructor(
-        private logger: Logger,
-    ) {
-    }
+	public constructor(
+		private logger: Logger,
+	) {
+		// constructor code...
+	}
 
-    protected ngOnInit(): void {
+	protected ngOnInit(): void {
+		// Initilization Code...
 	}
 }

@@ -15,10 +15,57 @@ namespace AddAPearl.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Address>()
+                .HasMany(e => e.Customers)
+                .WithOne(e => e.Address)
+                .HasForeignKey(e => e.AddressId);
+
+            modelBuilder.Entity<Company>()
+                .HasMany(e => e.Customers)
+                .WithOne(e => e.Company)
+                .HasForeignKey(e => e.CompanyId);
+
+            modelBuilder.Entity<Customer>()
+                .HasMany(e => e.Items)
+                .WithOne(e => e.Customer)
+                .HasForeignKey(e => e.CustomerId);
+
+            modelBuilder.Entity<Customer>()
+                .HasMany(e => e.ItemsOwned)
+                .WithOne(e => e.Owner)
+                .HasForeignKey(e => e.OwnerId);
+
+            modelBuilder.Entity<Customer>()
+                .HasMany(e => e.SubItems)
+                .WithOne(e => e.Customer)
+                .HasForeignKey(e => e.CustomerId);
+
+            modelBuilder.Entity<Customer>()
+                .HasMany(e => e.SubItemsOwned)
+                .WithOne(e => e.Owner)
+                .HasForeignKey(e => e.OwnerId);
+
             //modelBuilder.Entity<Item>()
             //    .HasMany(e => e.SubItems)
             //    .WithOne(e => e.Item)
             //    .HasForeignKey(e => e.ItemId);
+            modelBuilder.Entity<Item>()
+                .HasMany(e => e.SubItems)
+                .WithOne(e => e.Item)
+                .HasForeignKey(e => e.ItemId);
+            //modelBuilder.Entity<Item>()
+            //    .HasOne(e => e.Owner)
+            //    .WithMany(e => e.ItemsOwned);
+
+            modelBuilder.Entity<Product>()
+                .HasMany(e => e.Items)
+                .WithOne(e => e.Product)
+                .HasForeignKey(e => e.ProductId);
+
+            modelBuilder.Entity<Product>()
+                .HasMany(e => e.SubItems)
+                .WithOne(e => e.Product)
+                .HasForeignKey(e => e.ProductId);
         }
     }
 }

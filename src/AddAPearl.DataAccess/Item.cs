@@ -8,6 +8,12 @@ namespace AddAPearl.DataAccess
     [Table("Item")]
     public partial class Item
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Item()
+        {
+            SubItems = new HashSet<SubItem>();
+        }
+
         [Key]
         public int ItemId { get; set; }
 
@@ -34,7 +40,8 @@ namespace AddAPearl.DataAccess
 
         public int CustomerId { get; set; }
 
-        public ICollection<SubItem> SubItems { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SubItem> SubItems { get; set; }
 
         public decimal? Rating { get; set; }
     }

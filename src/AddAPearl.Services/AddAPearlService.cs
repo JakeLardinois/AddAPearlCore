@@ -33,7 +33,8 @@ namespace AddAPearl.Services
         public async Task<IEnumerable<ICompany>> GetCompanies()
         {
             _logger.LogInformation("Executing: IEnumerable<ICompany> GetCompanies()");
-            return await _addAPearl.Companies.Include(a => a.Address)
+            return await _addAPearl.Companies
+                .Include(a => a.Address)
                 .ProjectTo<Domain.Company>()
                 .ToListAsync();
         }
@@ -127,6 +128,7 @@ namespace AddAPearl.Services
         public async Task<IEnumerable<ICustomer>> GetCustomers()
         {
             _logger.LogInformation("Executing: IEnumerable<ICustomer> GetCustomers()");
+
             return await _addAPearl.Customers
                 .Include(a => a.Address)
                 .Include(a => a.Company)

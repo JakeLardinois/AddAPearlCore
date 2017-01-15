@@ -44,18 +44,11 @@ namespace AddAPearl.DataAccess
                 .HasMany(e => e.SubItemsOwned)
                 .WithOne(e => e.Owner)
                 .HasForeignKey(e => e.OwnerId);
-
-            //modelBuilder.Entity<Item>()
-            //    .HasMany(e => e.SubItems)
-            //    .WithOne(e => e.Item)
-            //    .HasForeignKey(e => e.ItemId);
+            
             modelBuilder.Entity<Item>()
                 .HasMany(e => e.SubItems)
                 .WithOne(e => e.Item)
                 .HasForeignKey(e => e.ItemId);
-            //modelBuilder.Entity<Item>()
-            //    .HasOne(e => e.Owner)
-            //    .WithMany(e => e.ItemsOwned);
 
             modelBuilder.Entity<Product>()
                 .HasMany(e => e.Items)

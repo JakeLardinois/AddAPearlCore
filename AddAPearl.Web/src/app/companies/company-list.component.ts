@@ -132,7 +132,6 @@ export class CompanyListComponent {
 		let config = new MdSnackBarConfig();
 		config.duration = 5000;
 		this.snackBar.open(message, 'Dismiss', config);
-		this.pageTitle = 'Product List: ' + message;
 	}
 
 	protected ngOnInit(): void {

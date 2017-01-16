@@ -7,10 +7,13 @@
   </button>
 </p>
 <md-card *ngFor='let company of companies | companyFilter:listFilter'>
-    <button md-button (click)="editCompany(company)">{{ company.companyName }}</button>
+  <md-card-title-group>
+		<md-card-title>{{ company.companyName }}</md-card-title>
+		<md-card-subtitle><ai-star [rating]='company.companyId' (ratingClicked)='onRatingClicked($event)'></ai-star></md-card-subtitle>
+	</md-card-title-group>
+    <button md-raised-button color="primary" (click)="editCompany(company)">Edit</button>
     <button md-icon-button (click)="editCompanyAddress(company)" >
       <md-icon class="md-24">home</md-icon>
     </button>
     <button md-raised-button color="warn" (click)="deleteCompany(company)">Delete</button>
-    <ai-star [rating]='company.companyId' (ratingClicked)='onRatingClicked($event)'></ai-star>
 </md-card>

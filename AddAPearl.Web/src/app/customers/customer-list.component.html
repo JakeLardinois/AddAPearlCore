@@ -1,19 +1,19 @@
 <h1>{{pageTitle}}</h1>
-<md-input placeholder="filter" align="end" [(ngModel)]='listFilter'>
-</md-input>
-<p>
-	<button mdl-button mdl-button-type="fab" mdl-colored="primary" (click)="addCustomer()" mdl-ripple>
+<md-card>
+	<md-input placeholder="filter" align="end" [(ngModel)]='listFilter'>
+	</md-input>
+  <button mdl-button md-tooltip="Add Customer" mdl-button-type="fab" mdl-colored="primary" (click)="addCustomer()" mdl-ripple>
     <mdl-icon>add</mdl-icon>
   </button>
-</p>
+</md-card>
 <md-card *ngFor='let customer of customers | customerFilter:listFilter'>
 	<md-card-title-group>
 		<md-card-title>{{ customer.firstName + ' ' + customer.lastName }}</md-card-title>
 		<md-card-subtitle>{{ customer.company.companyName }}</md-card-subtitle>
 	</md-card-title-group>
-	<button md-raised-button color="primary" (click)="editCustomer(customer)">Edit</button>
-	<button md-icon-button (click)="editCustomerAddress(customer)">
+	<button md-raised-button md-tooltip="Edit Customer" color="primary" (click)="editCustomer(customer)">Edit</button>
+	<button md-icon-button md-tooltip="Edit Address" (click)="editCustomerAddress(customer)">
       <md-icon class="md-24">home</md-icon>
     </button>
-	<button md-raised-button color="warn" (click)="deleteCustomer(customer)">Delete</button>
+	<button md-raised-button md-tooltip="Delete Customer" color="warn" (click)="deleteCustomer(customer)">Delete</button>
 </md-card>

@@ -1,19 +1,21 @@
 <h1>{{pageTitle}}</h1>
-<md-input placeholder="filter" align="end" [(ngModel)]='listFilter'>
-</md-input>
-<p>
-  <button mdl-button  mdl-button-type="fab" mdl-colored="primary" (click)="addCompany()" mdl-ripple>
+<md-card>
+	<md-input placeholder="filter" align="end" [(ngModel)]='listFilter'>
+	</md-input>
+	<button mdl-button md-tooltip="Add Company" mdl-button-type="fab" mdl-colored="primary" (click)="addCompany()" mdl-ripple>
     <mdl-icon>add</mdl-icon>
   </button>
-</p>
+</md-card>
 <md-card *ngFor='let company of companies | companyFilter:listFilter'>
-  <md-card-title-group>
+	<md-card-title-group>
 		<md-card-title>{{ company.companyName }}</md-card-title>
-		<md-card-subtitle><ai-star [rating]='company.companyId' (ratingClicked)='onRatingClicked($event)'></ai-star></md-card-subtitle>
+		<md-card-subtitle>
+			<ai-star [rating]='company.companyId' (ratingClicked)='onRatingClicked($event)'></ai-star>
+		</md-card-subtitle>
 	</md-card-title-group>
-    <button md-raised-button color="primary" (click)="editCompany(company)">Edit</button>
-    <button md-icon-button (click)="editCompanyAddress(company)" >
+	<button md-raised-button md-tooltip="Edit Company" color="primary" (click)="editCompany(company)">Edit</button>
+	<button md-tooltip="Edit Address" md-icon-button (click)="editCompanyAddress(company)">
       <md-icon class="md-24">home</md-icon>
     </button>
-    <button md-raised-button color="warn" (click)="deleteCompany(company)">Delete</button>
+	<button md-raised-button md-tooltip="Delete Customer" color="warn" (click)="deleteCompany(company)">Delete</button>
 </md-card>

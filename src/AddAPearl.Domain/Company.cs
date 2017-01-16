@@ -12,6 +12,8 @@ namespace AddAPearl.Domain
         [Required]
         public string CompanyName { get; set; }
 
+        public string Email { get; set; }
+
         public int? AddressId { get; set; }
 
         public IAddress Address { get; set; }

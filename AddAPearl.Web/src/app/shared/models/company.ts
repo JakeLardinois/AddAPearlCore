@@ -6,7 +6,7 @@ import {
 export interface ICompany {
 	companyId: number;
 	companyName: string;
-	companyEmailAddress: string;
+	email: string;
 	addressId: number;
 	address: IAddress;
 }
@@ -15,7 +15,7 @@ export class Company implements ICompany {
 	constructor(
 		public companyId: number,
 		public companyName: string,
-		public companyEmailAddress: string,
+		public email: string,
 		public addressId: number,
 		public address: IAddress,
 	) {

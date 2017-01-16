@@ -64,7 +64,7 @@ export class CompanyListComponent {
 		this.selectedCompany = {
 			address: null,
 			addressId: null,
-			companyEmailAddress: null,
+			email: null,
 			companyId: null,
 			companyName: null,
 		};

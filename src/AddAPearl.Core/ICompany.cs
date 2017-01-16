@@ -11,6 +11,8 @@ namespace AddAPearl.Core
 
         string CompanyName { get; set; }
 
+        string Email { get; set; }
+
         int? AddressId { get; set; }
 
         IAddress Address { get; set; }

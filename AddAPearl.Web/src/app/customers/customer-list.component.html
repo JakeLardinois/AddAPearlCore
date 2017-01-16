@@ -2,14 +2,18 @@
 <md-input placeholder="filter" align="end" [(ngModel)]='listFilter'>
 </md-input>
 <p>
-  <button mdl-button  mdl-button-type="fab" mdl-colored="primary" (click)="addCustomer()" mdl-ripple>
+	<button mdl-button mdl-button-type="fab" mdl-colored="primary" (click)="addCustomer()" mdl-ripple>
     <mdl-icon>add</mdl-icon>
   </button>
 </p>
 <md-card *ngFor='let customer of customers | customerFilter:listFilter'>
-    <button md-button (click)="editCustomer(customer)">{{ customer.firstName + ' ' + customer.lastName }}</button>
-    <button md-icon-button (click)="editCustomerAddress(customer)" >
+	<md-card-title-group>
+		<md-card-title>{{ customer.firstName + ' ' + customer.lastName }}</md-card-title>
+		<md-card-subtitle>{{ customer.company.companyName }}</md-card-subtitle>
+	</md-card-title-group>
+	<button md-raised-button color="primary" (click)="editCustomer(customer)">Edit</button>
+	<button md-icon-button (click)="editCustomerAddress(customer)">
       <md-icon class="md-24">home</md-icon>
     </button>
-    <button md-raised-button color="warn" (click)="deleteCustomer(customer)">Delete</button>
+	<button md-raised-button color="warn" (click)="deleteCustomer(customer)">Delete</button>
 </md-card>

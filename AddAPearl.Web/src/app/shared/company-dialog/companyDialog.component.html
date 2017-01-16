@@ -20,6 +20,9 @@
                         <md-input type="text" [(ngModel)]="company.email" name="email" formControlName="companyEmailValidator">
                             <md-hint *ngIf="companyForm.controls.companyEmailValidator.errors?.email" [ngStyle]="{'color': 'red'}" align="start">email error message</md-hint>
                         </md-input>
+                        <p *ngIf="apiValidationErrors.email" [ngStyle]="{'color': 'red'}">
+                            {{apiValidationErrors.email[0]}}
+                        </p>
                     </td>
                 </tr>
             </table>

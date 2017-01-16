@@ -21,7 +21,7 @@ namespace AddAPearl.Core
 
         int CompanyId { get; set; }
 
-        int AddressId { get; set; }
+        int? AddressId { get; set; }
 
         IAddress Address { get; set; }
     }

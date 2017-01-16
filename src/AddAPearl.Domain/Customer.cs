@@ -24,7 +24,7 @@ namespace AddAPearl.Domain
 
         public ICompany Company { get; set; }
 
-        public int AddressId { get; set; }
+        public int? AddressId { get; set; }
 
         public IAddress Address { get; set; }
     }

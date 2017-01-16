@@ -15,6 +15,6 @@ export class CustomerFilterPipe implements PipeTransform {
 	public transform(value: ICustomer[], filterBy: string): ICustomer[] {
 		filterBy = filterBy ? filterBy.toLocaleLowerCase() : null;
 		return filterBy ? value.filter((customer: ICustomer) =>
-			customer.LastName.toLocaleLowerCase().indexOf(filterBy) !== -1) : value;
+			customer.lastName.toLocaleLowerCase().indexOf(filterBy) !== -1) : value;
 	}
 }

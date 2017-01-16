@@ -14,7 +14,7 @@ export interface ICustomer {
 	addressId: number;
 	address: IAddress;
 	companyId: number;
-	company: ICompany,
+	company: ICompany;
 }
 
 export class Customer implements ICustomer {

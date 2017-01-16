@@ -86,6 +86,7 @@ export class CustomerDialog {
 			customerEmailValidator: new FormControl('', CustomValidators.email),
 			customerFirstNameValidator: new FormControl('', Validators.required),
 			customerLastNameValidator: new FormControl('', Validators.required),
+			customerPhoneNumberValidator: new FormControl('', CustomValidators.phone('en-US')),
 		});
 
 		this.observer = jsonpatch.observe(this.customer);

@@ -1,5 +1,5 @@
 <md-card>
-    <md-toolbar color="primary">{{customer.companyName}}</md-toolbar>
+    <md-toolbar color="primary">{{customer.firstName  + ' ' + customer.lastName}}</md-toolbar>
     <md-card-content>
         <form [formGroup]="customerForm">
             <p>
@@ -25,9 +25,22 @@
                 </tr>
                 <tr>
                     <td>
-                        <md-input type="text" [(ngModel)]="customer.email" name="email" formControlName="customerEmailValidator">
+                        <md-input placeholder="Email" type="text" [(ngModel)]="customer.email" name="email" formControlName="customerEmailValidator">
                             <md-hint *ngIf="customerForm.controls.customerEmailValidator.errors?.email" [ngStyle]="{'color': 'red'}" align="start">email error message</md-hint>
                         </md-input>
+                        <p *ngIf="apiValidationErrors.email" [ngStyle]="{'color': 'red'}">
+                            {{apiValidationErrors.email[0]}}
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <md-input placeholder="Phone No." type="text" [(ngModel)]="customer.phoneNumber" name="phoneNumber" formControlName="customerPhoneNumberValidator">
+                            <md-hint *ngIf="customerForm.controls.customerPhoneNumberValidator.errors?.phone" [ngStyle]="{'color': 'red'}" align="start">Incorrect Phone No.</md-hint>
+                        </md-input>
+                        <p *ngIf="apiValidationErrors.phoneNumber" [ngStyle]="{'color': 'red'}">
+                            {{apiValidationErrors.phoneNumber[0]}}
+                        </p>
                     </td>
                 </tr>
             </table>

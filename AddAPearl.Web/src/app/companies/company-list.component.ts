@@ -54,7 +54,7 @@ export class CompanyListComponent {
 		private logger: Logger,
 	) {
 		// constructor code...
-		//logger.level = 5;
+		// logger.level = 5;
 	}
 
 	public addCompany(): void {
@@ -65,9 +65,9 @@ export class CompanyListComponent {
 		this.selectedCompany = {
 			address: null,
 			addressId: null,
-			email: null,
 			companyId: null,
 			companyName: null,
+			email: null,
 		};
 		this.dialogRef.componentInstance.company = this.selectedCompany;
 

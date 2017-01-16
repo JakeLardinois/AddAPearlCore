@@ -23,6 +23,7 @@ import {
 
 import {
 	AddressService,
+	CustomerDialog,
 	CustomerService,
 } from '../shared/index';
 import {
@@ -35,9 +36,12 @@ import {
 @NgModule({
 	declarations: [
 		CustomerListComponent,
+		CustomerDialog,
 		CustomerFilterPipe,
 	],
-	entryComponents: [],
+	entryComponents: [
+		CustomerDialog,
+	],
 	imports: [
 		BrowserModule,
 		CustomFormsModule,

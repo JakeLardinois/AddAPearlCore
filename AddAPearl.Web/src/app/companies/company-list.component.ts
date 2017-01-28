@@ -54,7 +54,7 @@ export class CompanyListComponent {
 		private logger: Logger,
 	) {
 		// constructor code...
-		// logger.level = 5;
+		logger.level = 5;
 	}
 
 	public addCompany(): void {
@@ -101,11 +101,20 @@ export class CompanyListComponent {
 		this.dialogRef = this.dialog.open(CompanyDialog, {
 			disableClose: false,
 		});
-		this.dialogRef.componentInstance.company = this.selectedCompany;
+		
+		this.dialogRef.componentInstance.company = _.cloneDeep(this.selectedCompany);
 
 		this.dialogRef.afterClosed().subscribe((returnedCompany) => {
-			this.logger.debug('result: ' + returnedCompany);
-			this.dialogRef = null;
+			if (returnedCompany) {
+				this.logger.debug('result: ' + returnedCompany);
+				let index = this.companies.indexOf(this.selectedCompany);
+				this.selectedCompany = returnedCompany;
+				this.companies[index] = this.selectedCompany;
+				this.dialogRef = null;
+			} else {
+				this.logger.debug('Edit Cancelled');
+			}
+			
 		});
 	}
 

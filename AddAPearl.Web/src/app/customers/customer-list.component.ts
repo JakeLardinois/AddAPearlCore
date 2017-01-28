@@ -106,11 +106,19 @@ export class CustomerListComponent {
 		this.dialogRef = this.dialog.open(CustomerDialog, {
 			disableClose: false,
 		});
-		this.dialogRef.componentInstance.customer = this.selectedCustomer;
+		this.dialogRef.componentInstance.customer = _.cloneDeep(this.selectedCustomer);
 
 		this.dialogRef.afterClosed().subscribe((returnedCustomer) => {
-			this.logger.debug('result: ' + JSON.stringify(returnedCustomer));
-			this.dialogRef = null;
+			if (returnedCustomer) {
+				this.logger.debug('result: ' + JSON.stringify(returnedCustomer));
+				let index = this.customers.indexOf(this.selectedCustomer);
+				this.selectedCustomer = returnedCustomer;
+				this.customers[index] = this.selectedCustomer;
+				this.dialogRef = null;
+			} else {
+				this.logger.debug('Customer Edit Cancelled');
+				this.dialogRef = null;
+			}
 		});
 	}
 
@@ -147,19 +155,32 @@ export class CustomerListComponent {
 			disableClose: false,
 		});
 		this.dialogRef.componentInstance.addressName = this.selectedCustomer.firstName + ' ' + this.selectedCustomer.lastName;
-		this.dialogRef.componentInstance.address = this.selectedCustomer.address;
+		this.dialogRef.componentInstance.address = _.cloneDeep(this.selectedCustomer.address);
 
 		this.dialogRef.afterClosed().subscribe((returnedAddress) => {
-			this.observer = jsonpatch.observe(this.selectedCustomer);
-			this.selectedCustomer.addressId = returnedAddress.addressId;
-			let patches = jsonpatch.generate(this.observer); // generate patches for if the address Id changed
+			if (returnedAddress) {
+				this.logger.debug('result: ' + JSON.stringify(returnedAddress));
+				this.selectedCustomer.address = null; //otherwise patches will get generated for previous address changes
+				this.observer = jsonpatch.observe(this.selectedCustomer);
+				this.selectedCustomer.addressId = returnedAddress.addressId;
+				let patches = jsonpatch.generate(this.observer); // generate patches for if the address Id changed
 
-			this.selectedCustomer.address.addressId = returnedAddress.addressId; // since the Id isn't bound to the DOM, it stays null for newly created addresses
-			this.customerService.patchCustomer(this.selectedCustomer, patches)
-				.subscribe((customer) => this.selectedCustomer = customer,
-					(error) => this.logger.error(error));
-			this.logger.debug('result: ' + JSON.stringify(returnedAddress));
-			this.dialogRef = null;
+				if (patches.length > 0) {
+					this.customerService.patchCustomer(this.selectedCustomer, patches)
+					.subscribe((customer) => {
+						let index = this.customers.indexOf(this.selectedCustomer);
+						this.selectedCustomer = customer;
+						this.customers[index] = this.selectedCustomer;
+						this.dialogRef = null;
+					}, (error) => this.logger.error(error));
+				} else {
+					this.selectedCustomer.address = returnedAddress;
+					this.dialogRef = null;
+				}
+			} else {
+				this.logger.debug('Customer Address Edit Cancelled');
+				this.dialogRef = null;
+			}
 		});
 	}
 }

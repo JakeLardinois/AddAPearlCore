@@ -112,7 +112,7 @@ export class CompanyListComponent {
 				this.companies[index] = this.selectedCompany;
 				this.dialogRef = null;
 			} else {
-				this.logger.debug('Edit Cancelled');
+				this.logger.debug('Company Edit Cancelled');
 				this.dialogRef = null;
 			}
 			
@@ -181,6 +181,7 @@ export class CompanyListComponent {
 					this.dialogRef = null;
 				}
 			} else {
+				this.logger.debug('Company Address Edit Cancelled');
 				this.dialogRef = null;
 			}
 

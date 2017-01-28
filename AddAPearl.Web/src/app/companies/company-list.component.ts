@@ -113,6 +113,7 @@ export class CompanyListComponent {
 				this.dialogRef = null;
 			} else {
 				this.logger.debug('Edit Cancelled');
+				this.dialogRef = null;
 			}
 			
 		});
@@ -157,19 +158,32 @@ export class CompanyListComponent {
 			disableClose: false,
 		});
 		this.dialogRef.componentInstance.addressName = this.selectedCompany.companyName;
-		this.dialogRef.componentInstance.address = this.selectedCompany.address;
+		this.dialogRef.componentInstance.address = _.cloneDeep(this.selectedCompany.address);
 
 		this.dialogRef.afterClosed().subscribe((returnedAddress) => {
-			this.observer = jsonpatch.observe(this.selectedCompany);
-			this.selectedCompany.addressId = returnedAddress.addressId;
-			let patches = jsonpatch.generate(this.observer); // generate patches for if the address Id changed
+			if (returnedAddress) {
+				this.logger.debug('result: ' + returnedAddress);
+				this.selectedCompany.address = null; //otherwise patches will get generated for previous address changes
+				this.observer = jsonpatch.observe(this.selectedCompany);
+				this.selectedCompany.addressId = returnedAddress.addressId;
+				let patches = jsonpatch.generate(this.observer); // generate patches for if the address Id changed
 
-			this.selectedCompany.address.addressId = returnedAddress.addressId; // since the Id isn't bound to the DOM, it stays null for newly created addresses
-			this.companyService.patchCompany(this.selectedCompany, patches)
-				.subscribe((company) => this.selectedCompany = company,
-					(error) => this.logger.error(error));
-			this.logger.debug('result: ' + returnedAddress);
-			this.dialogRef = null;
+				if (patches.length > 0) {
+					this.companyService.patchCompany(this.selectedCompany, patches)
+						.subscribe((company) => {
+							let index = this.companies.indexOf(this.selectedCompany);
+							this.selectedCompany = company;
+							this.companies[index] = this.selectedCompany;
+							this.dialogRef = null;
+						}, (error) => this.logger.error(error));
+				} else {
+					this.selectedCompany.address = returnedAddress;
+					this.dialogRef = null;
+				}
+			} else {
+				this.dialogRef = null;
+			}
+
 		});
 	}
 }

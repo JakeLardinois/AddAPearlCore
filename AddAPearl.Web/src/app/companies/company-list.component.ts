@@ -72,7 +72,7 @@ export class CompanyListComponent {
 		this.dialogRef.componentInstance.company = this.selectedCompany;
 
 		this.dialogRef.afterClosed().subscribe((returnedCompany) => {
-			this.logger.debug('result: ' + returnedCompany);
+			this.logger.debug('result: ' + JSON.stringify(returnedCompany));
 			this.companies.push(returnedCompany);
 			this.dialogRef = null;
 		});
@@ -106,7 +106,7 @@ export class CompanyListComponent {
 
 		this.dialogRef.afterClosed().subscribe((returnedCompany) => {
 			if (returnedCompany) {
-				this.logger.debug('result: ' + returnedCompany);
+				this.logger.debug('result: ' + JSON.stringify(returnedCompany));
 				let index = this.companies.indexOf(this.selectedCompany);
 				this.selectedCompany = returnedCompany;
 				this.companies[index] = this.selectedCompany;
@@ -162,7 +162,7 @@ export class CompanyListComponent {
 
 		this.dialogRef.afterClosed().subscribe((returnedAddress) => {
 			if (returnedAddress) {
-				this.logger.debug('result: ' + returnedAddress);
+				this.logger.debug('result: ' + JSON.stringify(returnedAddress));
 				this.selectedCompany.address = null; //otherwise patches will get generated for previous address changes
 				this.observer = jsonpatch.observe(this.selectedCompany);
 				this.selectedCompany.addressId = returnedAddress.addressId;

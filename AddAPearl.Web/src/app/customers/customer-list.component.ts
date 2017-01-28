@@ -77,7 +77,7 @@ export class CustomerListComponent {
 		this.dialogRef.componentInstance.customer = this.selectedCustomer;
 
 		this.dialogRef.afterClosed().subscribe((returnedCustomer) => {
-			this.logger.debug('result: ' + returnedCustomer);
+			this.logger.debug('result: ' + JSON.stringify(returnedCustomer));
 			this.customers.push(returnedCustomer);
 			this.dialogRef = null;
 		});
@@ -109,7 +109,7 @@ export class CustomerListComponent {
 		this.dialogRef.componentInstance.customer = this.selectedCustomer;
 
 		this.dialogRef.afterClosed().subscribe((returnedCustomer) => {
-			this.logger.debug('result: ' + returnedCustomer);
+			this.logger.debug('result: ' + JSON.stringify(returnedCustomer));
 			this.dialogRef = null;
 		});
 	}
@@ -158,7 +158,7 @@ export class CustomerListComponent {
 			this.customerService.patchCustomer(this.selectedCustomer, patches)
 				.subscribe((customer) => this.selectedCustomer = customer,
 					(error) => this.logger.error(error));
-			this.logger.debug('result: ' + returnedAddress);
+			this.logger.debug('result: ' + JSON.stringify(returnedAddress));
 			this.dialogRef = null;
 		});
 	}

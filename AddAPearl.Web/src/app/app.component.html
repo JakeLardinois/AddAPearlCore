@@ -1,15 +1,15 @@
 <h1>{{pageTitle}}</h1>
 
-<button md-button [routerLink]="['/welcome']">Home</button>
+<button mdl-button [routerLink]="['/welcome']">Home</button>
 
-<button md-button [md-menu-trigger-for]="companiesmenu">Companies</button>
+<button mdl-button [md-menu-trigger-for]="companiesmenu">Companies</button>
 <md-menu #companiesmenu="mdMenu">
-	<a md-menu-item [routerLink]="['/companies']">Company List</a>
+	<button mdl-button mdl-colored="primary" [routerLink]="['/companies']">Company List</button>
 </md-menu>
 
-<button md-button [md-menu-trigger-for]="customersmenu">Customers</button>
+<button mdl-button [md-menu-trigger-for]="customersmenu">Customers</button>
 <md-menu #customersmenu="mdMenu">
-	<a md-menu-item [routerLink]="['/customers']">Customer List</a>
+	<button mdl-button mdl-colored="primary"  [routerLink]="['/customers']">Customer List</button>
 </md-menu>
 
 <div class='container'>

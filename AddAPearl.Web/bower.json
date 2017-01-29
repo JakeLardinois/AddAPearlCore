@@ -1,0 +1,13 @@
+{
+  "name": "addapearl",
+  "description": "A website for tracking add-a-pearl necklaces",
+  "main": "",
+  "authors": [
+    "Jake Lardinois"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/JakeLardinois/AddAPearlCore",
+  "private": true,
+  "dependencies": {
+  }
+}

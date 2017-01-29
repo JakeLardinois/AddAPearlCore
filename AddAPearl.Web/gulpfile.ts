@@ -169,17 +169,19 @@ gulp.task('libs', () => {
 gulp.task('watch', () => {
     gulp.watch(config.client.ts, ['compile', 'source-typescript'])
         .on('change', changeEvent);
-    gulp.watch([config.client.html, config.client.css], ['resources'])
-        .on('change', changeEvent);
+    /*gulp.watch([config.client.html], ['resources', 'processBower'])
+        .on('change', changeEvent);*/
     gulp.watch(config.client.sass, ['sass', 'source-sass'])
         .on('change', changeEvent);
 });
 
-gulp.task('build-prod', ['compile', 'sass', 'resources', 'libs', 'processBower'], () => {
+gulp.task('build-prod', [], (cb:any) => {
+    runSequence('clean',['compile', 'sass', 'resources', 'libs', 'bowerScripts', 'bowerCss'], 'indexBower', cb);
     Log('Built the production project!');
 });
 
-gulp.task('build-dev', ['compile', 'sass', 'source', 'resources', 'libs', 'processBower'], () => {
+gulp.task('build-dev', [], (cb:any) => {
+    runSequence('clean',['compile', 'sass', 'source', 'resources', 'libs', 'bowerScripts', 'bowerCss'], 'indexBower', cb);
     Log('Built the development project!');
 });
 

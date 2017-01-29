@@ -42,6 +42,14 @@
                             {{apiValidationErrors.phoneNumber[0]}}
                         </p>
                     </td>
+                    <td>
+                        <md-input placeholder="Birthday" type="text" [(ngModel)]="customer.birthDay" name="birthDay" formControlName="customerBirthDayValidator">
+                            <md-hint *ngIf="customerForm.controls.customerBirthDayValidator.errors?.date" [ngStyle]="{'color': 'red'}" align="start">Incorrect Birthday</md-hint>
+                        </md-input>
+                        <p *ngIf="apiValidationErrors.birthDay" [ngStyle]="{'color': 'red'}">
+                            {{apiValidationErrors.birthDay[0]}}
+                        </p>
+                    </td>
                 </tr>
             </table>
         </form>

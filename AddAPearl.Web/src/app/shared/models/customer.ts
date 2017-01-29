@@ -9,7 +9,7 @@ export interface ICustomer {
 	firstName: string;
 	lastName: string;
 	phoneNumber: string;
-	birthday: string;
+	birthDay: string;
 	email: string;
 	addressId: number;
 	address: IAddress;
@@ -23,7 +23,7 @@ export class Customer implements ICustomer {
 		public firstName: string,
 		public lastName: string,
 		public phoneNumber: string,
-		public birthday: string,
+		public birthDay: string,
 		public email: string,
 		public addressId: number,
 		public address: IAddress,

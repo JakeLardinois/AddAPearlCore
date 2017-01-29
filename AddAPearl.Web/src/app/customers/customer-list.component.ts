@@ -65,7 +65,7 @@ export class CustomerListComponent {
 		this.selectedCustomer = {
 			address: null,
 			addressId: null,
-			birthday: null,
+			birthDay: null,
 			company: null,
 			companyId: null,
 			customerId: null,
@@ -160,7 +160,7 @@ export class CustomerListComponent {
 		this.dialogRef.afterClosed().subscribe((returnedAddress) => {
 			if (returnedAddress) {
 				this.logger.debug('result: ' + JSON.stringify(returnedAddress));
-				this.selectedCustomer.address = null; //otherwise patches will get generated for previous address changes
+				this.selectedCustomer.address = null; // otherwise patches will get generated for previous address changes
 				this.observer = jsonpatch.observe(this.selectedCustomer);
 				this.selectedCustomer.addressId = returnedAddress.addressId;
 				let patches = jsonpatch.generate(this.observer); // generate patches for if the address Id changed

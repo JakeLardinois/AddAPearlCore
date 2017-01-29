@@ -101,7 +101,7 @@ export class CompanyListComponent {
 		this.dialogRef = this.dialog.open(CompanyDialog, {
 			disableClose: false,
 		});
-		
+
 		this.dialogRef.componentInstance.company = _.cloneDeep(this.selectedCompany);
 
 		this.dialogRef.afterClosed().subscribe((returnedCompany) => {
@@ -115,7 +115,6 @@ export class CompanyListComponent {
 				this.logger.debug('Company Edit Cancelled');
 				this.dialogRef = null;
 			}
-			
 		});
 	}
 
@@ -163,7 +162,7 @@ export class CompanyListComponent {
 		this.dialogRef.afterClosed().subscribe((returnedAddress) => {
 			if (returnedAddress) {
 				this.logger.debug('result: ' + JSON.stringify(returnedAddress));
-				this.selectedCompany.address = null; //otherwise patches will get generated for previous address changes
+				this.selectedCompany.address = null; // otherwise patches will get generated for previous address changes
 				this.observer = jsonpatch.observe(this.selectedCompany);
 				this.selectedCompany.addressId = returnedAddress.addressId;
 				let patches = jsonpatch.generate(this.observer); // generate patches for if the address Id changed

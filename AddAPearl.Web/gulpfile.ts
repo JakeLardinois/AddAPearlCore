@@ -21,6 +21,14 @@ gulp.task('processBower', (cb:any) => {
     runSequence(['bowerScripts', 'bowerCss'], 'indexBower', cb);
 });
 
+gulp.task('bowerFiles', (cb:any) => {
+    var bowerfiles = wiredep();
+    
+    return gulp.src(bowerfiles)
+            .pipe($.debug({title: 'BowerFiles:'}))
+            .pipe(gulp.dest('./build/vendor'));
+});
+
 //Bower file collection
 gulp.task('bowerScripts', (cb:any) => {
     var bowerJs = wiredep().js;
@@ -71,7 +79,7 @@ gulp.task('indexBower', () => {
             }), {
                 addRootSlash: false,
                 transform: (filePath:any, file:any, i:any, length:any) => {
-                    return '<script src="' + filePath.replace('client/', '') + '"></script>';
+                    return '<script src="' + filePath.replace('build/', '') + '"></script>';
                 }
             }))
 
@@ -81,7 +89,7 @@ gulp.task('indexBower', () => {
             }), {
                 addRootSlash: false,
                 transform: (filePath:any, file:any, i:any, length:any) => {
-                    return '<link rel="stylesheet" href="' + filePath.replace('client/', '') + '"/>';
+                    return '<link rel="stylesheet" href="' + filePath.replace('build/', '') + '"/>';
                 }
             }))
         .pipe(gulp.dest('build'));

@@ -42,7 +42,7 @@ export class AddressService {
 			headers: myheaders,
 		}); // Create a request option
 		return this.http.post(`${this.addressesUrl}/address`, bodyString, options)
-			.map((response: Response) => < IAddress > response.json())
+			.map((response: Response) => response.json() as IAddress)
 			.toPromise()
 			.catch((err: any) => {
 				this.logger.error('Address Service createAddress Error: ' + err);

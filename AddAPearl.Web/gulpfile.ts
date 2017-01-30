@@ -228,10 +228,15 @@ gulp.task('source-sass', () => {
         .pipe(gulp.dest('build/src'))
 });
 
-/*Copy all source SCSS files into the build/src directory*/
+/*Copy all source html files into the build directory*/
 gulp.task('source-html', () => {
     return gulp.src(config.client.html)
         .pipe(gulp.dest('build'))
+});
+
+/*Copy all source html files into the build directory and then modify index.html to include the bower scripts and css*/
+gulp.task('processHtml', (cb:any) => {
+    runSequence(['source-html'], 'indexBower', cb);
 });
 
 /*Copy all resources that are not TypeScript or SCSS files into build directory.*/
@@ -266,7 +271,7 @@ gulp.task('libs', () => {
 gulp.task('watch', () => {
     gulp.watch(config.client.ts, ['compile', 'source-typescript'])
         .on('change', changeEvent);
-    gulp.watch([config.client.html], ['indexBower'])
+    gulp.watch([config.client.html], ['processHtml'])
         .on('change', changeEvent);
     gulp.watch(config.client.sass, ['sass', 'source-sass'])
         .on('change', changeEvent);

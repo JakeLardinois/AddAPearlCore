@@ -9,5 +9,7 @@
   "homepage": "https://github.com/JakeLardinois/AddAPearlCore",
   "private": true,
   "dependencies": {
-  }
+    "vaadin-date-picker": "^1.2.1"
+  },
+  "devDependencies": {}
 }

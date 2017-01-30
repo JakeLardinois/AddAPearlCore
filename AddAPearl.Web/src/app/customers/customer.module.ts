@@ -1,4 +1,5 @@
 import {
+	CUSTOM_ELEMENTS_SCHEMA,
 	NgModule,
 } from '@angular/core';
 import {
@@ -14,6 +15,9 @@ import {
 import {
 	RouterModule,
 } from '@angular/router';
+import {
+	PolymerElement,
+} from '@vaadin/angular2-polymer';
 import {
 	MdlModule,
 } from 'angular2-mdl';
@@ -38,6 +42,7 @@ import {
 		CustomerListComponent,
 		CustomerDialog,
 		CustomerFilterPipe,
+		PolymerElement('vaadin-date-picker'),
 	],
 	entryComponents: [
 		CustomerDialog,

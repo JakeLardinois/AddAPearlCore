@@ -12,6 +12,9 @@ import {
 	MdSnackBarConfig,
 } from '@angular/material';
 import {
+	PolymerElement,
+} from '@vaadin/angular2-polymer';
+import {
 	Logger,
 } from 'angular2-logger/core';
 import {
@@ -83,11 +86,11 @@ export class CustomerDialog {
 		this.snackBarConfig.duration = 5000;
 
 		this.customerForm = new FormGroup({
+			customerBirthDayValidator: new FormControl('', CustomValidators.date),
 			customerEmailValidator: new FormControl('', CustomValidators.email),
 			customerFirstNameValidator: new FormControl('', Validators.required),
 			customerLastNameValidator: new FormControl('', Validators.required),
 			customerPhoneNumberValidator: new FormControl('', CustomValidators.phone('en-US')),
-			customerBirthDayValidator: new FormControl('', CustomValidators.date),
 		});
 
 		this.observer = jsonpatch.observe(this.customer);

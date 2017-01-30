@@ -13,7 +13,8 @@
     "curly": true,
     "quotemark": [true, "single", "avoid-escape"],
     "indent": [true, "tabs"],
-    "max-line-length": [true, 200]
+    "max-line-length": [true, 200],
+    "prefer-const": [false]
   },
   "jsRules": {
     /*

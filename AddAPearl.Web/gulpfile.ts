@@ -41,7 +41,8 @@ gulp.task('bowerScripts', (cb:any) => {
             .pipe($.uglify({
                 mangle: false
             }))
-            .pipe(gulp.dest('./build/vendor'));
+            .pipe(gulp.dest('./build/vendor'))
+            .pipe($.debug({title: 'ConcantenatedBowerJavaScript:'}));
     } else {
         Log('No Bower scripts!');
         cb();
@@ -58,7 +59,8 @@ gulp.task('bowerCss', (cb:any) => {
             .pipe($.cssmin())
             .pipe($.concat('vendor.min.css'))
             .pipe($.rev())
-            .pipe(gulp.dest('./build/vendor'));
+            .pipe(gulp.dest('./build/vendor'))
+            .pipe($.debug({title: 'ConcantenatedBowerCss:'}));
     } else {
         Log('No Bower css!');
         cb();
@@ -66,10 +68,41 @@ gulp.task('bowerCss', (cb:any) => {
     }
 });
 
-//inject all Bower js & css links into index.html
-gulp.task('indexBower', () => {
+
+
+//inject ALL Bower js & css links into index.html
+gulp.task('indexAllBower', () => {
     var bowerJsFiles = ['build/vendor/**/*.js'];
     var bowerCssFiles = ['build/vendor/**/*.css'];
+
+    return gulp.src('src/index.html')
+
+        .pipe($.inject(
+            gulp.src(bowerJsFiles, {
+                read: false
+            }), {
+                addRootSlash: false,
+                transform: (filePath:any, file:any, i:any, length:any) => {
+                    return '<script src="' + filePath.replace('build/', '') + '"></script>';
+                }
+            }))
+
+        .pipe($.inject(
+            gulp.src(bowerCssFiles, {
+                read: false
+            }), {
+                addRootSlash: false,
+                transform: (filePath:any, file:any, i:any, length:any) => {
+                    return '<link rel="stylesheet" href="' + filePath.replace('build/', '') + '"/>';
+                }
+            }))
+        .pipe(gulp.dest('build'));
+});
+
+//inject ONLY concantenated and minified Bower js & css links into index.html
+gulp.task('indexBower', () => {
+    var bowerJsFiles = ['build/vendor/vendor-*.min.js'];
+    var bowerCssFiles = ['build/vendor/vendor-*.min.css'];
 
     return gulp.src('src/index.html')
 

@@ -18,15 +18,7 @@ gulp.task('clean', (cb:any) => {
 });
 
 gulp.task('processBower', (cb:any) => {
-    runSequence(['bowerScripts', 'bowerCss'], 'indexBower', cb);
-});
-
-gulp.task('bowerFiles', (cb:any) => {
-    var bowerfiles = wiredep();
-    
-    return gulp.src(bowerfiles)
-            .pipe($.debug({title: 'BowerFiles:'}))
-            .pipe(gulp.dest('./build/vendor'));
+    runSequence(['bowerScripts', 'bowerCss', 'bowerFiles'], 'indexBower', cb);
 });
 
 //Bower file collection
@@ -41,7 +33,7 @@ gulp.task('bowerScripts', (cb:any) => {
             .pipe($.uglify({
                 mangle: false
             }))
-            .pipe(gulp.dest('./build/vendor'))
+            .pipe(gulp.dest('./build/bower'))
             .pipe($.debug({title: 'ConcantenatedBowerJavaScript:'}));
     } else {
         Log('No Bower scripts!');
@@ -59,7 +51,7 @@ gulp.task('bowerCss', (cb:any) => {
             .pipe($.cssmin())
             .pipe($.concat('vendor.min.css'))
             .pipe($.rev())
-            .pipe(gulp.dest('./build/vendor'))
+            .pipe(gulp.dest('./build/bower'))
             .pipe($.debug({title: 'ConcantenatedBowerCss:'}));
     } else {
         Log('No Bower css!');
@@ -68,12 +60,10 @@ gulp.task('bowerCss', (cb:any) => {
     }
 });
 
-
-
 //inject ALL Bower js & css links into index.html
 gulp.task('indexAllBower', () => {
-    var bowerJsFiles = ['build/vendor/**/*.js'];
-    var bowerCssFiles = ['build/vendor/**/*.css'];
+    var bowerJsFiles = ['build/bower/**/*.js'];
+    var bowerCssFiles = ['build/bower/**/*.css'];
 
     return gulp.src('src/index.html')
 
@@ -101,8 +91,8 @@ gulp.task('indexAllBower', () => {
 
 //inject ONLY concantenated and minified Bower js & css links into index.html
 gulp.task('indexBower', () => {
-    var bowerJsFiles = ['build/vendor/vendor-*.min.js'];
-    var bowerCssFiles = ['build/vendor/vendor-*.min.css'];
+    var bowerJsFiles = ['build/bower/vendor-*.min.js'];
+    var bowerCssFiles = ['build/bower/vendor-*.min.css'];
 
     return gulp.src('src/index.html')
 
@@ -126,6 +116,65 @@ gulp.task('indexBower', () => {
                 }
             }))
         .pipe(gulp.dest('build'));
+});
+
+/*This task gets all the Bower js, css and html files (For all Polymer Elements) using gulp source and copies them into a directory */
+gulp.task('bowerFiles', function() {
+    return gulp.src(['bower_components/**/*.js', 'bower_components/**/*.css', 'bower_components/**/*.html'])
+        .pipe($.debug({title: 'BowerFiles:'}))
+        .pipe(gulp.dest('./build/bower'));
+});
+
+/*Uses gulp-main-bower-files plugin to copy all necessary files specified in bower.json into a directory.  I had problems with it getting all the files 
+* that the application required (because Bower is used here mainly for Polymer Elements) and so I had to use the override option.*/
+gulp.task('main-bower-files', function() {
+    return gulp.src('./bower.json')
+        .pipe($.mainBowerFiles({
+            overrides: {
+                "vaadin-date-picker": {
+                    main: [
+                        '**/*.html'
+                    ]
+                },
+                "neon-animation": {
+                    main: [
+                        '**/*.html'
+                    ]
+                },
+                "iron-dropdown": {
+                    main: [
+                        '**/*.html'
+                    ]
+                },
+                "paper-styles": {
+                    main: [
+                        '**/*.html'
+                    ]
+                },
+                "iron-overlay-behavior": {
+                    main: [
+                        '**/*.html'
+                    ]
+                },
+                "paper-material": {
+                    main: [
+                        '**/*.html'
+                    ]
+                },
+                "web-animations-js": {
+                    main: [
+                        '**/*.js'
+                    ]
+                },
+                "paper-behaviors": {
+                    main: [
+                        '**/*.html'
+                    ]
+                }
+            }
+        }))
+        .pipe($.debug({title: 'BowerFiles:'}))
+        .pipe(gulp.dest('./build/bower'));
 });
 
 /*Compile the SCSS files into the build directory*/
@@ -213,62 +262,6 @@ gulp.task('libs', () => {
         .pipe(gulp.dest('build/lib'));
 });
 
-gulp.task('main-bower-files', function() {
-    return gulp.src('./bower.json')
-        .pipe($.mainBowerFiles({
-            overrides: {
-                "vaadin-date-picker": {
-                    main: [
-                        '**/*.html'
-                    ]
-                },
-                "neon-animation": {
-                    main: [
-                        '**/*.html'
-                    ]
-                },
-                "iron-dropdown": {
-                    main: [
-                        '**/*.html'
-                    ]
-                },
-                "paper-styles": {
-                    main: [
-                        '**/*.html'
-                    ]
-                },
-                "iron-overlay-behavior": {
-                    main: [
-                        '**/*.html'
-                    ]
-                },
-                "paper-material": {
-                    main: [
-                        '**/*.html'
-                    ]
-                },
-                "web-animations-js": {
-                    main: [
-                        '**/*.js'
-                    ]
-                },
-                "paper-behaviors": {
-                    main: [
-                        '**/*.html'
-                    ]
-                }
-            }
-        }))
-        .pipe($.debug({title: 'BowerFiles:'}))
-        .pipe(gulp.dest('./wwwroot/libs'));
-});
-
-gulp.task('main-bower-files2', function() {
-    return gulp.src(['bower_components/**/*.js', 'bower_components/**/*.css', 'bower_components/**/*.html'])
-        .pipe($.debug({title: 'BowerFiles:'}))
-        .pipe(gulp.dest('./wwwroot/libs'));
-});
-
 /*Add watch rules*/
 gulp.task('watch', () => {
     gulp.watch(config.client.ts, ['compile', 'source-typescript'])
@@ -279,14 +272,12 @@ gulp.task('watch', () => {
         .on('change', changeEvent);
 });
 
-gulp.task('build-prod', [], (cb:any) => {
-    runSequence('clean',['compile', 'sass', 'resources', 'libs', 'bowerScripts', 'bowerCss'], 'indexBower', cb);
-    //Log('Built the production project!');
+gulp.task('build-prod', ['compile', 'sass', 'resources', 'libs', 'processBower'], (cb:any) => {
+    Log('Built the production project!');
 });
 
-gulp.task('build-dev', [], (cb:any) => {
-    runSequence('clean',['compile', 'sass', 'source', 'resources', 'libs', 'bowerScripts', 'bowerCss'], 'indexBower', cb);
-    //Log('Built the development project!');
+gulp.task('build-dev', ['compile', 'sass', 'source', 'resources', 'libs', 'processBower'], (cb:any) => {
+    Log('Built the development project!');
 });
 
 function changeEvent(event:any) {

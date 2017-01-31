@@ -24,6 +24,7 @@ declare var System: any;
 			'fast-json-patch': 'npm:fast-json-patch/dist',
 			'hammerjs': 'npm:hammerjs',
 			'lodash': 'npm:lodash',
+			'moment': 'npm:moment',
 			'ng2-validation': 'npm:ng2-validation/dist',
 			'rxjs': 'npm:rxjs',
 		},
@@ -54,6 +55,10 @@ declare var System: any;
 			'lodash': {
 				defaultExtension: 'js',
 				main: './lodash',
+			},
+			'moment': {
+				defaultExtension: 'js',
+				main: './min/moment.min',
 			},
 			'ng2-validation': {
 				defaultExtension: 'js',

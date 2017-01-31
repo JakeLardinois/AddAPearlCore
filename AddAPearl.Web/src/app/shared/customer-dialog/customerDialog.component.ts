@@ -26,6 +26,7 @@ import {
 } from '../services/customer.service';
 
 import * as jsonpatch from 'fast-json-patch';
+import * as moment from 'moment';
 
 @Component({
 	moduleId: module.id,
@@ -40,7 +41,6 @@ export class CustomerDialog {
 	public observer: any;
 	public apiValidationErrors: any;
 	private snackBarConfig = new MdSnackBarConfig();
-	public birthday = '1977-05-22';
 
 	public constructor(
 		public dialogRef: MdDialogRef < CustomerDialog >,
@@ -90,6 +90,8 @@ export class CustomerDialog {
 			customerLastNameValidator: new FormControl('', Validators.required),
 			customerPhoneNumberValidator: new FormControl('', CustomValidators.phone('en-US')),
 		});
+		
+		this.customer.birthDay = moment(this.customer.birthDay).format('YYYY-MM-DD');
 
 		this.observer = jsonpatch.observe(this.customer);
 	}

@@ -12,9 +12,6 @@ import {
 	MdSnackBarConfig,
 } from '@angular/material';
 import {
-	PolymerElement,
-} from '@vaadin/angular2-polymer';
-import {
 	Logger,
 } from 'angular2-logger/core';
 import {

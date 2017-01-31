@@ -59,6 +59,7 @@ import {
 			path: 'customers',
 		}]),
 	],
+	schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 	providers: [
 		AddressService,
 		CustomerService,

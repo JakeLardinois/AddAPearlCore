@@ -40,6 +40,7 @@ export class CustomerDialog {
 	public observer: any;
 	public apiValidationErrors: any;
 	private snackBarConfig = new MdSnackBarConfig();
+	public birthday = '1977-05-22';
 
 	public constructor(
 		public dialogRef: MdDialogRef < CustomerDialog >,

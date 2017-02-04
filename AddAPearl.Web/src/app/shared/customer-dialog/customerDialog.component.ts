@@ -91,7 +91,7 @@ export class CustomerDialog {
 			customerPhoneNumberValidator: new FormControl('', CustomValidators.phone('en-US')),
 		});
 		if (this.customer.birthDay === null) {
-			this.customer.birthDay = new Date().toDateString();
+			this.customer.birthDay = new Date().toISOString();
 		}
 		this.customer.birthDay = moment(this.customer.birthDay).format('YYYY-MM-DD');
 

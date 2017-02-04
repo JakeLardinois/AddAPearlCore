@@ -90,7 +90,9 @@ export class CustomerDialog {
 			customerLastNameValidator: new FormControl('', Validators.required),
 			customerPhoneNumberValidator: new FormControl('', CustomValidators.phone('en-US')),
 		});
-		
+		if (this.customer.birthDay === null) {
+			this.customer.birthDay = new Date().toDateString();
+		}
 		this.customer.birthDay = moment(this.customer.birthDay).format('YYYY-MM-DD');
 
 		this.observer = jsonpatch.observe(this.customer);

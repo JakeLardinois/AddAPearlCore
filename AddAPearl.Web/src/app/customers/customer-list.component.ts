@@ -77,8 +77,13 @@ export class CustomerListComponent {
 		this.dialogRef.componentInstance.customer = this.selectedCustomer;
 
 		this.dialogRef.afterClosed().subscribe((returnedCustomer) => {
-			this.logger.debug('result: ' + JSON.stringify(returnedCustomer));
-			this.customers.push(returnedCustomer);
+			if (returnedCustomer) {
+				this.logger.debug('result: ' + JSON.stringify(returnedCustomer));
+				this.customers.push(returnedCustomer);
+			} else {
+				this.logger.debug('Customer creation canceled');
+			}
+			
 			this.dialogRef = null;
 		});
 	}

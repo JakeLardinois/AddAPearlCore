@@ -43,6 +43,7 @@ import {
 		CustomerDialog,
 		CustomerFilterPipe,
 		PolymerElement('vaadin-date-picker'),
+		PolymerElement('vaadin-combo-box'),
 	],
 	entryComponents: [
 		CustomerDialog,

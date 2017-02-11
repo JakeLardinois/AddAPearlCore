@@ -10,7 +10,8 @@
   "private": true,
   "dependencies": {
     "vaadin-date-picker": "^1.2.1",
-    "iron-iconset-svg": "^1.1.0"
+    "iron-iconset-svg": "^1.1.0",
+    "vaadin-combo-box": "^1.2.0"
   },
   "devDependencies": {}
 }

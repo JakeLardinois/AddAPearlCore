@@ -22,6 +22,9 @@
                             {{apiValidationErrors.lastName[0]}}
                         </p>
                     </td>
+                    <td>
+                        <vaadin-combo-box label="Skill Level" [items]="skillLevels" [(value)]="selectedSkillLevel"></vaadin-combo-box>
+                    </td>
                 </tr>
                 <tr>
                     <td>

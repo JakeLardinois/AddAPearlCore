@@ -136,6 +136,11 @@ gulp.task('main-bower-files', function() {
                         '**/*.html'
                     ]
                 },
+                "vaadin-combo-box": {
+                    main: [
+                        '**/*.html'
+                    ]
+                },
                 "neon-animation": {
                     main: [
                         '**/*.html'

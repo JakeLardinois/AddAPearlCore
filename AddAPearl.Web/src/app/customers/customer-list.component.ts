@@ -83,7 +83,7 @@ export class CustomerListComponent {
 			} else {
 				this.logger.debug('Customer creation canceled');
 			}
-			
+
 			this.dialogRef = null;
 		});
 	}

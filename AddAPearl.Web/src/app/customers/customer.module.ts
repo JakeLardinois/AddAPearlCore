@@ -59,11 +59,11 @@ import {
 			path: 'customers',
 		}]),
 	],
-	schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 	providers: [
 		AddressService,
 		CustomerService,
 	],
+	schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })
 
 export class CustomerModule {}

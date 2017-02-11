@@ -59,7 +59,7 @@ export class AddressService {
 			headers: myheaders,
 		}); // Create a request option
 		return this.http.patch(`${this.addressesUrl}/address/${address.addressId}`, bodyString, options)
-			.map((response: Response) => < IAddress > response.json())
+			.map((response: Response) => response.json() as IAddress)
 			.do((data) => this.logger.debug('Returned patchAddress: ' + JSON.stringify(data)))
 			.catch(this.handleError);
 	}

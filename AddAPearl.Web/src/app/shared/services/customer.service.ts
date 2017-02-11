@@ -33,7 +33,7 @@ export class CustomerService {
 	}
 	public getCustomers(): Observable < ICustomer[] > {
 		return this.http.get(this.customersUrl)
-			.map((response: Response) => < ICustomer[] > response.json())
+			.map((response: Response) => response.json() as ICustomer[])
 			.do((data) => this.logger.debug('Returned getCustomers: ' + JSON.stringify(data)))
 			.catch(this.handleError);
 	}
@@ -49,7 +49,7 @@ export class CustomerService {
 			headers: myheaders,
 		}); // Create a request option
 		return this.http.post(`${this.customersUrl}/customer`, bodyString, options)
-			.map((response: Response) => < ICustomer > response.json())
+			.map((response: Response) => response.json() as ICustomer)
 			.toPromise()
 			.catch((err: any) => {
 				this.logger.error('Customer Service createCustomer Error: ' + err);
@@ -66,7 +66,7 @@ export class CustomerService {
 			headers: myheaders,
 		}); // Create a request option
 		return this.http.patch(`${this.customersUrl}/customer/${customer.customerId}`, bodyString, options)
-			.map((response: Response) => < ICustomer > response.json())
+			.map((response: Response) => response.json() as ICustomer)
 			.do((data) => this.logger.debug('Returned patchCustomer: ' + JSON.stringify(data)))
 			.catch(this.handleError);
 	}
@@ -79,7 +79,7 @@ export class CustomerService {
 			headers: myheaders,
 		}); // Create a request option
 		return this.http.delete(`${this.customersUrl}/customer/${customer.customerId}`, options)
-			.map((response: Response) => < ICustomer > response.json())
+			.map((response: Response) => response.json() as ICustomer)
 			.toPromise()
 			.catch((err: any) => {
 				this.logger.error('Customer Service deleteCustomer Error: ' + err);

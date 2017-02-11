@@ -33,7 +33,7 @@ export class CompanyService {
 	}
 	public getCompanies(): Observable < ICompany[] > {
 		return this.http.get(this.companiesUrl)
-			.map((response: Response) => < ICompany[] > response.json())
+			.map((response: Response) => response.json() as ICompany[])
 			.do((data) => this.logger.debug('Returned getCompanies: ' + JSON.stringify(data)))
 			.catch(this.handleError);
 	}
@@ -49,7 +49,7 @@ export class CompanyService {
 			headers: myheaders,
 		}); // Create a request option
 		return this.http.post(`${this.companiesUrl}/company`, bodyString, options)
-			.map((response: Response) => < ICompany > response.json())
+			.map((response: Response) => response.json() as ICompany)
 			.toPromise()
 			.catch((err: any) => {
 				this.logger.error('Company Service createCompany Error: ' + err);
@@ -66,7 +66,7 @@ export class CompanyService {
 			headers: myheaders,
 		}); // Create a request option
 		return this.http.patch(`${this.companiesUrl}/company/${company.companyId}`, bodyString, options)
-			.map((response: Response) => < ICompany > response.json())
+			.map((response: Response) => response.json() as ICompany)
 			.do((data) => this.logger.debug('Returned patchCompany: ' + JSON.stringify(data)))
 			.catch(this.handleError);
 	}
@@ -79,7 +79,7 @@ export class CompanyService {
 			headers: myheaders,
 		}); // Create a request option
 		return this.http.delete(`${this.companiesUrl}/company/${company.companyId}`, options)
-			.map((response: Response) => < ICompany > response.json())
+			.map((response: Response) => response.json() as ICompany)
 			.toPromise()
 			.catch((err: any) => {
 				this.logger.error('Company Service deleteCompany Error: ' + err);

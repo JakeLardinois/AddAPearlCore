@@ -20,9 +20,11 @@ import {
 	Address,
 	AddressDialog,
 	AddressService,
+	CompanyService,
 	CustomerDialog,
 	CustomerService,
 	IAddress,
+	ICompany,
 	ICustomer,
 } from '../shared/index';
 
@@ -40,6 +42,7 @@ export class CustomerListComponent {
 	public pageTitle: string = 'Customer List';
 	public dialogRef: MdDialogRef < any > ;
 	public listFilter: string = null;
+	public companies: ICompany[];
 	public customers: ICustomer[];
 	public observer: any;
 	public selectedCustomer: ICustomer;
@@ -48,6 +51,7 @@ export class CustomerListComponent {
 	public constructor(
 		private dialogService: MdlDialogService,
 		private addressService: AddressService,
+		private companyService: CompanyService,
 		private customerService: CustomerService,
 		public dialog: MdDialog,
 		public snackBar: MdSnackBar,
@@ -75,6 +79,7 @@ export class CustomerListComponent {
 			phoneNumber: null,
 		};
 		this.dialogRef.componentInstance.customer = this.selectedCustomer;
+		this.dialogRef.componentInstance.companies = this.companies;
 
 		this.dialogRef.afterClosed().subscribe((returnedCustomer) => {
 			if (returnedCustomer) {
@@ -112,6 +117,7 @@ export class CustomerListComponent {
 			disableClose: false,
 		});
 		this.dialogRef.componentInstance.customer = _.cloneDeep(this.selectedCustomer);
+		this.dialogRef.componentInstance.companies = this.companies;
 
 		this.dialogRef.afterClosed().subscribe((returnedCustomer) => {
 			if (returnedCustomer) {
@@ -151,7 +157,15 @@ export class CustomerListComponent {
 		this.snackBarConfig.duration = 5000;
 
 		this.customerService.getCustomers()
-			.subscribe((customers) => this.customers = customers,
+			.subscribe((customers) => {
+				this.customers = customers;
+			},
+				(error) => this.logger.error(error));
+
+		this.companyService.getCompanies()
+			.subscribe((companies) => {
+				this.companies = companies;
+			},
 				(error) => this.logger.error(error));
 	}
 

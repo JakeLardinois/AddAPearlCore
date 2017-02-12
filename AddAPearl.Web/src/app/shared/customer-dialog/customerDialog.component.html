@@ -1,7 +1,7 @@
 <md-card>
     <md-toolbar color="primary">{{customer.firstName  + ' ' + customer.lastName}}</md-toolbar>
     <md-card-content>
-        <form [formGroup]="customerForm">
+        <form #elementForm="ngForm" [formGroup]="customerForm">
             <p>
             </p>
             <table style="width: 100%" cellspacing="0">
@@ -23,7 +23,11 @@
                         </p>
                     </td>
                     <td>
-                        <vaadin-combo-box label="Skill Level" [items]="skillLevels" [(value)]="selectedSkillLevel"></vaadin-combo-box>
+                        <md-select name="companyId" [(ngModel)]="customer.companyId" formControlName="companyId" placeholder="No value selected">
+                            <md-option *ngFor="let company of companies" [value]="company.companyId">
+                                {{ company.companyName }}
+                            </md-option>
+                        </md-select>
                     </td>
                 </tr>
                 <tr>
@@ -54,7 +58,7 @@
                         </p>
                     </td>
                     <td>
-                        <vaadin-date-picker label="Pick a date" [(value)]="customer.birthDay"></vaadin-date-picker>
+                        <vaadin-date-picker label="Pick a date" formControlName="customerBirthDayValidator" [(ngModel)]="customer.birthDay"></vaadin-date-picker>
                     </td>
                 </tr>
             </table>

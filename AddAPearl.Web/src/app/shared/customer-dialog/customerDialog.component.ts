@@ -19,14 +19,19 @@ import {
 } from 'ng2-validation';
 
 import {
+	ICompany,
 	ICustomer,
 } from '../index';
 import {
 	CustomerService,
 } from '../services/customer.service';
+import {
+	CompanyService,
+} from '../services/company.service';
 
 import * as jsonpatch from 'fast-json-patch';
 import * as moment from 'moment';
+import * as _ from 'lodash';
 
 @Component({
 	moduleId: module.id,
@@ -38,14 +43,18 @@ import * as moment from 'moment';
 export class CustomerDialog {
 	public customer: ICustomer;
 	public customerForm: FormGroup;
+	public companies: ICompany[];
+	public selectedOption: string;
 	public observer: any;
 	public apiValidationErrors: any;
+	public ctrl: any;
 	private snackBarConfig = new MdSnackBarConfig();
 
 	public constructor(
 		public dialogRef: MdDialogRef < CustomerDialog >,
 		public snackBar: MdSnackBar,
 		public customerService: CustomerService,
+		private companyService: CompanyService,
 		private logger: Logger,
 	) {
 		this.apiValidationErrors = {};
@@ -83,12 +92,15 @@ export class CustomerDialog {
 	protected ngOnInit(): void {
 		this.snackBarConfig.duration = 5000;
 
+		let foundCompany = _.find(this.companies, { 'companyId': this.customer.companyId });
+
 		this.customerForm = new FormGroup({
-			customerBirthDayValidator: new FormControl('', CustomValidators.date),
+			customerBirthDayValidator: new FormControl(moment(this.customer.birthDay).format('YYYY-MM-DD'), CustomValidators.date),
 			customerEmailValidator: new FormControl('', CustomValidators.email),
 			customerFirstNameValidator: new FormControl('', Validators.required),
 			customerLastNameValidator: new FormControl('', Validators.required),
 			customerPhoneNumberValidator: new FormControl('', CustomValidators.phone('en-US')),
+			companyId: new FormControl(foundCompany),
 		});
 		if (this.customer.birthDay === null) {
 			this.customer.birthDay = new Date().toISOString();

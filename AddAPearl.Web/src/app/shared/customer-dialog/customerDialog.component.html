@@ -23,11 +23,8 @@
                         </p>
                     </td>
                     <td>
-                        <md-select name="companyId" [(ngModel)]="customer.companyId" formControlName="companyId" placeholder="No value selected">
-                            <md-option *ngFor="let company of companies" [value]="company.companyId">
-                                {{ company.companyName }}
-                            </md-option>
-                        </md-select>
+                        <vaadin-combo-box label="Company" [items]="companies" item-label-path="companyName" item-value-path="companyId" formControlName="companyId" [(ngModel)]="customer.companyId" ngControl="ngForm">
+	                    </vaadin-combo-box>
                     </td>
                 </tr>
                 <tr>

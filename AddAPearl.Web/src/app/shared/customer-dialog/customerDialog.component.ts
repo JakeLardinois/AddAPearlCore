@@ -58,6 +58,11 @@ export class CustomerDialog {
 		private logger: Logger,
 	) {
 		this.apiValidationErrors = {};
+		this.companyService.getCompanies()
+			.subscribe((companies) => {
+				this.companies = companies;
+			},
+				(error) => this.logger.error(error));
 	}
 
 	public updateCustomer(): void {

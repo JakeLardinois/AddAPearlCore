@@ -79,7 +79,6 @@ export class CustomerListComponent {
 			phoneNumber: null,
 		};
 		this.dialogRef.componentInstance.customer = this.selectedCustomer;
-		this.dialogRef.componentInstance.companies = this.companies;
 
 		this.dialogRef.afterClosed().subscribe((returnedCustomer) => {
 			if (returnedCustomer) {
@@ -117,7 +116,6 @@ export class CustomerListComponent {
 			disableClose: false,
 		});
 		this.dialogRef.componentInstance.customer = _.cloneDeep(this.selectedCustomer);
-		this.dialogRef.componentInstance.companies = this.companies;
 
 		this.dialogRef.afterClosed().subscribe((returnedCustomer) => {
 			if (returnedCustomer) {

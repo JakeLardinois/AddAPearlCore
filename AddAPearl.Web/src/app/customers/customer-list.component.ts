@@ -20,7 +20,6 @@ import {
 	Address,
 	AddressDialog,
 	AddressService,
-	CompanyService,
 	CustomerDialog,
 	CustomerService,
 	IAddress,
@@ -42,7 +41,6 @@ export class CustomerListComponent {
 	public pageTitle: string = 'Customer List';
 	public dialogRef: MdDialogRef < any > ;
 	public listFilter: string = null;
-	public companies: ICompany[];
 	public customers: ICustomer[];
 	public observer: any;
 	public selectedCustomer: ICustomer;
@@ -51,7 +49,6 @@ export class CustomerListComponent {
 	public constructor(
 		private dialogService: MdlDialogService,
 		private addressService: AddressService,
-		private companyService: CompanyService,
 		private customerService: CustomerService,
 		public dialog: MdDialog,
 		public snackBar: MdSnackBar,
@@ -158,13 +155,7 @@ export class CustomerListComponent {
 			.subscribe((customers) => {
 				this.customers = customers;
 			},
-				(error) => this.logger.error(error));
-
-		this.companyService.getCompanies()
-			.subscribe((companies) => {
-				this.companies = companies;
-			},
-				(error) => this.logger.error(error));
+			(error) => this.logger.error(error));
 	}
 
 	private openAddressDialog(): void {

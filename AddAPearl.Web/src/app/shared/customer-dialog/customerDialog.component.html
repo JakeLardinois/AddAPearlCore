@@ -23,8 +23,7 @@
                         </p>
                     </td>
                     <td>
-                        <vaadin-combo-box label="Company" [items]="companies" item-label-path="companyName" item-value-path="companyId" formControlName="companyId" [(ngModel)]="customer.companyId" ngControl="ngForm">
-	                    </vaadin-combo-box>
+                        
                     </td>
                 </tr>
                 <tr>
@@ -59,6 +58,11 @@
                     </td>
                 </tr>
             </table>
+            <div class="card-content">
+                <vaadin-combo-box id="company" name="company" label="Company" [items]="companies" item-label-path="companyName" item-value-path="companyId" formControlName="companyId" ngControl="ngForm" [(ngModel)]="customer.companyId" (selected-item-changed)="updateCompany($event)">
+                </vaadin-combo-box>
+            </div>
+            
         </form>
     </md-card-content>
     <md-card-actions align="end">

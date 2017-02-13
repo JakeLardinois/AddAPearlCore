@@ -94,6 +94,13 @@ export class CustomerDialog {
 		}
 	}
 
+	public updateCompany(event:any) {
+		if (event.detail.value) {
+			this.customer.company = event.detail.value;
+			this.customer.companyId = event.detail.value.companyId;
+		}
+	}
+
 	protected ngOnInit(): void {
 		this.snackBarConfig.duration = 5000;
 

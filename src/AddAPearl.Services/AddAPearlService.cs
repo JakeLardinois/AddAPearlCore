@@ -151,7 +151,10 @@ namespace AddAPearl.Services
             var customerToAdd = Mapper.Map<DataAccess.Customer>(customer);
             _addAPearl.Customers.Add(customerToAdd);
             _addAPearl.SaveChanges();
-            return Mapper.Map<Domain.Customer>(customerToAdd);
+            return Mapper.Map<Domain.Customer>(_addAPearl.Customers
+                .Include(a => a.Address)
+                .Include(a => a.Company)
+                .FirstOrDefault(a => a.CustomerId == customerToAdd.CustomerId));
         }
 
         public ICustomer UpdateCustomer(ICustomer customer)

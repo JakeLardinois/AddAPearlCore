@@ -23,6 +23,7 @@ import {
 	CustomerDialog,
 	CustomerService,
 	IAddress,
+	Company,
 	ICompany,
 	ICustomer,
 } from '../shared/index';
@@ -67,7 +68,13 @@ export class CustomerListComponent {
 			address: null,
 			addressId: null,
 			birthDay: null,
-			company: null,
+			company: {
+				companyId : null,
+				companyName : null,
+				email : null,
+				addressId : null,
+				address : null,
+			},
 			companyId: null,
 			customerId: null,
 			email: null,

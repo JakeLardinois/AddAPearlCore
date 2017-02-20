@@ -65,7 +65,8 @@ export class CustomerDialog {
 	}
 
 	public updateCustomer(): void {
-		if (this.customer.customerId == null) { // checks if null or undefined
+		if (this.customer.customerId == null) { // means we are creating a new customer
+			this.customer.company = null;
 			this.customerService.createCustomer(this.customer)
 				.then((customer) => {
 					this.customer = customer;
@@ -97,7 +98,6 @@ export class CustomerDialog {
 		//I don't set this because i don't want jsonpatch to update the company's values
 		/*let foundCompany = _.find(this.companies, { 'companyId': companyId });
 		this.customer.company = foundCompany;*/
-		let foo = 'bar'
 	}
 
 	protected ngOnInit(): void {
@@ -107,7 +107,7 @@ export class CustomerDialog {
 			this.customer.birthDay = new Date().toISOString();
 		}
 		this.customer.birthDay = moment(this.customer.birthDay).format('YYYY-MM-DD');
-
+		
 		let foundCompany = _.find(this.companies, { 'companyId': this.customer.companyId });
 		if (!foundCompany) {
 			foundCompany = this.customer.company;

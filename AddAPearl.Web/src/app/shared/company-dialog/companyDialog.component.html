@@ -17,7 +17,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <md-input type="text" [(ngModel)]="company.email" name="email" formControlName="companyEmail">
+                        <md-input placeholder="Company Email" type="text" [(ngModel)]="company.email" name="email" formControlName="companyEmail">
                             <md-hint *ngIf="companyForm.controls.companyEmail.errors?.email" [ngStyle]="{'color': 'red'}" align="start">email error message</md-hint>
                         </md-input>
                         <p *ngIf="apiValidationErrors.email" [ngStyle]="{'color': 'red'}">

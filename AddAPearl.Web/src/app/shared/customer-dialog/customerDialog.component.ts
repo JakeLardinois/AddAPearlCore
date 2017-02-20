@@ -103,6 +103,11 @@ export class CustomerDialog {
 	protected ngOnInit(): void {
 		this.snackBarConfig.duration = 5000;
 
+		if (this.customer.birthDay === null) {
+			this.customer.birthDay = new Date().toISOString();
+		}
+		this.customer.birthDay = moment(this.customer.birthDay).format('YYYY-MM-DD');
+
 		let foundCompany = _.find(this.companies, { 'companyId': this.customer.companyId });
 		if (!foundCompany) {
 			foundCompany = this.customer.company;
@@ -110,17 +115,13 @@ export class CustomerDialog {
 		}
 
 		this.customerForm = new FormGroup({
-			customerBirthDay: new FormControl(moment(this.customer.birthDay).format('YYYY-MM-DD'), CustomValidators.date),
+			customerBirthDay: new FormControl(this.customer.birthDay, CustomValidators.date),
 			customerEmail: new FormControl('', CustomValidators.email),
 			customerFirstName: new FormControl('', Validators.required),
 			customerLastName: new FormControl('', Validators.required),
 			customerPhoneNumber: new FormControl('', CustomValidators.phone('en-US')),
 			companyId: new FormControl(foundCompany.companyId),
 		});
-		if (this.customer.birthDay === null) {
-			this.customer.birthDay = new Date().toISOString();
-		}
-		this.customer.birthDay = moment(this.customer.birthDay).format('YYYY-MM-DD');
 
 		this.observer = jsonpatch.observe(this.customer);
 	}

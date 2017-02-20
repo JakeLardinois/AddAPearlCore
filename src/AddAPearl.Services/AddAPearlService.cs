@@ -157,10 +157,15 @@ namespace AddAPearl.Services
         public ICustomer UpdateCustomer(ICustomer customer)
         {
             var theCustomer = Mapper.Map<DataAccess.Customer>(customer);
+            var companyId = theCustomer.CompanyId;
+
             _addAPearl.Customers.Attach(theCustomer).State = EntityState.Modified;
+            theCustomer.CompanyId = companyId; //for some reason this foreign key relationship was reverting to db value after attaching...
             _addAPearl.SaveChanges();
 
             return Mapper.Map<Domain.Customer>(_addAPearl.Customers
+                .Include(a => a.Address)
+                .Include(a => a.Company)
                 .FirstOrDefault(a => a.CustomerId == customer.CustomerId));
         }
 

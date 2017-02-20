@@ -35,6 +35,7 @@ namespace AddAPearl.Core
         #region Items
         Task<IEnumerable<IItem>> GetItems();
         IItem GetItemById(int id);
+        IItem GetItemsByOwnerId(int id);
         IItem AddItem(IItem item);
         IItem UpdateItem(IItem item);
         int DeleteItem(IItem item);

@@ -58,6 +58,25 @@ namespace AddAPearl.API.Controllers
             }
         }
 
+        [HttpGet("{id}")]
+        [ActionName("Owner")]
+        public IActionResult GetByOwnerId(int id)
+        {
+            try
+            {
+                var item = _addAPearlService.GetItemsByOwnerId(id);
+                if (item == null)
+                    return NotFound();
+
+                return Ok(item);
+            }
+            catch (Exception objEx)
+            {
+                _logger.LogError("Item Exception!", objEx);
+                return BadRequest(objEx);
+            }
+        }
+
         [HttpPost]
         [ActionName("Item")]
         public IActionResult Add([FromBody] Item item)

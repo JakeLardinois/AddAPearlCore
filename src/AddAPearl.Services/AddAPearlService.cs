@@ -212,6 +212,27 @@ namespace AddAPearl.Services
             return item;
         }
 
+        public IItem GetItemsByOwnerId(int id)
+        {
+            var itemDto = _addAPearl.Items
+                .Include(a => a.Product)
+                .Include(a => a.Owner)
+                .Include(a => a.Customer)
+                .Include(a => a.SubItems)
+                .AsNoTracking()
+                .FirstOrDefault(a => a.OwnerId == id);
+
+            if (itemDto == null)
+                return null;
+
+            var subItems = Mapper.Map<ICollection<Domain.SubItem>>(itemDto.SubItems);
+
+            var item = Mapper.Map<Domain.Item>(itemDto);
+            item.SubItems = subItems;
+
+            return item;
+        }
+
         public IItem AddItem(IItem item)
         {
             _logger.LogInformation("Adding a Item");

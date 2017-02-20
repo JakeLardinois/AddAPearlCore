@@ -44,10 +44,8 @@ export class CustomerDialog {
 	public customer: ICustomer;
 	public customerForm: FormGroup;
 	public companies: ICompany[];
-	public selectedOption: string;
 	public observer: any;
 	public apiValidationErrors: any;
-	public ctrl: any;
 	private snackBarConfig = new MdSnackBarConfig();
 
 	public constructor(
@@ -58,6 +56,7 @@ export class CustomerDialog {
 		private logger: Logger,
 	) {
 		this.apiValidationErrors = {};
+		
 		this.companyService.getCompanies()
 			.subscribe((companies) => {
 				this.companies = companies;
@@ -94,17 +93,21 @@ export class CustomerDialog {
 		}
 	}
 
-	public updateCompany(event:any) {
-		if (event.detail.value) {
-			this.customer.company = event.detail.value;
-			this.customer.companyId = event.detail.value.companyId;
-		}
+	public updateCompany(companyId: number) {
+		//I don't set this because i don't want jsonpatch to update the company's values
+		/*let foundCompany = _.find(this.companies, { 'companyId': companyId });
+		this.customer.company = foundCompany;*/
+		let foo = 'bar'
 	}
 
 	protected ngOnInit(): void {
 		this.snackBarConfig.duration = 5000;
 
 		let foundCompany = _.find(this.companies, { 'companyId': this.customer.companyId });
+		if (!foundCompany) {
+			foundCompany = this.customer.company;
+			this.companies = [foundCompany];
+		}
 
 		this.customerForm = new FormGroup({
 			customerBirthDayValidator: new FormControl(moment(this.customer.birthDay).format('YYYY-MM-DD'), CustomValidators.date),
@@ -112,7 +115,7 @@ export class CustomerDialog {
 			customerFirstNameValidator: new FormControl('', Validators.required),
 			customerLastNameValidator: new FormControl('', Validators.required),
 			customerPhoneNumberValidator: new FormControl('', CustomValidators.phone('en-US')),
-			companyId: new FormControl(foundCompany),
+			companyId: new FormControl(foundCompany.companyId),
 		});
 		if (this.customer.birthDay === null) {
 			this.customer.birthDay = new Date().toISOString();

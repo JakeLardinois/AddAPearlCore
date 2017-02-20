@@ -7,8 +7,8 @@
             <table style="width: 100%" cellspacing="0">
                 <tr>
                     <td>
-                        <md-input placeholder="Company Name" [(ngModel)]="company.companyName" name="companyName" formControlName="companyNameValidator">
-                            <md-hint *ngIf="companyForm.controls.companyNameValidator.errors?.required" [ngStyle]="{'color': 'red'}" align="start">required error</md-hint>
+                        <md-input placeholder="Company Name" [(ngModel)]="company.companyName" name="companyName" formControlName="companyName">
+                            <md-hint *ngIf="companyForm.controls.companyName.errors?.required" [ngStyle]="{'color': 'red'}" align="start">required error</md-hint>
                         </md-input>
                         <p *ngIf="apiValidationErrors.companyName" [ngStyle]="{'color': 'red'}">
                             {{apiValidationErrors.companyName[0]}}
@@ -17,8 +17,8 @@
                 </tr>
                 <tr>
                     <td>
-                        <md-input type="text" [(ngModel)]="company.email" name="email" formControlName="companyEmailValidator">
-                            <md-hint *ngIf="companyForm.controls.companyEmailValidator.errors?.email" [ngStyle]="{'color': 'red'}" align="start">email error message</md-hint>
+                        <md-input type="text" [(ngModel)]="company.email" name="email" formControlName="companyEmail">
+                            <md-hint *ngIf="companyForm.controls.companyEmail.errors?.email" [ngStyle]="{'color': 'red'}" align="start">email error message</md-hint>
                         </md-input>
                         <p *ngIf="apiValidationErrors.email" [ngStyle]="{'color': 'red'}">
                             {{apiValidationErrors.email[0]}}

@@ -110,11 +110,11 @@ export class CustomerDialog {
 		}
 
 		this.customerForm = new FormGroup({
-			customerBirthDayValidator: new FormControl(moment(this.customer.birthDay).format('YYYY-MM-DD'), CustomValidators.date),
-			customerEmailValidator: new FormControl('', CustomValidators.email),
-			customerFirstNameValidator: new FormControl('', Validators.required),
-			customerLastNameValidator: new FormControl('', Validators.required),
-			customerPhoneNumberValidator: new FormControl('', CustomValidators.phone('en-US')),
+			customerBirthDay: new FormControl(moment(this.customer.birthDay).format('YYYY-MM-DD'), CustomValidators.date),
+			customerEmail: new FormControl('', CustomValidators.email),
+			customerFirstName: new FormControl('', Validators.required),
+			customerLastName: new FormControl('', Validators.required),
+			customerPhoneNumber: new FormControl('', CustomValidators.phone('en-US')),
 			companyId: new FormControl(foundCompany.companyId),
 		});
 		if (this.customer.birthDay === null) {

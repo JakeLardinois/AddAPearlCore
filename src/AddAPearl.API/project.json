@@ -1,4 +1,6 @@
 {
+  "version": "1.0.0",
+
   "dependencies": {
     "Microsoft.NETCore.App": {
       "version": "1.0.1",
@@ -19,7 +21,7 @@
     "AddAPearl.Services": "1.0.0-*",
     "Microsoft.AspNetCore.JsonPatch": "1.1.0",
     "NLog.Extensions.Logging": "1.0.0-rtm-alpha5",
-    "Microsoft.Extensions.Logging.Filter": "1.1.0" 
+    "Microsoft.Extensions.Logging.Filter": "1.1.0"
   },
 
   "tools": {

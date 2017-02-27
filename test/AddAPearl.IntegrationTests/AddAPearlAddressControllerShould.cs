@@ -14,15 +14,16 @@ namespace AddAPearl.IntegrationTests
 {
     public class AddAPearlAddressControllerShould
     {
+        private readonly IWebHostBuilder _webHostBuilder;
         private readonly TestServer _server;
         private readonly HttpClient _client;
 
         public AddAPearlAddressControllerShould()
         {
             // Arrange
-            _server = new TestServer(new WebHostBuilder()
-                .UseStartup<Startup>()
-            );
+            _webHostBuilder = new WebHostBuilder()
+                .UseStartup<Startup>();
+            _server = new TestServer(_webHostBuilder);
             _client = _server.CreateClient();
         }
 

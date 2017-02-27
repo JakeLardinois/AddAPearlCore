@@ -19,5 +19,9 @@
     }
   },
 
+  "buildOptions": {
+    "copyToOutput": [ "appsettings.json"]
+  },
+
   "testRunner": "xunit"
 }

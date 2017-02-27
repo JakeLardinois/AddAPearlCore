@@ -46,12 +46,8 @@ namespace AddAPearl.API
 
             services.AddTransient<IAddAPearlService, AddAPearlService>();
 
-            var connectionString = string.IsNullOrEmpty(Configuration.GetConnectionString("DefaultConnection"))
-                ? "data source=JLARDINOIS\\SQL2014;initial catalog=AddAPearl;persist security info=True;user id=sa;password=wh0r353;MultipleActiveResultSets=True;App=EntityFramework"
-                : Configuration.GetConnectionString("DefaultConnection");
-
             services.AddDbContext<AddAPearlContext>(
-                options => options.UseSqlServer(connectionString));
+                options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             // Add framework services.
             services.AddMvc().AddJsonOptions(options =>

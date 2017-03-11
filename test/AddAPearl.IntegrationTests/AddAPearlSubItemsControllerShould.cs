@@ -25,6 +25,12 @@ namespace AddAPearl.IntegrationTests
                 .UseStartup<Startup>();
             _server = new TestServer(_webHostBuilder);
             _client = _server.CreateClient();
+            JsonConvert.DefaultSettings = () => new JsonSerializerSettings
+            {
+                Formatting = Newtonsoft.Json.Formatting.Indented,
+                ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore,
+                TypeNameHandling = TypeNameHandling.Objects
+            };
         }
 
         [Fact]

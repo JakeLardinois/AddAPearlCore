@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using NLog.Extensions.Logging;
 
 namespace AddAPearl.API
@@ -53,6 +54,7 @@ namespace AddAPearl.API
             services.AddMvc().AddJsonOptions(options =>
             {
                 options.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver();
+                options.SerializerSettings.TypeNameHandling = TypeNameHandling.Objects; //includes the object type name in the json for help when deserializing
             });
         }
 

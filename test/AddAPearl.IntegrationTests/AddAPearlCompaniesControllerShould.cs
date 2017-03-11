@@ -40,8 +40,10 @@ namespace AddAPearl.IntegrationTests
 
             var responseString = await response.Content.ReadAsStringAsync();
 
-            var results = JsonConvert.DeserializeObject<IEnumerable<Domain.Company>>(responseString);
-
+            var results = JsonConvert.DeserializeObject<IEnumerable<Domain.Company>>(responseString, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Objects
+            });
 
             Assert.NotEmpty(results);
         }

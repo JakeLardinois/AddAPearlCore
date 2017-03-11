@@ -83,8 +83,8 @@ export class CompanyDialog {
 		this.snackBarConfig.duration = 5000;
 
 		this.companyForm = new FormGroup({
-			companyEmail: new FormControl('', CustomValidators.email),
-			companyName: new FormControl('', Validators.required),
+			companyEmail: new FormControl(this.company.email, CustomValidators.email),
+			companyName: new FormControl(this.company.companyName, Validators.required),
 		});
 
 		this.observer = jsonpatch.observe(this.company);

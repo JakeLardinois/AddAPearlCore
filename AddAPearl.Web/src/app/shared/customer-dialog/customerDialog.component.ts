@@ -116,10 +116,10 @@ export class CustomerDialog {
 
 		this.customerForm = new FormGroup({
 			customerBirthDay: new FormControl(this.customer.birthDay, CustomValidators.date),
-			customerEmail: new FormControl('', CustomValidators.email),
-			customerFirstName: new FormControl('', Validators.required),
-			customerLastName: new FormControl('', Validators.required),
-			customerPhoneNumber: new FormControl('', CustomValidators.phone('en-US')),
+			customerEmail: new FormControl(this.customer.email, CustomValidators.email),
+			customerFirstName: new FormControl(this.customer.firstName, Validators.required),
+			customerLastName: new FormControl(this.customer.lastName, Validators.required),
+			customerPhoneNumber: new FormControl(this.customer.phoneNumber, CustomValidators.phone('en-US')),
 			companyId: new FormControl(foundCompany.companyId),
 		});
 

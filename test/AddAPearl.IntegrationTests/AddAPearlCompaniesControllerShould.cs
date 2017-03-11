@@ -28,7 +28,8 @@ namespace AddAPearl.IntegrationTests
             JsonConvert.DefaultSettings = () => new JsonSerializerSettings
             {
                 Formatting = Newtonsoft.Json.Formatting.Indented,
-                ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore,
+                TypeNameHandling = TypeNameHandling.Objects
             };
         }
 
@@ -40,10 +41,7 @@ namespace AddAPearl.IntegrationTests
 
             var responseString = await response.Content.ReadAsStringAsync();
 
-            var results = JsonConvert.DeserializeObject<IEnumerable<Domain.Company>>(responseString, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.Objects
-            });
+            var results = JsonConvert.DeserializeObject<IEnumerable<Domain.Company>>(responseString);
 
             Assert.NotEmpty(results);
         }

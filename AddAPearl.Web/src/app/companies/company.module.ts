@@ -37,7 +37,6 @@ import {
 
 @NgModule({
 	declarations: [
-		AddressDialog,
 		CompanyListComponent,
 		CompanyDialog,
 		CompanyFilterPipe,

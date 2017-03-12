@@ -38,6 +38,7 @@ import {
 } from './home/welcome.component';
 
 import {
+	AddressDialog,
 } from './shared/index';
 
 /* Feature Modules */
@@ -51,6 +52,7 @@ import {
 @NgModule({
 	bootstrap: [AppComponent],
 	declarations: [
+		AddressDialog,
 		AppComponent,
 		WelcomeComponent,
 	],

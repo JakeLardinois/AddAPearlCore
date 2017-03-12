@@ -40,7 +40,6 @@ import {
 
 @NgModule({
 	declarations: [
-		AddressDialog,
 		CustomerListComponent,
 		CustomerDialog,
 		CustomerFilterPipe,

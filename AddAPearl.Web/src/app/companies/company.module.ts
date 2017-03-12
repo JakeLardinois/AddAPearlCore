@@ -22,6 +22,7 @@ import {
 } from 'ng2-validation';
 
 import {
+	AddressDialog,
 	AddressService,
 	CompanyDialog,
 	CompanyService,
@@ -36,12 +37,14 @@ import {
 
 @NgModule({
 	declarations: [
+		AddressDialog,
 		CompanyListComponent,
 		CompanyDialog,
 		CompanyFilterPipe,
 		StarComponent,
 	],
 	entryComponents: [
+		AddressDialog,
 		CompanyDialog,
 	],
 	imports: [

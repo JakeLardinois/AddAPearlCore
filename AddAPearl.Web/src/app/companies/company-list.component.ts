@@ -19,7 +19,6 @@ import {
 import {
 	Address,
 	AddressDialog,
-	AddressService,
 	CompanyDialog,
 	CompanyService,
 	IAddress,
@@ -47,7 +46,6 @@ export class CompanyListComponent {
 
 	public constructor(
 		private dialogService: MdlDialogService,
-		private addressService: AddressService,
 		private companyService: CompanyService,
 		public dialog: MdDialog,
 		public snackBar: MdSnackBar,

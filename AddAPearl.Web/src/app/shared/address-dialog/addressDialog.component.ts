@@ -84,13 +84,13 @@ export class AddressDialog {
 		this.snackBarConfig.duration = 5000;
 
 		this.addressForm = new FormGroup({
+			addressCity: new FormControl(this.address.city, Validators.required),
 			addressLine1: new FormControl(this.address.addressLine1),
 			addressLine2: new FormControl(this.address.addressLine2),
 			addressLine3: new FormControl(this.address.addressLine3),
-			addressCity: new FormControl(this.address.city, Validators.required),
 			addressState: new FormControl(this.address.state),
 			addressZipCode: new FormControl(this.address.zipCode),
-		})
+		});
 
 		this.observer = jsonpatch.observe(this.address);
 	}

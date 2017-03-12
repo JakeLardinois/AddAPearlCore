@@ -23,15 +23,15 @@ import {
 	ICustomer,
 } from '../index';
 import {
-	CustomerService,
-} from '../services/customer.service';
-import {
 	CompanyService,
 } from '../services/company.service';
+import {
+	CustomerService,
+} from '../services/customer.service';
 
 import * as jsonpatch from 'fast-json-patch';
-import * as moment from 'moment';
 import * as _ from 'lodash';
+import * as moment from 'moment';
 
 @Component({
 	moduleId: module.id,
@@ -56,7 +56,6 @@ export class CustomerDialog {
 		private logger: Logger,
 	) {
 		this.apiValidationErrors = {};
-		
 		this.companyService.getCompanies()
 			.subscribe((companies) => {
 				this.companies = companies;
@@ -95,7 +94,7 @@ export class CustomerDialog {
 	}
 
 	public updateCompany(companyId: number) {
-		//I don't set this because i don't want jsonpatch to update the company's values
+		// I don't set this because i don't want jsonpatch to update the company's values
 		/*let foundCompany = _.find(this.companies, { 'companyId': companyId });
 		this.customer.company = foundCompany;*/
 	}
@@ -107,20 +106,19 @@ export class CustomerDialog {
 			this.customer.birthDay = new Date().toISOString();
 		}
 		this.customer.birthDay = moment(this.customer.birthDay).format('YYYY-MM-DD');
-		
-		let foundCompany = _.find(this.companies, { 'companyId': this.customer.companyId });
+		let foundCompany = _.find(this.companies, { companyId: this.customer.companyId });
 		if (!foundCompany) {
 			foundCompany = this.customer.company;
 			this.companies = [foundCompany];
 		}
 
 		this.customerForm = new FormGroup({
+			companyId: new FormControl(foundCompany.companyId),
 			customerBirthDay: new FormControl(this.customer.birthDay, CustomValidators.date),
 			customerEmail: new FormControl(this.customer.email, CustomValidators.email),
 			customerFirstName: new FormControl(this.customer.firstName, Validators.required),
 			customerLastName: new FormControl(this.customer.lastName, Validators.required),
 			customerPhoneNumber: new FormControl(this.customer.phoneNumber, CustomValidators.phone('en-US')),
-			companyId: new FormControl(foundCompany.companyId),
 		});
 
 		this.observer = jsonpatch.observe(this.customer);

@@ -26,6 +26,7 @@ import {
 } from 'ng2-validation';
 
 import {
+	AddressDialog,
 	AddressService,
 	CustomerDialog,
 	CustomerService,
@@ -39,6 +40,7 @@ import {
 
 @NgModule({
 	declarations: [
+		AddressDialog,
 		CustomerListComponent,
 		CustomerDialog,
 		CustomerFilterPipe,
@@ -46,6 +48,7 @@ import {
 		PolymerElement('vaadin-combo-box'),
 	],
 	entryComponents: [
+		AddressDialog,
 		CustomerDialog,
 	],
 	imports: [

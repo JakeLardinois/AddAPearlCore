@@ -3,6 +3,7 @@ import {
 } from '@angular/core';
 import {
 	FormsModule,
+	ReactiveFormsModule,
 } from '@angular/forms';
 import {
 	HttpModule,
@@ -23,6 +24,10 @@ import {
 import {
 	MdlModule,
 } from 'angular2-mdl';
+import {
+	CustomFormsModule,
+} from 'ng2-validation';
+
 import 'hammerjs';
 
 import {
@@ -31,6 +36,9 @@ import {
 import {
 	WelcomeComponent,
 } from './home/welcome.component';
+
+import {
+} from './shared/index';
 
 /* Feature Modules */
 import {
@@ -56,6 +64,7 @@ import {
 		HttpModule,
 		JsonpModule,
 		MdlModule,
+		ReactiveFormsModule,
 		MaterialModule.forRoot(),
 		RouterModule.forRoot([{
 				component: WelcomeComponent,

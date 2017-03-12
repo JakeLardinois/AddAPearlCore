@@ -19,11 +19,10 @@ import {
 import {
 	Address,
 	AddressDialog,
-	AddressService,
+	Company,
 	CustomerDialog,
 	CustomerService,
 	IAddress,
-	Company,
 	ICompany,
 	ICustomer,
 } from '../shared/index';
@@ -49,7 +48,6 @@ export class CustomerListComponent {
 
 	public constructor(
 		private dialogService: MdlDialogService,
-		private addressService: AddressService,
 		private customerService: CustomerService,
 		public dialog: MdDialog,
 		public snackBar: MdSnackBar,
@@ -69,11 +67,11 @@ export class CustomerListComponent {
 			addressId: null,
 			birthDay: null,
 			company: {
+				address : null,
+				addressId : null,
 				companyId : null,
 				companyName : null,
 				email : null,
-				addressId : null,
-				address : null,
 			},
 			companyId: null,
 			customerId: null,

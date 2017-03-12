@@ -2,6 +2,11 @@ import {
 	Component,
 } from '@angular/core';
 import {
+	FormControl,
+	FormGroup,
+	Validators,
+} from '@angular/forms';
+import {
 	MdDialogRef,
 	MdSnackBar,
 	MdSnackBarConfig,
@@ -9,6 +14,9 @@ import {
 import {
 	Logger,
 } from 'angular2-logger/core';
+import {
+	CustomValidators,
+} from 'ng2-validation';
 
 import {
 	IAddress,
@@ -29,6 +37,7 @@ import * as jsonpatch from 'fast-json-patch';
 export class AddressDialog {
 	public addressName: string;
 	public address: IAddress;
+	public addressForm: FormGroup;
 	public observer: any;
 	public apiValidationErrors: any;
 	private snackBarConfig = new MdSnackBarConfig();
@@ -73,6 +82,15 @@ export class AddressDialog {
 
 	protected ngOnInit(): void {
 		this.snackBarConfig.duration = 5000;
+
+		this.addressForm = new FormGroup({
+			addressLine1: new FormControl(this.address.addressLine1),
+			addressLine2: new FormControl(this.address.addressLine2),
+			addressLine3: new FormControl(this.address.addressLine3),
+			addressCity: new FormControl(this.address.city, Validators.required),
+			addressState: new FormControl(this.address.state),
+			addressZipCode: new FormControl(this.address.zipCode),
+		})
 
 		this.observer = jsonpatch.observe(this.address);
 	}

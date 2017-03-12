@@ -1,30 +1,30 @@
 <md-card>
     <md-toolbar color="primary">{{addressName}}</md-toolbar>
     <md-card-content>
-        <form #frmAddress="ngForm" novalidate>
+        <form [formGroup]="addressForm" >
             <p>
-                <md-textarea placeholder="Address Line 1" [(ngModel)]="address.addressLine1" name="addressLine1" ></md-textarea>
-                <md-textarea placeholder="Address 2" [(ngModel)]="address.addressLine2" name="addressLine2" ></md-textarea>
-                <md-textarea placeholder="Address 3" [(ngModel)]="address.addressLine3" name="addressLine3" ></md-textarea>
+                <md-textarea placeholder="Address Line 1" [(ngModel)]="address.addressLine1" name="addressLine1" formControlName="addressLine1"></md-textarea>
+                <md-textarea placeholder="Address Line 2" [(ngModel)]="address.addressLine2" name="addressLine2" formControlName="addressLine2"></md-textarea>
+                <md-textarea placeholder="Address Line 3" [(ngModel)]="address.addressLine3" name="addressLine3" formControlName="addressLine3"></md-textarea>
             </p>
             <table style="width: 100%" cellspacing="0">
                 <tr>
                     <td>
-                        <md-input placeholder="City" [(ngModel)]="address.city" name="city" #city="ngModel" required>
-                            <md-hint *ngIf="city.errors?.required" [ngStyle]="{'color': 'red'}" align="start">required error</md-hint>
+                        <md-input placeholder="City" [(ngModel)]="address.city" name="city" formControlName="addressCity">
+                            <md-hint *ngIf="addressForm.controls.addressCity.errors?.required" [ngStyle]="{'color': 'red'}" align="start">required error</md-hint>
                         </md-input>
                         <p *ngIf="apiValidationErrors.city" [ngStyle]="{'color': 'red'}">
                             {{apiValidationErrors.city[0]}}
                         </p>
                     </td>
                     <td>
-                        <md-input placeholder="State" maxLength="2" [(ngModel)]="address.state" name="state" ></md-input>
+                        <md-input placeholder="State" maxLength="2" [(ngModel)]="address.state" name="state" formControlName="addressState"></md-input>
                         <p *ngIf="apiValidationErrors.state" [ngStyle]="{'color': 'red'}">
                             {{apiValidationErrors.state[0]}}
                         </p>
                     </td>
                     <td>
-                        <md-input #postalCode maxLength="5" placeholder="Postal Code" [(ngModel)]="address.zipCode" name="zipCode" >
+                        <md-input #postalCode maxLength="5" placeholder="Postal Code" [(ngModel)]="address.zipCode" name="zipCode" formControlName="addressZipCode">
                             <md-hint align="end">{{postalCode.characterCount}} / 5</md-hint>
                         </md-input>
                     </td>
@@ -33,7 +33,7 @@
         </form>
     </md-card-content>
     <md-card-actions align="end">
-        <button class="actionButtons" color="primary" (click)="updateAddress()" md-tooltip="Save" [disabled]="!frmAddress.valid" md-mini-fab>
+        <button class="actionButtons" color="primary" (click)="updateAddress()" md-tooltip="Save" [disabled]="!addressForm.valid" md-mini-fab>
             <md-icon class="md-24">check</md-icon>
         </button>
         <button class="actionButtons" md-tooltip="Cancel" (click)="dialogRef.close()" md-mini-fab>

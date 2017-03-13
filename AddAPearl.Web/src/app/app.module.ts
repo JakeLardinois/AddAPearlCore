@@ -57,6 +57,7 @@ import {
 		WelcomeComponent,
 	],
 	entryComponents: [
+		AddressDialog,
 	],
 	imports: [
 		BrowserModule,

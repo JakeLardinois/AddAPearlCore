@@ -70,8 +70,13 @@ export class CompanyListComponent {
 		this.dialogRef.componentInstance.company = this.selectedCompany;
 
 		this.dialogRef.afterClosed().subscribe((returnedCompany) => {
-			this.logger.debug('result: ' + JSON.stringify(returnedCompany));
-			this.companies.push(returnedCompany);
+			if (returnedCompany) {
+				this.logger.debug('result: ' + JSON.stringify(returnedCompany));
+				this.companies.push(returnedCompany);
+			} else {
+				this.logger.debug('Customer creation canceled');
+			}
+
 			this.dialogRef = null;
 		});
 	}

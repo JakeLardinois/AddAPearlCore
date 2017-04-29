@@ -1,19 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Net;
+using System.Net.Http;
+using System.Reflection;
+using AddAPearl.Core;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace AddAPearl.API.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        private static IAddAPearlService _addAPearlService;
+        private readonly ILogger _logger;
+
+        public ValuesController(IAddAPearlService addAPearlService, ILogger<ValuesController> logger)
+        {
+            _addAPearlService = addAPearlService;
+            _logger = logger;
+        }
+
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            _logger.LogDebug("I'm Firing Dammit!!");
+            try
+            {
+                var items = _addAPearlService
+                    .GetCompanies();
+                return new ObjectResult(items);
+            }
+            catch (Exception objEx)
+            {
+                _logger.LogError("Values Exception!", objEx);
+                return BadRequest(objEx);
+            }
+            
         }
 
         // GET api/values/5

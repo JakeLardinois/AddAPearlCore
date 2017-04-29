@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddAPearl.UnitTests", "AddA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddAPearl.IntegrationTests", "AddAPearl.IntegrationTests\AddAPearl.IntegrationTests.csproj", "{4C5CC8E3-70BC-4008-B906-E80A644F7BDA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DEDC4CB3-1C3E-45D4-92DE-769435414502}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,5 +64,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{79EBEF34-63B6-4BE7-88D8-D8D41B254982} = {DEDC4CB3-1C3E-45D4-92DE-769435414502}
+		{4C5CC8E3-70BC-4008-B906-E80A644F7BDA} = {DEDC4CB3-1C3E-45D4-92DE-769435414502}
 	EndGlobalSection
 EndGlobal

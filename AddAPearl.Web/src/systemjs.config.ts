@@ -8,6 +8,7 @@ declare var System: any;
 	System.config({
 		// map tells the System loader where to look for things
 		map: {
+			'@angular/animations': 'npm:@angular/animations/bundles/animations.umd.js',
 			'@angular/common': 'npm:@angular/common/bundles/common.umd.js',
 			'@angular/compiler': 'npm:@angular/compiler/bundles/compiler.umd.js',
 			'@angular/core': 'npm:@angular/core/bundles/core.umd.js',
@@ -25,7 +26,7 @@ declare var System: any;
 			'hammerjs': 'npm:hammerjs',
 			'lodash': 'npm:lodash',
 			'moment': 'npm:moment',
-			'ng2-validation': 'npm:ng2-validation/dist',
+			'ng2-validation': 'npm:ng2-validation/bundles/ng2-validation.umd.js',
 			'rxjs': 'npm:rxjs',
 		},
 		// packages tells the System loader how to load when no filename and/or no extension
@@ -59,10 +60,6 @@ declare var System: any;
 			'moment': {
 				defaultExtension: 'js',
 				main: './min/moment.min',
-			},
-			'ng2-validation': {
-				defaultExtension: 'js',
-				main: './index',
 			},
 			'rxjs': {
 				defaultExtension: 'js',

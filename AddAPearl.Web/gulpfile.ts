@@ -264,7 +264,7 @@ gulp.task('libs', () => {
             '@angular/**/bundles/**',
             'angular2-mdl/bundle/angular2-mdl.js',
             '@angular/material/**/*',
-            'ng2-validation/dist/**/*.js',
+            'ng2-validation/**/*.js',
             'lodash/**/*.js',
             'angular2-logger/**/*.js',
             '@vaadin/**/*.js',

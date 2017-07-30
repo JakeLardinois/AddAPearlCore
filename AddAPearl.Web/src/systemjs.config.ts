@@ -9,6 +9,7 @@ declare var System: any;
 		// map tells the System loader where to look for things
 		map: {
 			'@angular/animations': 'npm:@angular/animations/bundles/animations.umd.js',
+			'@angular/cdk': 'npm:@angular/cdk/bundles/cdk.umd.js',
 			'@angular/common': 'npm:@angular/common/bundles/common.umd.js',
 			'@angular/compiler': 'npm:@angular/compiler/bundles/compiler.umd.js',
 			'@angular/core': 'npm:@angular/core/bundles/core.umd.js',
@@ -24,6 +25,7 @@ declare var System: any;
 			'app': 'app',
 			'fast-json-patch': 'npm:fast-json-patch/dist',
 			'hammerjs': 'npm:hammerjs',
+			'libphonenumber-js': 'npm:libphonenumber-js',
 			'lodash': 'npm:lodash',
 			'moment': 'npm:moment',
 			'ng2-validation': 'npm:ng2-validation/bundles/ng2-validation.umd.js',
@@ -52,6 +54,10 @@ declare var System: any;
 			'hammerjs': {
 				defaultExtension: 'js',
 				main: './hammer.min',
+			},
+			'libphonenumber-js': {
+				defaultExtension: 'js',
+				main: './bundle/libphonenumber-js.min',
 			},
 			'lodash': {
 				defaultExtension: 'js',

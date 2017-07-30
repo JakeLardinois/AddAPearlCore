@@ -269,6 +269,7 @@ gulp.task('libs', () => {
             'angular2-logger/**/*.js',
             '@vaadin/**/*.js',
             'moment/min/*.js',
+            'libphonenumber-js/bundle/*.js',
         ], {cwd: 'node_modules/**'}) /* Glob required here. */
         .pipe(gulp.dest('build/lib'));
 });

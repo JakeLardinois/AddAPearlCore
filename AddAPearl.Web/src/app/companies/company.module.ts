@@ -50,7 +50,7 @@ import {
 		BrowserModule,
 		CustomFormsModule,
 		FormsModule,
-		MaterialModule.forRoot(),
+		MaterialModule,
 		MdlModule,
 		ReactiveFormsModule,
 		RouterModule.forChild([{

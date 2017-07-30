@@ -68,7 +68,7 @@ import {
 		JsonpModule,
 		MdlModule,
 		ReactiveFormsModule,
-		MaterialModule.forRoot(),
+		MaterialModule,
 		RouterModule.forRoot([{
 				component: WelcomeComponent,
 				path: 'welcome',

@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import {
 	MaterialModule,
+	MdNativeDateModule,
 } from '@angular/material';
 import {
 	BrowserModule,
@@ -53,6 +54,7 @@ import {
 		CustomFormsModule,
 		FormsModule,
 		MaterialModule,
+		MdNativeDateModule,
 		MdlModule,
 		PolymerModule.forRoot(), // Only import .forRoot() once and at the highest level
 		ReactiveFormsModule,

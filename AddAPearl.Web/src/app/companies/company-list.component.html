@@ -1,7 +1,6 @@
 <h1>{{pageTitle}}</h1>
 <md-card>
-	<md-input placeholder="filter" align="end" [(ngModel)]='listFilter'>
-	</md-input>
+	<input mdInput placeholder="filter" align="end" [(ngModel)]='listFilter' />
 	<button mdl-button md-tooltip="Add Company" mdl-button-type="fab" mdl-colored="primary" (click)="addCompany()" mdl-ripple>
     <mdl-icon>add</mdl-icon>
   </button>

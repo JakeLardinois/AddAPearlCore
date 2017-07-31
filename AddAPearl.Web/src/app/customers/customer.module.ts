@@ -16,8 +16,8 @@ import {
 	RouterModule,
 } from '@angular/router';
 import {
-	PolymerElement,
-} from '@vaadin/angular2-polymer';
+	PolymerModule ,
+} from '@codebakery/origami';
 import {
 	MdlModule,
 } from 'angular2-mdl';
@@ -43,8 +43,6 @@ import {
 		CustomerListComponent,
 		CustomerDialog,
 		CustomerFilterPipe,
-		PolymerElement('vaadin-date-picker'),
-		PolymerElement('vaadin-combo-box'),
 	],
 	entryComponents: [
 		AddressDialog,
@@ -56,6 +54,7 @@ import {
 		FormsModule,
 		MaterialModule,
 		MdlModule,
+		PolymerModule.forRoot(), // Only import .forRoot() once and at the highest level
 		ReactiveFormsModule,
 		RouterModule.forChild([{
 			component: CustomerListComponent,

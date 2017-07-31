@@ -3,30 +3,34 @@
     <md-card-content>
         <form [formGroup]="addressForm" >
             <p>
-                <md-textarea placeholder="Address Line 1" [(ngModel)]="address.addressLine1" name="addressLine1" formControlName="addressLine1"></md-textarea>
-                <md-textarea placeholder="Address Line 2" [(ngModel)]="address.addressLine2" name="addressLine2" formControlName="addressLine2"></md-textarea>
-                <md-textarea placeholder="Address Line 3" [(ngModel)]="address.addressLine3" name="addressLine3" formControlName="addressLine3"></md-textarea>
+                <textarea mdInput placeholder="Address Line 1" [(ngModel)]="address.addressLine1" name="addressLine1" formControlName="addressLine1"></textarea>
+                <textarea mdInput placeholder="Address Line 2" [(ngModel)]="address.addressLine2" name="addressLine2" formControlName="addressLine2"></textarea>
+                <textarea mdInput placeholder="Address Line 3" [(ngModel)]="address.addressLine3" name="addressLine3" formControlName="addressLine3"></textarea>
             </p>
             <table style="width: 100%" cellspacing="0">
                 <tr>
                     <td>
-                        <md-input placeholder="City" [(ngModel)]="address.city" name="city" formControlName="addressCity">
+                        <md-input-container>
+                        <input mdInput placeholder="City" [(ngModel)]="address.city" name="city" formControlName="addressCity" />
                             <md-hint *ngIf="addressForm.controls.addressCity.errors?.required" [ngStyle]="{'color': 'red'}" align="start">required error</md-hint>
-                        </md-input>
                         <p *ngIf="apiValidationErrors.city" [ngStyle]="{'color': 'red'}">
                             {{apiValidationErrors.city[0]}}
                         </p>
+                        </md-input-container>
                     </td>
                     <td>
-                        <md-input placeholder="State" maxLength="2" [(ngModel)]="address.state" name="state" formControlName="addressState"></md-input>
+                        <md-input-container>
+                        <input mdInput placeholder="State" maxLength="2" [(ngModel)]="address.state" name="state" formControlName="addressState" />
                         <p *ngIf="apiValidationErrors.state" [ngStyle]="{'color': 'red'}">
                             {{apiValidationErrors.state[0]}}
                         </p>
+                        </md-input-container>
                     </td>
                     <td>
-                        <md-input #postalCode maxLength="5" placeholder="Postal Code" [(ngModel)]="address.zipCode" name="zipCode" formControlName="addressZipCode">
-                            <md-hint align="end">{{postalCode.characterCount}} / 5</md-hint>
-                        </md-input>
+                        <md-input-container>
+                        <input mdInput #postalCode maxLength="5" placeholder="Postal Code" [(ngModel)]="address.zipCode" name="zipCode" formControlName="addressZipCode" />
+                        <md-hint align="end">{{postalCode.characterCount}} / 5</md-hint>
+                        </md-input-container>
                     </td>
                 </tr>
             </table>

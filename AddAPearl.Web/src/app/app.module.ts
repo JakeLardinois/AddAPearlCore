@@ -16,6 +16,9 @@ import {
 	BrowserModule,
 } from '@angular/platform-browser';
 import {
+	BrowserAnimationsModule,
+} from "@angular/platform-browser/animations";
+import {
 	RouterModule,
 } from '@angular/router';
 import {
@@ -61,6 +64,7 @@ import {
 	],
 	imports: [
 		BrowserModule,
+		BrowserAnimationsModule,
 		CompanyModule,
 		CustomerModule,
 		FormsModule,

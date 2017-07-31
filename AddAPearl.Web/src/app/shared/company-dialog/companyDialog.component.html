@@ -7,22 +7,24 @@
             <table style="width: 100%" cellspacing="0">
                 <tr>
                     <td>
-                        <md-input placeholder="Company Name" [(ngModel)]="company.companyName" name="companyName" formControlName="companyName">
-                            <md-hint *ngIf="companyForm.controls.companyName.errors?.required" [ngStyle]="{'color': 'red'}" align="start">required error</md-hint>
-                        </md-input>
-                        <p *ngIf="apiValidationErrors.companyName" [ngStyle]="{'color': 'red'}">
-                            {{apiValidationErrors.companyName[0]}}
-                        </p>
+                        <md-input-container>
+                            <input mdInput placeholder="Company Name" [(ngModel)]="company.companyName" name="companyName" formControlName="companyName" />
+                            <md-hint *ngIf="companyForm.controls.companyName.errors?.required" [ngStyle]="{'color': 'red'}" align="start">required error</md-hint>  
+                            <p *ngIf="apiValidationErrors.companyName" [ngStyle]="{'color': 'red'}">
+                                {{apiValidationErrors.companyName[0]}}
+                            </p>
+                        </md-input-container>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <md-input placeholder="Company Email" type="text" [(ngModel)]="company.email" name="email" formControlName="companyEmail">
+                        <md-input-container>
+                            <input mdInput placeholder="Company Email" type="text" [(ngModel)]="company.email" name="email" formControlName="companyEmail" />
                             <md-hint *ngIf="companyForm.controls.companyEmail.errors?.email" [ngStyle]="{'color': 'red'}" align="start">email error message</md-hint>
-                        </md-input>
-                        <p *ngIf="apiValidationErrors.email" [ngStyle]="{'color': 'red'}">
-                            {{apiValidationErrors.email[0]}}
-                        </p>
+                            <p *ngIf="apiValidationErrors.email" [ngStyle]="{'color': 'red'}">
+                                {{apiValidationErrors.email[0]}}
+                            </p>
+                    </md-input-container>
                     </td>
                 </tr>
             </table>

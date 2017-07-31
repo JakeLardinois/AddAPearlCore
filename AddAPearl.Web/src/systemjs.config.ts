@@ -9,6 +9,7 @@ declare var System: any;
 		// map tells the System loader where to look for things
 		map: {
 			'@angular/animations': 'npm:@angular/animations/bundles/animations.umd.js',
+			'@angular/animations/browser': 'npm:@angular/animations/bundles/animations-browser.umd.js',
 			'@angular/cdk': 'npm:@angular/cdk/bundles/cdk.umd.js',
 			'@angular/common': 'npm:@angular/common/bundles/common.umd.js',
 			'@angular/compiler': 'npm:@angular/compiler/bundles/compiler.umd.js',
@@ -17,9 +18,11 @@ declare var System: any;
 			'@angular/http': 'npm:@angular/http/bundles/http.umd.js',
 			'@angular/material': 'npm:@angular/material/bundles/material.umd.js',
 			'@angular/platform-browser': 'npm:@angular/platform-browser/bundles/platform-browser.umd.js',
+			'@angular/platform-browser/animations': 'npm:@angular/platform-browser/bundles/platform-browser-animations.umd.js',
 			'@angular/platform-browser-dynamic': 'npm:@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js',
 			'@angular/router': 'npm:@angular/router/bundles/router.umd.js',
 			'@vaadin/angular2-polymer': 'npm:@vaadin/angular2-polymer',
+			'@codebakery/origami': 'npm:@codebakery/origami/bundles/origami.umd.js',
 			'angular2-logger': 'npm:angular2-logger',
 			'angular2-mdl': 'npm:angular2-mdl',
 			'app': 'app',

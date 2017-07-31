@@ -5,17 +5,15 @@
             <table style="width: 100%" cellspacing="0">
                 <tr>
                     <td>
-                        <md-input placeholder="First Name" [(ngModel)]="customer.firstName" name="firstName" formControlName="customerFirstName">
-                            <md-hint *ngIf="customerForm.controls.customerFirstName.errors?.required" [ngStyle]="{'color': 'red'}" align="start">required error</md-hint>
-                        </md-input>
+                        <input mdInput placeholder="First Name" [(ngModel)]="customer.firstName" name="firstName" formControlName="customerFirstName" />
+                        <md-hint *ngIf="customerForm.controls.customerFirstName.errors?.required" [ngStyle]="{'color': 'red'}" align="start">required error</md-hint>
                         <p *ngIf="apiValidationErrors.firstName" [ngStyle]="{'color': 'red'}">
                             {{apiValidationErrors.firstName[0]}}
                         </p>
                     </td>
                     <td>
-                        <md-input placeholder="Last Name" [(ngModel)]="customer.lastName" name="lastName" formControlName="customerLastName">
-                            <md-hint *ngIf="customerForm.controls.customerLastName.errors?.required" [ngStyle]="{'color': 'red'}" align="start">required error</md-hint>
-                        </md-input>
+                        <input mdInput placeholder="Last Name" [(ngModel)]="customer.lastName" name="lastName" formControlName="customerLastName" />
+                        <md-hint *ngIf="customerForm.controls.customerLastName.errors?.required" [ngStyle]="{'color': 'red'}" align="start">required error</md-hint>
                         <p *ngIf="apiValidationErrors.lastName" [ngStyle]="{'color': 'red'}">
                             {{apiValidationErrors.lastName[0]}}
                         </p>
@@ -23,9 +21,8 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <md-input style="width: 100%" placeholder="Email" type="text" [(ngModel)]="customer.email" name="email" formControlName="customerEmail">
-                            <md-hint *ngIf="customerForm.controls.customerEmail.errors?.email" [ngStyle]="{'color': 'red'}" align="start">email error message</md-hint>
-                        </md-input>
+                        <input mdInput style="width: 100%" placeholder="Email" type="text" [(ngModel)]="customer.email" name="email" formControlName="customerEmail" />
+                        <md-hint *ngIf="customerForm.controls.customerEmail.errors?.email" [ngStyle]="{'color': 'red'}" align="start">email error message</md-hint>
                         <p *ngIf="apiValidationErrors.email" [ngStyle]="{'color': 'red'}">
                             {{apiValidationErrors.email[0]}}
                         </p>
@@ -33,9 +30,8 @@
                 </tr>
                 <tr>
                     <td>
-                        <md-input placeholder="Phone No." type="text" [(ngModel)]="customer.phoneNumber" name="phoneNumber" formControlName="customerPhoneNumber">
-                            <md-hint *ngIf="customerForm.controls.customerPhoneNumber.errors?.phone" [ngStyle]="{'color': 'red'}" align="start">Incorrect Phone No.</md-hint>
-                        </md-input>
+                        <input mdInput placeholder="Phone No." type="text" [(ngModel)]="customer.phoneNumber" name="phoneNumber" formControlName="customerPhoneNumber" />
+                        <md-hint *ngIf="customerForm.controls.customerPhoneNumber.errors?.phone" [ngStyle]="{'color': 'red'}" align="start">Incorrect Phone No.</md-hint>
                         <p *ngIf="apiValidationErrors.phoneNumber" [ngStyle]="{'color': 'red'}">
                             {{apiValidationErrors.phoneNumber[0]}}
                         </p>

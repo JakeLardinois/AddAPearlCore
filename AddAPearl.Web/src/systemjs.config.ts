@@ -24,7 +24,7 @@ declare var System: any;
 			'@vaadin/angular2-polymer': 'npm:@vaadin/angular2-polymer',
 			'@codebakery/origami': 'npm:@codebakery/origami/bundles/origami.umd.js',
 			'angular2-logger': 'npm:angular2-logger',
-			'angular2-mdl': 'npm:angular2-mdl',
+			'@angular-mdl/core': 'npm:@angular-mdl/core',
 			'app': 'app',
 			'fast-json-patch': 'npm:fast-json-patch/dist',
 			'hammerjs': 'npm:hammerjs',
@@ -43,8 +43,9 @@ declare var System: any;
 			'angular2-logger': {
 				defaultExtension: 'js',
 			},
-			'angular2-mdl': {
-				main: 'bundle/angular2-mdl.js',
+			'@angular-mdl/core': {
+				defaultExtension: 'js',
+				main: 'bundle/core.js',
 			},
 			'app': {
 				defaultExtension: 'js',

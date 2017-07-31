@@ -20,7 +20,7 @@ import {
 } from '@codebakery/origami';
 import {
 	MdlModule,
-} from 'angular2-mdl';
+} from '@angular-mdl/core';
 import {
 	CustomFormsModule,
 } from 'ng2-validation';

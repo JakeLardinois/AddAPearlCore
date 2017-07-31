@@ -14,8 +14,7 @@ import {
 
 import {
 	MdlDialogService,
-} from 'angular2-mdl';
-import { AnimationBuilder, animate, style } from '@angular/animations';
+} from '@angular-mdl/core';
 
 import {
 	Address,

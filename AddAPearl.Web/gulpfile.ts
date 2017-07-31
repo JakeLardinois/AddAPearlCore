@@ -262,7 +262,7 @@ gulp.task('libs', () => {
             'zone.js/dist/**',
             'fast-json-patch/dist/**',
             '@angular/**/bundles/**',
-            'angular2-mdl/bundle/angular2-mdl.js',
+            '@angular-mdl/core/bundle/core.js',
             '@angular/material/**/*',
             'ng2-validation/**/*.js',
             'lodash/**/*.js',

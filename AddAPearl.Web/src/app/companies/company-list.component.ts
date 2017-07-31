@@ -14,7 +14,7 @@ import {
 
 import {
 	MdlDialogService,
-} from 'angular2-mdl';
+} from '@angular-mdl/core';
 
 import {
 	Address,

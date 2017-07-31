@@ -26,7 +26,7 @@ import {
 } from 'angular2-logger/core';
 import {
 	MdlModule,
-} from 'angular2-mdl';
+} from '@angular-mdl/core';
 import {
 	CustomFormsModule,
 } from 'ng2-validation';

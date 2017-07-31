@@ -118,7 +118,7 @@ export class CustomerDialog {
 			customerEmail: new FormControl(this.customer.email, CustomValidators.email),
 			customerFirstName: new FormControl(this.customer.firstName, Validators.required),
 			customerLastName: new FormControl(this.customer.lastName, Validators.required),
-			customerPhoneNumber: new FormControl(this.customer.phoneNumber, CustomValidators.phone('en-US')),
+			customerPhoneNumber: new FormControl(this.customer.phoneNumber, CustomValidators.phone('US')),
 		});
 
 		this.observer = jsonpatch.observe(this.customer);

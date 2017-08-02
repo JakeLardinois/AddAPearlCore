@@ -21,8 +21,6 @@ declare var System: any;
 			'@angular/platform-browser/animations': 'npm:@angular/platform-browser/bundles/platform-browser-animations.umd.js',
 			'@angular/platform-browser-dynamic': 'npm:@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js',
 			'@angular/router': 'npm:@angular/router/bundles/router.umd.js',
-			'@vaadin/angular2-polymer': 'npm:@vaadin/angular2-polymer',
-			'@codebakery/origami': 'npm:@codebakery/origami/bundles/origami.umd.js',
 			'angular2-logger': 'npm:angular2-logger',
 			'@angular-mdl/core': 'npm:@angular-mdl/core',
 			'app': 'app',
@@ -36,10 +34,6 @@ declare var System: any;
 		},
 		// packages tells the System loader how to load when no filename and/or no extension
 		packages: {
-			'@vaadin/angular2-polymer': {
-				defaultExtension: 'js',
-				main: './index',
-			},
 			'angular2-logger': {
 				defaultExtension: 'js',
 			},

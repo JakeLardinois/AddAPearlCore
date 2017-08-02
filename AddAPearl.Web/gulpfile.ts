@@ -131,51 +131,6 @@ gulp.task('main-bower-files', function() {
     return gulp.src('./bower.json')
         .pipe($.mainBowerFiles({
             overrides: {
-                "vaadin-date-picker": {
-                    main: [
-                        '**/*.html'
-                    ]
-                },
-                "vaadin-combo-box": {
-                    main: [
-                        '**/*.html'
-                    ]
-                },
-                "neon-animation": {
-                    main: [
-                        '**/*.html'
-                    ]
-                },
-                "iron-dropdown": {
-                    main: [
-                        '**/*.html'
-                    ]
-                },
-                "paper-styles": {
-                    main: [
-                        '**/*.html'
-                    ]
-                },
-                "iron-overlay-behavior": {
-                    main: [
-                        '**/*.html'
-                    ]
-                },
-                "paper-material": {
-                    main: [
-                        '**/*.html'
-                    ]
-                },
-                "web-animations-js": {
-                    main: [
-                        '**/*.js'
-                    ]
-                },
-                "paper-behaviors": {
-                    main: [
-                        '**/*.html'
-                    ]
-                }
             }
         }))
         .pipe($.debug({title: 'BowerFiles:'}))

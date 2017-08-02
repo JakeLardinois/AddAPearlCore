@@ -17,9 +17,6 @@ import {
 	RouterModule,
 } from '@angular/router';
 import {
-	PolymerModule ,
-} from '@codebakery/origami';
-import {
 	MdlModule,
 } from '@angular-mdl/core';
 import {
@@ -56,7 +53,6 @@ import {
 		MaterialModule,
 		MdNativeDateModule,
 		MdlModule,
-		PolymerModule.forRoot(), // Only import .forRoot() once and at the highest level
 		ReactiveFormsModule,
 		RouterModule.forChild([{
 			component: CustomerListComponent,

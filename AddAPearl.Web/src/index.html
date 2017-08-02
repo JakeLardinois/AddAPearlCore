@@ -30,9 +30,7 @@
     <!-- Configure SystemJS -->
     <script src="systemjs.config.js"></script>
     <script>
-      document.addEventListener('WebComponentsReady', function() {
-            System.import('app').catch(function(err){ console.error(err); });
-        });
+        System.import('app').catch(function(err){ console.error(err); });
     </script>
 </head>
 
@@ -43,14 +41,6 @@
     <!-- endbower -->
     <!-- inject:js -->
     <!-- endinject -->
-    <script>
-        window.Polymer = {
-            dom: 'shadow'
-        };
-    </script>
-    <script src="bower/webcomponentsjs/webcomponents-loader.js"></script>
-    <link rel="import" href="bower/vaadin-date-picker/vaadin-date-picker.html">
-    <link rel="import" href="bower/vaadin-combo-box/vaadin-combo-box.html">
 </body>
 
 </html>

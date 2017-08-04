@@ -39,6 +39,15 @@ namespace AddAPearl.Services
                 .ToListAsync();
         }
 
+        public IEnumerable<ICompany> GetCompanies2()
+        {
+            _logger.LogInformation("Executing: IEnumerable<ICompany> GetCompanies()");
+            return _addAPearl.Companies
+                .Include(a => a.Address)
+                .ProjectTo<Domain.Company>()
+                .ToList();
+        }
+
         public ICompany GetCompanyById(int id)
         {
             return _addAPearl.Companies

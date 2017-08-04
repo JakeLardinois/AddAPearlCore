@@ -8,37 +8,89 @@ using AddAPearl.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Internal;
+using Moq;
 
 namespace AddAPearl.UnitTests
 {
+    /**Arrange**/
+    /**Act**/
+    /**Assert**/
     public class AddAPearlService_CompaniesShould
     {
-        private readonly AddAPearlService _addAPearlService;
-
         public AddAPearlService_CompaniesShould()
         {
-            var options = new DbContextOptionsBuilder<AddAPearlContext>();
-            options.UseSqlServer("data source=JLARDINOIS\\SQL2014;initial catalog=AddAPearl;persist security info=True;user id=sa;password=wh0r353;MultipleActiveResultSets=True;App=EntityFramework");
-            var addAPearlContext = new AddAPearlContext(options.Options);
-            var logger = new MockLogger<AddAPearlService>();
-
-            _addAPearlService = new AddAPearlService(addAPearlContext, logger);
+            
         }
 
         [Theory]
         [InlineData()]
         public async Task HasCompanyRecord()
         {
-            var result = await _addAPearlService.GetCompanies();
+            var mockRepository = new MockRepository(MockBehavior.Strict);
+            var mockIAddAPearlContext = mockRepository.Create<IAddAPearlContext>();
+            var mockILogger = mockRepository.Create<ILogger<AddAPearlService>>();
+
+            mockILogger.Setup(l => l.Log(
+                LogLevel.Information,
+                It.IsAny<EventId>(),
+                It.Is<FormattedLogValues>(v => v.ToString().Contains("Executing")),
+                It.IsAny<Exception>(),
+                It.IsAny<Func<object, Exception, string>>()
+            ));
+
+            var companies = new List<Company>
+            {
+                new Company { CompanyName = "My Foo Company"}
+            }.AsQueryable();
+            var mockCompanies = mockRepository.Create<DbSet<Company>>();
+            mockCompanies.As<IQueryable<Company>>().Setup(m => m.Provider)
+                .Returns(new TestAsyncQueryProvider<Company>(companies.Provider));
+            mockCompanies.As<IQueryable<Company>>().Setup(m => m.Expression).Returns(companies.Expression);
+            mockCompanies.As<IQueryable<Company>>().Setup(m => m.ElementType).Returns(companies.ElementType);
+            mockCompanies.As<IAsyncEnumerable<Company>>().Setup(m => m.GetEnumerator())
+                .Returns(new TestAsyncEnumerator<Company>(companies.GetEnumerator()));
+            mockIAddAPearlContext.Setup(x => x.Companies)
+                .Returns(mockCompanies.Object);
+
+            var addAPearlService = new AddAPearlService(mockIAddAPearlContext.Object, mockILogger.Object);
+            var result = await addAPearlService.GetCompanies();
 
             Assert.NotEmpty(result);
         }
-    }
 
-    public static class ApplicationLogging
-    {
-        public static ILoggerFactory LoggerFactory { get; } = new LoggerFactory();
-        public static Microsoft.Extensions.Logging.ILogger CreateLogger<T>() =>
-          LoggerFactory.CreateLogger<T>();
+        [Theory]
+        [InlineData()]
+        public void HasCompanyRecord2()
+        {
+            var mockRepository = new MockRepository(MockBehavior.Strict);
+            var mockIAddAPearlContext = mockRepository.Create<IAddAPearlContext>();
+            var mockILogger = mockRepository.Create<ILogger<AddAPearlService>>();
+
+            mockILogger.Setup(l => l.Log(
+                LogLevel.Information,
+                It.IsAny<EventId>(),
+                It.Is<FormattedLogValues>(v => v.ToString().Contains("Executing")),
+                It.IsAny<Exception>(),
+                It.IsAny<Func<object, Exception, string>>()
+                ));
+
+            var companies = new List<Company>
+            {
+                new Company { CompanyName = "My Foo Company"}
+            }.AsQueryable();
+            var mockCompanies = mockRepository.Create<DbSet<Company>>();
+            mockCompanies.As<IQueryable<Company>>().Setup(m => m.Provider).Returns(companies.Provider);
+            mockCompanies.As<IQueryable<Company>>().Setup(m => m.Expression).Returns(companies.Expression);
+            mockCompanies.As<IQueryable<Company>>().Setup(m => m.ElementType).Returns(companies.ElementType);
+            mockCompanies.As<IQueryable<Company>>().Setup(m => m.GetEnumerator()).Returns(companies.GetEnumerator());
+            mockIAddAPearlContext.Setup(x => x.Companies)
+                .Returns(mockCompanies.Object);
+
+            var addAPearlService = new AddAPearlService(mockIAddAPearlContext.Object, mockILogger.Object);
+            var result = addAPearlService.GetCompanies2();
+
+            Assert.NotEmpty(result);
+        }
     }
 }

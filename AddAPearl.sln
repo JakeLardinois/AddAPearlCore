@@ -1,23 +1,23 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddAPearl.API", "AddAPearl.API\AddAPearl.API.csproj", "{340EA784-D8F6-4BB2-9500-6FEE5E411923}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddAPearl.API", "AddAPearl.API\AddAPearl.API.csproj", "{340EA784-D8F6-4BB2-9500-6FEE5E411923}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddAPearl.Core", "AddAPearl.Core\AddAPearl.Core.csproj", "{BCB7BC08-B022-489B-BE11-51443C0FD3D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddAPearl.Core", "AddAPearl.Core\AddAPearl.Core.csproj", "{BCB7BC08-B022-489B-BE11-51443C0FD3D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddAPearl.DataAccess", "AddAPearl.DataAccess\AddAPearl.DataAccess.csproj", "{EB94B4A1-8BC8-4456-8C35-C42222548C43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddAPearl.DataAccess", "AddAPearl.DataAccess\AddAPearl.DataAccess.csproj", "{EB94B4A1-8BC8-4456-8C35-C42222548C43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddAPearl.Domain", "AddAPearl.Domain\AddAPearl.Domain.csproj", "{83AA288A-DA25-41FA-A36F-8DFA0638A2CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddAPearl.Domain", "AddAPearl.Domain\AddAPearl.Domain.csproj", "{83AA288A-DA25-41FA-A36F-8DFA0638A2CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddAPearl.Services", "AddAPearl.Services\AddAPearl.Services.csproj", "{C0700F8E-C497-4560-BE0D-53EB8150CA0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddAPearl.Services", "AddAPearl.Services\AddAPearl.Services.csproj", "{C0700F8E-C497-4560-BE0D-53EB8150CA0E}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "AddAPearl.Db", "AddAPearl.Db\AddAPearl.Db.sqlproj", "{71652FD5-2F01-4464-93D8-7069092C45B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddAPearl.UnitTests", "AddAPearl.UnitTests\AddAPearl.UnitTests.csproj", "{79EBEF34-63B6-4BE7-88D8-D8D41B254982}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddAPearl.UnitTests", "AddAPearl.UnitTests\AddAPearl.UnitTests.csproj", "{79EBEF34-63B6-4BE7-88D8-D8D41B254982}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddAPearl.IntegrationTests", "AddAPearl.IntegrationTests\AddAPearl.IntegrationTests.csproj", "{4C5CC8E3-70BC-4008-B906-E80A644F7BDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddAPearl.IntegrationTests", "AddAPearl.IntegrationTests\AddAPearl.IntegrationTests.csproj", "{4C5CC8E3-70BC-4008-B906-E80A644F7BDA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DEDC4CB3-1C3E-45D4-92DE-769435414502}"
 EndProject

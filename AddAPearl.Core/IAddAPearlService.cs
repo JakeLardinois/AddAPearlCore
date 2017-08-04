@@ -10,6 +10,7 @@ namespace AddAPearl.Core
     {
         #region Companies
         Task<IEnumerable<ICompany>> GetCompanies();
+        IEnumerable<ICompany> GetCompanies2();
         ICompany GetCompanyById(int id);
         ICompany AddCompany(ICompany company);
         ICompany UpdateCompany(ICompany company);

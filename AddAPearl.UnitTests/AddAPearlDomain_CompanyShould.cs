@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Castle.Core.Logging;
 using Xunit;
+using Moq;
 using AddAPearl.Domain;
 
 namespace AddAPearl.UnitTests

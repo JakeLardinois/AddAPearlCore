@@ -2,7 +2,7 @@
 
 namespace AddAPearl.DataAccess
 {
-    public class AddAPearlContext : DbContext
+    public class AddAPearlContext : DbContext, IAddAPearlContext
     {
         public AddAPearlContext(DbContextOptions<AddAPearlContext> options) : base(options) { }
 

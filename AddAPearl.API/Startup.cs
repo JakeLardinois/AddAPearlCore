@@ -46,6 +46,7 @@ namespace AddAPearl.API
             });
 
             services.AddTransient<IAddAPearlService, AddAPearlService>();
+            services.AddTransient<IAddAPearlContext, AddAPearlContext>();
 
             services.AddDbContext<AddAPearlContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

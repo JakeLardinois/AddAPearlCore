@@ -15,10 +15,10 @@ namespace AddAPearl.Services
 {
     public class AddAPearlService : IAddAPearlService
     {
-        private readonly AddAPearlContext _addAPearl;
+        private readonly IAddAPearlContext _addAPearl;
         private readonly ILogger _logger;
 
-        public AddAPearlService(AddAPearlContext addAPearlContext, ILogger<AddAPearlService> logger)
+        public AddAPearlService(IAddAPearlContext addAPearlContext, ILogger<AddAPearlService> logger)
         {
             _addAPearl = addAPearlContext;
             _logger = logger;

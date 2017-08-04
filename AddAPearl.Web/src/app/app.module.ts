@@ -1,4 +1,7 @@
 import {
+	MdlModule,
+} from '@angular-mdl/core';
+import {
 	NgModule,
 } from '@angular/core';
 import {
@@ -17,16 +20,13 @@ import {
 } from '@angular/platform-browser';
 import {
 	BrowserAnimationsModule,
-} from "@angular/platform-browser/animations";
+} from '@angular/platform-browser/animations';
 import {
 	RouterModule,
 } from '@angular/router';
 import {
 	Logger,
 } from 'angular2-logger/core';
-import {
-	MdlModule,
-} from '@angular-mdl/core';
 import {
 	CustomFormsModule,
 } from 'ng2-validation';

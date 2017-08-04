@@ -1,4 +1,7 @@
 import {
+	MdlModule,
+} from '@angular-mdl/core';
+import {
 	CUSTOM_ELEMENTS_SCHEMA,
 	NgModule,
 } from '@angular/core';
@@ -16,9 +19,6 @@ import {
 import {
 	RouterModule,
 } from '@angular/router';
-import {
-	MdlModule,
-} from '@angular-mdl/core';
 import {
 	CustomFormsModule,
 } from 'ng2-validation';

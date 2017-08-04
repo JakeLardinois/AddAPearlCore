@@ -20,5 +20,5 @@ export class Company implements ICompany {
 		public address: IAddress,
 	) {
 		// Any other stuff to do during construction...
-	};
+	}
 }

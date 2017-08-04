@@ -8,6 +8,7 @@ declare var System: any;
 	System.config({
 		// map tells the System loader where to look for things
 		map: {
+			'@angular-mdl/core': 'npm:@angular-mdl/core',
 			'@angular/animations': 'npm:@angular/animations/bundles/animations.umd.js',
 			'@angular/animations/browser': 'npm:@angular/animations/bundles/animations-browser.umd.js',
 			'@angular/cdk': 'npm:@angular/cdk/bundles/cdk.umd.js',
@@ -18,11 +19,10 @@ declare var System: any;
 			'@angular/http': 'npm:@angular/http/bundles/http.umd.js',
 			'@angular/material': 'npm:@angular/material/bundles/material.umd.js',
 			'@angular/platform-browser': 'npm:@angular/platform-browser/bundles/platform-browser.umd.js',
-			'@angular/platform-browser/animations': 'npm:@angular/platform-browser/bundles/platform-browser-animations.umd.js',
 			'@angular/platform-browser-dynamic': 'npm:@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js',
+			'@angular/platform-browser/animations': 'npm:@angular/platform-browser/bundles/platform-browser-animations.umd.js',
 			'@angular/router': 'npm:@angular/router/bundles/router.umd.js',
 			'angular2-logger': 'npm:angular2-logger',
-			'@angular-mdl/core': 'npm:@angular-mdl/core',
 			'app': 'app',
 			'fast-json-patch': 'npm:fast-json-patch/dist',
 			'hammerjs': 'npm:hammerjs',
@@ -34,12 +34,12 @@ declare var System: any;
 		},
 		// packages tells the System loader how to load when no filename and/or no extension
 		packages: {
-			'angular2-logger': {
-				defaultExtension: 'js',
-			},
 			'@angular-mdl/core': {
 				defaultExtension: 'js',
 				main: 'bundle/core.js',
+			},
+			'angular2-logger': {
+				defaultExtension: 'js',
 			},
 			'app': {
 				defaultExtension: 'js',
@@ -47,7 +47,7 @@ declare var System: any;
 			},
 			'fast-json-patch': {
 				defaultExtension: 'js',
-				main: './json-patch-duplex.min',
+				main: './fast-json-patch.min',
 			},
 			'hammerjs': {
 				defaultExtension: 'js',

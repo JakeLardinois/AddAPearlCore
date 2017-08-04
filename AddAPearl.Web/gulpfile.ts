@@ -222,10 +222,8 @@ gulp.task('libs', () => {
             'ng2-validation/**/*.js',
             'lodash/**/*.js',
             'angular2-logger/**/*.js',
-            '@vaadin/**/*.js',
             'moment/min/*.js',
             'libphonenumber-js/bundle/*.js',
-            '@codebakery/origami/bundles/*.js'
         ], {cwd: 'node_modules/**'}) /* Glob required here. */
         .pipe(gulp.dest('build/lib'));
 });

@@ -1,1 +1,1 @@
-export * from './companyDialog.component'
+export * from './companyDialog.component';

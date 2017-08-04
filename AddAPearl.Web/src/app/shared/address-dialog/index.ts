@@ -1,1 +1,1 @@
-export * from './addressDialog.component'
+export * from './addressDialog.component';

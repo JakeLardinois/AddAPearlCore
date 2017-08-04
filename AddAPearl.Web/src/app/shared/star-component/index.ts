@@ -1,1 +1,1 @@
-export * from './star.component'
+export * from './star.component';

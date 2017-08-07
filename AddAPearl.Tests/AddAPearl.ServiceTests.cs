@@ -24,10 +24,10 @@ namespace AddAPearl.Tests
             var mockIAddAPearlContext = mockRepository.Create<IAddAPearlContext>();
             var mockILogger = mockRepository.Create<ILogger<AddAPearlService>>();
 
-            mockILogger.Setup(l => l.Log(
+            mockILogger.Setup(l => l.Log(//defined tests for the ILogger...
                 LogLevel.Information,
                 It.IsAny<EventId>(),
-                It.Is<FormattedLogValues>(v => v.ToString().Contains("Executing")),
+                It.Is<FormattedLogValues>(v => v.ToString().Contains("Executing")), //a test against the logging message
                 It.IsAny<Exception>(),
                 It.IsAny<Func<object, Exception, string>>()
             ));
@@ -52,6 +52,8 @@ namespace AddAPearl.Tests
             var enumerable = result as ICompany[] ?? result.ToArray();
             Assert.Equal(companies.Count(), enumerable.Count());
             Assert.IsType<Domain.Company>(enumerable.First());
+            mockRepository.Verify(); //executes the tests defined in the Mock object's setup
+
         }
 
         [Theory]
@@ -62,10 +64,10 @@ namespace AddAPearl.Tests
             var mockIAddAPearlContext = mockRepository.Create<IAddAPearlContext>();
             var mockILogger = mockRepository.Create<ILogger<AddAPearlService>>();
 
-            mockILogger.Setup(l => l.Log(
+            mockILogger.Setup(l => l.Log( //defined tests for the ILogger...
                 LogLevel.Information,
                 It.IsAny<EventId>(),
-                It.Is<FormattedLogValues>(v => v.ToString().Contains("Executing")),
+                It.Is<FormattedLogValues>(v => v.ToString().Contains("Executing")), //a test against the logging message
                 It.IsAny<Exception>(),
                 It.IsAny<Func<object, Exception, string>>()
             ));
@@ -88,6 +90,7 @@ namespace AddAPearl.Tests
             var enumerable = result as ICompany[] ?? result.ToArray();
             Assert.Equal(companies.Count(), enumerable.Count());
             Assert.IsType<Domain.Company>(enumerable.First());
+            mockRepository.Verify(); //executes the tests defined in the Mock object's setup
         }
     }
 }

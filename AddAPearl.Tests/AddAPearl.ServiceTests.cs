@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AddAPearl.Core;
 using AddAPearl.DataAccess;
 using AddAPearl.Services;
 using Microsoft.EntityFrameworkCore;

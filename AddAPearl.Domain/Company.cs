@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using AddAPearl.Core;
 
 namespace AddAPearl.Domain
 {
-    public class Company : ICompany
+    public class Company
     {
         public int CompanyId { get; set; }
         
@@ -16,6 +15,6 @@ namespace AddAPearl.Domain
 
         public int? AddressId { get; set; }
 
-        public IAddress Address { get; set; }
+        public Address Address { get; set; }
     }
 }

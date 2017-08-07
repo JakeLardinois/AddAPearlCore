@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AddAPearl.Core;
+using AddAPearl.API.Infrastructure;
 using AddAPearl.DataAccess;
 using AddAPearl.Services;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
@@ -44,6 +45,12 @@ namespace AddAPearl.API
             {
                 options.AddPolicy("AllowAll", corsBuilder.Build());
             });
+
+            var mapper = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new AutoMapperProfile());
+            }).CreateMapper();
+            services.AddSingleton(mapper);
 
             services.AddTransient<IAddAPearlService, AddAPearlService>();
             services.AddTransient<IAddAPearlContext, AddAPearlContext>();

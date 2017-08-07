@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AddAPearl.Core;
 
 namespace AddAPearl.Domain
 {
-    public class Customer : ICustomer
+    public class Customer
     {
         public int CustomerId { get; set; }
 
@@ -22,10 +21,10 @@ namespace AddAPearl.Domain
 
         public int CompanyId { get; set; }
 
-        public ICompany Company { get; set; }
+        public Company Company { get; set; }
 
         public int? AddressId { get; set; }
 
-        public IAddress Address { get; set; }
+        public Address Address { get; set; }
     }
 }

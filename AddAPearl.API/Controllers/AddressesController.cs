@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AddAPearl.Core;
 using AddAPearl.Domain;
+using AddAPearl.Services;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -84,7 +84,7 @@ namespace AddAPearl.API.Controllers
 
         [HttpPatch("{id}")]
         [ActionName("Address")]
-        public IActionResult Update(int id, [FromBody] JsonPatchDocument<IAddress> patch)
+        public IActionResult Update(int id, [FromBody] JsonPatchDocument<Address> patch)
         {
             try
             {

@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using AddAPearl.Core;
 
 namespace AddAPearl.Domain
 {
-    public class Address: IAddress
+    public class Address
     {
         public int AddressId { get; set; }
         

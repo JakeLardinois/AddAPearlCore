@@ -23,7 +23,6 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AddAPearl.Core\AddAPearl.Core.csproj" />
     <ProjectReference Include="..\AddAPearl.DataAccess\AddAPearl.DataAccess.csproj" />
     <ProjectReference Include="..\AddAPearl.Services\AddAPearl.Services.csproj" />
   </ItemGroup>

@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AddAPearl.Core;
 
 namespace AddAPearl.Domain
 {
-    public class Product : IProduct
+    public class Product
     {
         public int ProductId { get; set; }
 

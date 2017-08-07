@@ -9,8 +9,8 @@ namespace AddAPearl.Core
     public interface IAddAPearlService
     {
         #region Companies
-        Task<IEnumerable<ICompany>> GetCompanies();
-        IEnumerable<ICompany> GetCompanies2();
+        Task<IEnumerable<ICompany>> GetCompaniesAsync();
+        IEnumerable<ICompany> GetCompanies();
         ICompany GetCompanyById(int id);
         ICompany AddCompany(ICompany company);
         ICompany UpdateCompany(ICompany company);

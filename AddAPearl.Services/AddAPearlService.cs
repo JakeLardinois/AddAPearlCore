@@ -30,16 +30,16 @@ namespace AddAPearl.Services
         }
 
         #region Companies
-        public async Task<IEnumerable<ICompany>> GetCompanies()
+        public async Task<IEnumerable<ICompany>> GetCompaniesAsync()
         {
-            _logger.LogInformation("Executing: IEnumerable<ICompany> GetCompanies()");
+            _logger.LogInformation("Executing: IEnumerable<ICompany> GetCompaniesAsync()");
             return await _addAPearl.Companies
                 .Include(a => a.Address)
                 .ProjectTo<Domain.Company>()
                 .ToListAsync();
         }
 
-        public IEnumerable<ICompany> GetCompanies2()
+        public IEnumerable<ICompany> GetCompanies()
         {
             _logger.LogInformation("Executing: IEnumerable<ICompany> GetCompanies()");
             return _addAPearl.Companies

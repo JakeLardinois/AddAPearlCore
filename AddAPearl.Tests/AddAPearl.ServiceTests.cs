@@ -1,32 +1,25 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AddAPearl.Core;
 using AddAPearl.DataAccess;
-using Xunit;
 using AddAPearl.Services;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Internal;
 using Moq;
+using Xunit;
 
-namespace AddAPearl.UnitTests
+namespace AddAPearl.Tests
 {
-    /**Arrange**/
-    /**Act**/
-    /**Assert**/
-    public class AddAPearlService_CompaniesShould
+    public class ServiceTests
     {
-        public AddAPearlService_CompaniesShould()
-        {
-            
-        }
-
         [Theory]
         [InlineData()]
-        public async Task HasCompanyRecord()
+        public async Task when_getting_companies_async_values_are_returned()
         {
+
             var mockRepository = new MockRepository(MockBehavior.Strict);
             var mockIAddAPearlContext = mockRepository.Create<IAddAPearlContext>();
             var mockILogger = mockRepository.Create<ILogger<AddAPearlService>>();
@@ -54,14 +47,16 @@ namespace AddAPearl.UnitTests
                 .Returns(mockCompanies.Object);
 
             var addAPearlService = new AddAPearlService(mockIAddAPearlContext.Object, mockILogger.Object);
-            var result = await addAPearlService.GetCompanies();
+            var result = await addAPearlService.GetCompaniesAsync();
 
-            Assert.NotEmpty(result);
+            var enumerable = result as ICompany[] ?? result.ToArray();
+            Assert.Equal(companies.Count(), enumerable.Count());
+            Assert.IsType<Domain.Company>(enumerable.First());
         }
 
         [Theory]
         [InlineData()]
-        public void HasCompanyRecord2()
+        public void when_getting_companies_values_are_returned()
         {
             var mockRepository = new MockRepository(MockBehavior.Strict);
             var mockIAddAPearlContext = mockRepository.Create<IAddAPearlContext>();
@@ -73,7 +68,7 @@ namespace AddAPearl.UnitTests
                 It.Is<FormattedLogValues>(v => v.ToString().Contains("Executing")),
                 It.IsAny<Exception>(),
                 It.IsAny<Func<object, Exception, string>>()
-                ));
+            ));
 
             var companies = new List<Company>
             {
@@ -88,9 +83,11 @@ namespace AddAPearl.UnitTests
                 .Returns(mockCompanies.Object);
 
             var addAPearlService = new AddAPearlService(mockIAddAPearlContext.Object, mockILogger.Object);
-            var result = addAPearlService.GetCompanies2();
+            var result = addAPearlService.GetCompanies();
 
-            Assert.NotEmpty(result);
+            var enumerable = result as ICompany[] ?? result.ToArray();
+            Assert.Equal(companies.Count(), enumerable.Count());
+            Assert.IsType<Domain.Company>(enumerable.First());
         }
     }
 }

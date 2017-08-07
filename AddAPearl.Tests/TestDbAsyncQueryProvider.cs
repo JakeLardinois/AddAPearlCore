@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 
-namespace AddAPearl.UnitTests
+namespace AddAPearl.Tests
 {
     //Taken from: https://stackoverflow.com/questions/40476233/how-to-mock-an-async-repository-with-entity-framework-core
     internal class TestAsyncQueryProvider<TEntity> : IAsyncQueryProvider

@@ -30,7 +30,7 @@ namespace AddAPearl.API.Controllers
             try
             {
                 _logger.LogInformation("Returning all the companies");
-                var companies = await _addAPearlService.GetCompanies();
+                var companies = await _addAPearlService.GetCompaniesAsync();
                 return Ok(companies);
             }
             catch (Exception objEx)

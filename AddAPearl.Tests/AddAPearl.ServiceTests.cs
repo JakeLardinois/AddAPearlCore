@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AddAPearl.DataAccess;
 using AddAPearl.Services;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Internal;
@@ -14,12 +15,24 @@ namespace AddAPearl.Tests
 {
     public class ServiceTests
     {
+        private readonly IMapper _mapper;
+
+
+        public ServiceTests()
+        {
+            _mapper = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new AutoMapperProfile());
+            }).CreateMapper();
+        }
+
+
         [Theory]
         [InlineData()]
         public async Task when_getting_companies_async_values_are_returned()
         {
 
-            var mockRepository = new MockRepository(MockBehavior.Strict);
+            var mockRepository = new MockRepository(MockBehavior.Loose);
             var mockIAddAPearlContext = mockRepository.Create<IAddAPearlContext>();
             var mockILogger = mockRepository.Create<ILogger<AddAPearlService>>();
 
@@ -45,12 +58,13 @@ namespace AddAPearl.Tests
             mockIAddAPearlContext.Setup(x => x.Companies)
                 .Returns(mockCompanies.Object);
 
-            var addAPearlService = new AddAPearlService(mockIAddAPearlContext.Object, mockILogger.Object);
+
+            var addAPearlService = new AddAPearlService(mockIAddAPearlContext.Object, mockILogger.Object, _mapper);
             var result = await addAPearlService.GetCompaniesAsync();
 
-            var enumerable = result as ICompany[] ?? result.ToArray();
-            Assert.Equal(companies.Count(), enumerable.Count());
-            Assert.IsType<Domain.Company>(enumerable.First());
+            //var enumerable = result as Domain.Company[] ?? result.ToArray();
+            Assert.Equal(companies.Count(), result.Count());
+            Assert.IsType<Domain.Company>(result.First());
             mockRepository.Verify(); //executes the tests defined in the Mock object's setup
 
         }
@@ -83,10 +97,10 @@ namespace AddAPearl.Tests
             mockIAddAPearlContext.Setup(x => x.Companies)
                 .Returns(mockCompanies.Object);
 
-            var addAPearlService = new AddAPearlService(mockIAddAPearlContext.Object, mockILogger.Object);
+            var addAPearlService = new AddAPearlService(mockIAddAPearlContext.Object, mockILogger.Object, _mapper);
             var result = addAPearlService.GetCompanies();
 
-            var enumerable = result as ICompany[] ?? result.ToArray();
+            var enumerable = result as Domain.Company[] ?? result.ToArray();
             Assert.Equal(companies.Count(), enumerable.Count());
             Assert.IsType<Domain.Company>(enumerable.First());
             mockRepository.Verify(); //executes the tests defined in the Mock object's setup

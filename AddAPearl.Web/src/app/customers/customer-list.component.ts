@@ -94,6 +94,10 @@ export class CustomerListComponent {
 		});
 	}
 
+	public editCustomerNecklaces(customer: ICustomer): void {
+
+	}
+
 	public editCustomerAddress(customer: ICustomer): void {
 		this.selectedCustomer = customer;
 		if (this.selectedCustomer.address === null) {

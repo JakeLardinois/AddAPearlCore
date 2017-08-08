@@ -35,12 +35,12 @@ import * as moment from 'moment';
 
 @Component({
 	moduleId: module.id,
-	selector: 'necklace-dialog',
-	styleUrls: ['necklaceDialog.component.css'],
-	templateUrl: 'necklaceDialog.component.html',
+	selector: 'item-dialog',
+	styleUrls: ['itemDialog.component.css'],
+	templateUrl: 'itemDialog.component.html',
 })
 
-export class NecklaceDialog {
+export class ItemDialog {
 	public customer: ICustomer;
 	public customerForm: FormGroup;
 	public companies: ICompany[];
@@ -49,7 +49,7 @@ export class NecklaceDialog {
 	private snackBarConfig = new MdSnackBarConfig();
 
 	public constructor(
-		public dialogRef: MdDialogRef < NecklaceDialog >,
+		public dialogRef: MdDialogRef < ItemDialog >,
 		public snackBar: MdSnackBar,
 		public customerService: CustomerService,
 		private companyService: CompanyService,

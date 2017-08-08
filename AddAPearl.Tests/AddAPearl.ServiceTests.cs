@@ -62,9 +62,9 @@ namespace AddAPearl.Tests
             var addAPearlService = new AddAPearlService(mockIAddAPearlContext.Object, mockILogger.Object, _mapper);
             var result = await addAPearlService.GetCompaniesAsync();
 
-            //var enumerable = result as Domain.Company[] ?? result.ToArray();
-            Assert.Equal(companies.Count(), result.Count());
-            Assert.IsType<Domain.Company>(result.First());
+            var enumerable = result as Domain.Company[] ?? result.ToArray();
+            Assert.Equal(companies.Count(), enumerable.Count());
+            Assert.IsType<Domain.Company>(enumerable.First());
             mockRepository.Verify(); //executes the tests defined in the Mock object's setup
 
         }

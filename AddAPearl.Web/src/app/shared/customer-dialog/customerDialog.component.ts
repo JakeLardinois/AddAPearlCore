@@ -105,7 +105,7 @@ export class CustomerDialog {
 		if (this.customer.birthDay === null) {
 			this.customer.birthDay = new Date().toISOString();
 		}
-		this.customer.birthDay = moment(this.customer.birthDay).format('YYYY-MM-DD');
+
 		let foundCompany = _.find(this.companies, { companyId: this.customer.companyId });
 		if (!foundCompany) {
 			foundCompany = this.customer.company;

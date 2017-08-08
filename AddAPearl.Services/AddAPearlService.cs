@@ -33,6 +33,11 @@ namespace AddAPearl.Services
         public async Task<IEnumerable<Domain.Company>> GetCompaniesAsync()
         {
             _logger.LogInformation("Executing: IEnumerable<Domain.Company> GetCompaniesAsync()");
+            //return await _internalMapper.Map<Task<List<Domain.Company>>>(_addAPearl.Companies
+            //    .Include(a => a.Address)
+            //    .ToListAsync());
+
+            //The below Throws an exception during testing of Async methods
             return await _addAPearl.Companies
                 .Include(a => a.Address)
                 .ProjectTo<Domain.Company>(_internalMapper.ConfigurationProvider)

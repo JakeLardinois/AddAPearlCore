@@ -28,6 +28,8 @@ import {
 	AddressService,
 	CustomerDialog,
 	CustomerService,
+	ItemDialog,
+	ItemService,
 } from '../shared/index';
 import {
 	CustomerFilterPipe,
@@ -41,10 +43,12 @@ import {
 		CustomerListComponent,
 		CustomerDialog,
 		CustomerFilterPipe,
+		ItemDialog,
 	],
 	entryComponents: [
 		AddressDialog,
 		CustomerDialog,
+		ItemDialog,
 	],
 	imports: [
 		BrowserModule,
@@ -62,6 +66,7 @@ import {
 	providers: [
 		AddressService,
 		CustomerService,
+		ItemService,
 	],
 	schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })

@@ -221,25 +221,28 @@ namespace AddAPearl.Services
             return item;
         }
 
-        public Domain.Item GetItemsByOwnerId(int id)
+        public IEnumerable<Domain.Item> GetItemsByOwnerId(int id)
         {
-            var itemDto = _addAPearl.Items
+            var items = new List<Domain.Item>();
+            var itemsDto = _addAPearl.Items
                 .Include(a => a.Product)
                 .Include(a => a.Owner)
                 .Include(a => a.Customer)
                 .Include(a => a.SubItems)
                 .AsNoTracking()
-                .FirstOrDefault(a => a.OwnerId == id);
+                .Where(a => a.OwnerId == id);
 
-            if (itemDto == null)
+            if (itemsDto == null)
                 return null;
+            foreach (var itemDto in itemsDto)
+            {
+                var item = _internalMapper.Map<Domain.Item>(itemDto);
+                var subItems = _internalMapper.Map<ICollection<Domain.SubItem>>(itemDto.SubItems);
+                item.SubItems = subItems;
+                items.Add(item);
+            }
 
-            var subItems = _internalMapper.Map<ICollection<Domain.SubItem>>(itemDto.SubItems);
-
-            var item = _internalMapper.Map<Domain.Item>(itemDto);
-            item.SubItems = subItems;
-
-            return item;
+            return items;
         }
 
         public Domain.Item AddItem(Domain.Item item)

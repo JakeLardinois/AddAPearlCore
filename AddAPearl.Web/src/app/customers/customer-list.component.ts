@@ -98,10 +98,10 @@ export class CustomerListComponent {
 
 	public editCustomerItems(customer: ICustomer): void {
 		this.selectedCustomer = customer;
-		this.dialogRef = this.dialog.open(CustomerDialog, {
+		this.dialogRef = this.dialog.open(ItemDialog, {
 			disableClose: false,
 		});
-		this.dialogRef.componentInstance.customer = _.cloneDeep(this.selectedCustomer);
+		this.dialogRef.componentInstance.ownerId = this.selectedCustomer.customerId ;
 
 		this.dialogRef.afterClosed().subscribe((returnedCustomer) => {
 			if (returnedCustomer) {
@@ -142,17 +142,7 @@ export class CustomerListComponent {
 		});
 		this.dialogRef.componentInstance.customer = _.cloneDeep(this.selectedCustomer);
 
-		this.dialogRef.afterClosed().subscribe((returnedCustomer) => {
-			if (returnedCustomer) {
-				this.logger.debug('result: ' + JSON.stringify(returnedCustomer));
-				let index = this.customers.indexOf(this.selectedCustomer);
-				this.selectedCustomer = returnedCustomer;
-				this.customers[index] = this.selectedCustomer;
-				this.dialogRef = null;
-			} else {
-				this.logger.debug('Customer Edit Cancelled');
-				this.dialogRef = null;
-			}
+		this.dialogRef.afterClosed().subscribe((returnedValue) => {
 		});
 	}
 

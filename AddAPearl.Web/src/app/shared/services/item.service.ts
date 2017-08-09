@@ -34,7 +34,14 @@ export class ItemService {
 	public getItems(): Observable < IItem[] > {
 		return this.http.get(this.itemsUrl)
 			.map((response: Response) => response.json() as IItem[])
-			.do((data) => this.logger.debug('Returned getItems: ' + JSON.stringify(data)))
+			.do((data) => this.logger.debug('Item Service Returned getItems: ' + JSON.stringify(data)))
+			.catch(this.handleError);
+	}
+
+	public getItemsByOwnerId(ownerId: number): Observable < IItem[] > {
+		return this.http.get(`${this.itemsUrl}/owner/${ownerId}`)
+			.map((response: Response) => response.json() as IItem[])
+			.do((data) => this.logger.debug('Item Service Returned getItemsByOwnerId: ' + JSON.stringify(data)))
 			.catch(this.handleError);
 	}
 

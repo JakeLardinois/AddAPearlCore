@@ -19,15 +19,12 @@ import {
 } from 'ng2-validation';
 
 import {
-	ICompany,
 	ICustomer,
+	IItem,
 } from '../index';
 import {
-	CompanyService,
-} from '../services/company.service';
-import {
-	CustomerService,
-} from '../services/customer.service';
+	ItemService,
+} from '../services/item.service';
 
 import * as jsonpatch from 'fast-json-patch';
 import * as _ from 'lodash';
@@ -41,51 +38,28 @@ import * as moment from 'moment';
 })
 
 export class ItemDialog {
-	public customer: ICustomer;
-	public customerForm: FormGroup;
-	public companies: ICompany[];
+	public ownerId: number;
+	public items: IItem[];
 	public observer: any;
 	public apiValidationErrors: any;
 	private snackBarConfig = new MdSnackBarConfig();
 
 	public constructor(
-		public dialogRef: MdDialogRef < ItemDialog >,
+		public dialogRef: MdDialogRef < ItemDialog > ,
 		public snackBar: MdSnackBar,
-		public customerService: CustomerService,
-		private companyService: CompanyService,
+		public itemService: ItemService,
 		private logger: Logger,
 	) {
 		this.apiValidationErrors = {};
-		this.companyService.getCompanies()
-			.subscribe((companies) => {
-				this.companies = companies;
-			},
-				(error) => this.logger.error(error));
 	}
 
 	protected ngOnInit(): void {
 		this.snackBarConfig.duration = 5000;
-
-		if (this.customer.birthDay === null) {
-			this.customer.birthDay = new Date().toISOString();
-		}
-
-		let foundCompany = _.find(this.companies, { companyId: this.customer.companyId });
-		if (!foundCompany) {
-			foundCompany = this.customer.company;
-			this.companies = [foundCompany];
-		}
-
-		this.customerForm = new FormGroup({
-			companyId: new FormControl(foundCompany.companyId),
-			customerBirthDay: new FormControl(this.customer.birthDay, CustomValidators.date),
-			customerEmail: new FormControl(this.customer.email, CustomValidators.email),
-			customerFirstName: new FormControl(this.customer.firstName, Validators.required),
-			customerLastName: new FormControl(this.customer.lastName, Validators.required),
-			customerPhoneNumber: new FormControl(this.customer.phoneNumber, CustomValidators.phone('US')),
-		});
-
-		this.observer = jsonpatch.observe(this.customer);
+		this.itemService.getItemsByOwnerId(this.ownerId)
+			.subscribe((items) => {
+					this.items = items;
+				},
+				(error) => this.logger.error(error));
 	}
 
 	private handleError(error: any): void {

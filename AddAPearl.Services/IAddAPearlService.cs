@@ -33,7 +33,7 @@ namespace AddAPearl.Services
         #region Items
         Task<IEnumerable<Domain.Item>> GetItems();
         Domain.Item GetItemById(int id);
-        Domain.Item GetItemsByOwnerId(int id);
+        IEnumerable<Domain.Item> GetItemsByOwnerId(int id);
         Domain.Item AddItem(Domain.Item item);
         Domain.Item UpdateItem(Domain.Item item);
         int DeleteItem(Domain.Item item);

@@ -101,7 +101,7 @@ export class CustomerListComponent {
 		this.dialogRef = this.dialog.open(ItemDialog, {
 			disableClose: false,
 		});
-		this.dialogRef.componentInstance.ownerId = this.selectedCustomer.customerId ;
+		this.dialogRef.componentInstance.customer = this.selectedCustomer;
 
 		this.dialogRef.afterClosed().subscribe((returnedCustomer) => {
 			if (returnedCustomer) {

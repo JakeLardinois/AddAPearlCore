@@ -38,7 +38,7 @@ import * as moment from 'moment';
 })
 
 export class ItemDialog {
-	public ownerId: number;
+	public customer: ICustomer;
 	public items: IItem[];
 	public observer: any;
 	public apiValidationErrors: any;
@@ -55,7 +55,7 @@ export class ItemDialog {
 
 	protected ngOnInit(): void {
 		this.snackBarConfig.duration = 5000;
-		this.itemService.getItemsByOwnerId(this.ownerId)
+		this.itemService.getItemsByOwnerId(this.customer.customerId)
 			.subscribe((items) => {
 					this.items = items;
 				},

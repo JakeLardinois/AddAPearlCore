@@ -95,6 +95,12 @@ export class ItemService {
 	}
 
 	private handleError(error: Response | any) {
+
+		if (error.status === 404) {
+			//return Observable.throw('Unauthorized');
+			//return Observable.empty;
+			return Observable.throw(error);
+		}
 		// In a real world app, we might use a remote logging infrastructure
 		let errMsg: string;
 		if (error instanceof Response) {

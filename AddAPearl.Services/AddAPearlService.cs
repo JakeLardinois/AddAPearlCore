@@ -231,9 +231,7 @@ namespace AddAPearl.Services
                 .Include(a => a.SubItems)
                 .AsNoTracking()
                 .Where(a => a.OwnerId == id);
-
-            if (itemsDto == null)
-                return null;
+            
             foreach (var itemDto in itemsDto)
             {
                 var item = _internalMapper.Map<Domain.Item>(itemDto);
@@ -241,8 +239,7 @@ namespace AddAPearl.Services
                 item.SubItems = subItems;
                 items.Add(item);
             }
-
-            return items;
+            return items.Any() ? items : null;
         }
 
         public Domain.Item AddItem(Domain.Item item)

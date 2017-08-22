@@ -31,8 +31,8 @@ namespace AddAPearl.Tests
         [InlineData()]
         public async Task when_getting_companies_async_values_are_returned()
         {
-
-            var mockRepository = new MockRepository(MockBehavior.Loose);
+            /**Arrange**/
+            var mockRepository = new MockRepository(MockBehavior.Strict);
             var mockIAddAPearlContext = mockRepository.Create<IAddAPearlContext>();
             var mockILogger = mockRepository.Create<ILogger<AddAPearlService>>();
 
@@ -58,10 +58,11 @@ namespace AddAPearl.Tests
             mockIAddAPearlContext.Setup(x => x.Companies)
                 .Returns(mockCompanies.Object);
 
-
+            /**Act**/
             var addAPearlService = new AddAPearlService(mockIAddAPearlContext.Object, mockILogger.Object, _mapper);
             var result = await addAPearlService.GetCompaniesAsync();
 
+            /**Assert**/
             var enumerable = result as Domain.Company[] ?? result.ToArray();
             Assert.Equal(companies.Count(), enumerable.Count());
             Assert.IsType<Domain.Company>(enumerable.First());
@@ -73,6 +74,7 @@ namespace AddAPearl.Tests
         [InlineData()]
         public void when_getting_companies_values_are_returned()
         {
+            /**Arrange**/
             var mockRepository = new MockRepository(MockBehavior.Strict);
             var mockIAddAPearlContext = mockRepository.Create<IAddAPearlContext>();
             var mockILogger = mockRepository.Create<ILogger<AddAPearlService>>();
@@ -97,9 +99,11 @@ namespace AddAPearl.Tests
             mockIAddAPearlContext.Setup(x => x.Companies)
                 .Returns(mockCompanies.Object);
 
+            /**Act**/
             var addAPearlService = new AddAPearlService(mockIAddAPearlContext.Object, mockILogger.Object, _mapper);
             var result = addAPearlService.GetCompanies();
 
+            /**Assert**/
             var enumerable = result as Domain.Company[] ?? result.ToArray();
             Assert.Equal(companies.Count(), enumerable.Count());
             Assert.IsType<Domain.Company>(enumerable.First());

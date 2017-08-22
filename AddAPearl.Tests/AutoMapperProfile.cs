@@ -12,8 +12,6 @@ namespace AddAPearl.Tests
         {
             CreateMap<DataAccess.Company, Domain.Company>()
                 .ReverseMap();
-            CreateMap<Task<List<DataAccess.Company>>, Task<List<Domain.Company>>>()
-                .ReverseMap();
 
             CreateMap<DataAccess.Address, Domain.Address>()
                 .ReverseMap();

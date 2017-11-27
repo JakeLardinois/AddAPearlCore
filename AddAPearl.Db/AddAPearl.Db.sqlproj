@@ -59,6 +59,7 @@
   <!-- READYROLL SCRIPT GENERATION OPTIONS -->
   <PropertyGroup>
     <!-- These properties might be set by the Developer -->
+    <ShadowDatabase>AddAPearl_SHADOW</ShadowDatabase>
     <!--
     <SyncOptionIncludeDependentObjects>False</SyncOptionIncludeDependentObjects>
     <SyncOptionIncludeExistenceChecks>False</SyncOptionIncludeExistenceChecks>

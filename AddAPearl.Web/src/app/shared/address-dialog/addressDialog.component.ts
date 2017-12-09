@@ -7,9 +7,9 @@ import {
 	Validators,
 } from '@angular/forms';
 import {
-	MdDialogRef,
-	MdSnackBar,
-	MdSnackBarConfig,
+	MatDialogRef,
+	MatSnackBar,
+	MatSnackBarConfig,
 } from '@angular/material';
 import {
 	Logger,
@@ -30,7 +30,7 @@ import * as jsonpatch from 'fast-json-patch';
 @Component({
 	moduleId: module.id,
 	selector: 'address-dialog',
-	styleUrls: ['addressDialog.component.css'],
+	styleUrls: ['addressDialog.component.scss'],
 	templateUrl: 'addressDialog.component.html',
 })
 
@@ -40,11 +40,11 @@ export class AddressDialog {
 	public addressForm: FormGroup;
 	public observer: any;
 	public apiValidationErrors: any;
-	private snackBarConfig = new MdSnackBarConfig();
+	private snackBarConfig = new MatSnackBarConfig();
 
 	public constructor(
-		public dialogRef: MdDialogRef < AddressDialog >,
-		public snackBar: MdSnackBar,
+		public dialogRef: MatDialogRef < AddressDialog >,
+		public snackBar: MatSnackBar,
 		public addressService: AddressService,
 		private logger: Logger,
 	) {

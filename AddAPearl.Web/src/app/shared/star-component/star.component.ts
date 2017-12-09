@@ -9,7 +9,7 @@ import {
 @Component({
 	moduleId: module.id,
 	selector: 'ai-star',
-	styleUrls: ['star.component.css'],
+	styleUrls: ['star.component.scss'],
 	templateUrl: 'star.component.html',
 })
 

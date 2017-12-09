@@ -10,9 +10,8 @@ import {
 	ReactiveFormsModule,
 } from '@angular/forms';
 import {
-	MaterialModule,
-	MdNativeDateModule,
-} from '@angular/material';
+	MaterialModule
+} from '../shared/material.module';
 import {
 	BrowserModule,
 } from '@angular/platform-browser';
@@ -55,7 +54,6 @@ import {
 		CustomFormsModule,
 		FormsModule,
 		MaterialModule,
-		MdNativeDateModule,
 		MdlModule,
 		ReactiveFormsModule,
 		RouterModule.forChild([{

@@ -9,5 +9,10 @@
   "exclude": [
     "test.ts",
     "**/*.spec.ts"
-  ]
+  ],
+  "include": [
+    "**.ts", 
+    "app/**.ts", 
+    "app/**/**.ts", 
+    "../node_modules/angular2-logger/app/core/**/**.ts" ]
 }

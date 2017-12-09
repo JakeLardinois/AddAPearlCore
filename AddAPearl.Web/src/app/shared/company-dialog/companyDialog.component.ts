@@ -7,9 +7,9 @@ import {
 	Validators,
 } from '@angular/forms';
 import {
-	MdDialogRef,
-	MdSnackBar,
-	MdSnackBarConfig,
+	MatDialogRef,
+	MatSnackBar,
+	MatSnackBarConfig,
 } from '@angular/material';
 import {
 	Logger,
@@ -30,7 +30,7 @@ import * as jsonpatch from 'fast-json-patch';
 @Component({
 	moduleId: module.id,
 	selector: 'company-dialog',
-	styleUrls: ['companyDialog.component.css'],
+	styleUrls: ['companyDialog.component.scss'],
 	templateUrl: 'companyDialog.component.html',
 })
 
@@ -39,11 +39,11 @@ export class CompanyDialog {
 	public companyForm: FormGroup;
 	public observer: any;
 	public apiValidationErrors: any;
-	private snackBarConfig = new MdSnackBarConfig();
+	private snackBarConfig = new MatSnackBarConfig();
 
 	public constructor(
-		public dialogRef: MdDialogRef < CompanyDialog >,
-		public snackBar: MdSnackBar,
+		public dialogRef: MatDialogRef < CompanyDialog >,
+		public snackBar: MatSnackBar,
 		public companyService: CompanyService,
 		private logger: Logger,
 	) {

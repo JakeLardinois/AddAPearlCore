@@ -7,9 +7,9 @@ import {
 	Validators,
 } from '@angular/forms';
 import {
-	MdDialogRef,
-	MdSnackBar,
-	MdSnackBarConfig,
+	MatDialogRef,
+	MatSnackBar,
+	MatSnackBarConfig,
 } from '@angular/material';
 import {
 	Logger,
@@ -33,7 +33,7 @@ import * as moment from 'moment';
 @Component({
 	moduleId: module.id,
 	selector: 'item-dialog',
-	styleUrls: ['itemDialog.component.css'],
+	styleUrls: ['itemDialog.component.scss'],
 	templateUrl: 'itemDialog.component.html',
 })
 
@@ -42,11 +42,11 @@ export class ItemDialog {
 	public items: IItem[];
 	public observer: any;
 	public apiValidationErrors: any;
-	private snackBarConfig = new MdSnackBarConfig();
+	private snackBarConfig = new MatSnackBarConfig();
 
 	public constructor(
-		public dialogRef: MdDialogRef < ItemDialog > ,
-		public snackBar: MdSnackBar,
+		public dialogRef: MatDialogRef < ItemDialog > ,
+		public snackBar: MatSnackBar,
 		public itemService: ItemService,
 		private logger: Logger,
 	) {

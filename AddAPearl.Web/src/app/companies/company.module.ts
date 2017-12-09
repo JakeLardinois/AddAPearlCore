@@ -10,7 +10,7 @@ import {
 } from '@angular/forms';
 import {
 	MaterialModule,
-} from '@angular/material';
+} from '../shared/material.module';
 import {
 	BrowserModule,
 } from '@angular/platform-browser';

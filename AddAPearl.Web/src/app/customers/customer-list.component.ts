@@ -2,10 +2,10 @@ import {
 	Component,
 } from '@angular/core';
 import {
-	MdDialog,
-	MdDialogRef,
-	MdSnackBar,
-	MdSnackBarConfig,
+	MatDialog,
+	MatDialogRef,
+	MatSnackBar,
+	MatSnackBarConfig,
 } from '@angular/material';
 
 import {
@@ -35,24 +35,24 @@ import * as _ from 'lodash';
 @Component({
 	moduleId: module.id,
 	selector: 'pearl-customers',
-	styleUrls: ['customer-list.component.css'],
+	styleUrls: ['customer-list.component.scss'],
 	templateUrl: 'customer-list.component.html',
 })
 
 export class CustomerListComponent {
 	public pageTitle: string = 'Customer List';
-	public dialogRef: MdDialogRef < any > ;
+	public dialogRef: MatDialogRef < any > ;
 	public listFilter: string = null;
 	public customers: ICustomer[];
 	public observer: any;
 	public selectedCustomer: ICustomer;
-	private snackBarConfig = new MdSnackBarConfig();
+	private snackBarConfig = new MatSnackBarConfig();
 
 	public constructor(
 		private dialogService: MdlDialogService,
 		private customerService: CustomerService,
-		public dialog: MdDialog,
-		public snackBar: MdSnackBar,
+		public dialog: MatDialog,
+		public snackBar: MatSnackBar,
 		private logger: Logger,
 	) {
 		// constructor code...

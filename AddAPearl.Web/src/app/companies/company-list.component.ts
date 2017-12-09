@@ -2,10 +2,10 @@ import {
 	Component,
 } from '@angular/core';
 import {
-	MdDialog,
-	MdDialogRef,
-	MdSnackBar,
-	MdSnackBarConfig,
+	MatDialog,
+	MatDialogRef,
+	MatSnackBar,
+	MatSnackBarConfig,
 } from '@angular/material';
 
 import {
@@ -31,24 +31,24 @@ import * as _ from 'lodash';
 @Component({
 	moduleId: module.id,
 	selector: 'pearl-companies',
-	styleUrls: ['company-list.component.css'],
+	styleUrls: ['company-list.component.scss'],
 	templateUrl: 'company-list.component.html',
 })
 
 export class CompanyListComponent {
 	public pageTitle: string = 'Company List';
-	public dialogRef: MdDialogRef < any > ;
+	public dialogRef: MatDialogRef < any > ;
 	public listFilter: string = null;
 	public companies: ICompany[];
 	public observer: any;
 	public selectedCompany: ICompany;
-	private snackBarConfig = new MdSnackBarConfig();
+	private snackBarConfig = new MatSnackBarConfig();
 
 	public constructor(
 		private dialogService: MdlDialogService,
 		private companyService: CompanyService,
-		public dialog: MdDialog,
-		public snackBar: MdSnackBar,
+		public dialog: MatDialog,
+		public snackBar: MatSnackBar,
 		private logger: Logger,
 	) {
 		// constructor code...
@@ -141,7 +141,7 @@ export class CompanyListComponent {
 	}
 
 	public onRatingClicked(message: string): void {
-		let config = new MdSnackBarConfig();
+		let config = new MatSnackBarConfig();
 		config.duration = 5000;
 		this.snackBar.open(message, 'Dismiss', config);
 	}

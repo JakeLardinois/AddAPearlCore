@@ -7,9 +7,9 @@ import {
 	Validators,
 } from '@angular/forms';
 import {
-	MdDialogRef,
-	MdSnackBar,
-	MdSnackBarConfig,
+	MatDialogRef,
+	MatSnackBar,
+	MatSnackBarConfig,
 } from '@angular/material';
 import {
 	Logger,
@@ -36,7 +36,7 @@ import * as moment from 'moment';
 @Component({
 	moduleId: module.id,
 	selector: 'customer-dialog',
-	styleUrls: ['customerDialog.component.css'],
+	styleUrls: ['customerDialog.component.scss'],
 	templateUrl: 'customerDialog.component.html',
 })
 
@@ -46,11 +46,11 @@ export class CustomerDialog {
 	public companies: ICompany[];
 	public observer: any;
 	public apiValidationErrors: any;
-	private snackBarConfig = new MdSnackBarConfig();
+	private snackBarConfig = new MatSnackBarConfig();
 
 	public constructor(
-		public dialogRef: MdDialogRef < CustomerDialog >,
-		public snackBar: MdSnackBar,
+		public dialogRef: MatDialogRef < CustomerDialog >,
+		public snackBar: MatSnackBar,
 		public customerService: CustomerService,
 		private companyService: CompanyService,
 		private logger: Logger,

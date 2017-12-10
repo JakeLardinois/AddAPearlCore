@@ -19,9 +19,6 @@ import {
 	BrowserModule,
 } from '@angular/platform-browser';
 import {
-	RouterModule,
-} from '@angular/router';
-import {
 	CustomFormsModule,
 } from 'ng2-validation';
 
@@ -39,6 +36,7 @@ import {
 import {
 	CustomerListComponent,
 } from './customer-list.component';
+import { CustomerRoutingModule } from './customer-routing.module';
 
 @NgModule({
 	declarations: [
@@ -59,10 +57,7 @@ import {
 		MaterialModule,
 		MdlModule,
 		ReactiveFormsModule,
-		RouterModule.forChild([{
-			component: CustomerListComponent,
-			path: 'customers',
-		}]),
+		CustomerRoutingModule,
 	],
 	providers: [
 		AddressService,

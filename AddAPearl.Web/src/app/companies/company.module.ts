@@ -18,9 +18,6 @@ import {
 	BrowserModule,
 } from '@angular/platform-browser';
 import {
-	RouterModule,
-} from '@angular/router';
-import {
 	CustomFormsModule,
 } from 'ng2-validation';
 
@@ -37,6 +34,7 @@ import {
 import {
 	CompanyListComponent,
 } from './company-list.component';
+import { CompanyRoutingModule } from './company-routing.module';
 
 @NgModule({
 	declarations: [
@@ -56,10 +54,7 @@ import {
 		MaterialModule,
 		MdlModule,
 		ReactiveFormsModule,
-		RouterModule.forChild([{
-			component: CompanyListComponent,
-			path: 'companies',
-		}]),
+		CompanyRoutingModule,
 	],
 	providers: [
 		AddressService,

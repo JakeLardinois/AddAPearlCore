@@ -59,9 +59,9 @@
                 <tr>
                     <td colspan="2">
                         <mat-select style="width: 100%" id="companyId" name="companyId" [(ngModel)]="customer.companyId" (ngModelChange)="updateCompany(customer.companyId)" formControlName="companyId" placeholder="Company">
-                            <md-option *ngFor="let company of companies" [value]="company.companyId">
+                            <mat-option *ngFor="let company of companies" [value]="company.companyId">
                                 {{ company.companyName }}
-                            </md-option>
+                            </mat-option>
                         </mat-select>
                     </td>
                 </tr>

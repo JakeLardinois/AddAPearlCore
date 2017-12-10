@@ -21,10 +21,11 @@ import {
 import {
 	ISubItem,
 } from '../index';
+import { Config } from '../../../config';
 
 @Injectable()
 export class SubItemService {
-	private subItemsUrl = 'http://localhost:19750/api/subItems'; // URL to web API
+	private subItemsUrl = Config.webApiUrl + '/subItems'; // URL to web API
 	constructor(
 		private http: Http,
 		private logger: Logger,

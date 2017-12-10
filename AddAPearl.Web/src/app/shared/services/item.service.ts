@@ -21,10 +21,11 @@ import {
 import {
 	IItem,
 } from '../index';
+import { Config } from '../../../config';
 
 @Injectable()
 export class ItemService {
-	private itemsUrl = 'http://localhost:19750/api/items'; // URL to web API
+	private itemsUrl = Config.webApiUrl + '/items'; // URL to web API
 	constructor(
 		private http: Http,
 		private logger: Logger,

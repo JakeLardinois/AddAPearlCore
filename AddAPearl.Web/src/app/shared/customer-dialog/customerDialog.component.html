@@ -50,7 +50,7 @@
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
                         </mat-input-container>
-                        <md-datepicker #picker></md-datepicker>
+                        <mat-datepicker #picker></mat-datepicker>
                         <p *ngIf="apiValidationErrors.birthDay" [ngStyle]="{'color': 'red'}">
                             {{apiValidationErrors.birthDay[0]}}
                         </p>

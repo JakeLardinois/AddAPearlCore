@@ -4,12 +4,12 @@
 
 <button mat-button [matMenuTriggerFor]="companiesmenu">Companies</button>
 <mat-menu #companiesmenu="matMenu">
-	<button mat-menu-item [routerLink]="['/companies']">Company List</button>
+	<button mat-menu-item mdl-colored="primary" [routerLink]="['/companies']">Company List</button>
 </mat-menu>
 
 <button mat-button [matMenuTriggerFor]="customersmenu">Customers</button>
 <mat-menu #customersmenu="matMenu">
-	<button mat-menu-item [routerLink]="['/customers']">Customer List</button>
+	<button mat-menu-item mdl-colored="primary"  [routerLink]="['/customers']">Customer List</button>
 </mat-menu>
 
 <div class='container'>

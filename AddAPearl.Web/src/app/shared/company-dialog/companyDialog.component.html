@@ -8,7 +8,7 @@
                 <tr>
                     <td>
                         <mat-input-container>
-                            <input mdInput placeholder="Company Name" [(ngModel)]="company.companyName" name="companyName" formControlName="companyName" />
+                            <input matInput placeholder="Company Name" [(ngModel)]="company.companyName" name="companyName" formControlName="companyName" />
                             <mat-hint *ngIf="companyForm.controls.companyName.errors?.required" [ngStyle]="{'color': 'red'}" align="start">required error</mat-hint>  
                             <p *ngIf="apiValidationErrors.companyName" [ngStyle]="{'color': 'red'}">
                                 {{apiValidationErrors.companyName[0]}}
@@ -19,7 +19,7 @@
                 <tr>
                     <td>
                         <mat-input-container>
-                            <input mdInput placeholder="Company Email" type="text" [(ngModel)]="company.email" name="email" formControlName="companyEmail" />
+                            <input matInput placeholder="Company Email" type="text" [(ngModel)]="company.email" name="email" formControlName="companyEmail" />
                             <mat-hint *ngIf="companyForm.controls.companyEmail.errors?.email" [ngStyle]="{'color': 'red'}" align="start">email error message</mat-hint>
                             <p *ngIf="apiValidationErrors.email" [ngStyle]="{'color': 'red'}">
                                 {{apiValidationErrors.email[0]}}

@@ -4,20 +4,20 @@
         <form [formGroup]="addressForm" >
             <p>
                 <mat-input-container>
-                    <textarea mdInput placeholder="Address Line 1" [(ngModel)]="address.addressLine1" name="addressLine1" formControlName="addressLine1"></textarea>
+                    <textarea matInput placeholder="Address Line 1" [(ngModel)]="address.addressLine1" name="addressLine1" formControlName="addressLine1"></textarea>
                 </mat-input-container>
                 <mat-input-container>
-                    <textarea mdInput placeholder="Address Line 2" [(ngModel)]="address.addressLine2" name="addressLine2" formControlName="addressLine2"></textarea>
+                    <textarea matInput placeholder="Address Line 2" [(ngModel)]="address.addressLine2" name="addressLine2" formControlName="addressLine2"></textarea>
                 </mat-input-container>
                 <mat-input-container>
-                    <textarea mdInput placeholder="Address Line 3" [(ngModel)]="address.addressLine3" name="addressLine3" formControlName="addressLine3"></textarea>
+                    <textarea matInput placeholder="Address Line 3" [(ngModel)]="address.addressLine3" name="addressLine3" formControlName="addressLine3"></textarea>
                 </mat-input-container>
             </p>
             <table style="width: 100%" cellspacing="0">
                 <tr>
                     <td>
                         <mat-input-container>
-                        <input mdInput placeholder="City" [(ngModel)]="address.city" name="city" formControlName="addressCity" />
+                        <input matInput placeholder="City" [(ngModel)]="address.city" name="city" formControlName="addressCity" />
                             <mat-hint *ngIf="addressForm.controls.addressCity.errors?.required" [ngStyle]="{'color': 'red'}" align="start">required error</mat-hint>
                         <p *ngIf="apiValidationErrors.city" [ngStyle]="{'color': 'red'}">
                             {{apiValidationErrors.city[0]}}
@@ -26,7 +26,7 @@
                     </td>
                     <td>
                         <mat-input-container>
-                        <input mdInput placeholder="State" maxLength="2" [(ngModel)]="address.state" name="state" formControlName="addressState" />
+                        <input matInput placeholder="State" maxLength="2" [(ngModel)]="address.state" name="state" formControlName="addressState" />
                         <p *ngIf="apiValidationErrors.state" [ngStyle]="{'color': 'red'}">
                             {{apiValidationErrors.state[0]}}
                         </p>
@@ -34,7 +34,7 @@
                     </td>
                     <td>
                         <mat-input-container>
-                        <input mdInput #postalCode maxLength="5" placeholder="Postal Code" [(ngModel)]="address.zipCode" name="zipCode" formControlName="addressZipCode" />
+                        <input matInput #postalCode maxLength="5" placeholder="Postal Code" [(ngModel)]="address.zipCode" name="zipCode" formControlName="addressZipCode" />
                         <mat-hint align="end">{{postalCode.characterCount}} / 5</mat-hint>
                         </mat-input-container>
                     </td>

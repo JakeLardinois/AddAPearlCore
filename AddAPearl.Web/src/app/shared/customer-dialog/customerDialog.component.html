@@ -6,7 +6,7 @@
                 <tr>
                     <td>
                         <mat-input-container>
-                            <input mdInput placeholder="First Name" [(ngModel)]="customer.firstName" name="firstName" formControlName="customerFirstName" />
+                            <input matInput placeholder="First Name" [(ngModel)]="customer.firstName" name="firstName" formControlName="customerFirstName" />
                             <mat-hint *ngIf="customerForm.controls.customerFirstName.errors?.required" [ngStyle]="{'color': 'red'}" align="start">required error</mat-hint>
                         </mat-input-container>
                         <p *ngIf="apiValidationErrors.firstName" [ngStyle]="{'color': 'red'}">
@@ -15,7 +15,7 @@
                     </td>
                     <td>
                         <mat-input-container>
-                            <input mdInput placeholder="Last Name" [(ngModel)]="customer.lastName" name="lastName" formControlName="customerLastName" />
+                            <input matInput placeholder="Last Name" [(ngModel)]="customer.lastName" name="lastName" formControlName="customerLastName" />
                             <mat-hint *ngIf="customerForm.controls.customerLastName.errors?.required" [ngStyle]="{'color': 'red'}" align="start">required error</mat-hint>
                         </mat-input-container>
                         <p *ngIf="apiValidationErrors.lastName" [ngStyle]="{'color': 'red'}">
@@ -26,7 +26,7 @@
                 <tr>
                     <td colspan="2">
                         <mat-input-container>
-                            <input mdInput style="width: 100%" placeholder="Email" type="text" [(ngModel)]="customer.email" name="email" formControlName="customerEmail" />
+                            <input matInput style="width: 100%" placeholder="Email" type="text" [(ngModel)]="customer.email" name="email" formControlName="customerEmail" />
                             <mat-hint *ngIf="customerForm.controls.customerEmail.errors?.email" [ngStyle]="{'color': 'red'}" align="start">email error message</mat-hint>
                         </mat-input-container>
                         <p *ngIf="apiValidationErrors.email" [ngStyle]="{'color': 'red'}">
@@ -37,7 +37,7 @@
                 <tr>
                     <td>
                         <mat-input-container>
-                            <input mdInput placeholder="Phone No." type="text" [(ngModel)]="customer.phoneNumber" name="phoneNumber" formControlName="customerPhoneNumber" />
+                            <input matInput placeholder="Phone No." type="text" [(ngModel)]="customer.phoneNumber" name="phoneNumber" formControlName="customerPhoneNumber" />
                             <mat-hint *ngIf="customerForm.controls.customerPhoneNumber.errors?.phone" [ngStyle]="{'color': 'red'}" align="start">Incorrect Phone No.</mat-hint>
                         </mat-input-container>
                         <p *ngIf="apiValidationErrors.phoneNumber" [ngStyle]="{'color': 'red'}">
@@ -46,7 +46,7 @@
                     </td>
                     <td>
                         <mat-input-container>
-                            <input mdInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="customerBirthDay" [(ngModel)]="customer.birthDay">
+                            <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="customerBirthDay" [(ngModel)]="customer.birthDay">
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
                         </mat-input-container>
@@ -58,11 +58,11 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <md-select style="width: 100%" id="companyId" name="companyId" [(ngModel)]="customer.companyId" (ngModelChange)="updateCompany(customer.companyId)" formControlName="companyId" placeholder="Company">
+                        <mat-select style="width: 100%" id="companyId" name="companyId" [(ngModel)]="customer.companyId" (ngModelChange)="updateCompany(customer.companyId)" formControlName="companyId" placeholder="Company">
                             <md-option *ngFor="let company of companies" [value]="company.companyId">
                                 {{ company.companyName }}
                             </md-option>
-                        </md-select>
+                        </mat-select>
                     </td>
                 </tr>
             </table>

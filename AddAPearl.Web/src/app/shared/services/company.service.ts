@@ -21,10 +21,11 @@ import {
 import {
 	ICompany,
 } from '../index';
+import { Config } from '../../../config';
 
 @Injectable()
 export class CompanyService {
-	private companiesUrl = 'http://localhost:19750/api/companies'; // URL to web API
+	private companiesUrl = Config.webApiUrl + '/companies'; // URL to web API
 	constructor(
 		private http: Http,
 		private logger: Logger,

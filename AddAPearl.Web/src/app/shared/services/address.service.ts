@@ -21,10 +21,11 @@ import {
 import {
 	IAddress,
 } from '../index';
+import { Config } from '../../../config';
 
 @Injectable()
 export class AddressService {
-	private addressesUrl = 'http://localhost:19750/api/addresses'; // URL to web API
+	private addressesUrl = Config.webApiUrl + '/addresses'; // URL to web API
 	constructor(
 		private http: Http,
 		private logger: Logger,

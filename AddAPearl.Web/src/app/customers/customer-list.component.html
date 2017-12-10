@@ -1,21 +1,21 @@
 <h1>{{pageTitle}}</h1>
-<md-card>
-	<md-input-container>
+<mat-card>
+	<mat-input-container>
 		<input mdInput placeholder="filter" align="end" [(ngModel)]='listFilter' />
-	</md-input-container>
+	</mat-input-container>
   <button mdl-button md-tooltip="Add Customer" mdl-button-type="fab" mdl-colored="primary" (click)="addCustomer()" mdl-ripple>
     <mdl-icon>add</mdl-icon>
   </button>
-</md-card>
-<md-card *ngFor='let customer of customers | customerFilter:listFilter'>
-	<md-card-title-group>
-		<md-card-title>{{ customer.firstName + ' ' + customer.lastName }}</md-card-title>
-		<md-card-subtitle>{{ customer.company.companyName }}</md-card-subtitle>
-	</md-card-title-group>
+</mat-card>
+<mat-card *ngFor='let customer of customers | customerFilter:listFilter'>
+	<mat-card-title-group>
+		<mat-card-title>{{ customer.firstName + ' ' + customer.lastName }}</mat-card-title>
+		<mat-card-subtitle>{{ customer.company.companyName }}</mat-card-subtitle>
+	</mat-card-title-group>
 	<button md-raised-button md-tooltip="Edit Customer" color="primary" (click)="editCustomer(customer)">Edit</button>
-	<button md-icon-button md-tooltip="Edit Address" (click)="editCustomerAddress(customer)">
-      <md-icon class="md-24">home</md-icon>
+	<button mat-icon-button md-tooltip="Edit Address" (click)="editCustomerAddress(customer)">
+      <mat-icon class="md-24">home</mat-icon>
     </button>
 	<button md-raised-button md-tooltip="Delete Customer" color="warn" (click)="deleteCustomer(customer)">Delete</button>
 	<button md-raised-button md-tooltip="Necklaces" color="primary" (click)="editCustomerItems(customer)">Customer Necklaces</button>
-</md-card>
+</mat-card>

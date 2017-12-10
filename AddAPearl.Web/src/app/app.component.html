@@ -1,16 +1,16 @@
 <h1>{{pageTitle}}</h1>
 
-<button mdl-button [routerLink]="['/welcome']">Home</button>
+<button mat-button [routerLink]="['/welcome']">Home</button>
 
-<button mdl-button [md-menu-trigger-for]="companiesmenu">Companies</button>
-<md-menu #companiesmenu="mdMenu">
-	<button mdl-button mdl-colored="primary" [routerLink]="['/companies']">Company List</button>
-</md-menu>
+<button mat-button [matMenuTriggerFor]="companiesmenu">Companies</button>
+<mat-menu #companiesmenu="matMenu">
+	<button mat-menu-item [routerLink]="['/companies']">Company List</button>
+</mat-menu>
 
-<button mdl-button [md-menu-trigger-for]="customersmenu">Customers</button>
-<md-menu #customersmenu="mdMenu">
-	<button mdl-button mdl-colored="primary"  [routerLink]="['/customers']">Customer List</button>
-</md-menu>
+<button mat-button [matMenuTriggerFor]="customersmenu">Customers</button>
+<mat-menu #customersmenu="matMenu">
+	<button mat-menu-item [routerLink]="['/customers']">Customer List</button>
+</mat-menu>
 
 <div class='container'>
 	<router-outlet></router-outlet>

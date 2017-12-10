@@ -13,6 +13,9 @@ import {
 import {
 	MaterialModule,
 } from './shared/material.module';
+import {
+	MatHint,
+} from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import {
 	BrowserAnimationsModule,

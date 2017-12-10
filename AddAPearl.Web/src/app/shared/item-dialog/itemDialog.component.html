@@ -1,13 +1,13 @@
 <h3>{{ customer.firstName + ' ' + customer.lastName + ' Items' }}</h3>
-<md-card *ngIf='!items'>
-	<md-card-title-group>
-		<md-card-title>None Found</md-card-title>
-		<md-card-subtitle></md-card-subtitle>
-	</md-card-title-group>
-</md-card>
-<md-card *ngFor='let item of items'>
-	<md-card-title-group>
-		<md-card-title>{{ item.itemName }}</md-card-title>
-		<md-card-subtitle>{{ item.description }}</md-card-subtitle>
-	</md-card-title-group>
-</md-card>
+<mat-card *ngIf='!items'>
+	<mat-card-title-group>
+		<mat-card-title>None Found</mat-card-title>
+		<mat-card-subtitle></mat-card-subtitle>
+	</mat-card-title-group>
+</mat-card>
+<mat-card *ngFor='let item of items'>
+	<mat-card-title-group>
+		<mat-card-title>{{ item.itemName }}</mat-card-title>
+		<mat-card-subtitle>{{ item.description }}</mat-card-subtitle>
+	</mat-card-title-group>
+</mat-card>

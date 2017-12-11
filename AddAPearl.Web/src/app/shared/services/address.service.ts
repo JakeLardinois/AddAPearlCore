@@ -33,7 +33,8 @@ export class AddressService {
       .set('Content-Type', 'application/json');
     return this.http.post < IAddress > (`${this.addressesUrl}/address`, bodyString, {
       headers
-    });
+    })
+    .toPromise();
   }
 
   public patchAddress(address: IAddress, patchcommands: any): Observable < IAddress > {

@@ -35,9 +35,10 @@ export class CompanyService {
     const bodyString = JSON.stringify(payload); // Stringify payload
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json');
-    return this.http.post(`${this.companiesUrl}/company`, bodyString, {
+    return this.http.post<ICompany>(`${this.companiesUrl}/company`, bodyString, {
       headers
-    });
+    })
+    .toPromise();
   }
 
   public patchCompany(company: ICompany, patchcommands: any): Observable < ICompany > {
@@ -54,6 +55,7 @@ export class CompanyService {
       .set('Content-Type', 'application/json');
     return this.http.delete < ICompany > (`${this.companiesUrl}/company/${company.companyId}`, {
       headers
-    });
+    })
+    .toPromise();
   }
 }

@@ -35,9 +35,10 @@ export class CustomerService {
     const bodyString = JSON.stringify(payload); // Stringify payload
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json');
-    return this.http.post < ICustomer > (`${this.customersUrl}/customer`, bodyString, {
+    return this.http.post <ICustomer> (`${this.customersUrl}/customer`, bodyString, {
       headers
-    });
+    })
+    .toPromise();
   }
 
   public patchCustomer(customer: ICustomer, patchcommands: any): Observable < ICustomer > {
@@ -54,6 +55,7 @@ export class CustomerService {
       .set('Content-Type', 'application/json');
     return this.http.delete < ICustomer > (`${this.customersUrl}/customer/${customer.customerId}`, {
       headers
-    });
+    })
+    .toPromise();
   }
 }

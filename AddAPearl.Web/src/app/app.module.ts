@@ -31,6 +31,7 @@ import {
 } from './app-routing.module';
 import {
   Logger,
+  Options,
 } from 'angular2-logger/core';
 import {
   CustomFormsModule,
@@ -78,6 +79,7 @@ import {
   ],
   providers: [
     Logger,
+    Options,
   ],
   bootstrap: [AppComponent]
 })

@@ -1,12 +1,12 @@
 import {
-	Component,
+  Component,
 } from '@angular/core';
 
 @Component({
-	moduleId: module.id,
-	styles: ['h2 {color: blue;}'],
-	templateUrl: 'welcome.component.html',
+  moduleId: module.id,
+  styles: ['h2 {color: blue;}'],
+  templateUrl: 'welcome.component.html',
 })
 export class WelcomeComponent {
-	public pageTitle = 'Welcome';
+  public pageTitle = 'Welcome';
 }

@@ -1,20 +1,20 @@
 import {
-	Pipe,
-	PipeTransform,
+  Pipe,
+  PipeTransform,
 } from '@angular/core';
 
 import {
-	ICustomer,
+  ICustomer,
 } from '../shared/index';
 
 @Pipe({
-	name: 'customerFilter',
+  name: 'customerFilter',
 })
 export class CustomerFilterPipe implements PipeTransform {
 
-	public transform(value: ICustomer[], filterBy: string): ICustomer[] {
-		filterBy = filterBy ? filterBy.toLocaleLowerCase() : null;
-		return filterBy ? value.filter((customer: ICustomer) =>
-			(customer.firstName + ' ' + customer.lastName).toLocaleLowerCase().indexOf(filterBy) !== -1) : value;
-	}
+  public transform(value: ICustomer[], filterBy: string): ICustomer[] {
+    filterBy = filterBy ? filterBy.toLocaleLowerCase() : null;
+    return filterBy ? value.filter((customer: ICustomer) =>
+      (customer.firstName + ' ' + customer.lastName).toLocaleLowerCase().indexOf(filterBy) !== -1) : value;
+  }
 }

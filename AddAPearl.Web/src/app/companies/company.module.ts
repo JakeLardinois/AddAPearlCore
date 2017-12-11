@@ -1,65 +1,67 @@
 import {
-	MdlModule,
+  MdlModule,
 } from '@angular-mdl/core';
 import {
-	NgModule,
+  NgModule,
 } from '@angular/core';
 import {
-	FormsModule,
-	ReactiveFormsModule,
+  FormsModule,
+  ReactiveFormsModule,
 } from '@angular/forms';
 import {
-	MaterialModule,
+  MaterialModule,
 } from '../shared/material.module';
 import {
-	MatHint,
+  MatHint,
 } from '@angular/material';
 import {
-	BrowserModule,
+  BrowserModule,
 } from '@angular/platform-browser';
 import {
-	CustomFormsModule,
+  CustomFormsModule,
 } from 'ng2-validation';
 
 import {
-	AddressDialog,
-	AddressService,
-	CompanyDialog,
-	CompanyService,
-	StarComponent,
+  AddressDialog,
+  AddressService,
+  CompanyDialog,
+  CompanyService,
+  StarComponent,
 } from '../shared/index';
 import {
-	CompanyFilterPipe,
+  CompanyFilterPipe,
 } from './company-filter.pipe';
 import {
-	CompanyListComponent,
+  CompanyListComponent,
 } from './company-list.component';
-import { CompanyRoutingModule } from './company-routing.module';
+import {
+  CompanyRoutingModule
+} from './company-routing.module';
 
 @NgModule({
-	declarations: [
-		CompanyListComponent,
-		CompanyDialog,
-		CompanyFilterPipe,
-		StarComponent,
-	],
-	entryComponents: [
-		AddressDialog,
-		CompanyDialog,
-	],
-	imports: [
-		BrowserModule,
-		CustomFormsModule,
-		FormsModule,
-		MaterialModule,
-		MdlModule,
-		ReactiveFormsModule,
-		CompanyRoutingModule,
-	],
-	providers: [
-		AddressService,
-		CompanyService,
-	],
+  declarations: [
+    CompanyListComponent,
+    CompanyDialog,
+    CompanyFilterPipe,
+    StarComponent,
+  ],
+  entryComponents: [
+    AddressDialog,
+    CompanyDialog,
+  ],
+  imports: [
+    BrowserModule,
+    CustomFormsModule,
+    FormsModule,
+    MaterialModule,
+    MdlModule,
+    ReactiveFormsModule,
+    CompanyRoutingModule,
+  ],
+  providers: [
+    AddressService,
+    CompanyService,
+  ],
 })
 
 export class CompanyModule {}

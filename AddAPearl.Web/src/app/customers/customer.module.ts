@@ -1,70 +1,72 @@
 import {
-	MdlModule,
+  MdlModule,
 } from '@angular-mdl/core';
 import {
-	CUSTOM_ELEMENTS_SCHEMA,
-	NgModule,
+  CUSTOM_ELEMENTS_SCHEMA,
+  NgModule,
 } from '@angular/core';
 import {
-	FormsModule,
-	ReactiveFormsModule,
+  FormsModule,
+  ReactiveFormsModule,
 } from '@angular/forms';
 import {
-	MaterialModule
+  MaterialModule
 } from '../shared/material.module';
 import {
-	MatHint,
+  MatHint,
 } from '@angular/material';
 import {
-	BrowserModule,
+  BrowserModule,
 } from '@angular/platform-browser';
 import {
-	CustomFormsModule,
+  CustomFormsModule,
 } from 'ng2-validation';
 
 import {
-	AddressDialog,
-	AddressService,
-	CustomerDialog,
-	CustomerService,
-	ItemDialog,
-	ItemService,
+  AddressDialog,
+  AddressService,
+  CustomerDialog,
+  CustomerService,
+  ItemDialog,
+  ItemService,
 } from '../shared/index';
 import {
-	CustomerFilterPipe,
+  CustomerFilterPipe,
 } from './customer-filter.pipe';
 import {
-	CustomerListComponent,
+  CustomerListComponent,
 } from './customer-list.component';
-import { CustomerRoutingModule } from './customer-routing.module';
+import {
+  CustomerRoutingModule
+} from './customer-routing.module';
 
 @NgModule({
-	declarations: [
-		CustomerListComponent,
-		CustomerDialog,
-		CustomerFilterPipe,
-		ItemDialog,
-	],
-	entryComponents: [
-		AddressDialog,
-		CustomerDialog,
-		ItemDialog,
-	],
-	imports: [
-		BrowserModule,
-		CustomFormsModule,
-		FormsModule,
-		MaterialModule,
-		MdlModule,
-		ReactiveFormsModule,
-		CustomerRoutingModule,
-	],
-	providers: [
-		AddressService,
-		CustomerService,
-		ItemService,
-	],
-	schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+  declarations: [
+    CustomerListComponent,
+    CustomerDialog,
+    CustomerFilterPipe,
+    ItemDialog,
+  ],
+  entryComponents: [
+    AddressDialog,
+    CustomerDialog,
+    ItemDialog,
+  ],
+  imports: [
+    BrowserModule,
+    CustomFormsModule,
+    FormsModule,
+    MaterialModule,
+    MdlModule,
+    ReactiveFormsModule,
+    CustomerRoutingModule,
+  ],
+  providers: [
+    AddressService,
+    CustomerService,
+    ItemService,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 
 export class CustomerModule {}

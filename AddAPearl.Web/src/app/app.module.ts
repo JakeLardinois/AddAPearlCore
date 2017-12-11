@@ -1,67 +1,75 @@
 import {
-	MdlModule,
+  MdlModule,
 } from '@angular-mdl/core';
-import { NgModule } from '@angular/core';
 import {
-	FormsModule,
-	ReactiveFormsModule,
+  NgModule
+} from '@angular/core';
+import {
+  FormsModule,
+  ReactiveFormsModule,
 } from '@angular/forms';
 import {
-	JsonpModule,
+  JsonpModule,
 } from '@angular/http';
 import {
-	HttpClientModule,
+  HttpClientModule,
 } from '@angular/common/http';
 import {
-	MaterialModule,
+  MaterialModule,
 } from './shared/material.module';
 import {
-	MatHint,
+  MatHint,
 } from '@angular/material';
-import { BrowserModule } from '@angular/platform-browser';
 import {
-	BrowserAnimationsModule,
+  BrowserModule
+} from '@angular/platform-browser';
+import {
+  BrowserAnimationsModule,
 } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from './app-routing.module';
 import {
-	Logger,
+  AppRoutingModule
+} from './app-routing.module';
+import {
+  Logger,
 } from 'angular2-logger/core';
 import {
-	CustomFormsModule,
+  CustomFormsModule,
 } from 'ng2-validation';
 
 import 'hammerjs';
 
-import { AppComponent } from './app.component';
 import {
-	WelcomeComponent,
+  AppComponent
+} from './app.component';
+import {
+  WelcomeComponent,
 } from './home/welcome.component';
 
 import {
-	AddressDialog,
+  AddressDialog,
 } from './shared/index';
 
 /* Feature Modules */
 import {
-	CompanyModule,
+  CompanyModule,
 } from './companies/company.module';
 import {
-	CustomerModule,
+  CustomerModule,
 } from './customers/customer.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddressDialog,
-		WelcomeComponent,
+    WelcomeComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-		CompanyModule,
-		CustomerModule,
-		FormsModule,
-		HttpClientModule,
+    CompanyModule,
+    CustomerModule,
+    FormsModule,
+    HttpClientModule,
     JsonpModule,
     MdlModule,
     ReactiveFormsModule,
@@ -69,8 +77,8 @@ import {
     AppRoutingModule
   ],
   providers: [
-		Logger,
-	],
+    Logger,
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

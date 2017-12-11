@@ -1,108 +1,108 @@
 import {
-	Component,
+  Component,
 } from '@angular/core';
 import {
-	FormControl,
-	FormGroup,
-	Validators,
+  FormControl,
+  FormGroup,
+  Validators,
 } from '@angular/forms';
 import {
-	MatDialogRef,
-	MatSnackBar,
-	MatSnackBarConfig,
+  MatDialogRef,
+  MatSnackBar,
+  MatSnackBarConfig,
 } from '@angular/material';
 import {
-	Logger,
+  Logger,
 } from 'angular2-logger/core';
 import {
-	CustomValidators,
+  CustomValidators,
 } from 'ng2-validation';
 
 import {
-	IAddress,
+  IAddress,
 } from '../index';
 import {
-	AddressService,
+  AddressService,
 } from '../services/address.service';
 
 import * as jsonpatch from 'fast-json-patch';
 
 @Component({
-	moduleId: module.id,
-	selector: 'address-dialog',
-	styleUrls: ['addressDialog.component.scss'],
-	templateUrl: 'addressDialog.component.html',
+  moduleId: module.id,
+  selector: 'address-dialog',
+  styleUrls: ['addressDialog.component.scss'],
+  templateUrl: 'addressDialog.component.html',
 })
 
 export class AddressDialog {
-	public addressName: string;
-	public address: IAddress;
-	public addressForm: FormGroup;
-	public observer: any;
-	public apiValidationErrors: any;
-	private snackBarConfig = new MatSnackBarConfig();
+  public addressName: string;
+  public address: IAddress;
+  public addressForm: FormGroup;
+  public observer: any;
+  public apiValidationErrors: any;
+  private snackBarConfig = new MatSnackBarConfig();
 
-	public constructor(
-		public dialogRef: MatDialogRef < AddressDialog >,
-		public snackBar: MatSnackBar,
-		public addressService: AddressService,
-		private logger: Logger,
-	) {
-		this.apiValidationErrors = {};
-	}
+  public constructor(
+    public dialogRef: MatDialogRef < AddressDialog > ,
+    public snackBar: MatSnackBar,
+    public addressService: AddressService,
+    private logger: Logger,
+  ) {
+    this.apiValidationErrors = {};
+  }
 
-	public updateAddress(): void {
-		if (this.address.addressId == null) { // checks if null or undefined
-			this.addressService.createAddress(this.address)
-				.then((address) => {
-					this.address = address;
-					this.snackBar.open(`Address ${this.address.addressId} Created: `, 'Ok', this.snackBarConfig);
-					this.dialogRef.close(this.address);
-				})
-				.catch((error) => {
-					this.snackBar.open('Address Failed to be Created.', 'Ok', this.snackBarConfig);
-					this.handleError(error);
-				});
-		} else {
-			const patches = jsonpatch.generate(this.observer);
+  public updateAddress(): void {
+    if (this.address.addressId == null) { // checks if null or undefined
+      this.addressService.createAddress(this.address)
+        .then((address) => {
+          this.address = address;
+          this.snackBar.open(`Address ${this.address.addressId} Created: `, 'Ok', this.snackBarConfig);
+          this.dialogRef.close(this.address);
+        })
+        .catch((error) => {
+          this.snackBar.open('Address Failed to be Created.', 'Ok', this.snackBarConfig);
+          this.handleError(error);
+        });
+    } else {
+      const patches = jsonpatch.generate(this.observer);
 
-			this.addressService.patchAddress(this.address, patches)
-				.subscribe(
-					(address) => {
-						this.address = address;
-						this.snackBar.open(`Address ${this.address.addressId} Updated`, 'Ok', this.snackBarConfig);
-						this.dialogRef.close(this.address);
-					},
-					(error) => {
-						this.snackBar.open('Address Failed to be Updated.', 'Ok', this.snackBarConfig);
-						this.handleError(error);
-					});
-		}
-	}
+      this.addressService.patchAddress(this.address, patches)
+        .subscribe(
+          (address) => {
+            this.address = address;
+            this.snackBar.open(`Address ${this.address.addressId} Updated`, 'Ok', this.snackBarConfig);
+            this.dialogRef.close(this.address);
+          },
+          (error) => {
+            this.snackBar.open('Address Failed to be Updated.', 'Ok', this.snackBarConfig);
+            this.handleError(error);
+          });
+    }
+  }
 
-	protected ngOnInit(): void {
-		this.snackBarConfig.duration = 5000;
+  protected ngOnInit(): void {
+    this.snackBarConfig.duration = 5000;
 
-		this.addressForm = new FormGroup({
-			addressCity: new FormControl(this.address.city, Validators.required),
-			addressLine1: new FormControl(this.address.addressLine1),
-			addressLine2: new FormControl(this.address.addressLine2),
-			addressLine3: new FormControl(this.address.addressLine3),
-			addressState: new FormControl(this.address.state),
-			addressZipCode: new FormControl(this.address.zipCode),
-		});
+    this.addressForm = new FormGroup({
+      addressCity: new FormControl(this.address.city, Validators.required),
+      addressLine1: new FormControl(this.address.addressLine1),
+      addressLine2: new FormControl(this.address.addressLine2),
+      addressLine3: new FormControl(this.address.addressLine3),
+      addressState: new FormControl(this.address.state),
+      addressZipCode: new FormControl(this.address.zipCode),
+    });
 
-		this.observer = jsonpatch.observe(this.address);
-	}
+    this.observer = jsonpatch.observe(this.address);
+  }
 
-	private handleError(error: any): void {
-		const messageBody = JSON.parse(error._body);
+  private handleError(error: any): void {
+    const messageBody = JSON.parse(error._body);
 
-		if (messageBody) { // Validation errors were passed back from the API
-			this.logger.error('API Validation Errors. Status: ' + error.statusText);
-			this.apiValidationErrors = messageBody;
-		} else {
-			this.logger.error(error);
-		}
-	}
+    if (messageBody) { // Validation errors were passed back from the API
+      this.logger.error('API Validation Errors. Status: ' + error.statusText);
+      this.apiValidationErrors = messageBody;
+    } else {
+      this.logger.error(error);
+    }
+  }
 }

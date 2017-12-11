@@ -1,104 +1,104 @@
 import {
-	Component,
+  Component,
 } from '@angular/core';
 import {
-	FormControl,
-	FormGroup,
-	Validators,
+  FormControl,
+  FormGroup,
+  Validators,
 } from '@angular/forms';
 import {
-	MatDialogRef,
-	MatSnackBar,
-	MatSnackBarConfig,
-	MatHint,
+  MatDialogRef,
+  MatSnackBar,
+  MatSnackBarConfig,
+  MatHint,
 } from '@angular/material';
 import {
-	Logger,
+  Logger,
 } from 'angular2-logger/core';
 import {
-	CustomValidators,
+  CustomValidators,
 } from 'ng2-validation';
 
 import {
-	ICompany,
+  ICompany,
 } from '../index';
 import {
-	CompanyService,
+  CompanyService,
 } from '../services/company.service';
 
 import * as jsonpatch from 'fast-json-patch';
 
 @Component({
-	moduleId: module.id,
-	selector: 'company-dialog',
-	styleUrls: ['companyDialog.component.scss'],
-	templateUrl: 'companyDialog.component.html',
+  moduleId: module.id,
+  selector: 'company-dialog',
+  styleUrls: ['companyDialog.component.scss'],
+  templateUrl: 'companyDialog.component.html',
 })
 
 export class CompanyDialog {
-	public company: ICompany;
-	public companyForm: FormGroup;
-	public observer: any;
-	public apiValidationErrors: any;
-	private snackBarConfig = new MatSnackBarConfig();
+  public company: ICompany;
+  public companyForm: FormGroup;
+  public observer: any;
+  public apiValidationErrors: any;
+  private snackBarConfig = new MatSnackBarConfig();
 
-	public constructor(
-		public dialogRef: MatDialogRef < CompanyDialog >,
-		public snackBar: MatSnackBar,
-		public companyService: CompanyService,
-		private logger: Logger,
-	) {
-		this.apiValidationErrors = {};
-	}
+  public constructor(
+    public dialogRef: MatDialogRef < CompanyDialog > ,
+    public snackBar: MatSnackBar,
+    public companyService: CompanyService,
+    private logger: Logger,
+  ) {
+    this.apiValidationErrors = {};
+  }
 
-	public updateCompany(): void {
-		if (this.company.companyId == null) { // checks if null or undefined
-			this.companyService.createCompany(this.company)
-				.then((company) => {
-					this.company = company;
-					this.snackBar.open(`Company ${company.companyId}  Created: `, 'Ok', this.snackBarConfig);
-					this.dialogRef.close(this.company);
-				})
-				.catch((error) => {
-					this.snackBar.open('Company Failed to be Created.' , 'Ok', this.snackBarConfig);
-					this.handleError(error);
-				});
-		} else {
-			const patches = jsonpatch.generate(this.observer);
+  public updateCompany(): void {
+    if (this.company.companyId == null) { // checks if null or undefined
+      this.companyService.createCompany(this.company)
+        .then((company) => {
+          this.company = company;
+          this.snackBar.open(`Company ${company.companyId}  Created: `, 'Ok', this.snackBarConfig);
+          this.dialogRef.close(this.company);
+        })
+        .catch((error) => {
+          this.snackBar.open('Company Failed to be Created.', 'Ok', this.snackBarConfig);
+          this.handleError(error);
+        });
+    } else {
+      const patches = jsonpatch.generate(this.observer);
 
-			this.companyService.patchCompany(this.company, patches)
-				.subscribe(
-					(company) => {
-						this.company = company;
-						this.snackBar.open(`Updated ${this.company.companyName}`, 'Ok', this.snackBarConfig);
-						this.dialogRef.close(this.company);
-					},
-					(error) => {
-						this.snackBar.open('Company Failed to be Updated.', 'Ok', this.snackBarConfig);
-						this.handleError(error);
-					});
-		}
-	}
+      this.companyService.patchCompany(this.company, patches)
+        .subscribe(
+          (company) => {
+            this.company = company;
+            this.snackBar.open(`Updated ${this.company.companyName}`, 'Ok', this.snackBarConfig);
+            this.dialogRef.close(this.company);
+          },
+          (error) => {
+            this.snackBar.open('Company Failed to be Updated.', 'Ok', this.snackBarConfig);
+            this.handleError(error);
+          });
+    }
+  }
 
-	protected ngOnInit(): void {
-		this.snackBarConfig.duration = 5000;
+  protected ngOnInit(): void {
+    this.snackBarConfig.duration = 5000;
 
-		this.companyForm = new FormGroup({
-			companyEmail: new FormControl(this.company.email, CustomValidators.email),
-			companyName: new FormControl(this.company.companyName, Validators.required),
-		});
+    this.companyForm = new FormGroup({
+      companyEmail: new FormControl(this.company.email, CustomValidators.email),
+      companyName: new FormControl(this.company.companyName, Validators.required),
+    });
 
-		this.observer = jsonpatch.observe(this.company);
-	}
+    this.observer = jsonpatch.observe(this.company);
+  }
 
-	private handleError(error: any): void {
-		const messageBody = JSON.parse(error._body);
+  private handleError(error: any): void {
+    const messageBody = JSON.parse(error._body);
 
-		if (messageBody) { // Validation errors were passed back from the API
-			this.logger.error('API Validation Errors. Status: ' + error.statusText);
-			this.apiValidationErrors = messageBody;
-		} else {
-			this.logger.error(error);
-		}
-	}
+    if (messageBody) { // Validation errors were passed back from the API
+      this.logger.error('API Validation Errors. Status: ' + error.statusText);
+      this.apiValidationErrors = messageBody;
+    } else {
+      this.logger.error(error);
+    }
+  }
 }

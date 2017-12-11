@@ -47,6 +47,5 @@ export class ProductService {
 		let headers = new HttpHeaders()
 			.set("Content-Type", "application/json");
 		return this.http.delete<IProduct>(`${this.productsUrl}/product/${product.productId}`, {headers});
-			});
 	}
 }

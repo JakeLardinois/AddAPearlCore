@@ -7,9 +7,11 @@ import {
 	ReactiveFormsModule,
 } from '@angular/forms';
 import {
-	HttpModule,
 	JsonpModule,
 } from '@angular/http';
+import {
+	HttpClientModule,
+} from '@angular/common/http';
 import {
 	MaterialModule,
 } from './shared/material.module';
@@ -59,7 +61,7 @@ import {
 		CompanyModule,
 		CustomerModule,
 		FormsModule,
-		HttpModule,
+		HttpClientModule,
     JsonpModule,
     MdlModule,
     ReactiveFormsModule,

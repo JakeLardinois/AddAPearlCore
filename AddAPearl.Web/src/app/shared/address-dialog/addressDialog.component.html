@@ -1,5 +1,5 @@
 <mat-card>
-    <mat-toolbar color="primary">{{addressName}}</mat-toolbar>
+    <mat-toolbar color="primary">{{ addressName }}</mat-toolbar>
     <mat-card-content>
         <form [formGroup]="addressForm" >
             <p>
@@ -20,7 +20,7 @@
                         <input matInput placeholder="City" [(ngModel)]="address.city" name="city" formControlName="addressCity" />
                             <mat-hint *ngIf="addressForm.controls.addressCity.errors?.required" [ngStyle]="{'color': 'red'}" align="start">required error</mat-hint>
                         <p *ngIf="apiValidationErrors.city" [ngStyle]="{'color': 'red'}">
-                            {{apiValidationErrors.city[0]}}
+                           {{ apiValidationErrors.city[0] }}}
                         </p>
                         </mat-input-container>
                     </td>
@@ -28,14 +28,14 @@
                         <mat-input-container>
                         <input matInput placeholder="State" maxLength="2" [(ngModel)]="address.state" name="state" formControlName="addressState" />
                         <p *ngIf="apiValidationErrors.state" [ngStyle]="{'color': 'red'}">
-                            {{apiValidationErrors.state[0]}}
+                           {{ apiValidationErrors.state[0] }}}
                         </p>
                         </mat-input-container>
                     </td>
                     <td>
                         <mat-input-container>
                         <input matInput #postalCode maxLength="5" placeholder="Postal Code" [(ngModel)]="address.zipCode" name="zipCode" formControlName="addressZipCode" />
-                        <mat-hint align="end">{{postalCode.characterCount}} / 5</mat-hint>
+                        <mat-hint align="end">{{ postalCode.characterCount }} / 5</mat-hint>
                         </mat-input-container>
                     </td>
                 </tr>

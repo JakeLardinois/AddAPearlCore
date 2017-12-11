@@ -1,5 +1,5 @@
 <mat-card>
-    <mat-toolbar color="primary">{{company.companyName}}</mat-toolbar>
+    <mat-toolbar color="primary">{{ company.companyName }}</mat-toolbar>
     <mat-card-content>
         <form [formGroup]="companyForm">
             <p>
@@ -11,7 +11,7 @@
                             <input matInput placeholder="Company Name" [(ngModel)]="company.companyName" name="companyName" formControlName="companyName" />
                             <mat-hint *ngIf="companyForm.controls.companyName.errors?.required" [ngStyle]="{'color': 'red'}" align="start">required error</mat-hint>  
                             <p *ngIf="apiValidationErrors.companyName" [ngStyle]="{'color': 'red'}">
-                                {{apiValidationErrors.companyName[0]}}
+                               {{ apiValidationErrors.companyName[0] }}}
                             </p>
                         </mat-input-container>
                     </td>
@@ -22,7 +22,7 @@
                             <input matInput placeholder="Company Email" type="text" [(ngModel)]="company.email" name="email" formControlName="companyEmail" />
                             <mat-hint *ngIf="companyForm.controls.companyEmail.errors?.email" [ngStyle]="{'color': 'red'}" align="start">email error message</mat-hint>
                             <p *ngIf="apiValidationErrors.email" [ngStyle]="{'color': 'red'}">
-                                {{apiValidationErrors.email[0]}}
+                               {{ apiValidationErrors.email[0] }}}
                             </p>
                     </mat-input-container>
                     </td>

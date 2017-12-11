@@ -29,22 +29,22 @@ export class SubItemService {
 
 	public createSubItem(subItem: ISubItem) {
 		delete subItem.subItemId; // Need to remove null key property or else the API ModelBinder Fails
-		let payload = subItem;
-		let bodyString = JSON.stringify(payload); // Stringify payload
-		let headers = new HttpHeaders()
-			.set("Content-Type", "application/json");
+		const payload = subItem;
+		const bodyString = JSON.stringify(payload); // Stringify payload
+		const headers = new HttpHeaders()
+			.set('Content-Type', 'application/json');
 		return this.http.post<ISubItem>(`${this.subItemsUrl}/subItem`, bodyString, {headers});
 	}
 
 	public patchSubItem(subItem: ISubItem, patchcommands: any): Observable < ISubItem > {
-		let bodyString = JSON.stringify(patchcommands); // Stringify payload
-		let headers = new HttpHeaders()
-			.set("Content-Type", "application/json");
+		const bodyString = JSON.stringify(patchcommands); // Stringify payload
+		const headers = new HttpHeaders()
+			.set('Content-Type', 'application/json');
 		return this.http.patch<ISubItem>(`${this.subItemsUrl}/subItem/${subItem.subItemId}`, bodyString, {headers});
 	}
 
 	public deleteSubItem(subItem: ISubItem) {
-		let headers = new HttpHeaders()
-			.set("Content-Type", "application/json");
+		const headers = new HttpHeaders()
+			.set('Content-Type', 'application/json');
 	}
 }

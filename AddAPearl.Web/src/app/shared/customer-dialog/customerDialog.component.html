@@ -1,5 +1,5 @@
 <mat-card>
-    <mat-toolbar color="primary">{{customer.firstName  + ' ' + customer.lastName}}</mat-toolbar>
+    <mat-toolbar color="primary">{{ customer.firstName  + ' ' + customer.lastName }}</mat-toolbar>
     <mat-card-content>
         <form #elementForm="ngForm" [formGroup]="customerForm">
             <table style="width: 100%" cellspacing="0">
@@ -10,7 +10,7 @@
                             <mat-hint *ngIf="customerForm.controls.customerFirstName.errors?.required" [ngStyle]="{'color': 'red'}" align="start">required error</mat-hint>
                         </mat-input-container>
                         <p *ngIf="apiValidationErrors.firstName" [ngStyle]="{'color': 'red'}">
-                            {{apiValidationErrors.firstName[0]}}
+                           {{ apiValidationErrors.firstName[0] }}}
                         </p>
                     </td>
                     <td>
@@ -19,7 +19,7 @@
                             <mat-hint *ngIf="customerForm.controls.customerLastName.errors?.required" [ngStyle]="{'color': 'red'}" align="start">required error</mat-hint>
                         </mat-input-container>
                         <p *ngIf="apiValidationErrors.lastName" [ngStyle]="{'color': 'red'}">
-                            {{apiValidationErrors.lastName[0]}}
+                           {{ apiValidationErrors.lastName[0] }}}
                         </p>
                     </td>
                 </tr>
@@ -30,7 +30,7 @@
                             <mat-hint *ngIf="customerForm.controls.customerEmail.errors?.email" [ngStyle]="{'color': 'red'}" align="start">email error message</mat-hint>
                         </mat-input-container>
                         <p *ngIf="apiValidationErrors.email" [ngStyle]="{'color': 'red'}">
-                            {{apiValidationErrors.email[0]}}
+                           {{ apiValidationErrors.email[0] }}}
                         </p>
                     </td>
                 </tr>
@@ -41,7 +41,7 @@
                             <mat-hint *ngIf="customerForm.controls.customerPhoneNumber.errors?.phone" [ngStyle]="{'color': 'red'}" align="start">Incorrect Phone No.</mat-hint>
                         </mat-input-container>
                         <p *ngIf="apiValidationErrors.phoneNumber" [ngStyle]="{'color': 'red'}">
-                            {{apiValidationErrors.phoneNumber[0]}}
+                           {{ apiValidationErrors.phoneNumber[0] }}}
                         </p>
                     </td>
                     <td>
@@ -52,7 +52,7 @@
                         </mat-input-container>
                         <mat-datepicker #picker></mat-datepicker>
                         <p *ngIf="apiValidationErrors.birthDay" [ngStyle]="{'color': 'red'}">
-                            {{apiValidationErrors.birthDay[0]}}
+                           {{ apiValidationErrors.birthDay[0] }}}
                         </p>
                     </td>
                 </tr>

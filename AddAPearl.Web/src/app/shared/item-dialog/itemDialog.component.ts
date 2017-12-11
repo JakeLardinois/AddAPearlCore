@@ -63,7 +63,7 @@ export class ItemDialog {
 	}
 
 	private handleError(error: any): void {
-		let messageBody = JSON.parse(error._body);
+		const messageBody = JSON.parse(error._body);
 
 		if (messageBody) { // Validation errors were passed back from the API
 			this.logger.error('API Validation Errors. Status: ' + error.statusText);

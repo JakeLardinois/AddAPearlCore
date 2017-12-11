@@ -25,17 +25,17 @@ export class AddressService {
 	}
 	public createAddress(address: IAddress) {
 		delete address.addressId; // Need to remove null key property or else the API ModelBinder Fails
-		let payload = address;
-		let bodyString = JSON.stringify(payload); // Stringify payload
-		let headers = new HttpHeaders()
-			.set("Content-Type", "application/json");
+		const payload = address;
+		const bodyString = JSON.stringify(payload); // Stringify payload
+		const headers = new HttpHeaders()
+			.set('Content-Type', 'application/json');
 		return this.http.post<IAddress>(`${this.addressesUrl}/address`, bodyString, {headers});
 	}
 
 	public patchAddress(address: IAddress, patchcommands: any): Observable < IAddress > {
-		let bodyString = JSON.stringify(patchcommands); // Stringify payload
-		let headers = new HttpHeaders()
-			.set("Content-Type", "application/json");
+		const bodyString = JSON.stringify(patchcommands); // Stringify payload
+		const headers = new HttpHeaders()
+			.set('Content-Type', 'application/json');
 		return this.http.patch<IAddress>(`${this.addressesUrl}/address/${address.addressId}`, bodyString, {headers});
 	}
 }

@@ -29,23 +29,23 @@ export class CompanyService {
 
 	public createCompany(company: ICompany) {
 		delete company.companyId; // Need to remove null key property or else the API ModelBinder Fails
-		let payload = company;
-		let bodyString = JSON.stringify(payload); // Stringify payload
-		let headers = new HttpHeaders()
-			.set("Content-Type", "application/json");
+		const payload = company;
+		const bodyString = JSON.stringify(payload); // Stringify payload
+		const headers = new HttpHeaders()
+			.set('Content-Type', 'application/json');
 		return this.http.post(`${this.companiesUrl}/company`, bodyString, {headers});
 	}
 
 	public patchCompany(company: ICompany, patchcommands: any): Observable < ICompany > {
-		let bodyString = JSON.stringify(patchcommands); // Stringify payload
-		let headers = new HttpHeaders()
-			.set("Content-Type", "application/json");
+		const bodyString = JSON.stringify(patchcommands); // Stringify payload
+		const headers = new HttpHeaders()
+			.set('Content-Type', 'application/json');
 		return this.http.patch<ICompany>(`${this.companiesUrl}/company/${company.companyId}`, bodyString, {headers});
 	}
 
 	public deleteCompany(company: ICompany) {
-		let headers = new HttpHeaders()
-			.set("Content-Type", "application/json");
+		const headers = new HttpHeaders()
+			.set('Content-Type', 'application/json');
 		return this.http.delete<ICompany>(`${this.companiesUrl}/company/${company.companyId}`, {headers});
 	}
 }

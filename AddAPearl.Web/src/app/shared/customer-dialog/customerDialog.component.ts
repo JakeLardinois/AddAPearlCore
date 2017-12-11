@@ -77,7 +77,7 @@ export class CustomerDialog {
 					this.handleError(error);
 				});
 		} else {
-			let patches = jsonpatch.generate(this.observer);
+			const patches = jsonpatch.generate(this.observer);
 
 			this.customerService.patchCustomer(this.customer, patches)
 				.subscribe(
@@ -125,7 +125,7 @@ export class CustomerDialog {
 	}
 
 	private handleError(error: any): void {
-		let messageBody = JSON.parse(error._body);
+		const messageBody = JSON.parse(error._body);
 
 		if (messageBody) { // Validation errors were passed back from the API
 			this.logger.error('API Validation Errors. Status: ' + error.statusText);

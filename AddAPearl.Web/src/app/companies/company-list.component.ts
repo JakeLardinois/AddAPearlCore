@@ -36,7 +36,7 @@ import * as _ from 'lodash';
 })
 
 export class CompanyListComponent {
-	public pageTitle: string = 'Company List';
+	public pageTitle = 'Company List';
 	public dialogRef: MatDialogRef < any > ;
 	public listFilter: string = null;
 	public companies: ICompany[];
@@ -110,7 +110,7 @@ export class CompanyListComponent {
 		this.dialogRef.afterClosed().subscribe((returnedCompany) => {
 			if (returnedCompany) {
 				this.logger.debug('result: ' + JSON.stringify(returnedCompany));
-				let index = this.companies.indexOf(this.selectedCompany);
+				const index = this.companies.indexOf(this.selectedCompany);
 				this.selectedCompany = returnedCompany;
 				this.companies[index] = this.selectedCompany;
 				this.dialogRef = null;
@@ -122,11 +122,11 @@ export class CompanyListComponent {
 	}
 
 	public deleteCompany(company: ICompany): void {
-		let result = this.dialogService.confirm(`Are you sure you want to delete ${company.companyName}?`, 'No', 'Yes');
+		const result = this.dialogService.confirm(`Are you sure you want to delete ${company.companyName}?`, 'No', 'Yes');
 		result.subscribe( () => {
 			this.logger.debug('confirmed');
 			this.companyService.deleteCompany(company).then((deletedCompany) => {
-				let index = this.companies.indexOf(company);
+				const index = this.companies.indexOf(company);
 				this.companies.splice(index, 1);
 				this.snackBar.open(`Company ${company.companyName} was deleted` , 'Ok', this.snackBarConfig);
 			})
@@ -141,7 +141,7 @@ export class CompanyListComponent {
 	}
 
 	public onRatingClicked(message: string): void {
-		let config = new MatSnackBarConfig();
+		const config = new MatSnackBarConfig();
 		config.duration = 5000;
 		this.snackBar.open(message, 'Dismiss', config);
 	}
@@ -168,12 +168,12 @@ export class CompanyListComponent {
 				this.selectedCompany.address = null; // otherwise patches will get generated for previous address changes
 				this.observer = jsonpatch.observe(this.selectedCompany);
 				this.selectedCompany.addressId = returnedAddress.addressId;
-				let patches = jsonpatch.generate(this.observer); // generate patches for if the address Id changed
+				const patches = jsonpatch.generate(this.observer); // generate patches for if the address Id changed
 
 				if (patches.length > 0) {
 					this.companyService.patchCompany(this.selectedCompany, patches)
 						.subscribe((company) => {
-							let index = this.companies.indexOf(this.selectedCompany);
+							const index = this.companies.indexOf(this.selectedCompany);
 							this.selectedCompany = company;
 							this.companies[index] = this.selectedCompany;
 							this.dialogRef = null;

@@ -40,7 +40,7 @@ import * as _ from 'lodash';
 })
 
 export class CustomerListComponent {
-	public pageTitle: string = 'Customer List';
+	public pageTitle = 'Customer List';
 	public dialogRef: MatDialogRef < any > ;
 	public listFilter: string = null;
 	public customers: ICustomer[];
@@ -106,7 +106,7 @@ export class CustomerListComponent {
 		this.dialogRef.afterClosed().subscribe((returnedCustomer) => {
 			if (returnedCustomer) {
 				this.logger.debug('result: ' + JSON.stringify(returnedCustomer));
-				let index = this.customers.indexOf(this.selectedCustomer);
+				const index = this.customers.indexOf(this.selectedCustomer);
 				this.selectedCustomer = returnedCustomer;
 				this.customers[index] = this.selectedCustomer;
 				this.dialogRef = null;
@@ -147,11 +147,11 @@ export class CustomerListComponent {
 	}
 
 	public deleteCustomer(customer: ICustomer): void {
-		let result = this.dialogService.confirm(`Are you sure you want to delete ${customer.firstName} ${customer.lastName}?`, 'No', 'Yes');
+		const result = this.dialogService.confirm(`Are you sure you want to delete ${customer.firstName} ${customer.lastName}?`, 'No', 'Yes');
 		result.subscribe(() => {
 				this.logger.debug('confirmed');
 				this.customerService.deleteCustomer(customer).then((deletedCustomer) => {
-						let index = this.customers.indexOf(customer);
+						const index = this.customers.indexOf(customer);
 						this.customers.splice(index, 1);
 						this.snackBar.open(`Customer ${customer.firstName} ${customer.lastName} was deleted`, 'Ok', this.snackBarConfig);
 					})
@@ -189,12 +189,12 @@ export class CustomerListComponent {
 				this.selectedCustomer.address = null; // otherwise patches will get generated for previous address changes
 				this.observer = jsonpatch.observe(this.selectedCustomer);
 				this.selectedCustomer.addressId = returnedAddress.addressId;
-				let patches = jsonpatch.generate(this.observer); // generate patches for if the address Id changed
+				const patches = jsonpatch.generate(this.observer); // generate patches for if the address Id changed
 
 				if (patches.length > 0) {
 					this.customerService.patchCustomer(this.selectedCustomer, patches)
 					.subscribe((customer) => {
-						let index = this.customers.indexOf(this.selectedCustomer);
+						const index = this.customers.indexOf(this.selectedCustomer);
 						this.selectedCustomer = customer;
 						this.customers[index] = this.selectedCustomer;
 						this.dialogRef = null;

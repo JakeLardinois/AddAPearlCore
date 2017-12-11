@@ -33,23 +33,23 @@ export class ItemService {
 
 	public createItem(item: IItem) {
 		delete item.itemId; // Need to remove null key property or else the API ModelBinder Fails
-		let payload = item;
-		let bodyString = JSON.stringify(payload); // Stringify payload
-		let headers = new HttpHeaders()
-			.set("Content-Type", "application/json");
+		const payload = item;
+		const bodyString = JSON.stringify(payload); // Stringify payload
+		const headers = new HttpHeaders()
+			.set('Content-Type', 'application/json');
 		return this.http.post<IItem>(`${this.itemsUrl}/item`, bodyString, {headers});
 	}
 
 	public patchItem(item: IItem, patchcommands: any): Observable < IItem > {
-		let bodyString = JSON.stringify(patchcommands); // Stringify payload
-		let headers = new HttpHeaders()
-			.set("Content-Type", "application/json");
+		const bodyString = JSON.stringify(patchcommands); // Stringify payload
+		const headers = new HttpHeaders()
+			.set('Content-Type', 'application/json');
 		return this.http.patch<IItem>(`${this.itemsUrl}/item/${item.itemId}`, bodyString, {headers});
 	}
 
 	public deleteItem(item: IItem) {
-		let headers = new HttpHeaders()
-			.set("Content-Type", "application/json");
+		const headers = new HttpHeaders()
+			.set('Content-Type', 'application/json');
 		return this.http.delete<IItem>(`${this.itemsUrl}/item/${item.itemId}`, {headers});
 	}
 }

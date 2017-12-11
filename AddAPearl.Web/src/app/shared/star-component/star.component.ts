@@ -16,7 +16,7 @@ import {
 export class StarComponent implements OnChanges {
 	@Input() public rating: number;
 	public starWidth: number;
-	public starFontSize: number = 20;
+	public starFontSize = 20;
 	@Output() public ratingClicked: EventEmitter < string > = new EventEmitter < string > ();
 
 	public ngOnChanges(): void {

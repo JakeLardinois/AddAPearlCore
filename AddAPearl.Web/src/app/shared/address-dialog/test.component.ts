@@ -12,7 +12,7 @@ import {
 
 @Component({
   selector: 'dialog-component',
-  template: `Can't resolve all parameters for MdDialogRef: (?)`
+  template: `Comment Out First Provider object to see actual Address Dialog Content...`
 })
 export class TestComponent {
   viewContainerRef: any;

@@ -3,9 +3,6 @@ import {
   async
 } from '@angular/core/testing';
 import {
-  AddressDialog
-} from './addressDialog.component';
-import {
   MaterialModule
 } from '../../shared/material.module';
 import {
@@ -15,7 +12,8 @@ import {
   Logger
 } from 'angular2-logger/core';
 import {
-  AddressService
+  AddressService,
+  AddressDialog
 } from '../../shared/index';
 import {
   NO_ERRORS_SCHEMA,

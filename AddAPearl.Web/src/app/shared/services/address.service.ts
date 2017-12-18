@@ -8,7 +8,7 @@ import {
 } from '@angular/common/http';
 import {
   Observable,
-} from 'rxjs/Rx';
+} from 'rxjs/Observable';
 
 import {
   IAddress,

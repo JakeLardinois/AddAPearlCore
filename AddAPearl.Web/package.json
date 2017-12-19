@@ -9,7 +9,7 @@
     "build": "ng build",
     "build-prod": "ng build --prod",
     "test": "ng test",
-    "execute-unit-tests": "ng test --single-run --browsers=PhantomJS --reporters=teamcity",
+    "execute-unit-tests": "ng test --watch=false --browsers=PhantomJS --reporters=teamcity",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },

@@ -316,4 +316,4 @@ AddAPearl.Web/src/**/*.map
 AddAPearl.Web/src/**/*.css
 
 #ignore built Angular Application
-AddAPearl.Web/build
+AddAPearl.Web/dist
